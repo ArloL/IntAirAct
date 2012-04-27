@@ -15,6 +15,8 @@
 			);
 			dependencies = (
 				277E5542154A431C002F307D /* PBXTargetDependency */,
+				27EF32AA154A98AF003D7F41 /* PBXTargetDependency */,
+				27EF32AC154A98AF003D7F41 /* PBXTargetDependency */,
 			);
 			name = InteractIOS;
 			productName = InteractIOS;
@@ -101,6 +103,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 27D3648B154A0A4C002833C1;
 			remoteInfo = RoutingHTTPServerOSX;
+		};
+		27EF32A9154A98AF003D7F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27530869154A37F40060D886;
+			remoteInfo = "RestKit+BlocksIOS";
+		};
+		27EF32AB154A98AF003D7F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D36472154A09CB002833C1;
+			remoteInfo = RoutingHTTPServerIOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -435,6 +451,16 @@
 			isa = PBXTargetDependency;
 			name = RoutingHTTPServerOSX;
 			targetProxy = 27EF3013154A7FC8003D7F41 /* PBXContainerItemProxy */;
+		};
+		27EF32AA154A98AF003D7F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "RestKit+BlocksIOS";
+			targetProxy = 27EF32A9154A98AF003D7F41 /* PBXContainerItemProxy */;
+		};
+		27EF32AC154A98AF003D7F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RoutingHTTPServerIOS;
+			targetProxy = 27EF32AB154A98AF003D7F41 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
