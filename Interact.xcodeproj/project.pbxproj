@@ -14,8 +14,8 @@
 /* Begin PBXFileReference section */
 		277E552C154A42AF002F307D /* libInteract.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInteract.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E552F154A42AF002F307D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		277E5533154A42AF002F307D /* Interact-Prefix.pch */ = {isa = PBXFileReference; path = "Interact-Prefix.pch"; sourceTree = "<group>"; };
-		277E5534154A42AF002F307D /* Interact.h */ = {isa = PBXFileReference; path = Interact.h; sourceTree = "<group>"; };
+		277E5533154A42AF002F307D /* Interact-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Interact-Prefix.pch"; sourceTree = "<group>"; };
+		277E5534154A42AF002F307D /* Interact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Interact.h; sourceTree = "<group>"; };
 		277E5535154A42AF002F307D /* Interact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Interact.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
