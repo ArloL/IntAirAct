@@ -115,10 +115,6 @@
 		27EF2FD1154A7F37003D7F41 /* Interact-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Interact-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKitBlocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
-		27EF3009154A7FBC003D7F41 /* libCocoaAsyncSocket.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocoaAsyncSocket.a; path = "Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaAsyncSocket/build/Release-iphoneos/libCocoaAsyncSocket.a"; sourceTree = "<group>"; };
-		27EF300A154A7FBC003D7F41 /* libCocoaHTTPServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocoaHTTPServer.a; path = "Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/build/Release-iphoneos/libCocoaHTTPServer.a"; sourceTree = "<group>"; };
-		27EF300B154A7FBC003D7F41 /* libCocoaLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocoaLumberjack.a; path = "Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaLumberjack/build/Release-iphoneos/libCocoaLumberjack.a"; sourceTree = "<group>"; };
-		27EF300C154A7FBC003D7F41 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRestKit.a; path = "Frameworks/RestKitBlocks/Frameworks/RestKit/Build/Products/Release-iphoneos/libRestKit.a"; sourceTree = "<group>"; };
 		27EF3017154A7FD1003D7F41 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaAsyncSocket/build/Release/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		27EF3018154A7FD1003D7F41 /* CocoaHTTPServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaHTTPServer.framework; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/build/Release/CocoaHTTPServer.framework; sourceTree = "<group>"; };
 		27EF3019154A7FD1003D7F41 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaLumberjack/build/Release/CocoaLumberjack.framework; sourceTree = "<group>"; };
@@ -175,10 +171,6 @@
 			children = (
 				27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */,
 				27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */,
-				27EF3009154A7FBC003D7F41 /* libCocoaAsyncSocket.a */,
-				27EF300A154A7FBC003D7F41 /* libCocoaHTTPServer.a */,
-				27EF300B154A7FBC003D7F41 /* libCocoaLumberjack.a */,
-				27EF300C154A7FBC003D7F41 /* libRestKit.a */,
 				27EF3017154A7FD1003D7F41 /* CocoaAsyncSocket.framework */,
 				27EF3018154A7FD1003D7F41 /* CocoaHTTPServer.framework */,
 				27EF3019154A7FD1003D7F41 /* CocoaLumberjack.framework */,
