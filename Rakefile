@@ -11,7 +11,7 @@ def builder(os = "IOS")
 end
 
 desc "Clean and Build"
-task :default => [:clean, :build]
+task :default => [:clean, :build, :test]
 
 desc "Cleans everything"
 task :clean => [:iosclean, :osxclean] do
@@ -45,17 +45,27 @@ desc "Test for iOS and OS X"
 task :test => [:iostest, :osxtest]
 
 desc "Test for iOS"
-task :iostest do
-  builder("IOSTests").test(:sdk => :iphonesimulator)
+task :iostest => :init do
+  builder("IOSTests").test(:sdk => :iphonesimulator) do |report|
+    # Output JUnit format results
+    report.add_formatter :junit, 'build/' + $configuration + '-iphonesimulator/test-reports'
+    # Output a simplified output to STDOUT
+    report.add_formatter :stdout
+  end
 end
 
 desc "Test for OS X"
-task :osxtest do
-  builder("OSXTests").test(:sdk => :macosx)
+task :osxtest => :init do
+  builder("OSXTests").test(:sdk => :macosx) do |report|
+    # Output JUnit format results
+    report.add_formatter :junit, 'build/' + $configuration + '/test-reports'
+    # Output a simplified output to STDOUT
+    report.add_formatter :stdout
+  end
 end
 
 desc "Creates archives of the frameworks"
-task :archive => [:clean, :build] do
+task :archive => [:clean, :build, :test] do
   cd "build/" + $configuration + "-iphoneos" do
     sh "tar cvzf ../" + $name + "IOS.tar.gz " + $name + ".framework"
   end
