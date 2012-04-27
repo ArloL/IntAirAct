@@ -46,10 +46,6 @@
 		27EF337C154A9CBF003D7F41 /* IAInteract.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3369154A9CBF003D7F41 /* IAInteract.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27EF337D154A9CBF003D7F41 /* IAInteract.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336A154A9CBF003D7F41 /* IAInteract.m */; };
 		27EF337E154A9CBF003D7F41 /* IAInteract.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336A154A9CBF003D7F41 /* IAInteract.m */; };
-		27EF337F154A9CBF003D7F41 /* IALocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336B154A9CBF003D7F41 /* IALocator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF3380154A9CBF003D7F41 /* IALocator.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336B154A9CBF003D7F41 /* IALocator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF3381154A9CBF003D7F41 /* IALocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336C154A9CBF003D7F41 /* IALocator.m */; };
-		27EF3382154A9CBF003D7F41 /* IALocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336C154A9CBF003D7F41 /* IALocator.m */; };
 		27EF3383154A9CBF003D7F41 /* IALogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336D154A9CBF003D7F41 /* IALogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27EF3384154A9CBF003D7F41 /* IALogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336D154A9CBF003D7F41 /* IALogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27EF3385154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336E154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -183,8 +179,6 @@
 		27EF3366154A9CBF003D7F41 /* IAAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAAction.m; sourceTree = "<group>"; };
 		27EF3369154A9CBF003D7F41 /* IAInteract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAInteract.h; sourceTree = "<group>"; };
 		27EF336A154A9CBF003D7F41 /* IAInteract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAInteract.m; sourceTree = "<group>"; };
-		27EF336B154A9CBF003D7F41 /* IALocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IALocator.h; sourceTree = "<group>"; };
-		27EF336C154A9CBF003D7F41 /* IALocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IALocator.m; sourceTree = "<group>"; };
 		27EF336D154A9CBF003D7F41 /* IALogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IALogging.h; sourceTree = "<group>"; };
 		27EF336E154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARouteRequest+BodyAsString.h"; sourceTree = "<group>"; };
 		27EF336F154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARouteRequest+BodyAsString.m"; sourceTree = "<group>"; };
@@ -345,8 +339,6 @@
 			children = (
 				27EF3369154A9CBF003D7F41 /* IAInteract.h */,
 				27EF336A154A9CBF003D7F41 /* IAInteract.m */,
-				27EF336B154A9CBF003D7F41 /* IALocator.h */,
-				27EF336C154A9CBF003D7F41 /* IALocator.m */,
 				27EF336D154A9CBF003D7F41 /* IALogging.h */,
 			);
 			name = Shared;
@@ -396,7 +388,6 @@
 				27EF3383154A9CBF003D7F41 /* IALogging.h in Headers */,
 				27EF3385154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */,
 				27EF3389154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */,
-				27EF337F154A9CBF003D7F41 /* IALocator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,7 +399,6 @@
 				27EF2FCD154A7F00003D7F41 /* IADevice.h in Headers */,
 				27EF3374154A9CBF003D7F41 /* IAAction.h in Headers */,
 				27EF337C154A9CBF003D7F41 /* IAInteract.h in Headers */,
-				27EF3380154A9CBF003D7F41 /* IALocator.h in Headers */,
 				27EF3384154A9CBF003D7F41 /* IALogging.h in Headers */,
 				27EF3386154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */,
 				27EF338A154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */,
@@ -667,7 +657,6 @@
 				27EF2FCE154A7F00003D7F41 /* IADevice.m in Sources */,
 				27EF3375154A9CBF003D7F41 /* IAAction.m in Sources */,
 				27EF337D154A9CBF003D7F41 /* IAInteract.m in Sources */,
-				27EF3381154A9CBF003D7F41 /* IALocator.m in Sources */,
 				27EF3387154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m in Sources */,
 				27EF338B154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */,
 			);
@@ -680,7 +669,6 @@
 				27EF2FCF154A7F00003D7F41 /* IADevice.m in Sources */,
 				27EF3376154A9CBF003D7F41 /* IAAction.m in Sources */,
 				27EF337E154A9CBF003D7F41 /* IAInteract.m in Sources */,
-				27EF3382154A9CBF003D7F41 /* IALocator.m in Sources */,
 				27EF3388154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m in Sources */,
 				27EF338C154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */,
 			);
