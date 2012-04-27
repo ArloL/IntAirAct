@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "277E5548154A4384002F307D"
-               BuildableName = "InteractOSX.framework"
+               BuildableName = "Interact.framework"
                BlueprintName = "InteractOSX"
                ReferencedContainer = "container:Interact.xcodeproj">
             </BuildableReference>

@@ -24,6 +24,8 @@
 /* Begin PBXBuildFile section */
 		277E5530154A42AF002F307D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552F154A42AF002F307D /* Foundation.framework */; };
 		277E554B154A4385002F307D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E554A154A4384002F307D /* Cocoa.framework */; };
+		277E555F154A44D0002F307D /* Interact.h in Headers */ = {isa = PBXBuildFile; fileRef = 277E555E154A44D0002F307D /* Interact.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		277E5560154A44D0002F307D /* Interact.h in Headers */ = {isa = PBXBuildFile; fileRef = 277E555E154A44D0002F307D /* Interact.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,7 @@
 		277E554E154A4385002F307D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		277E554F154A4385002F307D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		277E555D154A441A002F307D /* Interact-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Interact-Info.plist"; sourceTree = SOURCE_ROOT; };
+		277E555E154A44D0002F307D /* Interact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interact.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,7 @@
 		277E5531154A42AF002F307D /* Interact */ = {
 			isa = PBXGroup;
 			children = (
+				277E555E154A44D0002F307D /* Interact.h */,
 			);
 			path = Interact;
 			sourceTree = "<group>";
@@ -131,6 +135,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277E555F154A44D0002F307D /* Interact.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +143,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277E5560154A44D0002F307D /* Interact.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +435,7 @@
 				277E553B154A42AF002F307D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		277E553E154A430F002F307D /* Build configuration list for PBXAggregateTarget "InteractIOS" */ = {
 			isa = XCConfigurationList;
@@ -437,6 +444,7 @@
 				277E5540154A430F002F307D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		277E555A154A4385002F307D /* Build configuration list for PBXNativeTarget "InteractOSX" */ = {
 			isa = XCConfigurationList;
@@ -445,6 +453,7 @@
 				277E555C154A4385002F307D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
