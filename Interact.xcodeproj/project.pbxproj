@@ -52,12 +52,12 @@
 		27EF3382154A9CBF003D7F41 /* IALocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336C154A9CBF003D7F41 /* IALocator.m */; };
 		27EF3383154A9CBF003D7F41 /* IALogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336D154A9CBF003D7F41 /* IALogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27EF3384154A9CBF003D7F41 /* IALogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336D154A9CBF003D7F41 /* IALogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF3385154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336E154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h */; };
-		27EF3386154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336E154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h */; };
+		27EF3385154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336E154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27EF3386154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336E154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27EF3387154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336F154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m */; };
 		27EF3388154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336F154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m */; };
-		27EF3389154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3370154A9CBF003D7F41 /* IARouteResponse+Serializer.h */; };
-		27EF338A154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3370154A9CBF003D7F41 /* IARouteResponse+Serializer.h */; };
+		27EF3389154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3370154A9CBF003D7F41 /* IARouteResponse+Serializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27EF338A154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3370154A9CBF003D7F41 /* IARouteResponse+Serializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27EF338B154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */; };
 		27EF338C154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */; };
 		27EF339B154A9E3E003D7F41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF339A154A9E3E003D7F41 /* UIKit.framework */; };
@@ -318,9 +318,9 @@
 				27EF3373154A9CBF003D7F41 /* IAAction.h in Headers */,
 				27EF337B154A9CBF003D7F41 /* IAInteract.h in Headers */,
 				27EF3383154A9CBF003D7F41 /* IALogging.h in Headers */,
-				27EF337F154A9CBF003D7F41 /* IALocator.h in Headers */,
 				27EF3385154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */,
 				27EF3389154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */,
+				27EF337F154A9CBF003D7F41 /* IALocator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
