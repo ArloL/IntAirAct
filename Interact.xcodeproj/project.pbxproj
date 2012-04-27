@@ -27,10 +27,10 @@
 		277E5530154A42AF002F307D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552F154A42AF002F307D /* Foundation.framework */; };
 		277E555F154A44D0002F307D /* Interact.h in Headers */ = {isa = PBXBuildFile; fileRef = 277E555E154A44D0002F307D /* Interact.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		277E5560154A44D0002F307D /* Interact.h in Headers */ = {isa = PBXBuildFile; fileRef = 277E555E154A44D0002F307D /* Interact.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF2FCC154A7F00003D7F41 /* Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF2FCA154A7F00003D7F41 /* Device.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF2FCD154A7F00003D7F41 /* Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF2FCA154A7F00003D7F41 /* Device.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF2FCE154A7F00003D7F41 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF2FCB154A7F00003D7F41 /* Device.m */; };
-		27EF2FCF154A7F00003D7F41 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF2FCB154A7F00003D7F41 /* Device.m */; };
+		27EF2FCC154A7F00003D7F41 /* IADevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF2FCA154A7F00003D7F41 /* IADevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27EF2FCD154A7F00003D7F41 /* IADevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF2FCA154A7F00003D7F41 /* IADevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27EF2FCE154A7F00003D7F41 /* IADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF2FCB154A7F00003D7F41 /* IADevice.m */; };
+		27EF2FCF154A7F00003D7F41 /* IADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF2FCB154A7F00003D7F41 /* IADevice.m */; };
 		27EF3015154A7FD1003D7F41 /* RestKit+Blocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FE2154A7F9B003D7F41 /* RestKit+Blocks.framework */; };
 		27EF3016154A7FD1003D7F41 /* RoutingHTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */; };
 		27EF301B154A7FD1003D7F41 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3017154A7FD1003D7F41 /* CocoaAsyncSocket.framework */; };
@@ -126,8 +126,8 @@
 		277E5549154A4384002F307D /* Interact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Interact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E555D154A441A002F307D /* Interact-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Interact-Info.plist"; sourceTree = SOURCE_ROOT; };
 		277E555E154A44D0002F307D /* Interact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interact.h; sourceTree = "<group>"; };
-		27EF2FCA154A7F00003D7F41 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
-		27EF2FCB154A7F00003D7F41 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		27EF2FCA154A7F00003D7F41 /* IADevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IADevice.h; sourceTree = "<group>"; };
+		27EF2FCB154A7F00003D7F41 /* IADevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IADevice.m; sourceTree = "<group>"; };
 		27EF2FD1154A7F37003D7F41 /* Interact-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Interact-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKitBlocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
@@ -200,8 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				277E555E154A44D0002F307D /* Interact.h */,
-				27EF2FCA154A7F00003D7F41 /* Device.h */,
-				27EF2FCB154A7F00003D7F41 /* Device.m */,
+				27EF2FCA154A7F00003D7F41 /* IADevice.h */,
+				27EF2FCB154A7F00003D7F41 /* IADevice.m */,
 			);
 			path = Interact;
 			sourceTree = "<group>";
@@ -242,7 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				277E555F154A44D0002F307D /* Interact.h in Headers */,
-				27EF2FCC154A7F00003D7F41 /* Device.h in Headers */,
+				27EF2FCC154A7F00003D7F41 /* IADevice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				277E5560154A44D0002F307D /* Interact.h in Headers */,
-				27EF2FCD154A7F00003D7F41 /* Device.h in Headers */,
+				27EF2FCD154A7F00003D7F41 /* IADevice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,7 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27EF2FCE154A7F00003D7F41 /* Device.m in Sources */,
+				27EF2FCE154A7F00003D7F41 /* IADevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,7 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27EF2FCF154A7F00003D7F41 /* Device.m in Sources */,
+				27EF2FCF154A7F00003D7F41 /* IADevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
