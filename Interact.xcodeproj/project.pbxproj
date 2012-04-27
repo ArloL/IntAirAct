@@ -78,6 +78,20 @@
 			remoteGlobalIDString = 277E552B154A42AF002F307D;
 			remoteInfo = InteractStaticIOS;
 		};
+		278C8B3A154B447D007D4542 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27EF346E154AA74D003D7F41;
+			remoteInfo = RoutingHTTPServerOSXTests;
+		};
+		278C8B3C154B447D007D4542 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27EF34E6154AA953003D7F41;
+			remoteInfo = RoutingHTTPServerIOSTests;
+		};
 		27EF2FDF154A7F9B003D7F41 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */;
@@ -309,6 +323,8 @@
 			children = (
 				27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */,
 				27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */,
+				278C8B3B154B447D007D4542 /* RoutingHTTPServerOSXTests.octest */,
+				278C8B3D154B447D007D4542 /* RoutingHTTPServerIOSTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -518,6 +534,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		278C8B3B154B447D007D4542 /* RoutingHTTPServerOSXTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RoutingHTTPServerOSXTests.octest;
+			remoteRef = 278C8B3A154B447D007D4542 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		278C8B3D154B447D007D4542 /* RoutingHTTPServerIOSTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RoutingHTTPServerIOSTests.octest;
+			remoteRef = 278C8B3C154B447D007D4542 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		27EF2FE0154A7F9B003D7F41 /* libRestKit+Blocks.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
