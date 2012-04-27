@@ -6,17 +6,46 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		277E553D154A430E002F307D /* InteractIOS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 277E553E154A430F002F307D /* Build configuration list for PBXAggregateTarget "InteractIOS" */;
+			buildPhases = (
+				277E5543154A432D002F307D /* Build Framework */,
+			);
+			dependencies = (
+				277E5542154A431C002F307D /* PBXTargetDependency */,
+			);
+			name = InteractIOS;
+			productName = InteractIOS;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		277E5530154A42AF002F307D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552F154A42AF002F307D /* Foundation.framework */; };
-		277E5536154A42AF002F307D /* Interact.m in Sources */ = {isa = PBXBuildFile; fileRef = 277E5535154A42AF002F307D /* Interact.m */; };
+		277E554B154A4385002F307D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E554A154A4384002F307D /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		277E5541154A431C002F307D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 277E5523154A42AE002F307D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 277E552B154A42AF002F307D;
+			remoteInfo = InteractStaticIOS;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		277E552C154A42AF002F307D /* libInteract.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInteract.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E552F154A42AF002F307D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		277E5533154A42AF002F307D /* Interact-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Interact-Prefix.pch"; sourceTree = "<group>"; };
-		277E5534154A42AF002F307D /* Interact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Interact.h; sourceTree = "<group>"; };
-		277E5535154A42AF002F307D /* Interact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Interact.m; sourceTree = "<group>"; };
+		277E5549154A4384002F307D /* Interact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Interact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		277E554A154A4384002F307D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		277E554D154A4385002F307D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		277E554E154A4385002F307D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		277E554F154A4385002F307D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		277E555D154A441A002F307D /* Interact-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Interact-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +57,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		277E5545154A4384002F307D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				277E554B154A4385002F307D /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -35,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				277E5531154A42AF002F307D /* Interact */,
+				277E5532154A42AF002F307D /* Supporting Files */,
 				277E552E154A42AF002F307D /* Frameworks */,
 				277E552D154A42AF002F307D /* Products */,
 			);
@@ -44,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				277E552C154A42AF002F307D /* libInteract.a */,
+				277E5549154A4384002F307D /* Interact.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -52,6 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				277E552F154A42AF002F307D /* Foundation.framework */,
+				277E554A154A4384002F307D /* Cocoa.framework */,
+				277E554C154A4385002F307D /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -59,9 +100,6 @@
 		277E5531154A42AF002F307D /* Interact */ = {
 			isa = PBXGroup;
 			children = (
-				277E5534154A42AF002F307D /* Interact.h */,
-				277E5535154A42AF002F307D /* Interact.m */,
-				277E5532154A42AF002F307D /* Supporting Files */,
 			);
 			path = Interact;
 			sourceTree = "<group>";
@@ -69,9 +107,21 @@
 		277E5532154A42AF002F307D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				277E555D154A441A002F307D /* Interact-Info.plist */,
 				277E5533154A42AF002F307D /* Interact-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = Interact;
+			sourceTree = "<group>";
+		};
+		277E554C154A4385002F307D /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				277E554D154A4385002F307D /* AppKit.framework */,
+				277E554E154A4385002F307D /* CoreData.framework */,
+				277E554F154A4385002F307D /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,25 +134,51 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		277E5546154A4384002F307D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		277E552B154A42AF002F307D /* Interact */ = {
+		277E552B154A42AF002F307D /* InteractStaticIOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 277E5539154A42AF002F307D /* Build configuration list for PBXNativeTarget "Interact" */;
+			buildConfigurationList = 277E5539154A42AF002F307D /* Build configuration list for PBXNativeTarget "InteractStaticIOS" */;
 			buildPhases = (
 				277E5528154A42AF002F307D /* Sources */,
 				277E5529154A42AF002F307D /* Frameworks */,
 				277E552A154A42AF002F307D /* Headers */,
+				277E553C154A4302002F307D /* Prepare Framework */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Interact;
+			name = InteractStaticIOS;
 			productName = Interact;
 			productReference = 277E552C154A42AF002F307D /* libInteract.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		277E5548154A4384002F307D /* InteractOSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 277E555A154A4385002F307D /* Build configuration list for PBXNativeTarget "InteractOSX" */;
+			buildPhases = (
+				277E5544154A4384002F307D /* Sources */,
+				277E5545154A4384002F307D /* Frameworks */,
+				277E5546154A4384002F307D /* Headers */,
+				277E5547154A4384002F307D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InteractOSX;
+			productName = InteractOSX;
+			productReference = 277E5549154A4384002F307D /* Interact.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -124,21 +200,78 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				277E552B154A42AF002F307D /* Interact */,
+				277E552B154A42AF002F307D /* InteractStaticIOS */,
+				277E553D154A430E002F307D /* InteractIOS */,
+				277E5548154A4384002F307D /* InteractOSX */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		277E5547154A4384002F307D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		277E553C154A4302002F307D /* Prepare Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n";
+		};
+		277E5543154A432D002F307D /* Build Framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nSF_ARCHS=i386\nelse\nSF_OTHER_PLATFORM=iphoneos\n# Force armv6 to be built because Xcode 4 likes to only build armv7\nSF_ARCHS=\"armv6 armv7\"\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${SF_OTHER_PLATFORM}\" ARCHS=\"${SF_ARCHS}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		277E5528154A42AF002F307D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				277E5536154A42AF002F307D /* Interact.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		277E5544154A4384002F307D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		277E5542154A431C002F307D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 277E552B154A42AF002F307D /* InteractStaticIOS */;
+			targetProxy = 277E5541154A431C002F307D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		277E5537154A42AF002F307D /* Debug */ = {
@@ -186,24 +319,94 @@
 		277E553A154A42AF002F307D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Interact.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Interact/Interact-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
 			};
 			name = Debug;
 		};
 		277E553B154A42AF002F307D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Interact.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Interact/Interact-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		277E553F154A430F002F307D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+			};
+			name = Debug;
+		};
+		277E5540154A430F002F307D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+			};
+			name = Release;
+		};
+		277E555B154A4385002F307D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Interact-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		277E555C154A4385002F307D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Interact-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
 		};
@@ -219,11 +422,27 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		277E5539154A42AF002F307D /* Build configuration list for PBXNativeTarget "Interact" */ = {
+		277E5539154A42AF002F307D /* Build configuration list for PBXNativeTarget "InteractStaticIOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				277E553A154A42AF002F307D /* Debug */,
 				277E553B154A42AF002F307D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		277E553E154A430F002F307D /* Build configuration list for PBXAggregateTarget "InteractIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				277E553F154A430F002F307D /* Debug */,
+				277E5540154A430F002F307D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		277E555A154A4385002F307D /* Build configuration list for PBXNativeTarget "InteractOSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				277E555B154A4385002F307D /* Debug */,
+				277E555C154A4385002F307D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
