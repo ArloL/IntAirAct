@@ -27,6 +27,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27FC6246154B36A400AA7502"
+               BuildableName = "InteractIOSTests.octest"
+               BlueprintName = "InteractIOSTests"
+               ReferencedContainer = "container:Interact.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

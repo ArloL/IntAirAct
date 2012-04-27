@@ -61,6 +61,13 @@
 		27EF338B154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */; };
 		27EF338C154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */; };
 		27EF339B154A9E3E003D7F41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF339A154A9E3E003D7F41 /* UIKit.framework */; };
+		27FC6249154B36A400AA7502 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FC6248154B36A400AA7502 /* SenTestingKit.framework */; };
+		27FC624A154B36A400AA7502 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF339A154A9E3E003D7F41 /* UIKit.framework */; };
+		27FC624B154B36A400AA7502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552F154A42AF002F307D /* Foundation.framework */; };
+		27FC6260154B36AE00AA7502 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FC6248154B36A400AA7502 /* SenTestingKit.framework */; };
+		27FC6262154B36AE00AA7502 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FC6261154B36AE00AA7502 /* Cocoa.framework */; };
+		27FC6277154B376000AA7502 /* InteractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC6276154B376000AA7502 /* InteractTests.m */; };
+		27FC6278154B376000AA7502 /* InteractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC6276154B376000AA7502 /* InteractTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +177,15 @@
 		27EF3370154A9CBF003D7F41 /* IARouteResponse+Serializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARouteResponse+Serializer.h"; sourceTree = "<group>"; };
 		27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARouteResponse+Serializer.m"; sourceTree = "<group>"; };
 		27EF339A154A9E3E003D7F41 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		27FC6247154B36A400AA7502 /* InteractIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InteractIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		27FC6248154B36A400AA7502 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		27FC625F154B36AD00AA7502 /* InteractOSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InteractOSXTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		27FC6261154B36AE00AA7502 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		27FC6264154B36AE00AA7502 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		27FC6265154B36AE00AA7502 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		27FC6266154B36AE00AA7502 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		27FC6275154B376000AA7502 /* InteractTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InteractTests.h; path = InteractTests/InteractTests.h; sourceTree = "<group>"; };
+		27FC6276154B376000AA7502 /* InteractTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InteractTests.m; path = InteractTests/InteractTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +212,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27FC6243154B36A400AA7502 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27FC6249154B36A400AA7502 /* SenTestingKit.framework in Frameworks */,
+				27FC624A154B36A400AA7502 /* UIKit.framework in Frameworks */,
+				27FC624B154B36A400AA7502 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27FC625B154B36AD00AA7502 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27FC6260154B36AE00AA7502 /* SenTestingKit.framework in Frameworks */,
+				27FC6262154B36AE00AA7502 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -203,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				277E5531154A42AF002F307D /* Interact */,
+				27FC6274154B374700AA7502 /* InteractTests */,
 				277E5532154A42AF002F307D /* Supporting Files */,
 				277E552E154A42AF002F307D /* Frameworks */,
 				277E552D154A42AF002F307D /* Products */,
@@ -214,6 +250,8 @@
 			children = (
 				277E552C154A42AF002F307D /* libInteract.a */,
 				277E5549154A4384002F307D /* Interact.framework */,
+				27FC6247154B36A400AA7502 /* InteractIOSTests.octest */,
+				27FC625F154B36AD00AA7502 /* InteractOSXTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,6 +267,9 @@
 				27EF301A154A7FD1003D7F41 /* RestKit.framework */,
 				277E552F154A42AF002F307D /* Foundation.framework */,
 				27EF339A154A9E3E003D7F41 /* UIKit.framework */,
+				27FC6248154B36A400AA7502 /* SenTestingKit.framework */,
+				27FC6261154B36AE00AA7502 /* Cocoa.framework */,
+				27FC6263154B36AE00AA7502 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -304,6 +345,25 @@
 				27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */,
 			);
 			name = Server;
+			sourceTree = "<group>";
+		};
+		27FC6263154B36AE00AA7502 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				27FC6264154B36AE00AA7502 /* AppKit.framework */,
+				27FC6265154B36AE00AA7502 /* CoreData.framework */,
+				27FC6266154B36AE00AA7502 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		27FC6274154B374700AA7502 /* InteractTests */ = {
+			isa = PBXGroup;
+			children = (
+				27FC6275154B376000AA7502 /* InteractTests.h */,
+				27FC6276154B376000AA7502 /* InteractTests.m */,
+			);
+			name = InteractTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,6 +442,42 @@
 			productReference = 277E5549154A4384002F307D /* Interact.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		27FC6246154B36A400AA7502 /* InteractIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27FC6258154B36A500AA7502 /* Build configuration list for PBXNativeTarget "InteractIOSTests" */;
+			buildPhases = (
+				27FC6242154B36A400AA7502 /* Sources */,
+				27FC6243154B36A400AA7502 /* Frameworks */,
+				27FC6244154B36A400AA7502 /* Resources */,
+				27FC6245154B36A400AA7502 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InteractIOSTests;
+			productName = InteractIOSTests;
+			productReference = 27FC6247154B36A400AA7502 /* InteractIOSTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		27FC625E154B36AD00AA7502 /* InteractOSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27FC6271154B36AE00AA7502 /* Build configuration list for PBXNativeTarget "InteractOSXTests" */;
+			buildPhases = (
+				27FC625A154B36AD00AA7502 /* Sources */,
+				27FC625B154B36AD00AA7502 /* Frameworks */,
+				27FC625C154B36AD00AA7502 /* Resources */,
+				27FC625D154B36AD00AA7502 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InteractOSXTests;
+			productName = InteractOSXTests;
+			productReference = 27FC625F154B36AD00AA7502 /* InteractOSXTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -415,6 +511,8 @@
 				277E552B154A42AF002F307D /* InteractStaticIOS */,
 				277E553D154A430E002F307D /* InteractIOS */,
 				277E5548154A4384002F307D /* InteractOSX */,
+				27FC6246154B36A400AA7502 /* InteractIOSTests */,
+				27FC625E154B36AD00AA7502 /* InteractOSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -458,6 +556,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		27FC6244154B36A400AA7502 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27FC625C154B36AD00AA7502 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -489,6 +601,32 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nSF_ARCHS=i386\nelse\nSF_OTHER_PLATFORM=iphoneos\n# Force armv6 to be built because Xcode 4 likes to only build armv7\nSF_ARCHS=\"armv6 armv7\"\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${SF_OTHER_PLATFORM}\" ARCHS=\"${SF_ARCHS}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n";
 		};
+		27FC6245154B36A400AA7502 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		27FC625D154B36AD00AA7502 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -515,6 +653,22 @@
 				27EF3382154A9CBF003D7F41 /* IALocator.m in Sources */,
 				27EF3388154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m in Sources */,
 				27EF338C154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27FC6242154B36A400AA7502 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27FC6277154B376000AA7502 /* InteractTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27FC625A154B36AD00AA7502 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27FC6278154B376000AA7502 /* InteractTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +849,74 @@
 			};
 			name = Release;
 		};
+		27FC6256154B36A400AA7502 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				INFOPLIST_FILE = "Interact-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		27FC6257154B36A400AA7502 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				INFOPLIST_FILE = "Interact-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		27FC6272154B36AE00AA7502 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Interact-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		27FC6273154B36AE00AA7502 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "Interact-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -730,6 +952,24 @@
 			buildConfigurations = (
 				277E555B154A4385002F307D /* Debug */,
 				277E555C154A4385002F307D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27FC6258154B36A500AA7502 /* Build configuration list for PBXNativeTarget "InteractIOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27FC6256154B36A400AA7502 /* Debug */,
+				27FC6257154B36A400AA7502 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27FC6271154B36AE00AA7502 /* Build configuration list for PBXNativeTarget "InteractOSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27FC6272154B36AE00AA7502 /* Debug */,
+				27FC6273154B36AE00AA7502 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
