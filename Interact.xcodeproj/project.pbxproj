@@ -26,6 +26,22 @@
 		277E554B154A4385002F307D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E554A154A4384002F307D /* Cocoa.framework */; };
 		277E555F154A44D0002F307D /* Interact.h in Headers */ = {isa = PBXBuildFile; fileRef = 277E555E154A44D0002F307D /* Interact.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		277E5560154A44D0002F307D /* Interact.h in Headers */ = {isa = PBXBuildFile; fileRef = 277E555E154A44D0002F307D /* Interact.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27EF2FCC154A7F00003D7F41 /* Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF2FCA154A7F00003D7F41 /* Device.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27EF2FCD154A7F00003D7F41 /* Device.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF2FCA154A7F00003D7F41 /* Device.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27EF2FCE154A7F00003D7F41 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF2FCB154A7F00003D7F41 /* Device.m */; };
+		27EF2FCF154A7F00003D7F41 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF2FCB154A7F00003D7F41 /* Device.m */; };
+		27EF3007154A7FBC003D7F41 /* libRestKit+Blocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FE0154A7F9B003D7F41 /* libRestKit+Blocks.a */; };
+		27EF3008154A7FBC003D7F41 /* libRoutingHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */; };
+		27EF300D154A7FBC003D7F41 /* libCocoaAsyncSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3009154A7FBC003D7F41 /* libCocoaAsyncSocket.a */; };
+		27EF300E154A7FBC003D7F41 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF300A154A7FBC003D7F41 /* libCocoaHTTPServer.a */; };
+		27EF300F154A7FBC003D7F41 /* libCocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF300B154A7FBC003D7F41 /* libCocoaLumberjack.a */; };
+		27EF3010154A7FBC003D7F41 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF300C154A7FBC003D7F41 /* libRestKit.a */; };
+		27EF3015154A7FD1003D7F41 /* RestKit+Blocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FE2154A7F9B003D7F41 /* RestKit+Blocks.framework */; };
+		27EF3016154A7FD1003D7F41 /* RoutingHTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */; };
+		27EF301B154A7FD1003D7F41 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3017154A7FD1003D7F41 /* CocoaAsyncSocket.framework */; };
+		27EF301C154A7FD1003D7F41 /* CocoaHTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3018154A7FD1003D7F41 /* CocoaHTTPServer.framework */; };
+		27EF301D154A7FD1003D7F41 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3019154A7FD1003D7F41 /* CocoaLumberjack.framework */; };
+		27EF301E154A7FD1003D7F41 /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF301A154A7FD1003D7F41 /* RestKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,12 +52,67 @@
 			remoteGlobalIDString = 277E552B154A42AF002F307D;
 			remoteInfo = InteractStaticIOS;
 		};
+		27EF2FDF154A7F9B003D7F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2777B4A9154A372B0027576D;
+			remoteInfo = "RestKit+BlocksStaticIOS";
+		};
+		27EF2FE1154A7F9B003D7F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27530875154A38260060D886;
+			remoteInfo = "RestKit+BlocksOSX";
+		};
+		27EF2FFD154A7FA8003D7F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27D36461154A091D002833C1;
+			remoteInfo = RoutingHTTPServerStaticIOS;
+		};
+		27EF2FFF154A7FA8003D7F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27D3648C154A0A4C002833C1;
+			remoteInfo = RoutingHTTPServerOSX;
+		};
+		27EF3003154A7FB3003D7F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2777B4A8154A372B0027576D;
+			remoteInfo = "RestKit+BlocksStaticIOS";
+		};
+		27EF3005154A7FB3003D7F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D36460154A091D002833C1;
+			remoteInfo = RoutingHTTPServerStaticIOS;
+		};
+		27EF3011154A7FC8003D7F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27530874154A38260060D886;
+			remoteInfo = "RestKit+BlocksOSX";
+		};
+		27EF3013154A7FC8003D7F41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 27D3648B154A0A4C002833C1;
+			remoteInfo = RoutingHTTPServerOSX;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		277E552C154A42AF002F307D /* libInteract.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInteract.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E552F154A42AF002F307D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		277E5533154A42AF002F307D /* Interact-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Interact-Prefix.pch"; sourceTree = "<group>"; };
 		277E5549154A4384002F307D /* Interact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Interact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E554A154A4384002F307D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		277E554D154A4385002F307D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -49,6 +120,19 @@
 		277E554F154A4385002F307D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		277E555D154A441A002F307D /* Interact-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Interact-Info.plist"; sourceTree = SOURCE_ROOT; };
 		277E555E154A44D0002F307D /* Interact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interact.h; sourceTree = "<group>"; };
+		27EF2FCA154A7F00003D7F41 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		27EF2FCB154A7F00003D7F41 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		27EF2FD1154A7F37003D7F41 /* Interact-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Interact-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKitBlocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
+		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
+		27EF3009154A7FBC003D7F41 /* libCocoaAsyncSocket.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libCocoaAsyncSocket.a; path = "Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaAsyncSocket/build/Release-iphoneos/libCocoaAsyncSocket.a"; sourceTree = "<group>"; };
+		27EF300A154A7FBC003D7F41 /* libCocoaHTTPServer.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libCocoaHTTPServer.a; path = "Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/build/Release-iphoneos/libCocoaHTTPServer.a"; sourceTree = "<group>"; };
+		27EF300B154A7FBC003D7F41 /* libCocoaLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libCocoaLumberjack.a; path = "Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaLumberjack/build/Release-iphoneos/libCocoaLumberjack.a"; sourceTree = "<group>"; };
+		27EF300C154A7FBC003D7F41 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libRestKit.a; path = "Frameworks/RestKitBlocks/Frameworks/RestKit/Build/Products/Release-iphoneos/libRestKit.a"; sourceTree = "<group>"; };
+		27EF3017154A7FD1003D7F41 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = CocoaAsyncSocket.framework; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaAsyncSocket/build/Release/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
+		27EF3018154A7FD1003D7F41 /* CocoaHTTPServer.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = CocoaHTTPServer.framework; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/build/Release/CocoaHTTPServer.framework; sourceTree = "<group>"; };
+		27EF3019154A7FD1003D7F41 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = CocoaLumberjack.framework; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaLumberjack/build/Release/CocoaLumberjack.framework; sourceTree = "<group>"; };
+		27EF301A154A7FD1003D7F41 /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = RestKit.framework; path = Frameworks/RestKitBlocks/Frameworks/RestKit/build/Release/RestKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +140,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27EF300D154A7FBC003D7F41 /* libCocoaAsyncSocket.a in Frameworks */,
+				27EF300E154A7FBC003D7F41 /* libCocoaHTTPServer.a in Frameworks */,
+				27EF300F154A7FBC003D7F41 /* libCocoaLumberjack.a in Frameworks */,
+				27EF3010154A7FBC003D7F41 /* libRestKit.a in Frameworks */,
+				27EF3007154A7FBC003D7F41 /* libRestKit+Blocks.a in Frameworks */,
+				27EF3008154A7FBC003D7F41 /* libRoutingHTTPServer.a in Frameworks */,
 				277E5530154A42AF002F307D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -64,6 +154,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27EF301B154A7FD1003D7F41 /* CocoaAsyncSocket.framework in Frameworks */,
+				27EF301C154A7FD1003D7F41 /* CocoaHTTPServer.framework in Frameworks */,
+				27EF301D154A7FD1003D7F41 /* CocoaLumberjack.framework in Frameworks */,
+				27EF301E154A7FD1003D7F41 /* RestKit.framework in Frameworks */,
+				27EF3015154A7FD1003D7F41 /* RestKit+Blocks.framework in Frameworks */,
+				27EF3016154A7FD1003D7F41 /* RoutingHTTPServer.framework in Frameworks */,
 				277E554B154A4385002F307D /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +189,16 @@
 		277E552E154A42AF002F307D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */,
+				27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */,
+				27EF3009154A7FBC003D7F41 /* libCocoaAsyncSocket.a */,
+				27EF300A154A7FBC003D7F41 /* libCocoaHTTPServer.a */,
+				27EF300B154A7FBC003D7F41 /* libCocoaLumberjack.a */,
+				27EF300C154A7FBC003D7F41 /* libRestKit.a */,
+				27EF3017154A7FD1003D7F41 /* CocoaAsyncSocket.framework */,
+				27EF3018154A7FD1003D7F41 /* CocoaHTTPServer.framework */,
+				27EF3019154A7FD1003D7F41 /* CocoaLumberjack.framework */,
+				27EF301A154A7FD1003D7F41 /* RestKit.framework */,
 				277E552F154A42AF002F307D /* Foundation.framework */,
 				277E554A154A4384002F307D /* Cocoa.framework */,
 				277E554C154A4385002F307D /* Other Frameworks */,
@@ -104,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				277E555E154A44D0002F307D /* Interact.h */,
+				27EF2FCA154A7F00003D7F41 /* Device.h */,
+				27EF2FCB154A7F00003D7F41 /* Device.m */,
 			);
 			path = Interact;
 			sourceTree = "<group>";
@@ -112,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				277E555D154A441A002F307D /* Interact-Info.plist */,
-				277E5533154A42AF002F307D /* Interact-Prefix.pch */,
+				27EF2FD1154A7F37003D7F41 /* Interact-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			path = Interact;
@@ -128,6 +236,24 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		27EF2FD3154A7F9A003D7F41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27EF2FE0154A7F9B003D7F41 /* libRestKit+Blocks.a */,
+				27EF2FE2154A7F9B003D7F41 /* RestKit+Blocks.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27EF2FE9154A7FA7003D7F41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */,
+				27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -136,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				277E555F154A44D0002F307D /* Interact.h in Headers */,
+				27EF2FCC154A7F00003D7F41 /* Device.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				277E5560154A44D0002F307D /* Interact.h in Headers */,
+				27EF2FCD154A7F00003D7F41 /* Device.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +290,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				27EF3004154A7FB3003D7F41 /* PBXTargetDependency */,
+				27EF3006154A7FB3003D7F41 /* PBXTargetDependency */,
 			);
 			name = InteractStaticIOS;
 			productName = Interact;
@@ -180,6 +310,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				27EF3012154A7FC8003D7F41 /* PBXTargetDependency */,
+				27EF3014154A7FC8003D7F41 /* PBXTargetDependency */,
 			);
 			name = InteractOSX;
 			productName = InteractOSX;
@@ -204,6 +336,16 @@
 			mainGroup = 277E5521154A42AE002F307D;
 			productRefGroup = 277E552D154A42AF002F307D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 27EF2FD3154A7F9A003D7F41 /* Products */;
+					ProjectRef = 27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */;
+				},
+				{
+					ProductGroup = 27EF2FE9154A7FA7003D7F41 /* Products */;
+					ProjectRef = 27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				277E552B154A42AF002F307D /* InteractStaticIOS */,
@@ -212,6 +354,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		27EF2FE0154A7F9B003D7F41 /* libRestKit+Blocks.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRestKit+Blocks.a";
+			remoteRef = 27EF2FDF154A7F9B003D7F41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27EF2FE2154A7F9B003D7F41 /* RestKit+Blocks.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = "RestKit+Blocks.framework";
+			remoteRef = 27EF2FE1154A7F9B003D7F41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRoutingHTTPServer.a;
+			remoteRef = 27EF2FFD154A7FA8003D7F41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RoutingHTTPServer.framework;
+			remoteRef = 27EF2FFF154A7FA8003D7F41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		277E5547154A4384002F307D /* Resources */ = {
@@ -259,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27EF2FCE154A7F00003D7F41 /* Device.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27EF2FCF154A7F00003D7F41 /* Device.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +451,26 @@
 			isa = PBXTargetDependency;
 			target = 277E552B154A42AF002F307D /* InteractStaticIOS */;
 			targetProxy = 277E5541154A431C002F307D /* PBXContainerItemProxy */;
+		};
+		27EF3004154A7FB3003D7F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "RestKit+BlocksStaticIOS";
+			targetProxy = 27EF3003154A7FB3003D7F41 /* PBXContainerItemProxy */;
+		};
+		27EF3006154A7FB3003D7F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RoutingHTTPServerStaticIOS;
+			targetProxy = 27EF3005154A7FB3003D7F41 /* PBXContainerItemProxy */;
+		};
+		27EF3012154A7FC8003D7F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "RestKit+BlocksOSX";
+			targetProxy = 27EF3011154A7FC8003D7F41 /* PBXContainerItemProxy */;
+		};
+		27EF3014154A7FC8003D7F41 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RoutingHTTPServerOSX;
+			targetProxy = 27EF3013154A7FC8003D7F41 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -329,7 +524,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Interact.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Interact/Interact-Prefix.pch";
+				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
@@ -345,7 +540,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Interact.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Interact/Interact-Prefix.pch";
+				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
