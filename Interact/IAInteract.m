@@ -6,7 +6,6 @@
 
 #import "IAAction.h"
 #import "IADevice.h"
-#import "IALocator.h"
 #import "IALogging.h"
 
 // Log levels: off, error, warn, info, verbose
@@ -71,7 +70,6 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         self.deviceList = [NSMutableDictionary new];
         self.defaultMimeType = RKMIMETypeJSON;
         self.objectManagers = [NSMutableDictionary new];
-        self.privLocator = [IALocator new];
         self.services = [NSMutableSet new];
         
         [self setup];
@@ -112,7 +110,6 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
                 IALogInfo(@"%@: Started Interact.", THIS_FILE);
                 
                 if(isClient) {
-                    [self.locator startTracking];
                     [self startBonjour];
                 }
                 isRunning = YES;
@@ -121,7 +118,6 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
             }
         } else if (isClient) {
             IALogInfo(@"%@: Started Interact.", THIS_FILE);
-            [self.locator startTracking];
             [self startBonjour];
         }
 	}});
