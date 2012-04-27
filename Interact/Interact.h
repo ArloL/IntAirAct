@@ -1,1 +1,1 @@
-#import <Interact/Device.h>
+#import <Interact/IADevice.h>
