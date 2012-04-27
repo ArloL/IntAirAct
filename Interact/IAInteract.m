@@ -26,7 +26,6 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
 @property (strong) NSMutableDictionary * deviceList;
 @property (nonatomic, strong) NSNetServiceBrowser * netServiceBrowser;
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
-@property (nonatomic, strong) IALocator * privLocator;
 @property (strong) IADevice * selfDevice;
 @property (strong) NSMutableSet * services;
 
@@ -45,7 +44,6 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
 @synthesize router = _router;
 
 @synthesize deviceList = _deviceList;
-@synthesize privLocator = _privLocator;
 @synthesize netServiceBrowser = _netServiceBrowser;
 @synthesize objectManagers = _objectManagers;
 @synthesize selfDevice = _selfDevice;
@@ -444,11 +442,6 @@ static NSThread *bonjourThread;
 -(NSArray *)devices
 {
     return [self.deviceList allValues];
-}
-
--(IALocator *)locator
-{
-    return self.privLocator;
 }
 
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device

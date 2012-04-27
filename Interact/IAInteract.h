@@ -8,7 +8,6 @@
 
 @class IAAction;
 @class IADevice;
-@class IALocator;
 
 @interface IAInteract : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 
@@ -54,7 +53,6 @@
 -(RKObjectMappingResult *)deserializeObject:(NSData *)data;
 -(RKObjectMappingResult *)deserializeDictionary:(NSDictionary *)dictionary;
 -(IADevice *)ownDevice;
--(IALocator *)locator;
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device;
 -(void)loadObjectsAtResourcePath:(NSString*)resourcePath fromDevice:(IADevice *)device handler:(void (^)(RKObjectLoader *loader, NSError *error))handler;
 
