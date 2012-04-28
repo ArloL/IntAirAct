@@ -18,6 +18,10 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     
     NSString * defaultMimeType;
     
+    RoutingHTTPServer * httpServer;
+    
+    IADevice * ownDevice;
+    
     BOOL isServer;
     BOOL isClient;
     BOOL isRunning;
@@ -26,7 +30,6 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
 @property (strong) NSMutableDictionary * deviceList;
 @property (nonatomic, strong) NSNetServiceBrowser * netServiceBrowser;
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
-@property (strong) IADevice * selfDevice;
 @property (strong) NSMutableSet * services;
 
 -(void)startBonjour;
@@ -39,20 +42,14 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
 
 @implementation IAInteract
 
-@synthesize httpServer = _httpServer;
 @synthesize objectMappingProvider = _objectMappingProvider;
 @synthesize router = _router;
 
 @synthesize deviceList = _deviceList;
 @synthesize netServiceBrowser = _netServiceBrowser;
 @synthesize objectManagers = _objectManagers;
-@synthesize selfDevice = _selfDevice;
 @synthesize services = _services;
 
-/**
- * Standard Constructor.
- * Instantiates Interact, but does not start it.
- **/
 -(id)init
 {
     self = [super init];
@@ -61,9 +58,9 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         
         serverQueue = dispatch_queue_create("InteractServer", NULL);
         clientQueue = dispatch_queue_create("InteractClient", NULL);
-
-        self.objectMappingProvider = [RKObjectMappingProvider new];
-        self.router = [RKObjectRouter new];
+        
+        _objectMappingProvider = [RKObjectMappingProvider new];
+        _router = [RKObjectRouter new];
         
         self.deviceList = [NSMutableDictionary new];
         self.defaultMimeType = RKMIMETypeJSON;
@@ -79,10 +76,6 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     return self;
 }
 
-/**
- * Standard Deconstructor.
- * Stops the server, and clients, and releases any resources connected with this instance.
- **/
 -(void)dealloc
 {
     IALogTrace();
@@ -136,7 +129,7 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         [self.httpServer stop];
         [self.netServiceBrowser stop];
         [self.services removeAllObjects];
-        self.selfDevice = nil;
+        ownDevice = nil;
         
         isRunning = NO;
     }});
@@ -305,7 +298,7 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     device.hostAndPort = [NSString stringWithFormat:@"http://%@:%i/", sender.hostName, sender.port];
     [self.deviceList setObject:device forKey:device.name];
     if ([self.httpServer.publishedName isEqual:device.name]) {
-        self.selfDevice = device;
+        ownDevice = device;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"DeviceUpdate" object:self];
@@ -436,12 +429,24 @@ static NSThread *bonjourThread;
 
 -(IADevice *)ownDevice
 {
-    return self.selfDevice;
+    __block IADevice * result;
+	
+	dispatch_sync(serverQueue, ^{
+        result = ownDevice;
+	});
+	
+	return result;
 }
 
 -(NSArray *)devices
 {
-    return [self.deviceList allValues];
+    __block NSArray * result;
+	
+	dispatch_sync(serverQueue, ^{
+        result = [self.deviceList allValues];
+	});
+	
+	return result;
 }
 
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device
@@ -554,30 +559,35 @@ static NSThread *bonjourThread;
 
 -(RoutingHTTPServer *)httpServer
 {
-    IALogTrace();
-    
-    if(!_httpServer) {
-        _httpServer = [RoutingHTTPServer new];
+    __block RoutingHTTPServer * result;
+	
+	dispatch_sync(serverQueue, ^{
+        if(!httpServer) {
+            httpServer = [RoutingHTTPServer new];
+            
+            // Tell server to use our custom MyHTTPConnection class.
+            // [httpServer setConnectionClass:[RESTConnection class]];
+            
+            // Tell the server to broadcast its presence via Bonjour.
+            // This allows browsers such as Safari to automatically discover our service.
+            [httpServer setType:@"_interact._tcp."];
+            
+            // Normally there's no need to run our server on any specific port.
+            // Technologies like Bonjour allow clients to dynamically discover the server's port at runtime.
+            // However, for easy testing you may want force a certain port so you can just hit the refresh button.
+            //[_httpServer setPort:12345];
+            
+            // Serve files from our embedded Web folder
+            NSString *webPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Web"];
+            IALogTrace2(@"%@: Setting document root: %@", THIS_FILE, webPath);
+            
+            [httpServer setDocumentRoot:webPath];
+        }
         
-        // Tell server to use our custom MyHTTPConnection class.
-        // [httpServer setConnectionClass:[RESTConnection class]];
-        
-        // Tell the server to broadcast its presence via Bonjour.
-        // This allows browsers such as Safari to automatically discover our service.
-        [_httpServer setType:@"_interact._tcp."];
-        
-        // Normally there's no need to run our server on any specific port.
-        // Technologies like Bonjour allow clients to dynamically discover the server's port at runtime.
-        // However, for easy testing you may want force a certain port so you can just hit the refresh button.
-        //[_httpServer setPort:12345];
-        
-        // Serve files from our embedded Web folder
-        NSString *webPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Web"];
-        IALogTrace2(@"%@: Setting document root: %@", THIS_FILE, webPath);
-        
-        [_httpServer setDocumentRoot:webPath];
-    }
-    return _httpServer;
+        result = httpServer;
+	});
+	
+	return result;
 }
 
 -(RKObjectSerializer *)serializerForObject:(id)object
