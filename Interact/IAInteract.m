@@ -415,16 +415,9 @@ static NSThread *bonjourThread;
         IALogError(@"%@: An error ocurred: %@", THIS_FILE, error);
         return nil;
     } else {
-        return [self deserializeDictionary:parsedData];
+        RKObjectMapper* mapper = [RKObjectMapper mapperWithObject:parsedData mappingProvider:self.objectMappingProvider];
+        return [mapper performMapping];
     }
-}
-
--(RKObjectMappingResult*)deserializeDictionary:(NSDictionary*)dictionary
-{
-    IALogTrace();
-    
-    RKObjectMapper* mapper = [RKObjectMapper mapperWithObject:dictionary mappingProvider:self.objectMappingProvider];
-    return [mapper performMapping];
 }
 
 -(IADevice *)ownDevice

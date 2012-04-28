@@ -88,3 +88,19 @@ desc "Create docs"
 task :docs do
   system('appledoc --project-name ' + $name + ' --project-company "ASE" --company-id org.agilesoftwareengineering --output ./build/docs --no-install-docset --keep-intermediate-files ' + $name + '/*.h')
 end
+
+desc "Publish docs"
+task :publishdocs => :docs do
+  cd "build" do
+    if !File.exists?("docs-repo")
+      system("git clone -b gh-pages git@github.com:ArloL/Interact.git docs-repo")
+    end
+    cd "docs-repo" do
+      system("git pull")
+      system("cp -R ../docs/html docs")
+      system("git add docs")
+      system('git commit -m "Updated docs"')
+      system("git push")
+    end
+  end
+end

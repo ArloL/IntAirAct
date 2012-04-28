@@ -120,7 +120,6 @@
 -(NSString *)resourcePathFor:(NSObject *)resource forObjectManager:(RKObjectManager *)manager;
 -(RKObjectSerializer *)serializerForObject:(id)object;
 -(RKObjectMappingResult *)deserializeObject:(NSData *)data;
--(RKObjectMappingResult *)deserializeDictionary:(NSDictionary *)dictionary;
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device;
 -(void)loadObjectsAtResourcePath:(NSString*)resourcePath fromDevice:(IADevice *)device handler:(void (^)(RKObjectLoader *loader, NSError *error))handler;
 
