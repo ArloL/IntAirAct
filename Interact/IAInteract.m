@@ -67,8 +67,6 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         self.objectManagers = [NSMutableDictionary new];
         self.services = [NSMutableSet new];
         
-        [self setup];
-        
         isServer = YES;
         isClient = YES;
         isRunning = NO;
@@ -94,9 +92,9 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
 	__block NSError *err = nil;
     
     dispatch_sync(serverQueue, ^{ @autoreleasepool {
-        
+        [self setup];
         if(isServer) {
-            success = [self.httpServer start:&err];
+            success = [httpServer start:&err];
             if (success) {
                 IALogInfo(@"%@: Started Interact.", THIS_FILE);
                 
@@ -452,23 +450,36 @@ static NSThread *bonjourThread;
 
 -(void)loadObjectsAtResourcePath:(NSString *)resourcePath fromDevice:(IADevice *)device handler:(void (^)(RKObjectLoader *, NSError *))handler
 {
-    dispatch_async(clientQueue, ^{
-        RKObjectManager * manager = [self objectManagerForDevice:device];
-        [manager loadObjectsAtResourcePath:@"/images" handler:handler];
-    });
+    RKObjectManager * manager = [self objectManagerForDevice:device];
+    [manager loadObjectsAtResourcePath:@"/images" handler:handler];
 }
 
 -(void)setup
 {
-    [self.httpServer setDefaultHeader:@"Content-Type" value:self.defaultMimeType];
+    if(isServer) {
+        if(!httpServer) {
+            httpServer = [RoutingHTTPServer new];
+        }
+        
+        // Tell the server to broadcast its presence via Bonjour.
+        // This allows browsers such as Safari to automatically discover our service.
+        [httpServer setType:@"_interact._tcp."];
+        
+        // Normally there's no need to run our server on any specific port.
+        // Technologies like Bonjour allow clients to dynamically discover the server's port at runtime.
+        // However, for easy testing you may want force a certain port so you can just hit the refresh button.
+        //[_httpServer setPort:12345];
+        
+        [httpServer setDefaultHeader:@"Content-Type" value:defaultMimeType];
+    }
     
     RKObjectMapping * deviceMapping = [RKObjectMapping mappingForClass:[IADevice class]];
     [deviceMapping mapAttributes:@"name", @"hostAndPort", nil];
-    [self.objectMappingProvider setMapping:deviceMapping forKeyPath:@"devices"];
+    [_objectMappingProvider setMapping:deviceMapping forKeyPath:@"devices"];
     
     RKObjectMapping * deviceSerialization = [deviceMapping inverseMapping];
     deviceSerialization.rootKeyPath = @"devices";
-    [self.objectMappingProvider setSerializationMapping:deviceSerialization forClass:[IADevice class]];
+    [_objectMappingProvider setSerializationMapping:deviceSerialization forClass:[IADevice class]];
     
     RKObjectMapping * actionSerialization = [RKObjectMapping mappingForClass:[NSDictionary class]];
     actionSerialization.rootKeyPath = @"actions";
@@ -485,7 +496,7 @@ static NSThread *bonjourThread;
         };
     }];
     [actionSerialization hasMany:@"parameters" withMapping:parametersSerialization];
-    [self.objectMappingProvider setSerializationMapping:actionSerialization forClass:[IAAction class]];
+    [_objectMappingProvider setSerializationMapping:actionSerialization forClass:[IAAction class]];
     
     RKObjectMapping * actionMapping = [RKObjectMapping mappingForClass:[IAAction class]];
     [actionMapping mapAttributes:@"action", nil];
@@ -513,32 +524,30 @@ static NSThread *bonjourThread;
         };
     }];
     [actionMapping hasMany:@"parameters" withMapping:parametersMapping];
-    [self.objectMappingProvider setMapping:actionMapping forKeyPath:@"actions"];
+    [_objectMappingProvider setMapping:actionMapping forKeyPath:@"actions"];
     
-    [self.router routeClass:[IAAction class] toResourcePath:@"/action/:action" forMethod:RKRequestMethodPUT];
+    [_router routeClass:[IAAction class] toResourcePath:@"/action/:action" forMethod:RKRequestMethodPUT];
 }
 
 -(RKObjectManager *)objectManagerForDevice:(IADevice *)device
 {
     IALogTrace();
     
-    RKObjectManager * manager = [self.objectManagers objectForKey:device.hostAndPort];
+    RKObjectManager * manager = [_objectManagers objectForKey:device.hostAndPort];
     
     if(!manager) {
         manager = [[RKObjectManager alloc] initWithBaseURL:[RKURL URLWithBaseURLString:device.hostAndPort]];
         
         // Ask for & generate JSON
-        manager.acceptMIMEType = self.defaultMimeType;
-        manager.serializationMIMEType = self.defaultMimeType;
+        manager.acceptMIMEType = defaultMimeType;
+        manager.serializationMIMEType = defaultMimeType;
         
-        manager.mappingProvider = self.objectMappingProvider;
+        manager.mappingProvider = _objectMappingProvider;
         
         // Register the router
-        manager.router = self.router;
+        manager.router = _router;
         
-        [self.objectManagers setObject:manager forKey:device.hostAndPort];
-        
-        return manager;
+        [_objectManagers setObject:manager forKey:device.hostAndPort];
     }
     
     return manager;
@@ -557,26 +566,7 @@ static NSThread *bonjourThread;
 	dispatch_sync(serverQueue, ^{
         if(!httpServer) {
             httpServer = [RoutingHTTPServer new];
-            
-            // Tell server to use our custom MyHTTPConnection class.
-            // [httpServer setConnectionClass:[RESTConnection class]];
-            
-            // Tell the server to broadcast its presence via Bonjour.
-            // This allows browsers such as Safari to automatically discover our service.
-            [httpServer setType:@"_interact._tcp."];
-            
-            // Normally there's no need to run our server on any specific port.
-            // Technologies like Bonjour allow clients to dynamically discover the server's port at runtime.
-            // However, for easy testing you may want force a certain port so you can just hit the refresh button.
-            //[_httpServer setPort:12345];
-            
-            // Serve files from our embedded Web folder
-            NSString *webPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Web"];
-            IALogTrace2(@"%@: Setting document root: %@", THIS_FILE, webPath);
-            
-            [httpServer setDocumentRoot:webPath];
         }
-        
         result = httpServer;
 	});
 	
