@@ -83,3 +83,8 @@ desc "Pull all submodules"
 task :pull => :init do
   system("git submodule foreach --recursive git pull origin master")
 end
+
+desc "Create docs"
+task :docs do
+  system('appledoc --project-name ' + $name + ' --project-company "ASE" --company-id org.agilesoftwareengineering --output ./build/docs --no-install-docset --keep-intermediate-files ' + $name + '/*.h')
+end
