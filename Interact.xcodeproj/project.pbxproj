@@ -56,7 +56,6 @@
 		27EF338A154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3370154A9CBF003D7F41 /* IARouteResponse+Serializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27EF338B154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */; };
 		27EF338C154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */; };
-		27EF339B154A9E3E003D7F41 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF339A154A9E3E003D7F41 /* UIKit.framework */; };
 		27FC6249154B36A400AA7502 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FC6248154B36A400AA7502 /* SenTestingKit.framework */; };
 		27FC624A154B36A400AA7502 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF339A154A9E3E003D7F41 /* UIKit.framework */; };
 		27FC624B154B36A400AA7502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552F154A42AF002F307D /* Foundation.framework */; };
@@ -202,7 +201,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				277E5530154A42AF002F307D /* Foundation.framework in Frameworks */,
-				27EF339B154A9E3E003D7F41 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
