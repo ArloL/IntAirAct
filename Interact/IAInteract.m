@@ -296,6 +296,7 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     device.hostAndPort = [NSString stringWithFormat:@"http://%@:%i/", sender.hostName, sender.port];
     [self.deviceList setObject:device forKey:device.name];
     if ([self.httpServer.publishedName isEqual:device.name]) {
+        device.hostAndPort = [NSString stringWithFormat:@"http://127.0.0.1:%i/", sender.port];
         ownDevice = device;
     }
     
@@ -446,12 +447,6 @@ static NSThread *bonjourThread;
         RKObjectManager * manager = [self objectManagerForDevice:device];
         [manager putObject:action delegate:nil];
     });
-}
-
--(void)loadObjectsAtResourcePath:(NSString *)resourcePath fromDevice:(IADevice *)device handler:(void (^)(RKObjectLoader *, NSError *))handler
-{
-    RKObjectManager * manager = [self objectManagerForDevice:device];
-    [manager loadObjectsAtResourcePath:@"/images" handler:handler];
 }
 
 -(void)setup
