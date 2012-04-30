@@ -848,7 +848,8 @@
 				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Interact-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
@@ -873,7 +874,8 @@
 				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "Interact-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
