@@ -25,6 +25,7 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     BOOL isServer;
     BOOL isClient;
     BOOL isRunning;
+    BOOL didSetup;
 }
 
 @property (strong) NSMutableDictionary * deviceList;
@@ -70,6 +71,7 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         isServer = YES;
         isClient = YES;
         isRunning = NO;
+        didSetup = NO;
     }
     return self;
 }
@@ -124,9 +126,9 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     
     dispatch_sync(serverQueue, ^{ @autoreleasepool {
         
-        [self.httpServer stop];
-        [self.netServiceBrowser stop];
-        [self.services removeAllObjects];
+        [httpServer stop];
+        [_netServiceBrowser stop];
+        [_services removeAllObjects];
         ownDevice = nil;
         
         isRunning = NO;
@@ -451,6 +453,10 @@ static NSThread *bonjourThread;
 
 -(void)setup
 {
+    if(didSetup) {
+        return;
+    }
+
     if(isServer) {
         if(!httpServer) {
             httpServer = [RoutingHTTPServer new];
@@ -522,6 +528,8 @@ static NSThread *bonjourThread;
     [_objectMappingProvider setMapping:actionMapping forKeyPath:@"actions"];
     
     [_router routeClass:[IAAction class] toResourcePath:@"/action/:action" forMethod:RKRequestMethodPUT];
+    
+    didSetup = YES;
 }
 
 -(RKObjectManager *)objectManagerForDevice:(IADevice *)device
