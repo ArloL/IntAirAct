@@ -129,6 +129,10 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         [httpServer stop];
         [_netServiceBrowser stop];
         [_services removeAllObjects];
+        [_deviceList removeAllObjects];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DeviceUpdate" object:nil];
+        });
         ownDevice = nil;
         
         isRunning = NO;
@@ -538,7 +542,7 @@ static NSThread *bonjourThread;
     
     NSString * hostAndPort = device.hostAndPort;
     if ([device isEqual:self.ownDevice]) {
-        hostAndPort = @"127.0.0.1";
+        hostAndPort = [NSString stringWithFormat:@"http://127.0.0.1:%i" , device.port];
     }
     RKObjectManager * manager = [_objectManagers objectForKey:hostAndPort];
     
