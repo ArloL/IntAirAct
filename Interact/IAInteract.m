@@ -536,14 +536,14 @@ static NSThread *bonjourThread;
 {
     IALogTrace();
     
-    RKObjectManager * manager = [_objectManagers objectForKey:device.hostAndPort];
+    NSString * hostAndPort = device.hostAndPort;
+    if ([device isEqual:self.ownDevice]) {
+        hostAndPort = @"127.0.0.1";
+    }
+    RKObjectManager * manager = [_objectManagers objectForKey:hostAndPort];
     
     if(!manager) {
-        if ([device isEqual:self.ownDevice]) {
-            device = [device copy];
-            device.host = @"127.0.0.1";
-        }
-        manager = [[RKObjectManager alloc] initWithBaseURL:[RKURL URLWithBaseURLString:device.hostAndPort]];
+        manager = [[RKObjectManager alloc] initWithBaseURL:[RKURL URLWithBaseURLString:hostAndPort]];
         
         // Ask for & generate JSON
         manager.acceptMIMEType = defaultMimeType;
@@ -554,7 +554,7 @@ static NSThread *bonjourThread;
         // Register the router
         manager.router = _router;
         
-        [_objectManagers setObject:manager forKey:device.hostAndPort];
+        [_objectManagers setObject:manager forKey:hostAndPort];
     }
     
     return manager;
