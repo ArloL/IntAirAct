@@ -19,6 +19,9 @@ task :clean => [:removebuild, "ios:clean", "osx:clean"]
 desc "Builds for iOS and OS X"
 task :build => ["ios:build", "osx:build"]
 
+desc "Test for iOS and OS X"
+task :test => ["ios:test", "osx:test"]
+
 desc "Archives for iOS and OS X"
 task :archive => ["ios:archive", "osx:archive"]
 
@@ -35,6 +38,9 @@ namespace :ios do
   desc "Clean for iOS"
   task :clean => [:init, :removebuild] do
     builder().clean
+    b = builder()
+    b.sdk = :iphonesimulator
+    b.clean
   end
   
   desc "Build for iOS"
@@ -44,6 +50,7 @@ namespace :ios do
   
   desc "Test for iOS"
   task :test => :init do
+    puts("Tests for iOS are not implemented - hopefully (!) - yet.")
     #builder("IOSTests").test(:sdk => :iphonesimulator)
   end
   
@@ -73,6 +80,7 @@ namespace :osx do
   
   desc "Test for OS X"
   task :test => :init do
+    puts("Tests for OS X are not implemented - hopefully (!) - yet.")
     #builder("OSXTests").test(:sdk => :macosx)
   end
 
