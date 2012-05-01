@@ -1,5 +1,10 @@
 require 'rubygems'
 require 'xcoder'
+require 'github_api'
+
+if File.exist?('Rakefile.config')
+  load 'Rakefile.config'
+end
 
 $name="Interact"
 $configuration="Release"
@@ -101,6 +106,27 @@ end
 desc "Pull all submodules recursively"
 task :pull => :init do
   system("git submodule foreach --recursive git pull origin master")
+end
+
+def publish(os = "IOS")
+  github = Github.new :user => $github_username, :repo => $name, :login => $github_username, :password => $github_password
+  file = 'build/' + $name + os + ".tar.gz"
+  now = File.mtime(file)
+  name = $name + os + '-' + now.strftime("%Y-%m-%d-%H-%M-%S") + '.tar.gz'
+  size = File.size(file)
+  description = 'Release from ' + now.strftime("%Y-%m-%d %H:%M:%S")
+  res = github.repos.downloads.create $github_username, $name,
+    "name" => name,
+    "size" => size,
+    "description" => description,
+    "content_type" => "application/x-gzip"
+  github.repos.downloads.upload res, file
+end
+
+desc "Publish the Frameworks to github"
+task :publish => :archive do
+  publish()
+  publish("OSX")
 end
 
 desc "Create docs"
