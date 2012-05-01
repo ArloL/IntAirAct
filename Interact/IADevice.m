@@ -3,7 +3,22 @@
 @implementation IADevice
 
 @synthesize name = _name;
-@synthesize hostAndPort = _hostAndPort;
+@synthesize host = _host;
+@synthesize port = _port;
+
+-(id)copy
+{
+    IADevice * res = [IADevice new];
+    res.name = self.name;
+    res.host = self.host;
+    res.port = self.port;
+    return res;
+}
+
+-(NSString *)hostAndPort
+{
+    return [NSString stringWithFormat:@"http://%@:%i", self.host, self.port];
+}
 
 -(NSString *)description
 {

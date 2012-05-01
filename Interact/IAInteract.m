@@ -295,10 +295,10 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
 
     IADevice * device = [IADevice new];
     device.name = sender.name;
-    device.hostAndPort = [NSString stringWithFormat:@"http://%@:%i/", sender.hostName, sender.port];
+    device.host = sender.hostName;
+    device.port = sender.port;
     [self.deviceList setObject:device forKey:device.name];
     if ([self.httpServer.publishedName isEqual:device.name]) {
-        device.hostAndPort = [NSString stringWithFormat:@"http://127.0.0.1:%i/", sender.port];
         ownDevice = device;
     }
     
@@ -475,7 +475,7 @@ static NSThread *bonjourThread;
     }
     
     RKObjectMapping * deviceMapping = [RKObjectMapping mappingForClass:[IADevice class]];
-    [deviceMapping mapAttributes:@"name", @"hostAndPort", nil];
+    [deviceMapping mapAttributes:@"name", @"host", @"port", nil];
     [_objectMappingProvider setMapping:deviceMapping forKeyPath:@"devices"];
     
     RKObjectMapping * deviceSerialization = [deviceMapping inverseMapping];
@@ -539,6 +539,10 @@ static NSThread *bonjourThread;
     RKObjectManager * manager = [_objectManagers objectForKey:device.hostAndPort];
     
     if(!manager) {
+        if ([device isEqual:self.ownDevice]) {
+            device = [device copy];
+            device.host = @"127.0.0.1";
+        }
         manager = [[RKObjectManager alloc] initWithBaseURL:[RKURL URLWithBaseURLString:device.hostAndPort]];
         
         // Ask for & generate JSON
