@@ -129,6 +129,10 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         [httpServer stop];
         [_netServiceBrowser stop];
         [_services removeAllObjects];
+        [_deviceList removeAllObjects];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DeviceUpdate" object:nil];
+        });
         ownDevice = nil;
         
         isRunning = NO;
