@@ -10,76 +10,87 @@ def builder(os = "IOS")
   builder
 end
 
-desc "Clean and Build"
-task :default => [:clean, :build, :test]
+desc "Clean, Build, Test and Archive for iOS and OS X"
+task :default => [:ios, :osx]
 
-desc "Cleans everything"
-task :clean => [:iosclean, :osxclean] do
-	rm_rf "build"
-end
-
-desc "Clean for iOS"
-task :iosclean => :init do
-  builder().clean
-end
-
-desc "Clean for OS X"
-task :osxclean => :init do
-  builder("OSX").clean
-end
+desc "Cleans for iOS and OS X"
+task :clean => [:removebuild, "ios:clean", "osx:clean"]
 
 desc "Builds for iOS and OS X"
-task :build => [:iosbuild, :osxbuild]
+task :build => ["ios:build", "osx:build"]
 
-desc "Build for iOS"
-task :iosbuild => :init do
-  builder().build
+desc "Archives for iOS and OS X"
+task :archive => ["ios:archive", "osx:archive"]
+
+desc "Remove build folder"
+task :removebuild do
+  rm_rf "build"
 end
 
-desc "Build for OS X"
-task :osxbuild => :init do
-  builder("OSX").build
-end
+desc "Clean, Build, Test and Archive for iOS"
+task :ios => ["ios:clean", "ios:build", "ios:test", "ios:archive"]
 
-desc "Test for iOS and OS X"
-task :test => [:iostest, :osxtest]
+namespace :ios do  
 
-desc "Test for iOS"
-task :iostest => :init do
-  builder("IOSTests").test(:sdk => :iphonesimulator) do |report|
-    # Output JUnit format results
-    report.add_formatter :junit, 'build/' + $configuration + '-iphonesimulator/test-reports'
-    # Output a simplified output to STDOUT
-    report.add_formatter :stdout
+  desc "Clean for iOS"
+  task :clean => [:init, :removebuild] do
+    builder().clean
   end
+  
+  desc "Build for iOS"
+  task :build => :init do
+    builder().build
+  end
+  
+  desc "Test for iOS"
+  task :test => :init do
+    #builder("IOSTests").test(:sdk => :iphonesimulator)
+  end
+  
+  desc "Archive for iOS"
+  task :archive => ["ios:clean", "ios:build", "ios:test"] do
+    cd "build/" + $configuration + "-iphoneos" do
+      sh "tar cvzf ../" + $name + "IOS.tar.gz " + $name + ".framework"
+    end
+  end
+
 end
 
-desc "Test for OS X"
-task :osxtest => :init do
-  builder("OSXTests").test(:sdk => :macosx) do |report|
-    # Output JUnit format results
-    report.add_formatter :junit, 'build/' + $configuration + '/test-reports'
-    # Output a simplified output to STDOUT
-    report.add_formatter :stdout
+desc "Clean, Build, Test and Archive for iOS"
+task :osx => ["osx:clean", "osx:build", "osx:test", "osx:archive"]
+
+namespace :osx do
+
+  desc "Clean for OS X"
+  task :clean => [:init, :removebuild] do
+    builder("OSX").clean
   end
+
+  desc "Build for OS X"
+  task :build => :init do
+    builder("OSX").build
+  end
+  
+  desc "Test for OS X"
+  task :test => :init do
+    #builder("OSXTests").test(:sdk => :macosx)
+  end
+
+  desc "Archive for OS X"
+  task :archive => ["osx:clean", "osx:build", "osx:test"] do
+    cd "build/" + $configuration do
+      sh "tar cvzf ../" + $name + "OSX.tar.gz " + $name + ".framework"
+    end
+  end
+
 end
 
-desc "Creates archives of the frameworks"
-task :archive => [:clean, :build, :test] do
-  cd "build/" + $configuration + "-iphoneos" do
-    sh "tar cvzf ../" + $name + "IOS.tar.gz " + $name + ".framework"
-  end
-  cd "build/" + $configuration do
-    sh "tar cvzf ../" + $name + "OSX.tar.gz " + $name + ".framework"
-  end
-end
-
-desc "Initialize and update all submodules"
+desc "Initialize and update all submodules recursively"
 task :init do
   system("git submodule update --init --recursive")
 end
 
-desc "Pull all submodules"
+desc "Pull all submodules recursively"
 task :pull => :init do
   system("git submodule foreach --recursive git pull origin master")
 end
