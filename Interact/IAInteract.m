@@ -538,7 +538,7 @@ static NSThread *bonjourThread;
     
     NSString * hostAndPort = device.hostAndPort;
     if ([device isEqual:self.ownDevice]) {
-        hostAndPort = @"127.0.0.1";
+        hostAndPort = [NSString stringWithFormat:@"http://127.0.0.1:%i" , device.port];
     }
     RKObjectManager * manager = [_objectManagers objectForKey:hostAndPort];
     
