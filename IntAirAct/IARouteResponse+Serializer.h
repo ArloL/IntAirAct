@@ -1,9 +1,9 @@
 #import <RoutingHTTPServer/RoutingHTTPServer.h>
 
-@class IAInteract;
+@class IAIntAirAct;
 
 @interface RouteResponse (Serializer)
 
--(void)respondWith:(id)data withInteract:(IAInteract *)interact;
+-(void)respondWith:(id)data withIntAirAct:(IAIntAirAct *)intAirAct;
 
 @end

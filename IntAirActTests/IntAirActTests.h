@@ -1,5 +1,5 @@
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface InteractTests : SenTestCase
+@interface IntAirActTests : SenTestCase
 
 @end

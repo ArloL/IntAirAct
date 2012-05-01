@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		277E553D154A430E002F307D /* InteractIOS */ = {
+		277E553D154A430E002F307D /* IntAirActIOS */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 277E553E154A430F002F307D /* Build configuration list for PBXAggregateTarget "InteractIOS" */;
+			buildConfigurationList = 277E553E154A430F002F307D /* Build configuration list for PBXAggregateTarget "IntAirActIOS" */;
 			buildPhases = (
 				277E5543154A432D002F307D /* Build Framework */,
 			);
@@ -18,19 +18,41 @@
 				27EF32AA154A98AF003D7F41 /* PBXTargetDependency */,
 				27EF32AC154A98AF003D7F41 /* PBXTargetDependency */,
 			);
-			name = InteractIOS;
-			productName = InteractIOS;
+			name = IntAirActIOS;
+			productName = IntAirActIOS;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		274A48A915508D97000DFAF9 /* IntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48A715508D97000DFAF9 /* IntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48AE15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48AF15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48B015508DA1000DFAF9 /* IARouteRequest+BodyAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */; };
+		274A48B115508DA1000DFAF9 /* IARouteRequest+BodyAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */; };
+		274A48B215508DA1000DFAF9 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AC15508DA1000DFAF9 /* IARouteResponse+Serializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48B315508DA1000DFAF9 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AC15508DA1000DFAF9 /* IARouteResponse+Serializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48B415508DA1000DFAF9 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48AD15508DA1000DFAF9 /* IARouteResponse+Serializer.m */; };
+		274A48B515508DA1000DFAF9 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48AD15508DA1000DFAF9 /* IARouteResponse+Serializer.m */; };
+		274A48B915508DAC000DFAF9 /* IAIntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48B615508DAC000DFAF9 /* IAIntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48BA15508DAC000DFAF9 /* IAIntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48B615508DAC000DFAF9 /* IAIntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48BB15508DAC000DFAF9 /* IAIntAirAct.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48B715508DAC000DFAF9 /* IAIntAirAct.m */; };
+		274A48BC15508DAC000DFAF9 /* IAIntAirAct.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48B715508DAC000DFAF9 /* IAIntAirAct.m */; };
+		274A48BD15508DAC000DFAF9 /* IALogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48B815508DAC000DFAF9 /* IALogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48BE15508DAC000DFAF9 /* IALogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48B815508DAC000DFAF9 /* IALogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48C315508DB9000DFAF9 /* IAAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48BF15508DB9000DFAF9 /* IAAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48C415508DB9000DFAF9 /* IAAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48BF15508DB9000DFAF9 /* IAAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48C515508DB9000DFAF9 /* IAAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48C015508DB9000DFAF9 /* IAAction.m */; };
+		274A48C615508DB9000DFAF9 /* IAAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48C015508DB9000DFAF9 /* IAAction.m */; };
+		274A48C715508DB9000DFAF9 /* IADevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48C115508DB9000DFAF9 /* IADevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48C815508DB9000DFAF9 /* IADevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48C115508DB9000DFAF9 /* IADevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		274A48C915508DB9000DFAF9 /* IADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48C215508DB9000DFAF9 /* IADevice.m */; };
+		274A48CA15508DB9000DFAF9 /* IADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48C215508DB9000DFAF9 /* IADevice.m */; };
+		274A48D415508DFD000DFAF9 /* IntAirAct-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */; settings = {ATTRIBUTES = (); }; };
+		274A48D515508DFD000DFAF9 /* IntAirAct-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */; };
+		274A48F415508F1B000DFAF9 /* IntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48A715508D97000DFAF9 /* IntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		277E5530154A42AF002F307D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552F154A42AF002F307D /* Foundation.framework */; };
-		277E555F154A44D0002F307D /* Interact.h in Headers */ = {isa = PBXBuildFile; fileRef = 277E555E154A44D0002F307D /* Interact.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		277E5560154A44D0002F307D /* Interact.h in Headers */ = {isa = PBXBuildFile; fileRef = 277E555E154A44D0002F307D /* Interact.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF2FCC154A7F00003D7F41 /* IADevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF2FCA154A7F00003D7F41 /* IADevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF2FCD154A7F00003D7F41 /* IADevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF2FCA154A7F00003D7F41 /* IADevice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF2FCE154A7F00003D7F41 /* IADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF2FCB154A7F00003D7F41 /* IADevice.m */; };
-		27EF2FCF154A7F00003D7F41 /* IADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF2FCB154A7F00003D7F41 /* IADevice.m */; };
+		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
+		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27EF3015154A7FD1003D7F41 /* RestKit+Blocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FE2154A7F9B003D7F41 /* RestKit+Blocks.framework */; };
 		27EF3016154A7FD1003D7F41 /* RoutingHTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */; };
 		27EF301B154A7FD1003D7F41 /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3017154A7FD1003D7F41 /* CocoaAsyncSocket.framework */; };
@@ -38,31 +60,11 @@
 		27EF301D154A7FD1003D7F41 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3019154A7FD1003D7F41 /* CocoaLumberjack.framework */; };
 		27EF301E154A7FD1003D7F41 /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF301A154A7FD1003D7F41 /* RestKit.framework */; };
 		27EF301F154A8066003D7F41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552F154A42AF002F307D /* Foundation.framework */; };
-		27EF3373154A9CBF003D7F41 /* IAAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3365154A9CBF003D7F41 /* IAAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF3374154A9CBF003D7F41 /* IAAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3365154A9CBF003D7F41 /* IAAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF3375154A9CBF003D7F41 /* IAAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF3366154A9CBF003D7F41 /* IAAction.m */; };
-		27EF3376154A9CBF003D7F41 /* IAAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF3366154A9CBF003D7F41 /* IAAction.m */; };
-		27EF337B154A9CBF003D7F41 /* IAInteract.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3369154A9CBF003D7F41 /* IAInteract.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF337C154A9CBF003D7F41 /* IAInteract.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3369154A9CBF003D7F41 /* IAInteract.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF337D154A9CBF003D7F41 /* IAInteract.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336A154A9CBF003D7F41 /* IAInteract.m */; };
-		27EF337E154A9CBF003D7F41 /* IAInteract.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336A154A9CBF003D7F41 /* IAInteract.m */; };
-		27EF3383154A9CBF003D7F41 /* IALogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336D154A9CBF003D7F41 /* IALogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF3384154A9CBF003D7F41 /* IALogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336D154A9CBF003D7F41 /* IALogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF3385154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336E154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF3386154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF336E154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF3387154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336F154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m */; };
-		27EF3388154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF336F154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m */; };
-		27EF3389154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3370154A9CBF003D7F41 /* IARouteResponse+Serializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF338A154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 27EF3370154A9CBF003D7F41 /* IARouteResponse+Serializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27EF338B154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */; };
-		27EF338C154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */; };
 		27FC6249154B36A400AA7502 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FC6248154B36A400AA7502 /* SenTestingKit.framework */; };
 		27FC624A154B36A400AA7502 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF339A154A9E3E003D7F41 /* UIKit.framework */; };
 		27FC624B154B36A400AA7502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552F154A42AF002F307D /* Foundation.framework */; };
 		27FC6260154B36AE00AA7502 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FC6248154B36A400AA7502 /* SenTestingKit.framework */; };
 		27FC6262154B36AE00AA7502 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27FC6261154B36AE00AA7502 /* Cocoa.framework */; };
-		27FC6277154B376000AA7502 /* InteractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC6276154B376000AA7502 /* InteractTests.m */; };
-		27FC6278154B376000AA7502 /* InteractTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC6276154B376000AA7502 /* InteractTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +73,7 @@
 			containerPortal = 277E5523154A42AE002F307D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 277E552B154A42AF002F307D;
-			remoteInfo = InteractStaticIOS;
+			remoteInfo = IntAirActStaticIOS;
 		};
 		278C8B3A154B447D007D4542 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -160,39 +162,39 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		277E552C154A42AF002F307D /* libInteract.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInteract.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		274A48A715508D97000DFAF9 /* IntAirAct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntAirAct.h; path = IntAirAct/IntAirAct.h; sourceTree = SOURCE_ROOT; };
+		274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IARouteRequest+BodyAsString.h"; path = "IntAirAct/IARouteRequest+BodyAsString.h"; sourceTree = SOURCE_ROOT; };
+		274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IARouteRequest+BodyAsString.m"; path = "IntAirAct/IARouteRequest+BodyAsString.m"; sourceTree = SOURCE_ROOT; };
+		274A48AC15508DA1000DFAF9 /* IARouteResponse+Serializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IARouteResponse+Serializer.h"; path = "IntAirAct/IARouteResponse+Serializer.h"; sourceTree = SOURCE_ROOT; };
+		274A48AD15508DA1000DFAF9 /* IARouteResponse+Serializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IARouteResponse+Serializer.m"; path = "IntAirAct/IARouteResponse+Serializer.m"; sourceTree = SOURCE_ROOT; };
+		274A48B615508DAC000DFAF9 /* IAIntAirAct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAIntAirAct.h; path = IntAirAct/IAIntAirAct.h; sourceTree = SOURCE_ROOT; };
+		274A48B715508DAC000DFAF9 /* IAIntAirAct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAIntAirAct.m; path = IntAirAct/IAIntAirAct.m; sourceTree = SOURCE_ROOT; };
+		274A48B815508DAC000DFAF9 /* IALogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IALogging.h; path = IntAirAct/IALogging.h; sourceTree = SOURCE_ROOT; };
+		274A48BF15508DB9000DFAF9 /* IAAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAAction.h; path = IntAirAct/IAAction.h; sourceTree = SOURCE_ROOT; };
+		274A48C015508DB9000DFAF9 /* IAAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAAction.m; path = IntAirAct/IAAction.m; sourceTree = SOURCE_ROOT; };
+		274A48C115508DB9000DFAF9 /* IADevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IADevice.h; path = IntAirAct/IADevice.h; sourceTree = SOURCE_ROOT; };
+		274A48C215508DB9000DFAF9 /* IADevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IADevice.m; path = IntAirAct/IADevice.m; sourceTree = SOURCE_ROOT; };
+		274A48CB15508DEB000DFAF9 /* IntAirActTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntAirActTests.h; path = IntAirActTests/IntAirActTests.h; sourceTree = "<group>"; };
+		274A48CC15508DEB000DFAF9 /* IntAirActTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntAirActTests.m; path = IntAirActTests/IntAirActTests.m; sourceTree = "<group>"; };
+		274A48D115508DFD000DFAF9 /* IntAirAct-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IntAirAct-Info.plist"; sourceTree = SOURCE_ROOT; };
+		274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IntAirAct-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		277E552C154A42AF002F307D /* libIntAirAct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIntAirAct.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E552F154A42AF002F307D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		277E5549154A4384002F307D /* Interact.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Interact.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		277E555D154A441A002F307D /* Interact-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Interact-Info.plist"; sourceTree = SOURCE_ROOT; };
-		277E555E154A44D0002F307D /* Interact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interact.h; sourceTree = "<group>"; };
-		27EF2FCA154A7F00003D7F41 /* IADevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IADevice.h; sourceTree = "<group>"; };
-		27EF2FCB154A7F00003D7F41 /* IADevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IADevice.m; sourceTree = "<group>"; };
-		27EF2FD1154A7F37003D7F41 /* Interact-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Interact-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		277E5549154A4384002F307D /* IntAirAct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntAirAct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKitBlocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
 		27EF3017154A7FD1003D7F41 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaAsyncSocket.framework; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaAsyncSocket/build/Release/CocoaAsyncSocket.framework; sourceTree = "<group>"; };
 		27EF3018154A7FD1003D7F41 /* CocoaHTTPServer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaHTTPServer.framework; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/build/Release/CocoaHTTPServer.framework; sourceTree = "<group>"; };
 		27EF3019154A7FD1003D7F41 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaLumberjack/build/Release/CocoaLumberjack.framework; sourceTree = "<group>"; };
 		27EF301A154A7FD1003D7F41 /* RestKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RestKit.framework; path = Frameworks/RestKitBlocks/Frameworks/RestKit/build/Release/RestKit.framework; sourceTree = "<group>"; };
-		27EF3365154A9CBF003D7F41 /* IAAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAAction.h; sourceTree = "<group>"; };
-		27EF3366154A9CBF003D7F41 /* IAAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAAction.m; sourceTree = "<group>"; };
-		27EF3369154A9CBF003D7F41 /* IAInteract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAInteract.h; sourceTree = "<group>"; };
-		27EF336A154A9CBF003D7F41 /* IAInteract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAInteract.m; sourceTree = "<group>"; };
-		27EF336D154A9CBF003D7F41 /* IALogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IALogging.h; sourceTree = "<group>"; };
-		27EF336E154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARouteRequest+BodyAsString.h"; sourceTree = "<group>"; };
-		27EF336F154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARouteRequest+BodyAsString.m"; sourceTree = "<group>"; };
-		27EF3370154A9CBF003D7F41 /* IARouteResponse+Serializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARouteResponse+Serializer.h"; sourceTree = "<group>"; };
-		27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARouteResponse+Serializer.m"; sourceTree = "<group>"; };
 		27EF339A154A9E3E003D7F41 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		27FC6247154B36A400AA7502 /* InteractIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InteractIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		27FC6247154B36A400AA7502 /* IntAirActIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC6248154B36A400AA7502 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		27FC625F154B36AD00AA7502 /* InteractOSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InteractOSXTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		27FC625F154B36AD00AA7502 /* IntAirActOSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActOSXTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC6261154B36AE00AA7502 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		27FC6264154B36AE00AA7502 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		27FC6265154B36AE00AA7502 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		27FC6266154B36AE00AA7502 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		27FC6275154B376000AA7502 /* InteractTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InteractTests.h; path = InteractTests/InteractTests.h; sourceTree = "<group>"; };
-		27FC6276154B376000AA7502 /* InteractTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InteractTests.m; path = InteractTests/InteractTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,8 +245,8 @@
 		277E5521154A42AE002F307D = {
 			isa = PBXGroup;
 			children = (
-				277E5531154A42AF002F307D /* Interact */,
-				27FC6274154B374700AA7502 /* InteractTests */,
+				277E5531154A42AF002F307D /* IntAirAct */,
+				27FC6274154B374700AA7502 /* IntAirActTests */,
 				277E5532154A42AF002F307D /* Supporting Files */,
 				277E552E154A42AF002F307D /* Frameworks */,
 				277E552D154A42AF002F307D /* Products */,
@@ -254,10 +256,10 @@
 		277E552D154A42AF002F307D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				277E552C154A42AF002F307D /* libInteract.a */,
-				277E5549154A4384002F307D /* Interact.framework */,
-				27FC6247154B36A400AA7502 /* InteractIOSTests.octest */,
-				27FC625F154B36AD00AA7502 /* InteractOSXTests.octest */,
+				277E552C154A42AF002F307D /* libIntAirAct.a */,
+				277E5549154A4384002F307D /* IntAirAct.framework */,
+				27FC6247154B36A400AA7502 /* IntAirActIOSTests.octest */,
+				27FC625F154B36AD00AA7502 /* IntAirActOSXTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -280,25 +282,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		277E5531154A42AF002F307D /* Interact */ = {
+		277E5531154A42AF002F307D /* IntAirAct */ = {
 			isa = PBXGroup;
 			children = (
 				27EF3391154A9CE8003D7F41 /* Server */,
 				27EF3390154A9CE2003D7F41 /* Shared */,
 				27EF338F154A9CD3003D7F41 /* Model */,
-				277E555E154A44D0002F307D /* Interact.h */,
+				274A48A715508D97000DFAF9 /* IntAirAct.h */,
 			);
-			path = Interact;
+			path = IntAirAct;
 			sourceTree = "<group>";
 		};
 		277E5532154A42AF002F307D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				277E555D154A441A002F307D /* Interact-Info.plist */,
-				27EF2FD1154A7F37003D7F41 /* Interact-Prefix.pch */,
+				274A48D115508DFD000DFAF9 /* IntAirAct-Info.plist */,
+				274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			path = Interact;
+			path = IntAirAct;
 			sourceTree = "<group>";
 		};
 		27EF2FD3154A7F9A003D7F41 /* Products */ = {
@@ -324,10 +326,10 @@
 		27EF338F154A9CD3003D7F41 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				27EF3365154A9CBF003D7F41 /* IAAction.h */,
-				27EF3366154A9CBF003D7F41 /* IAAction.m */,
-				27EF2FCA154A7F00003D7F41 /* IADevice.h */,
-				27EF2FCB154A7F00003D7F41 /* IADevice.m */,
+				274A48BF15508DB9000DFAF9 /* IAAction.h */,
+				274A48C015508DB9000DFAF9 /* IAAction.m */,
+				274A48C115508DB9000DFAF9 /* IADevice.h */,
+				274A48C215508DB9000DFAF9 /* IADevice.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -335,9 +337,9 @@
 		27EF3390154A9CE2003D7F41 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				27EF3369154A9CBF003D7F41 /* IAInteract.h */,
-				27EF336A154A9CBF003D7F41 /* IAInteract.m */,
-				27EF336D154A9CBF003D7F41 /* IALogging.h */,
+				274A48B615508DAC000DFAF9 /* IAIntAirAct.h */,
+				274A48B715508DAC000DFAF9 /* IAIntAirAct.m */,
+				274A48B815508DAC000DFAF9 /* IALogging.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -345,10 +347,10 @@
 		27EF3391154A9CE8003D7F41 /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				27EF336E154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h */,
-				27EF336F154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m */,
-				27EF3370154A9CBF003D7F41 /* IARouteResponse+Serializer.h */,
-				27EF3371154A9CBF003D7F41 /* IARouteResponse+Serializer.m */,
+				274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */,
+				274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */,
+				274A48AC15508DA1000DFAF9 /* IARouteResponse+Serializer.h */,
+				274A48AD15508DA1000DFAF9 /* IARouteResponse+Serializer.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -363,13 +365,13 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		27FC6274154B374700AA7502 /* InteractTests */ = {
+		27FC6274154B374700AA7502 /* IntAirActTests */ = {
 			isa = PBXGroup;
 			children = (
-				27FC6275154B376000AA7502 /* InteractTests.h */,
-				27FC6276154B376000AA7502 /* InteractTests.m */,
+				274A48CB15508DEB000DFAF9 /* IntAirActTests.h */,
+				274A48CC15508DEB000DFAF9 /* IntAirActTests.m */,
 			);
-			name = InteractTests;
+			name = IntAirActTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,13 +381,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				277E555F154A44D0002F307D /* Interact.h in Headers */,
-				27EF2FCC154A7F00003D7F41 /* IADevice.h in Headers */,
-				27EF3373154A9CBF003D7F41 /* IAAction.h in Headers */,
-				27EF337B154A9CBF003D7F41 /* IAInteract.h in Headers */,
-				27EF3383154A9CBF003D7F41 /* IALogging.h in Headers */,
-				27EF3385154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */,
-				27EF3389154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */,
+				274A48AE15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */,
+				274A48B215508DA1000DFAF9 /* IARouteResponse+Serializer.h in Headers */,
+				274A48B915508DAC000DFAF9 /* IAIntAirAct.h in Headers */,
+				274A48BD15508DAC000DFAF9 /* IALogging.h in Headers */,
+				274A48C315508DB9000DFAF9 /* IAAction.h in Headers */,
+				274A48C715508DB9000DFAF9 /* IADevice.h in Headers */,
+				274A48F415508F1B000DFAF9 /* IntAirAct.h in Headers */,
+				274A48D415508DFD000DFAF9 /* IntAirAct-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,22 +396,23 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				277E5560154A44D0002F307D /* Interact.h in Headers */,
-				27EF2FCD154A7F00003D7F41 /* IADevice.h in Headers */,
-				27EF3374154A9CBF003D7F41 /* IAAction.h in Headers */,
-				27EF337C154A9CBF003D7F41 /* IAInteract.h in Headers */,
-				27EF3384154A9CBF003D7F41 /* IALogging.h in Headers */,
-				27EF3386154A9CBF003D7F41 /* IARouteRequest+BodyAsString.h in Headers */,
-				27EF338A154A9CBF003D7F41 /* IARouteResponse+Serializer.h in Headers */,
+				274A48A915508D97000DFAF9 /* IntAirAct.h in Headers */,
+				274A48AF15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */,
+				274A48B315508DA1000DFAF9 /* IARouteResponse+Serializer.h in Headers */,
+				274A48BA15508DAC000DFAF9 /* IAIntAirAct.h in Headers */,
+				274A48BE15508DAC000DFAF9 /* IALogging.h in Headers */,
+				274A48C415508DB9000DFAF9 /* IAAction.h in Headers */,
+				274A48C815508DB9000DFAF9 /* IADevice.h in Headers */,
+				274A48D515508DFD000DFAF9 /* IntAirAct-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		277E552B154A42AF002F307D /* InteractStaticIOS */ = {
+		277E552B154A42AF002F307D /* IntAirActStaticIOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 277E5539154A42AF002F307D /* Build configuration list for PBXNativeTarget "InteractStaticIOS" */;
+			buildConfigurationList = 277E5539154A42AF002F307D /* Build configuration list for PBXNativeTarget "IntAirActStaticIOS" */;
 			buildPhases = (
 				277E5528154A42AF002F307D /* Sources */,
 				277E5529154A42AF002F307D /* Frameworks */,
@@ -421,14 +425,14 @@
 				27EF3004154A7FB3003D7F41 /* PBXTargetDependency */,
 				27EF3006154A7FB3003D7F41 /* PBXTargetDependency */,
 			);
-			name = InteractStaticIOS;
-			productName = Interact;
-			productReference = 277E552C154A42AF002F307D /* libInteract.a */;
+			name = IntAirActStaticIOS;
+			productName = IntAirAct;
+			productReference = 277E552C154A42AF002F307D /* libIntAirAct.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		277E5548154A4384002F307D /* InteractOSX */ = {
+		277E5548154A4384002F307D /* IntAirActOSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 277E555A154A4385002F307D /* Build configuration list for PBXNativeTarget "InteractOSX" */;
+			buildConfigurationList = 277E555A154A4385002F307D /* Build configuration list for PBXNativeTarget "IntAirActOSX" */;
 			buildPhases = (
 				277E5544154A4384002F307D /* Sources */,
 				277E5545154A4384002F307D /* Frameworks */,
@@ -441,14 +445,14 @@
 				27EF3012154A7FC8003D7F41 /* PBXTargetDependency */,
 				27EF3014154A7FC8003D7F41 /* PBXTargetDependency */,
 			);
-			name = InteractOSX;
-			productName = InteractOSX;
-			productReference = 277E5549154A4384002F307D /* Interact.framework */;
+			name = IntAirActOSX;
+			productName = IntAirActOSX;
+			productReference = 277E5549154A4384002F307D /* IntAirAct.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		27FC6246154B36A400AA7502 /* InteractIOSTests */ = {
+		27FC6246154B36A400AA7502 /* IntAirActIOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27FC6258154B36A500AA7502 /* Build configuration list for PBXNativeTarget "InteractIOSTests" */;
+			buildConfigurationList = 27FC6258154B36A500AA7502 /* Build configuration list for PBXNativeTarget "IntAirActIOSTests" */;
 			buildPhases = (
 				27FC6242154B36A400AA7502 /* Sources */,
 				27FC6243154B36A400AA7502 /* Frameworks */,
@@ -459,14 +463,14 @@
 			);
 			dependencies = (
 			);
-			name = InteractIOSTests;
-			productName = InteractIOSTests;
-			productReference = 27FC6247154B36A400AA7502 /* InteractIOSTests.octest */;
+			name = IntAirActIOSTests;
+			productName = IntAirActIOSTests;
+			productReference = 27FC6247154B36A400AA7502 /* IntAirActIOSTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		27FC625E154B36AD00AA7502 /* InteractOSXTests */ = {
+		27FC625E154B36AD00AA7502 /* IntAirActOSXTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 27FC6271154B36AE00AA7502 /* Build configuration list for PBXNativeTarget "InteractOSXTests" */;
+			buildConfigurationList = 27FC6271154B36AE00AA7502 /* Build configuration list for PBXNativeTarget "IntAirActOSXTests" */;
 			buildPhases = (
 				27FC625A154B36AD00AA7502 /* Sources */,
 				27FC625B154B36AD00AA7502 /* Frameworks */,
@@ -477,9 +481,9 @@
 			);
 			dependencies = (
 			);
-			name = InteractOSXTests;
-			productName = InteractOSXTests;
-			productReference = 27FC625F154B36AD00AA7502 /* InteractOSXTests.octest */;
+			name = IntAirActOSXTests;
+			productName = IntAirActOSXTests;
+			productReference = 27FC625F154B36AD00AA7502 /* IntAirActOSXTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -490,7 +494,7 @@
 			attributes = {
 				LastUpgradeCheck = 0430;
 			};
-			buildConfigurationList = 277E5526154A42AE002F307D /* Build configuration list for PBXProject "Interact" */;
+			buildConfigurationList = 277E5526154A42AE002F307D /* Build configuration list for PBXProject "IntAirAct" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -512,11 +516,11 @@
 			);
 			projectRoot = "";
 			targets = (
-				277E552B154A42AF002F307D /* InteractStaticIOS */,
-				277E553D154A430E002F307D /* InteractIOS */,
-				277E5548154A4384002F307D /* InteractOSX */,
-				27FC6246154B36A400AA7502 /* InteractIOSTests */,
-				27FC625E154B36AD00AA7502 /* InteractOSXTests */,
+				277E552B154A42AF002F307D /* IntAirActStaticIOS */,
+				277E553D154A430E002F307D /* IntAirActIOS */,
+				277E5548154A4384002F307D /* IntAirActOSX */,
+				27FC6246154B36A400AA7502 /* IntAirActIOSTests */,
+				27FC625E154B36AD00AA7502 /* IntAirActOSXTests */,
 			);
 		};
 /* End PBXProject section */
@@ -652,11 +656,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27EF2FCE154A7F00003D7F41 /* IADevice.m in Sources */,
-				27EF3375154A9CBF003D7F41 /* IAAction.m in Sources */,
-				27EF337D154A9CBF003D7F41 /* IAInteract.m in Sources */,
-				27EF3387154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m in Sources */,
-				27EF338B154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */,
+				274A48B015508DA1000DFAF9 /* IARouteRequest+BodyAsString.m in Sources */,
+				274A48B415508DA1000DFAF9 /* IARouteResponse+Serializer.m in Sources */,
+				274A48BB15508DAC000DFAF9 /* IAIntAirAct.m in Sources */,
+				274A48C515508DB9000DFAF9 /* IAAction.m in Sources */,
+				274A48C915508DB9000DFAF9 /* IADevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,11 +668,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27EF2FCF154A7F00003D7F41 /* IADevice.m in Sources */,
-				27EF3376154A9CBF003D7F41 /* IAAction.m in Sources */,
-				27EF337E154A9CBF003D7F41 /* IAInteract.m in Sources */,
-				27EF3388154A9CBF003D7F41 /* IARouteRequest+BodyAsString.m in Sources */,
-				27EF338C154A9CBF003D7F41 /* IARouteResponse+Serializer.m in Sources */,
+				274A48B115508DA1000DFAF9 /* IARouteRequest+BodyAsString.m in Sources */,
+				274A48B515508DA1000DFAF9 /* IARouteResponse+Serializer.m in Sources */,
+				274A48BC15508DAC000DFAF9 /* IAIntAirAct.m in Sources */,
+				274A48C615508DB9000DFAF9 /* IAAction.m in Sources */,
+				274A48CA15508DB9000DFAF9 /* IADevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,7 +680,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC6277154B376000AA7502 /* InteractTests.m in Sources */,
+				27C172601550952500BF2BFE /* IntAirActTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,7 +688,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC6278154B376000AA7502 /* InteractTests.m in Sources */,
+				27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,7 +697,7 @@
 /* Begin PBXTargetDependency section */
 		277E5542154A431C002F307D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 277E552B154A42AF002F307D /* InteractStaticIOS */;
+			target = 277E552B154A42AF002F307D /* IntAirActStaticIOS */;
 			targetProxy = 277E5541154A431C002F307D /* PBXContainerItemProxy */;
 		};
 		27EF3004154A7FB3003D7F41 /* PBXTargetDependency */ = {
@@ -780,15 +784,15 @@
 				);
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
-				DSTROOT = /tmp/Interact.dst;
+				DSTROOT = /tmp/IntAirAct.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRIVATE_HEADERS_FOLDER_PATH = InteractPrivateHeaders;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME)PrivateHeaders";
+				PRODUCT_NAME = IntAirAct;
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
@@ -804,14 +808,14 @@
 				);
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
-				DSTROOT = /tmp/Interact.dst;
+				DSTROOT = /tmp/IntAirAct.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRIVATE_HEADERS_FOLDER_PATH = InteractPrivateHeaders;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME)PrivateHeaders";
+				PRODUCT_NAME = IntAirAct;
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = "non-global";
@@ -821,14 +825,14 @@
 		277E553F154A430F002F307D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_NAME = IntAirAct.framework;
 			};
 			name = Debug;
 		};
 		277E5540154A430F002F307D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_NAME = IntAirAct.framework;
 			};
 			name = Release;
 		};
@@ -845,13 +849,13 @@
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "Interact-Info.plist";
+				INFOPLIST_FILE = "IntAirAct-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_NAME = IntAirAct;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -871,12 +875,12 @@
 				FRAMEWORK_VERSION = A;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "Interact-Info.plist";
+				INFOPLIST_FILE = "IntAirAct-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				PRODUCT_NAME = "$(PROJECT_NAME)";
+				PRODUCT_NAME = IntAirAct;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -890,10 +894,10 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
-				INFOPLIST_FILE = "Interact-Info.plist";
+				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
+				INFOPLIST_FILE = "IntAirAct-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IntAirActIOSTests;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -906,10 +910,10 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
-				INFOPLIST_FILE = "Interact-Info.plist";
+				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
+				INFOPLIST_FILE = "IntAirAct-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IntAirActIOSTests;
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -921,12 +925,12 @@
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "Interact-Info.plist";
+				INFOPLIST_FILE = "IntAirAct-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IntAirActOSXTests;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -940,11 +944,11 @@
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Interact-Prefix.pch";
+				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				INFOPLIST_FILE = "Interact-Info.plist";
+				INFOPLIST_FILE = "IntAirAct-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = IntAirActOSXTests;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -953,7 +957,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		277E5526154A42AE002F307D /* Build configuration list for PBXProject "Interact" */ = {
+		277E5526154A42AE002F307D /* Build configuration list for PBXProject "IntAirAct" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				277E5537154A42AF002F307D /* Debug */,
@@ -962,7 +966,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		277E5539154A42AF002F307D /* Build configuration list for PBXNativeTarget "InteractStaticIOS" */ = {
+		277E5539154A42AF002F307D /* Build configuration list for PBXNativeTarget "IntAirActStaticIOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				277E553A154A42AF002F307D /* Debug */,
@@ -971,7 +975,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		277E553E154A430F002F307D /* Build configuration list for PBXAggregateTarget "InteractIOS" */ = {
+		277E553E154A430F002F307D /* Build configuration list for PBXAggregateTarget "IntAirActIOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				277E553F154A430F002F307D /* Debug */,
@@ -980,7 +984,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		277E555A154A4385002F307D /* Build configuration list for PBXNativeTarget "InteractOSX" */ = {
+		277E555A154A4385002F307D /* Build configuration list for PBXNativeTarget "IntAirActOSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				277E555B154A4385002F307D /* Debug */,
@@ -989,7 +993,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27FC6258154B36A500AA7502 /* Build configuration list for PBXNativeTarget "InteractIOSTests" */ = {
+		27FC6258154B36A500AA7502 /* Build configuration list for PBXNativeTarget "IntAirActIOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27FC6256154B36A400AA7502 /* Debug */,
@@ -998,7 +1002,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		27FC6271154B36AE00AA7502 /* Build configuration list for PBXNativeTarget "InteractOSXTests" */ = {
+		27FC6271154B36AE00AA7502 /* Build configuration list for PBXNativeTarget "IntAirActOSXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27FC6272154B36AE00AA7502 /* Debug */,

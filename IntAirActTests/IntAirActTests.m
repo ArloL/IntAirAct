@@ -1,6 +1,6 @@
-#import "InteractTests.h"
+#import "IntAirActTests.h"
 
-@implementation InteractTests
+@implementation IntAirActTests
 
 - (void)setUp
 {
@@ -18,7 +18,7 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in InteractOSXTests");
+    STFail(@"Unit tests are not implemented yet in IntAirActTests");
 }
 
 @end

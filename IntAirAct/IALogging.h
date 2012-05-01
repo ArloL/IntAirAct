@@ -4,7 +4,7 @@
  * The Google Code page has a wealth of documentation if you have any questions.
  * https://github.com/robbiehanson/CocoaLumberjack
  * 
- * Here's what you need to know concerning how logging is setup for Interact:
+ * Here's what you need to know concerning how logging is setup for IntAirAct:
  * 
  * There are 4 log levels:
  * - Error
@@ -30,12 +30,12 @@
  * Define your logging level in your implementation file:
  * 
  * // Log levels: off, error, warn, info, verbose
- * static const int interactLogLevel = IA_LOG_LEVEL_VERBOSE;
+ * static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE;
  * 
  * If you wish to enable tracing, you could do something like this:
  * 
  * // Debug levels: off, error, warn, info, verbose
- * static const int interactLogLevel = IA_LOG_LEVEL_INFO | IA_LOG_FLAG_TRACE;
+ * static const int intAirActLogLevel = IA_LOG_LEVEL_INFO | IA_LOG_FLAG_TRACE;
  * 
  * Step 3:
  * Replace your NSLog statements with IALog statements according to the severity of the message.
@@ -76,11 +76,11 @@
 
 // Setup the usual boolean macros.
 
-#define IA_LOG_ERROR   (interactLogLevel & IA_LOG_FLAG_ERROR)
-#define IA_LOG_WARN    (interactLogLevel & IA_LOG_FLAG_WARN)
-#define IA_LOG_INFO    (interactLogLevel & IA_LOG_FLAG_INFO)
-#define IA_LOG_VERBOSE (interactLogLevel & IA_LOG_FLAG_VERBOSE)
-#define IA_LOG_TRACE   (interactLogLevel & IA_LOG_FLAG_TRACE)
+#define IA_LOG_ERROR   (intAirActLogLevel & IA_LOG_FLAG_ERROR)
+#define IA_LOG_WARN    (intAirActLogLevel & IA_LOG_FLAG_WARN)
+#define IA_LOG_INFO    (intAirActLogLevel & IA_LOG_FLAG_INFO)
+#define IA_LOG_VERBOSE (intAirActLogLevel & IA_LOG_FLAG_VERBOSE)
+#define IA_LOG_TRACE   (intAirActLogLevel & IA_LOG_FLAG_TRACE)
 
 // Configure asynchronous logging.
 // We follow the default configuration,
@@ -96,39 +96,39 @@
 
 // Define logging primitives.
 
-#define IALogError(frmt, ...)    LOG_OBJC_MAYBE(IA_LOG_ASYNC_ERROR,   interactLogLevel, IA_LOG_FLAG_ERROR,  \
+#define IALogError(frmt, ...)    LOG_OBJC_MAYBE(IA_LOG_ASYNC_ERROR,   intAirActLogLevel, IA_LOG_FLAG_ERROR,  \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
-#define IALogWarn(frmt, ...)     LOG_OBJC_MAYBE(IA_LOG_ASYNC_WARN,    interactLogLevel, IA_LOG_FLAG_WARN,   \
+#define IALogWarn(frmt, ...)     LOG_OBJC_MAYBE(IA_LOG_ASYNC_WARN,    intAirActLogLevel, IA_LOG_FLAG_WARN,   \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
-#define IALogInfo(frmt, ...)     LOG_OBJC_MAYBE(IA_LOG_ASYNC_INFO,    interactLogLevel, IA_LOG_FLAG_INFO,    \
+#define IALogInfo(frmt, ...)     LOG_OBJC_MAYBE(IA_LOG_ASYNC_INFO,    intAirActLogLevel, IA_LOG_FLAG_INFO,    \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
-#define IALogVerbose(frmt, ...)  LOG_OBJC_MAYBE(IA_LOG_ASYNC_VERBOSE, interactLogLevel, IA_LOG_FLAG_VERBOSE, \
+#define IALogVerbose(frmt, ...)  LOG_OBJC_MAYBE(IA_LOG_ASYNC_VERBOSE, intAirActLogLevel, IA_LOG_FLAG_VERBOSE, \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
-#define IALogTrace()             LOG_OBJC_MAYBE(IA_LOG_ASYNC_TRACE,   interactLogLevel, IA_LOG_FLAG_TRACE, \
+#define IALogTrace()             LOG_OBJC_MAYBE(IA_LOG_ASYNC_TRACE,   intAirActLogLevel, IA_LOG_FLAG_TRACE, \
 IA_LOG_CONTEXT, @"%@[%p]: %@", THIS_FILE, self, THIS_METHOD)
 
-#define IALogTrace2(frmt, ...)   LOG_OBJC_MAYBE(IA_LOG_ASYNC_TRACE,   interactLogLevel, IA_LOG_FLAG_TRACE, \
+#define IALogTrace2(frmt, ...)   LOG_OBJC_MAYBE(IA_LOG_ASYNC_TRACE,   intAirActLogLevel, IA_LOG_FLAG_TRACE, \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
 
-#define IALogCError(frmt, ...)      LOG_C_MAYBE(IA_LOG_ASYNC_ERROR,   interactLogLevel, IA_LOG_FLAG_ERROR,   \
+#define IALogCError(frmt, ...)      LOG_C_MAYBE(IA_LOG_ASYNC_ERROR,   intAirActLogLevel, IA_LOG_FLAG_ERROR,   \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
-#define IALogCWarn(frmt, ...)       LOG_C_MAYBE(IA_LOG_ASYNC_WARN,    interactLogLevel, IA_LOG_FLAG_WARN,    \
+#define IALogCWarn(frmt, ...)       LOG_C_MAYBE(IA_LOG_ASYNC_WARN,    intAirActLogLevel, IA_LOG_FLAG_WARN,    \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
-#define IALogCInfo(frmt, ...)       LOG_C_MAYBE(IA_LOG_ASYNC_INFO,    interactLogLevel, IA_LOG_FLAG_INFO,    \
+#define IALogCInfo(frmt, ...)       LOG_C_MAYBE(IA_LOG_ASYNC_INFO,    intAirActLogLevel, IA_LOG_FLAG_INFO,    \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
-#define IALogCVerbose(frmt, ...)    LOG_C_MAYBE(IA_LOG_ASYNC_VERBOSE, interactLogLevel, IA_LOG_FLAG_VERBOSE, \
+#define IALogCVerbose(frmt, ...)    LOG_C_MAYBE(IA_LOG_ASYNC_VERBOSE, intAirActLogLevel, IA_LOG_FLAG_VERBOSE, \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
-#define IALogCTrace()               LOG_C_MAYBE(IA_LOG_ASYNC_TRACE,   interactLogLevel, IA_LOG_FLAG_TRACE, \
+#define IALogCTrace()               LOG_C_MAYBE(IA_LOG_ASYNC_TRACE,   intAirActLogLevel, IA_LOG_FLAG_TRACE, \
 IA_LOG_CONTEXT, @"%@[%p]: %@", THIS_FILE, self, __FUNCTION__)
 
-#define IALogCTrace2(frmt, ...)     LOG_C_MAYBE(IA_LOG_ASYNC_TRACE,   interactLogLevel, IA_LOG_FLAG_TRACE, \
+#define IALogCTrace2(frmt, ...)     LOG_C_MAYBE(IA_LOG_ASYNC_TRACE,   intAirActLogLevel, IA_LOG_FLAG_TRACE, \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)

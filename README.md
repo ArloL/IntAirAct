@@ -1,4 +1,4 @@
-Interact
+IntAirAct
 ========================
 
-A Middleware for Device Interaction.
+Device Interaction using REST.

@@ -6,7 +6,7 @@ if File.exist?('Rakefile.config')
   load 'Rakefile.config'
 end
 
-$name="Interact"
+$name="IntAirAct"
 $configuration="Release"
 
 def builder(os = "IOS")
@@ -138,7 +138,7 @@ desc "Publish docs"
 task :publishdocs => :docs do
   cd "build" do
     if !File.exists?("docs-repo")
-      system("git clone -b gh-pages git@github.com:ArloL/Interact.git docs-repo")
+      system("git clone -b gh-pages git@github.com:ArloL/IntAirAct.git docs-repo")
     end
     cd "docs-repo" do
       system("git pull")

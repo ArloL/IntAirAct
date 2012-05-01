@@ -1,4 +1,4 @@
-#import "IAInteract.h"
+#import "IAIntAirAct.h"
 
 #import <RestKit/RestKit.h>
 #import <RoutingHTTPServer/RoutingHTTPServer.h>
@@ -10,9 +10,9 @@
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
-static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
+static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
 
-@interface IAInteract () {
+@interface IAIntAirAct () {
     dispatch_queue_t serverQueue;
     dispatch_queue_t clientQueue;
     
@@ -41,7 +41,7 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
 
 @end
 
-@implementation IAInteract
+@implementation IAIntAirAct
 
 @synthesize objectMappingProvider = _objectMappingProvider;
 @synthesize router = _router;
@@ -57,8 +57,8 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     if (self) {
         IALogTrace();
         
-        serverQueue = dispatch_queue_create("InteractServer", NULL);
-        clientQueue = dispatch_queue_create("InteractClient", NULL);
+        serverQueue = dispatch_queue_create("IntAirActServer", NULL);
+        clientQueue = dispatch_queue_create("IntAirActClient", NULL);
         
         _objectMappingProvider = [RKObjectMappingProvider new];
         _router = [RKObjectRouter new];
@@ -98,17 +98,17 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         if(isServer) {
             success = [httpServer start:&err];
             if (success) {
-                IALogInfo(@"%@: Started Interact.", THIS_FILE);
+                IALogInfo(@"%@: Started IntAirActServer.", THIS_FILE);
                 
                 if(isClient) {
                     [self startBonjour];
                 }
                 isRunning = YES;
             } else {
-                IALogError(@"%@: Failed to start Interact: %@", THIS_FILE, err);
+                IALogError(@"%@: Failed to start IntAirActServer: %@", THIS_FILE, err);
             }
         } else if (isClient) {
-            IALogInfo(@"%@: Started Interact.", THIS_FILE);
+            IALogInfo(@"%@: Started IntAirActServer.", THIS_FILE);
             [self startBonjour];
         }
 	}});
@@ -224,7 +224,7 @@ static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     dispatch_block_t bonjourBlock = ^{
         [theNetServiceBrowser removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
         [theNetServiceBrowser scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-        [theNetServiceBrowser searchForServicesOfType:@"_interact._tcp." inDomain:@"local."];
+        [theNetServiceBrowser searchForServicesOfType:@"_intairact._tcp." inDomain:@"local."];
         IALogInfo(@"Bonjour search started.");
     };
     
@@ -468,7 +468,7 @@ static NSThread *bonjourThread;
         
         // Tell the server to broadcast its presence via Bonjour.
         // This allows browsers such as Safari to automatically discover our service.
-        [httpServer setType:@"_interact._tcp."];
+        [httpServer setType:@"_intaiaract._tcp."];
         
         // Normally there's no need to run our server on any specific port.
         // Technologies like Bonjour allow clients to dynamically discover the server's port at runtime.

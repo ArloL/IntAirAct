@@ -9,9 +9,9 @@
 @class IAAction;
 @class IADevice;
 
-@interface IAInteract : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
+@interface IAIntAirAct : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 
-/** Specifies whether Interact is configured as a client or not.
+/** Specifies whether IntAirAct is configured as a client or not.
  
  Defaults to `application/json`.
  
@@ -38,17 +38,17 @@
  */
 @property (nonatomic, strong, readonly) RoutingHTTPServer * httpServer;
 
-/** Returns `YES` if Interact is running, `NO` otherwise.
+/** Returns `YES` if IntAirAct is running, `NO` otherwise.
  */
 @property (readonly) BOOL isRunning;
 
-/** Interact's RKObjectMappingProvider. This is used to add and retrieve object mappings.
+/** IntAirAct's RKObjectMappingProvider. This is used to add and retrieve object mappings.
  
  A usage example:
  
     RKObjectMapping * mapping = [RKObjectMapping mappingForClass:[Contact class]];
     [mapping mapAttributesFromSet:@"firstName", @"lastName", nil];
-    [interact.objectMappingProvider setMapping:mapping forKeyPath:@"contacts"];
+    [intairact.objectMappingProvider setMapping:mapping forKeyPath:@"contacts"];
  */
 @property (nonatomic, strong, readonly) RKObjectMappingProvider * objectMappingProvider;
 
@@ -56,25 +56,25 @@
  */
 @property (readonly) IADevice * ownDevice;
 
-/** Interact's RKObjectRouter. This is used to setup default route mappings for objects.
+/** IntAirAct's RKObjectRouter. This is used to setup default route mappings for objects.
  
  Use this to setup default routes for serializable Objects like this:
  
-    [interact.router routeClass:[Contact class] toResourcePath:@"/contacts/:identifier"];
+    [intairact.router routeClass:[Contact class] toResourcePath:@"/contacts/:identifier"];
  
  This automatically maps all GET, POST, PUT and DELETE calls to /contacts/:identifier.
  */
 @property (nonatomic, strong, readonly) RKObjectRouter * router;
 
-/** Specifies whether Interact is configured as a server or not.
+/** Specifies whether IntAirAct is configured as a server or not.
  
- If set to `YES`, Interact will start the embedded HTTP server. Defaults to `YES`.
+ If set to `YES`, IntAirAct will start the embedded HTTP server. Defaults to `YES`.
  */
 @property BOOL server;
 
 /** Standard Constructor.
  
- Instantiates Interact, but does not start it.
+ Instantiates IntAirAct, but does not start it.
  */
 -(id)init;
 
@@ -84,13 +84,13 @@
  */
 -(void)dealloc;
 
-/** Attempts to start Interact.
+/** Attempts to start IntAirAct.
  
  A usage example:
  
     NSError *err = nil;
-    if (![interact start:&er]]) {
-        NSLog(@"Error starting interact: %@", err);
+    if (![intairact start:&er]]) {
+        NSLog(@"Error starting IntAirAct: %@", err);
     }
  
  @param errPtr An optional NSError instance.
@@ -99,7 +99,7 @@
  */
 -(BOOL)start:(NSError **)errPtr;
 
-/** Stops Interact.
+/** Stops IntAirAct.
  */
 -(void)stop;
 
@@ -107,7 +107,7 @@
  
  A usage example:
  
-    [interact addMappingForClass:[Contact class] withKeypath:@"contacts" withAttributes:@"firstName", @"lastName", nil];
+    [intairact addMappingForClass:[Contact class] withKeypath:@"contacts" withAttributes:@"firstName", @"lastName", nil];
  
  @param className The class to be de-/serialized.
  @param keyPath The keypath to use for the mapping. This has to be unique to the application.

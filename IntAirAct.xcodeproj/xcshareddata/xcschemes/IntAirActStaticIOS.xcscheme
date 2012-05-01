@@ -13,10 +13,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "277E553D154A430E002F307D"
-               BuildableName = "InteractIOS"
-               BlueprintName = "InteractIOS"
-               ReferencedContainer = "container:Interact.xcodeproj">
+               BlueprintIdentifier = "277E552B154A42AF002F307D"
+               BuildableName = "libIntAirAct.a"
+               BlueprintName = "IntAirActStaticIOS"
+               ReferencedContainer = "container:IntAirAct.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,9 +32,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27FC6246154B36A400AA7502"
-               BuildableName = "InteractIOSTests.octest"
-               BlueprintName = "InteractIOSTests"
-               ReferencedContainer = "container:Interact.xcodeproj">
+               BuildableName = "IntAirActIOSTests.octest"
+               BlueprintName = "IntAirActIOSTests"
+               ReferencedContainer = "container:IntAirAct.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

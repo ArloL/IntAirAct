@@ -2,21 +2,21 @@
 
 #import <RestKit/RestKit.h>
 
-#import "IAInteract.h"
+#import "IAIntAirAct.h"
 #import "IALogging.h"
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
-static const int interactLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
+static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
 
 @implementation RouteResponse (Serializer)
 
--(void)respondWith:(id)data withInteract:(IAInteract *)interact
+-(void)respondWith:(id)data withIntAirAct:(IAIntAirAct *)intAirAct
 {
-    RKObjectSerializer* serializer = [interact serializerForObject:data];
+    RKObjectSerializer* serializer = [intAirAct serializerForObject:data];
     
     NSError * error = nil;
-    id params = [serializer serializationForMIMEType:interact.defaultMimeType error:&error];
+    id params = [serializer serializationForMIMEType:intAirAct.defaultMimeType error:&error];
     
     if (error) {
         self.statusCode = 500;
