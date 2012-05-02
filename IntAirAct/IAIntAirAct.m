@@ -468,7 +468,7 @@ static NSThread *bonjourThread;
         
         // Tell the server to broadcast its presence via Bonjour.
         // This allows browsers such as Safari to automatically discover our service.
-        [httpServer setType:@"_intaiaract._tcp."];
+        [httpServer setType:@"_intairact._tcp."];
         
         // Normally there's no need to run our server on any specific port.
         // Technologies like Bonjour allow clients to dynamically discover the server's port at runtime.
