@@ -124,7 +124,7 @@ def publish(os = "IOS")
 end
 
 desc "Publish the Frameworks to github"
-task :publish => :archive do
+task :publish do
   publish()
   publish("OSX")
 end
@@ -142,7 +142,7 @@ task :publishdocs => :docs do
     end
     cd "docs-repo" do
       system("git pull origin gh-pages")
-      system("rm -rf docs")
+      rm_rf "docs"
       system("cp -R ../docs/html docs")
       system("git add docs")
       system('git commit -m "Updated docs"')
