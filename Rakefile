@@ -124,7 +124,7 @@ def publish(os = "IOS")
 end
 
 desc "Publish the Frameworks to github"
-task :publish do
+task :publish => :archive do
   publish()
   publish("OSX")
 end
