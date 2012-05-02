@@ -455,6 +455,19 @@ static NSThread *bonjourThread;
     });
 }
 
+-(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction * action, NSError * error))handler
+{
+    dispatch_async(clientQueue, ^{
+        RKObjectManager * manager = [self objectManagerForDevice:device];
+        [manager putObject:action handler:^(RKObjectLoader * loader, NSError * error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                handler(action, error);
+            });
+        }];
+        
+    });
+}
+
 -(void)setup
 {
     if(didSetup) {
@@ -495,7 +508,11 @@ static NSThread *bonjourThread;
             for(NSString * parameterName in [mappableData allKeys]) {
                 id value = [mappableData valueForKey:parameterName];
                 RKObjectMapping * serializationMapping = [self.objectMappingProvider serializationMappingForClass:[value class]];
-                [mapping mapKeyPath:parameterName toRelationship:[serializationMapping.rootKeyPath stringByAppendingFormat:@"-%@", parameterName] withMapping:serializationMapping];
+                if(serializationMapping) {
+                    [mapping mapKeyPath:parameterName toRelationship:[serializationMapping.rootKeyPath stringByAppendingFormat:@"-%@", parameterName] withMapping:serializationMapping];
+                } else {
+                    [mapping mapAttributes:parameterName, nil];
+                }
             }
             return mapping;
         };
@@ -511,19 +528,23 @@ static NSThread *bonjourThread;
             RKObjectMapping * mapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
             for(NSString * key in [mappableData allKeys]) {
                 NSArray * keyComponents = [key componentsSeparatedByString:@"-"];
-                NSString * rootKeyPath = [keyComponents objectAtIndex:0];
-                if (!rootKeyPath) {
-                    continue;
+                if([keyComponents count] == 2) {
+                    NSString * rootKeyPath = [keyComponents objectAtIndex:0];
+                    if (!rootKeyPath) {
+                        continue;
+                    }
+                    NSString * parameterName = [keyComponents objectAtIndex:1];
+                    if (!parameterName) {
+                        continue;
+                    }
+                    RKObjectMapping * originalMapping = [allRegisteredMappings valueForKey:rootKeyPath];
+                    if(!originalMapping) {
+                        continue;
+                    }
+                    [mapping mapKeyPath:key toRelationship:parameterName withMapping:originalMapping];
+                } else {
+                    [mapping mapAttributes:key, nil];
                 }
-                NSString * parameterName = [keyComponents objectAtIndex:1];
-                if (!parameterName) {
-                    continue;
-                }
-                RKObjectMapping * originalMapping = [allRegisteredMappings valueForKey:rootKeyPath];
-                if(!originalMapping) {
-                    continue;
-                }
-                [mapping mapKeyPath:key toRelationship:parameterName withMapping:originalMapping];
             }
             return mapping;
         };

@@ -121,5 +121,6 @@
 -(RKObjectSerializer *)serializerForObject:(id)object;
 -(RKObjectMappingResult *)deserializeObject:(NSData *)data;
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device;
+-(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction *, NSError *))handler;
 
 @end
