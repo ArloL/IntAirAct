@@ -130,7 +130,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:@"DeviceUpdate" object:nil];
         });
-        ownDevice = nil:
+        _ownDevice = nil;
         _isRunning = NO;
     }});
 }
