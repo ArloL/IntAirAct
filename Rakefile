@@ -106,7 +106,7 @@ end
 
 desc "Pull all submodules recursively"
 task :pull => :init do
-  system("git submodule foreach --recursive git pull origin master")
+  system("git submodule foreach --recursive git pull")
 end
 
 def publish(os = "IOS")
