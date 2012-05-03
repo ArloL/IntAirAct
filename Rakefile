@@ -101,6 +101,7 @@ end
 desc "Initialize and update all submodules recursively"
 task :init do
   system("git submodule update --init --recursive")
+  system("git submodule foreach --recursive git checkout master")
 end
 
 desc "Pull all submodules recursively"
