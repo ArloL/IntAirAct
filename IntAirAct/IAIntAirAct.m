@@ -128,7 +128,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         [_services removeAllObjects];
         [_deviceList removeAllObjects];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"DeviceUpdate" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:nil];
         });
         _ownDevice = nil;
         _isRunning = NO;
@@ -271,7 +271,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     IALogTrace2(@"Bonjour Service went away: domain(%@) type(%@) name(%@)", [ns domain], [ns type], [ns name]);
     [self.services removeObject:ns];
     [self.deviceList removeObjectForKey:ns.name];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"DeviceUpdate" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
 }
 
 -(void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)sender
@@ -286,7 +286,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     [self.services removeObject:ns];
     [self.deviceList removeObjectForKey:ns];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"DeviceUpdate" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
 }
 
 -(void)netServiceDidResolveAddress:(NSNetService *)sender
@@ -302,7 +302,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         _ownDevice = device;
     }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"DeviceUpdate" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -605,6 +605,11 @@ static NSThread *bonjourThread;
 {
     RKObjectMapping * mapping = [self.objectMappingProvider serializationMappingForClass:[object class]];
     return [RKObjectSerializer serializerWithObject:object mapping:mapping];
+}
+
+-(void)addAction
+{
+    
 }
 
 @end

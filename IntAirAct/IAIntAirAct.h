@@ -9,6 +9,8 @@
 @class IAAction;
 @class IADevice;
 
+static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
+
 @interface IAIntAirAct : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 
 /** Specifies whether IntAirAct is configured as a client or not.
@@ -122,5 +124,6 @@
 -(RKObjectMappingResult *)deserializeObject:(NSData *)data;
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device;
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction *, NSError *))handler;
+//-(void)addAction:(NSString *)action withBlock:dispatch_block_t block;
 
 @end
