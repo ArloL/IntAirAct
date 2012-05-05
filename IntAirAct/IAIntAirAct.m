@@ -7,10 +7,12 @@
 #import "IAAction.h"
 #import "IADevice.h"
 #import "IALogging.h"
+#import "IARouteRequest+BodyAsString.h"
+#import "IARouteResponse+Serializer.h"
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
-static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
+static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRACE;
 
 @interface IAIntAirAct ()
 
@@ -607,9 +609,50 @@ static NSThread *bonjourThread;
     return [RKObjectSerializer serializerWithObject:object mapping:mapping];
 }
 
--(void)addAction
+-(void)addAction:(NSString *)action withSelector:(SEL)selector andTarget:(id)target
 {
+    NSMethodSignature * signature = [[target class] instanceMethodSignatureForSelector:selector];
+    __block NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setSelector:selector];
+    [invocation setTarget:target];
     
+    NSString * returnType = [NSString stringWithFormat:@"%s", [[invocation methodSignature] methodReturnType]];
+    
+    // keep this here because otherwise we run into a memory release issue
+    __block id returnValue;
+    
+    [self.httpServer put:[@"/action/" stringByAppendingString:action] withBlock:^(RouteRequest *request, RouteResponse *response) {
+        IALogVerbose(@"%@", [@"PUT /action/" stringByAppendingString:action]);
+        
+        RKObjectMappingResult * result = [self deserializeObject:[request body]];
+        if(!result && [[result asObject] isKindOfClass:[IAAction class]]) {
+            IALogError(@"Could not parse request body: %@", [request bodyAsString]);
+            response.statusCode = 500;
+            return;
+        }
+        
+        IAAction * req = [result asObject];
+        if((signature.numberOfArguments - 2) != [req.parameters count]) {
+            response.statusCode = 500;
+            return;
+        }
+        
+        int i = 2;
+        for (id key in req.parameters) {
+            id object = [req.parameters objectForKey:key];
+            [invocation setArgument:&object atIndex:i];
+            i++;
+        }
+        [invocation invoke];
+        if (![returnType isEqualToString:@"v"]) {
+            [invocation getReturnValue:&returnValue];
+            IAAction * returnAction = [IAAction new];
+            returnAction.action = @"";
+            returnAction.parameters = [NSDictionary dictionaryWithObjectsAndKeys:returnValue, @"result", nil];
+            response.statusCode = 201;
+            [response respondWith:returnAction withIntAirAct:self];
+        }
+    }];
 }
 
 @end

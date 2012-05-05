@@ -123,7 +123,7 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
 -(RKObjectSerializer *)serializerForObject:(id)object;
 -(RKObjectMappingResult *)deserializeObject:(NSData *)data;
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device;
--(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction *, NSError *))handler;
-//-(void)addAction:(NSString *)action withBlock:dispatch_block_t block;
+-(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction * action, NSError * error))handler;
+-(void)addAction:(NSString *)action withSelector:(SEL)selector andTarget:(id)target;
 
 @end
