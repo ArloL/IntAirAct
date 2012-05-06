@@ -517,24 +517,19 @@ static NSThread *bonjourThread;
 	return result;
 }
 
--(void)callAction:(IAAction *)action onDevice:(IADevice *)device
-{
-    dispatch_async(clientQueue, ^{
-        RKObjectManager * manager = [self objectManagerForDevice:device];
-        [manager putObject:action delegate:nil];
-    });
-}
-
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction * action, NSError * error))handler
 {
     dispatch_async(clientQueue, ^{
         RKObjectManager * manager = [self objectManagerForDevice:device];
-        [manager putObject:action handler:^(RKObjectLoader * loader, NSError * error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                handler(action, error);
-            });
-        }];
-        
+        if(handler) {
+            [manager putObject:action handler:^(RKObjectLoader * loader, NSError * error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    handler(action, error);
+                });
+            }];
+        } else {
+            [manager putObject:action delegate:nil];
+        }
     });
 }
 
@@ -598,10 +593,13 @@ static NSThread *bonjourThread;
 {
     IALogTrace();
     
-    NSString * hostAndPort = device.hostAndPort;
+    NSString * hostAndPort;
     if ([device isEqual:self.ownDevice]) {
         hostAndPort = [NSString stringWithFormat:@"http://127.0.0.1:%i" , device.port];
+    } else {
+        hostAndPort = [NSString stringWithFormat:@"http://%@:%i", device.host, device.port];
     }
+
     RKObjectManager * manager = [objectManagers objectForKey:hostAndPort];
     
     if(!manager) {

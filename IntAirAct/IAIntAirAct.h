@@ -24,12 +24,10 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
  */
 @property BOOL client;
 
-/** Specifies the default MIME Type used when de-/serializing objects.
- */
+/** Specifies the default MIME Type used when de-/serializing objects. */
 @property NSString * defaultMimeType;
 
-/** Returns a list of all the currently available devices.
- */
+/** A list of all the currently available devices. */
 @property (readonly) NSArray * devices;
 
 /** The embedded HTTP server.
@@ -43,8 +41,7 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
  */
 @property (nonatomic, strong, readonly) RoutingHTTPServer * httpServer;
 
-/** Returns `YES` if IntAirAct is running, `NO` otherwise.
- */
+/** `YES` if IntAirAct is running, `NO` otherwise. */
 @property (readonly) BOOL isRunning;
 
 /** IntAirAct's RKObjectMappingProvider. This is used to add and retrieve object mappings.
@@ -57,8 +54,7 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
  */
 @property (nonatomic, strong, readonly) RKObjectMappingProvider * objectMappingProvider;
 
-/** Returns the current device if it has been found yet, `nil` otherwise.
- */
+/** Returns the current device if it has been found yet, `nil` otherwise. */
 @property (readonly) IADevice * ownDevice;
 
 /** IntAirAct's RKObjectRouter. This is used to setup default route mappings for objects.
@@ -106,9 +102,16 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
  */
 -(BOOL)start:(NSError **)errPtr;
 
-/** Stops IntAirAct.
- */
+/** Stops IntAirAct. */
 -(void)stop;
+
+/** Add an action to the server.
+ 
+ @param action the name of the action
+ @param selector the selector that is executed when the action is called
+ @param target the target on which to execute the selector
+ */
+-(void)addAction:(NSString *)action withSelector:(SEL)selector andTarget:(id)target;
 
 /** Adds a de- and a serialization mapping to the objectMappingProvider for the specified class.
  
@@ -123,14 +126,52 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
  */
 -(void)addMappingForClass:(Class)className withKeypath:(NSString *)keyPath withAttributes:(NSString *)attributeKeyPath, ...  NS_REQUIRES_NIL_TERMINATION;
 
+/** Execute an action on a specific device.
+ 
+ If you specify a handler block the return parameter will be set on the action.parameters array.
+ 
+ @param action the action to execute.
+ @param device the device on which to execute the action.
+ @param handler a block for handling errors or return parameters.
+ */
+-(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction * action, NSError * error))handler;
+
+/**
+ @param data the data to deserialize
+ */
+-(RKObjectMappingResult *)deserializeObject:(id)data;
+
+/** Get an array of devices with a certain capability.
+ 
+ @param capability the capability which the devices should have.
+ 
+ @return an array of devices with the specified capability.
+ */
 -(NSArray *)devicesWithCapability:(IACapability *)capability;
 
+/** Return an RKObjectManager for the specified device.
+ 
+ @param device the device for which we want an RKObjectManager.
+ 
+ @return an RKObjectManager for the specified device
+ */
 -(RKObjectManager *)objectManagerForDevice:(IADevice *)device;
+
+/** Returns a resourcePath for a specified resource.
+ 
+ @param resource the resource to get the path for
+ @param manager the object manager 
+ 
+ @return the resourcePath for the specified resource
+ */
 -(NSString *)resourcePathFor:(NSObject *)resource forObjectManager:(RKObjectManager *)manager;
+
+/** Return an RKObjectSerializer for the specified object.
+ 
+ @param object the object for which to get an RKObjectSerializer for
+ 
+ @return An RKObjectSerializer for the specified object.
+ */
 -(RKObjectSerializer *)serializerForObject:(id)object;
--(RKObjectMappingResult *)deserializeObject:(id)data;
--(void)callAction:(IAAction *)action onDevice:(IADevice *)device;
--(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction * action, NSError * error))handler;
--(void)addAction:(NSString *)action withSelector:(SEL)selector andTarget:(id)target;
 
 @end

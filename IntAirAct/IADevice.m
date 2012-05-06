@@ -17,11 +17,6 @@
     return res;
 }
 
--(NSString *)hostAndPort
-{
-    return [NSString stringWithFormat:@"http://%@:%i", self.host, self.port];
-}
-
 -(NSString *)description
 {
     return [NSString stringWithFormat:@"IADevice[name: %@, host: %@, port: %i, capabilities: %@]", self.name, self.host, self.port, self.capabilities];
