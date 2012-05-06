@@ -403,15 +403,26 @@ static NSThread *bonjourThread;
     [self.objectMappingProvider setSerializationMapping:serialization forClass:className];
 }
 
--(RKObjectMappingResult*)deserializeObject:(NSData*)data
+-(RKObjectMappingResult*)deserializeObject:(id)data
 {
     IALogTrace();
     
-    NSString * bodyAsString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
     NSError* error = nil;
-    id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:self.defaultMimeType];
-    id parsedData = [parser objectFromString:bodyAsString error:&error];
+    id parsedData;
+    
+    if(![data isKindOfClass:[NSDictionary class]]) {
+        NSString * bodyAsString = @"";
+        
+        if([data isKindOfClass:[NSData class]]) {
+            bodyAsString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        } else if ([data isKindOfClass:[NSString class]]) {
+            bodyAsString = data;
+        }
+        id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:self.defaultMimeType];
+        parsedData = [parser objectFromString:bodyAsString error:&error];
+    } else {
+        parsedData = data;
+    }
     
     if (parsedData == nil && error) {
         // Parser error...
@@ -501,53 +512,16 @@ static NSThread *bonjourThread;
     actionSerialization.rootKeyPath = @"actions";
     [actionSerialization mapAttributes:@"action", nil];
     RKDynamicObjectMapping * parametersSerialization = [RKDynamicObjectMapping dynamicMappingUsingBlock:^(RKDynamicObjectMapping *dynamicMapping) {
+        dynamicMapping.forceRootKeyPath = YES;
         dynamicMapping.objectMappingForDataBlock = ^ RKObjectMapping* (id mappableData) {
-            RKObjectMapping * mapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
-            for(NSString * parameterName in [mappableData allKeys]) {
-                id value = [mappableData valueForKey:parameterName];
-                RKObjectMapping * serializationMapping = [self.objectMappingProvider serializationMappingForClass:[value class]];
-                if(serializationMapping) {
-                    [mapping mapKeyPath:parameterName toRelationship:[serializationMapping.rootKeyPath stringByAppendingFormat:@"-%@", parameterName] withMapping:serializationMapping];
-                } else {
-                    [mapping mapAttributes:parameterName, nil];
-                }
-            }
-            return mapping;
+            return [self.objectMappingProvider serializationMappingForClass:[mappableData class]];
         };
     }];
     [actionSerialization hasMany:@"parameters" withMapping:parametersSerialization];
     [_objectMappingProvider setSerializationMapping:actionSerialization forClass:[IAAction class]];
     
     RKObjectMapping * actionMapping = [RKObjectMapping mappingForClass:[IAAction class]];
-    [actionMapping mapAttributes:@"action", nil];
-    RKDynamicObjectMapping * parametersMapping = [RKDynamicObjectMapping dynamicMappingUsingBlock:^(RKDynamicObjectMapping *dynamicMapping) {
-        dynamicMapping.objectMappingForDataBlock = ^ RKObjectMapping* (id mappableData) {
-            NSDictionary * allRegisteredMappings = [self.objectMappingProvider mappingsByKeyPath];
-            RKObjectMapping * mapping = [RKObjectMapping mappingForClass:[NSMutableDictionary class]];
-            for(NSString * key in [mappableData allKeys]) {
-                NSArray * keyComponents = [key componentsSeparatedByString:@"-"];
-                if([keyComponents count] == 2) {
-                    NSString * rootKeyPath = [keyComponents objectAtIndex:0];
-                    if (!rootKeyPath) {
-                        continue;
-                    }
-                    NSString * parameterName = [keyComponents objectAtIndex:1];
-                    if (!parameterName) {
-                        continue;
-                    }
-                    RKObjectMapping * originalMapping = [allRegisteredMappings valueForKey:rootKeyPath];
-                    if(!originalMapping) {
-                        continue;
-                    }
-                    [mapping mapKeyPath:key toRelationship:parameterName withMapping:originalMapping];
-                } else {
-                    [mapping mapAttributes:key, nil];
-                }
-            }
-            return mapping;
-        };
-    }];
-    [actionMapping hasMany:@"parameters" withMapping:parametersMapping];
+    [actionMapping mapAttributes:@"action", @"parameters", nil];
     [_objectMappingProvider setMapping:actionMapping forKeyPath:@"actions"];
     
     [_router routeClass:[IAAction class] toResourcePath:@"/action/:action" forMethod:RKRequestMethodPUT];
@@ -623,6 +597,7 @@ static NSThread *bonjourThread;
     
     [self.httpServer put:[@"/action/" stringByAppendingString:action] withBlock:^(RouteRequest *request, RouteResponse *response) {
         IALogVerbose(@"%@", [@"PUT /action/" stringByAppendingString:action]);
+        IALogTrace2(@"Request: %@", request.bodyAsString);
         
         RKObjectMappingResult * result = [self deserializeObject:[request body]];
         if(!result && [[result asObject] isKindOfClass:[IAAction class]]) {
@@ -637,10 +612,13 @@ static NSThread *bonjourThread;
             return;
         }
         
-        int i = 2;
-        for (id key in req.parameters) {
-            id object = [req.parameters objectForKey:key];
-            [invocation setArgument:&object atIndex:i];
+        int i = 0;
+        while (i < [req.parameters count]) {
+            id obj = [req.parameters objectAtIndex:i];
+            if(![self isNativeObject:obj]) {
+                obj = [[self deserializeObject:obj] asObject];
+            }
+            [invocation setArgument:&obj atIndex:i+2];
             i++;
         }
         [invocation invoke];
@@ -648,11 +626,23 @@ static NSThread *bonjourThread;
             [invocation getReturnValue:&returnValue];
             IAAction * returnAction = [IAAction new];
             returnAction.action = @"";
-            returnAction.parameters = [NSDictionary dictionaryWithObjectsAndKeys:returnValue, @"result", nil];
+            returnAction.parameters = [NSArray arrayWithObjects:returnValue, nil];
             response.statusCode = 201;
             [response respondWith:returnAction withIntAirAct:self];
         }
     }];
+}
+
+
+-(BOOL)isNativeObject:(id)object
+{
+    NSArray * classes = [NSArray arrayWithObjects:[NSNumber class], [NSString class], nil];
+    for(id class in classes) {
+        if([object isKindOfClass:class]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end

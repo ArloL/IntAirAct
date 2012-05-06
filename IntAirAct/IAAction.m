@@ -2,8 +2,8 @@
 
 @implementation IAAction
 
-@synthesize action = _action;
-@synthesize parameters = _parameters;
+@synthesize action;
+@synthesize parameters;
 
 -(NSString *)description
 {
