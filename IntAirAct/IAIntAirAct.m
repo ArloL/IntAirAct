@@ -5,6 +5,7 @@
 #import <RestKit+Blocks/RKObjectManager+Blocks.h>
 
 #import "IAAction.h"
+#import "IACapability.h"
 #import "IADevice.h"
 #import "IALogging.h"
 #import "IARouteRequest+BodyAsString.h"
@@ -17,7 +18,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 @interface IAIntAirAct ()
 
 @property (nonatomic) dispatch_queue_t clientQueue;
-@property (strong) NSMutableDictionary * deviceList;
+@property (nonatomic, strong) NSMutableDictionary * deviceDictionary;
 @property (nonatomic) BOOL isSetup;
 @property (nonatomic, strong) NSNetServiceBrowser * netServiceBrowser;
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
@@ -34,8 +35,10 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 
 @implementation IAIntAirAct
 
+@synthesize capabilities;
 @synthesize client;
 @synthesize defaultMimeType;
+@synthesize devices;
 @synthesize httpServer;
 @synthesize isRunning;
 @synthesize objectMappingProvider;
@@ -45,7 +48,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 @synthesize txtRecordDictionary;
 
 @synthesize clientQueue;
-@synthesize deviceList;
+@synthesize deviceDictionary;
 @synthesize isSetup;
 @synthesize netServiceBrowser;
 @synthesize objectManagers;
@@ -58,6 +61,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
     if (self) {
         IALogTrace();
         
+        capabilities = [NSMutableSet new];
         client = YES;
         defaultMimeType = RKMIMETypeJSON;
         isRunning = NO;
@@ -67,7 +71,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
         txtRecordDictionary = [NSMutableDictionary new];
         
         clientQueue = dispatch_queue_create("IntAirActClient", NULL);
-        deviceList = [NSMutableDictionary new];
+        deviceDictionary = [NSMutableDictionary new];
         isSetup = NO;
         objectManagers = [NSMutableDictionary new];
         serverQueue = dispatch_queue_create("IntAirActServer", NULL);
@@ -130,7 +134,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
         [httpServer stop];
         [netServiceBrowser stop];
         [services removeAllObjects];
-        [deviceList removeAllObjects];
+        [deviceDictionary removeAllObjects];
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:nil];
         });
@@ -274,7 +278,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
     IALogTrace2(@"Bonjour Service went away: domain(%@) type(%@) name(%@)", [ns domain], [ns type], [ns name]);
     [self.services removeObject:ns];
-    [self.deviceList removeObjectForKey:ns.name];
+    [deviceDictionary removeObjectForKey:ns.name];
     [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
 }
 
@@ -288,7 +292,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
     IALogWarn(@"Could not resolve Bonjour Service: domain(%@) type(%@) name(%@)", [ns domain], [ns type], [ns name]);
 
     [self.services removeObject:ns];
-    [self.deviceList removeObjectForKey:ns];
+    [deviceDictionary removeObjectForKey:ns];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
 }
@@ -297,16 +301,23 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
 	IALogTrace2(@"Bonjour Service resolved: %@:%i", [sender hostName], [sender port]);
 
-    IADevice * device = [IADevice new];
+    __block IADevice * device = [IADevice new];
     device.name = sender.name;
     device.host = sender.hostName;
     device.port = sender.port;
-    [self.deviceList setObject:device forKey:device.name];
-    if ([self.httpServer.publishedName isEqual:device.name]) {
-        ownDevice = device;
-    }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
+    [[self objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(RKObjectLoader *loader, NSError * error) {
+        if (error) {
+            IALogError(@"Could not get device capabilities for device %@: %@", device, error);
+        } else {
+            device.capabilities = [NSSet setWithArray:[[loader result] asCollection]];
+            [deviceDictionary setObject:device forKey:device.name];
+            if ([self.httpServer.publishedName isEqual:device.name]) {
+                ownDevice = device;
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
+        }
+    }];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -436,6 +447,24 @@ static NSThread *bonjourThread;
     }
 }
 
+-(NSArray *)devicesWithCapability:(IACapability *)capability
+{
+    __block NSMutableArray * result;
+    
+    IALogVerbose(@"%@", [deviceDictionary allValues]);
+    
+    dispatch_sync(serverQueue, ^{
+        result = [NSMutableArray new];
+        for(IADevice * dev in [deviceDictionary allValues]) {
+            if([dev.capabilities containsObject:capability]) {
+                [result addObject:dev];
+            }
+        }
+	});
+
+    return result;
+}
+
 -(IADevice *)ownDevice
 {
     __block IADevice * result;
@@ -452,7 +481,7 @@ static NSThread *bonjourThread;
     __block NSArray * result;
 	
 	dispatch_sync(serverQueue, ^{
-        result = [self.deviceList allValues];
+        result = [deviceDictionary allValues];
 	});
 	
 	return result;
@@ -503,15 +532,16 @@ static NSThread *bonjourThread;
         [httpServer setTXTRecordDictionary:txtRecordDictionary];
         
         [httpServer setDefaultHeader:@"Content-Type" value:defaultMimeType];
+        
+        [httpServer get:@"/capabilities" withBlock:^(RouteRequest *request, RouteResponse *response) {
+            IALogTrace();
+            
+            [response respondWith:self.capabilities withIntAirAct:self];
+        }];
     }
     
-    RKObjectMapping * deviceMapping = [RKObjectMapping mappingForClass:[IADevice class]];
-    [deviceMapping mapAttributes:@"name", @"host", @"port", nil];
-    [objectMappingProvider setMapping:deviceMapping forKeyPath:@"devices"];
-    
-    RKObjectMapping * deviceSerialization = [deviceMapping inverseMapping];
-    deviceSerialization.rootKeyPath = @"devices";
-    [objectMappingProvider setSerializationMapping:deviceSerialization forClass:[IADevice class]];
+    [self addMappingForClass:[IADevice class] withKeypath:@"devices" withAttributes:@"name", @"host", @"port", nil];
+    [self addMappingForClass:[IACapability class] withKeypath:@"capabilities" withAttributes:@"capability", nil];
     
     RKObjectMapping * actionSerialization = [RKObjectMapping mappingForClass:[NSDictionary class]];
     actionSerialization.rootKeyPath = @"actions";
@@ -634,6 +664,10 @@ static NSThread *bonjourThread;
             [response respondWith:action withIntAirAct:self];
         }
     }];
+    
+    IACapability * cap = [IACapability new];
+    cap.capability = [@"PUT /action/" stringByAppendingString:actionName];
+    [self.capabilities addObject:cap];
 }
 
 

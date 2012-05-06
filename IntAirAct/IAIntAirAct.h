@@ -7,11 +7,14 @@
 @class RoutingHTTPServer;
 
 @class IAAction;
+@class IACapability;
 @class IADevice;
 
 static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
 
 @interface IAIntAirAct : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
+
+@property (nonatomic, strong, readonly) NSMutableSet * capabilities;
 
 /** Specifies whether IntAirAct is configured as a client or not.
  
@@ -119,6 +122,8 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
  @param ... A comma separated list of attributes to map.
  */
 -(void)addMappingForClass:(Class)className withKeypath:(NSString *)keyPath withAttributes:(NSString *)attributeKeyPath, ...  NS_REQUIRES_NIL_TERMINATION;
+
+-(NSArray *)devicesWithCapability:(IACapability *)capability;
 
 -(RKObjectManager *)objectManagerForDevice:(IADevice *)device;
 -(NSString *)resourcePathFor:(NSObject *)resource forObjectManager:(RKObjectManager *)manager;

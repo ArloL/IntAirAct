@@ -2,15 +2,17 @@
 
 @implementation IADevice
 
-@synthesize name;
+@synthesize capabilities;
 @synthesize host;
+@synthesize name;
 @synthesize port;
 
 -(id)copy
 {
     IADevice * res = [IADevice new];
-    res.name = self.name;
+    res.capabilities = [self.capabilities copy];
     res.host = self.host;
+    res.name = self.name;
     res.port = self.port;
     return res;
 }
@@ -22,7 +24,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"IADevice[name: %@, hostAndPort: %@]", self.name, self.hostAndPort];
+    return [NSString stringWithFormat:@"IADevice[name: %@, host: %@, port: %i, capabilities: %@]", self.name, self.host, self.port, self.capabilities];
 }
 
 -(BOOL)isEqual:(id)object

@@ -16,7 +16,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     NSError * error = nil;
     NSString * response;
     
-    if([data isKindOfClass:[NSArray class]]) {
+    if([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSSet class]]) {
         RKObjectSerializer * serializer;
         id serialized = [NSMutableArray new];
         for(id entry in data) {
