@@ -74,6 +74,8 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
  */
 @property BOOL server;
 
+@property (nonatomic, strong) NSMutableDictionary * txtRecordDictionary;
+
 /** Standard Constructor.
  
  Instantiates IntAirAct, but does not start it.

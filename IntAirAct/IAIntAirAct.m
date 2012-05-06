@@ -34,22 +34,23 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 
 @implementation IAIntAirAct
 
-@synthesize client = _client;
-@synthesize defaultMimeType = _defaultMimeType;
-@synthesize httpServer = _httpServer;
-@synthesize isRunning = _isRunning;
-@synthesize objectMappingProvider = _objectMappingProvider;
-@synthesize ownDevice = _ownDevice;
-@synthesize router = _router;
-@synthesize server = _server;
-@synthesize serverQueue = _serverQueue;
+@synthesize client;
+@synthesize defaultMimeType;
+@synthesize httpServer;
+@synthesize isRunning;
+@synthesize objectMappingProvider;
+@synthesize ownDevice;
+@synthesize router;
+@synthesize server;
+@synthesize txtRecordDictionary;
 
-@synthesize clientQueue = _clientQueue;
-@synthesize deviceList = _deviceList;
-@synthesize isSetup = _isSetup;
-@synthesize netServiceBrowser = _netServiceBrowser;
-@synthesize objectManagers = _objectManagers;
-@synthesize services = _services;
+@synthesize clientQueue;
+@synthesize deviceList;
+@synthesize isSetup;
+@synthesize netServiceBrowser;
+@synthesize objectManagers;
+@synthesize serverQueue;
+@synthesize services;
 
 -(id)init
 {
@@ -57,21 +58,21 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
     if (self) {
         IALogTrace();
         
-        _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
-        _clientQueue = dispatch_queue_create("IntAirActClient", NULL);
+        client = YES;
+        defaultMimeType = RKMIMETypeJSON;
+        isRunning = NO;
+        objectMappingProvider = [RKObjectMappingProvider new];
+        router = [RKObjectRouter new];
+        server = YES;
+        txtRecordDictionary = [NSMutableDictionary new];
         
-        _objectMappingProvider = [RKObjectMappingProvider new];
-        _router = [RKObjectRouter new];
+        clientQueue = dispatch_queue_create("IntAirActClient", NULL);
+        deviceList = [NSMutableDictionary new];
+        isSetup = NO;
+        objectManagers = [NSMutableDictionary new];
+        serverQueue = dispatch_queue_create("IntAirActServer", NULL);
+        services = [NSMutableSet new];
         
-        self.deviceList = [NSMutableDictionary new];
-        self.defaultMimeType = RKMIMETypeJSON;
-        self.objectManagers = [NSMutableDictionary new];
-        self.services = [NSMutableSet new];
-        
-        _server = YES;
-        _client = YES;
-        _isRunning = NO;
-        _isSetup = NO;
     }
     return self;
 }
@@ -82,8 +83,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
     
 	[self stop];
     
-    dispatch_release(_serverQueue);
-    dispatch_release(_clientQueue);
+    dispatch_release(serverQueue);
+    dispatch_release(clientQueue);
 }
 
 -(BOOL)start:(NSError **)errPtr;
@@ -91,25 +92,26 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
     IALogTrace();
     
     __block BOOL success = YES;
-	__block NSError *err = nil;
+	__block NSError * err = nil;
     
-    dispatch_sync(_serverQueue, ^{ @autoreleasepool {
+    dispatch_sync(serverQueue, ^{ @autoreleasepool {
         [self setup];
-        if(_server) {
-            success = [_httpServer start:&err];
+        if(server) {
+            success = [httpServer start:&err];
             if (success) {
                 IALogInfo(@"%@: Started IntAirActServer.", THIS_FILE);
                 
-                if(_client) {
+                if(client) {
                     [self startBonjour];
                 }
-                _isRunning = YES;
+                isRunning = YES;
             } else {
                 IALogError(@"%@: Failed to start IntAirActServer: %@", THIS_FILE, err);
             }
-        } else if (_client) {
+        } else if (client) {
             IALogInfo(@"%@: Started IntAirActServer.", THIS_FILE);
             [self startBonjour];
+            isRunning = YES;
         }
 	}});
 	
@@ -124,16 +126,16 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
     IALogTrace();
     
-    dispatch_sync(_serverQueue, ^{ @autoreleasepool {
-        [_httpServer stop];
-        [_netServiceBrowser stop];
-        [_services removeAllObjects];
-        [_deviceList removeAllObjects];
+    dispatch_sync(serverQueue, ^{ @autoreleasepool {
+        [httpServer stop];
+        [netServiceBrowser stop];
+        [services removeAllObjects];
+        [deviceList removeAllObjects];
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:nil];
         });
-        _ownDevice = nil;
-        _isRunning = NO;
+        ownDevice = nil;
+        isRunning = NO;
     }});
 }
 
@@ -141,8 +143,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
 	__block BOOL result;
 	
-	dispatch_sync(_serverQueue, ^{
-		result = _isRunning;
+	dispatch_sync(serverQueue, ^{
+		result = isRunning;
 	});
 	
 	return result;
@@ -152,8 +154,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
     __block BOOL result;
 	
-	dispatch_sync(_serverQueue, ^{
-		result = _server;
+	dispatch_sync(serverQueue, ^{
+		result = server;
 	});
 	
 	return result;
@@ -163,8 +165,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
     IALogTrace();
     
-    dispatch_async(_serverQueue, ^{
-        _server = value;
+    dispatch_async(serverQueue, ^{
+        server = value;
     });
 }
 
@@ -172,8 +174,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
     __block BOOL result;
 	
-	dispatch_sync(_serverQueue, ^{
-		result = _client;
+	dispatch_sync(serverQueue, ^{
+		result = client;
 	});
 	
 	return result;
@@ -183,8 +185,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
     IALogTrace();
     
-    dispatch_async(_serverQueue, ^{
-        _client = value;
+    dispatch_async(serverQueue, ^{
+        client = value;
     });
 }
 
@@ -192,8 +194,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
     __block NSString * result;
 	
-	dispatch_sync(_serverQueue, ^{
-		result = _defaultMimeType;
+	dispatch_sync(serverQueue, ^{
+		result = defaultMimeType;
 	});
 	
 	return result;
@@ -203,8 +205,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
     IALogTrace();
     
-    dispatch_async(_serverQueue, ^{
-        _defaultMimeType = value;
+    dispatch_async(serverQueue, ^{
+        defaultMimeType = value;
     });
 }
 
@@ -212,7 +214,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
 	IALogTrace();
 	
-	NSAssert(dispatch_get_current_queue() == _serverQueue, @"Invalid queue");
+	NSAssert(dispatch_get_current_queue() == serverQueue, @"Invalid queue");
 	
     self.netServiceBrowser = [NSNetServiceBrowser new];
     [self.netServiceBrowser setDelegate:self];
@@ -234,7 +236,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 {
 	IALogTrace();
 	
-	NSAssert(dispatch_get_current_queue() == _serverQueue, @"Invalid queue");
+	NSAssert(dispatch_get_current_queue() == serverQueue, @"Invalid queue");
 	
 	if (self.netServiceBrowser)
 	{
@@ -301,7 +303,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
     device.port = sender.port;
     [self.deviceList setObject:device forKey:device.name];
     if ([self.httpServer.publishedName isEqual:device.name]) {
-        _ownDevice = device;
+        ownDevice = device;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
@@ -438,8 +440,8 @@ static NSThread *bonjourThread;
 {
     __block IADevice * result;
 	
-	dispatch_sync(_serverQueue, ^{
-        result = _ownDevice;
+	dispatch_sync(serverQueue, ^{
+        result = ownDevice;
 	});
 	
 	return result;
@@ -449,7 +451,7 @@ static NSThread *bonjourThread;
 {
     __block NSArray * result;
 	
-	dispatch_sync(_serverQueue, ^{
+	dispatch_sync(serverQueue, ^{
         result = [self.deviceList allValues];
 	});
 	
@@ -458,7 +460,7 @@ static NSThread *bonjourThread;
 
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device
 {
-    dispatch_async(_clientQueue, ^{
+    dispatch_async(clientQueue, ^{
         RKObjectManager * manager = [self objectManagerForDevice:device];
         [manager putObject:action delegate:nil];
     });
@@ -466,7 +468,7 @@ static NSThread *bonjourThread;
 
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction * action, NSError * error))handler
 {
-    dispatch_async(_clientQueue, ^{
+    dispatch_async(clientQueue, ^{
         RKObjectManager * manager = [self objectManagerForDevice:device];
         [manager putObject:action handler:^(RKObjectLoader * loader, NSError * error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -479,34 +481,37 @@ static NSThread *bonjourThread;
 
 -(void)setup
 {
-    if(_isSetup) {
+    if(isSetup) {
         return;
     }
 
-    if(_server) {
-        if(!_httpServer) {
-            _httpServer = [RoutingHTTPServer new];
+    if(server) {
+        [txtRecordDictionary setObject:@"1" forKey:@"version"];
+        
+        if(!httpServer) {
+            httpServer = [RoutingHTTPServer new];
         }
         
-        // Tell the server to broadcast its presence via Bonjour.
-        // This allows browsers such as Safari to automatically discover our service.
-        [_httpServer setType:@"_intairact._tcp."];
+        // Tell the server to broadcast its presence via ZeroConf.
+        [httpServer setType:@"_intairact._tcp."];
         
         // Normally there's no need to run our server on any specific port.
-        // Technologies like Bonjour allow clients to dynamically discover the server's port at runtime.
+        // Technologies like ZeroConf allow clients to dynamically discover the server's port at runtime.
         // However, for easy testing you may want force a certain port so you can just hit the refresh button.
-        [_httpServer setPort:12345];
+        //[httpServer setPort:12345];
         
-        [_httpServer setDefaultHeader:@"Content-Type" value:_defaultMimeType];
+        [httpServer setTXTRecordDictionary:txtRecordDictionary];
+        
+        [httpServer setDefaultHeader:@"Content-Type" value:defaultMimeType];
     }
     
     RKObjectMapping * deviceMapping = [RKObjectMapping mappingForClass:[IADevice class]];
     [deviceMapping mapAttributes:@"name", @"host", @"port", nil];
-    [_objectMappingProvider setMapping:deviceMapping forKeyPath:@"devices"];
+    [objectMappingProvider setMapping:deviceMapping forKeyPath:@"devices"];
     
     RKObjectMapping * deviceSerialization = [deviceMapping inverseMapping];
     deviceSerialization.rootKeyPath = @"devices";
-    [_objectMappingProvider setSerializationMapping:deviceSerialization forClass:[IADevice class]];
+    [objectMappingProvider setSerializationMapping:deviceSerialization forClass:[IADevice class]];
     
     RKObjectMapping * actionSerialization = [RKObjectMapping mappingForClass:[NSDictionary class]];
     actionSerialization.rootKeyPath = @"actions";
@@ -518,15 +523,15 @@ static NSThread *bonjourThread;
         };
     }];
     [actionSerialization hasMany:@"parameters" withMapping:parametersSerialization];
-    [_objectMappingProvider setSerializationMapping:actionSerialization forClass:[IAAction class]];
+    [objectMappingProvider setSerializationMapping:actionSerialization forClass:[IAAction class]];
     
     RKObjectMapping * actionMapping = [RKObjectMapping mappingForClass:[IAAction class]];
     [actionMapping mapAttributes:@"action", @"parameters", nil];
-    [_objectMappingProvider setMapping:actionMapping forKeyPath:@"actions"];
+    [objectMappingProvider setMapping:actionMapping forKeyPath:@"actions"];
     
-    [_router routeClass:[IAAction class] toResourcePath:@"/action/:action" forMethod:RKRequestMethodPUT];
+    [router routeClass:[IAAction class] toResourcePath:@"/action/:action" forMethod:RKRequestMethodPUT];
     
-    _isSetup = YES;
+    isSetup = YES;
 }
 
 -(RKObjectManager *)objectManagerForDevice:(IADevice *)device
@@ -537,21 +542,21 @@ static NSThread *bonjourThread;
     if ([device isEqual:self.ownDevice]) {
         hostAndPort = [NSString stringWithFormat:@"http://127.0.0.1:%i" , device.port];
     }
-    RKObjectManager * manager = [_objectManagers objectForKey:hostAndPort];
+    RKObjectManager * manager = [objectManagers objectForKey:hostAndPort];
     
     if(!manager) {
         manager = [[RKObjectManager alloc] initWithBaseURL:[RKURL URLWithBaseURLString:hostAndPort]];
         
         // Ask for & generate JSON
-        manager.acceptMIMEType = _defaultMimeType;
-        manager.serializationMIMEType = _defaultMimeType;
+        manager.acceptMIMEType = defaultMimeType;
+        manager.serializationMIMEType = defaultMimeType;
         
-        manager.mappingProvider = _objectMappingProvider;
+        manager.mappingProvider = objectMappingProvider;
         
         // Register the router
-        manager.router = _router;
+        manager.router = router;
         
-        [_objectManagers setObject:manager forKey:hostAndPort];
+        [objectManagers setObject:manager forKey:hostAndPort];
     }
     
     return manager;
@@ -567,11 +572,11 @@ static NSThread *bonjourThread;
 {
     __block RoutingHTTPServer * result;
 	
-	dispatch_sync(_serverQueue, ^{
-        if(!_httpServer) {
-            _httpServer = [RoutingHTTPServer new];
+	dispatch_sync(serverQueue, ^{
+        if(!httpServer) {
+            httpServer = [RoutingHTTPServer new];
         }
-        result = _httpServer;
+        result = httpServer;
 	});
 	
 	return result;
@@ -583,7 +588,7 @@ static NSThread *bonjourThread;
     return [RKObjectSerializer serializerWithObject:object mapping:mapping];
 }
 
--(void)addAction:(NSString *)action withSelector:(SEL)selector andTarget:(id)target
+-(void)addAction:(NSString *)actionName withSelector:(SEL)selector andTarget:(id)target
 {
     NSMethodSignature * signature = [[target class] instanceMethodSignatureForSelector:selector];
     __block NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:signature];
@@ -595,8 +600,8 @@ static NSThread *bonjourThread;
     // keep this here because otherwise we run into a memory release issue
     __block id returnValue;
     
-    [self.httpServer put:[@"/action/" stringByAppendingString:action] withBlock:^(RouteRequest *request, RouteResponse *response) {
-        IALogVerbose(@"%@", [@"PUT /action/" stringByAppendingString:action]);
+    [self.httpServer put:[@"/action/" stringByAppendingString:actionName] withBlock:^(RouteRequest *request, RouteResponse *response) {
+        IALogVerbose(@"%@", [@"PUT /action/" stringByAppendingString:actionName]);
         IALogTrace2(@"Request: %@", request.bodyAsString);
         
         RKObjectMappingResult * result = [self deserializeObject:[request body]];
@@ -606,15 +611,15 @@ static NSThread *bonjourThread;
             return;
         }
         
-        IAAction * req = [result asObject];
-        if((signature.numberOfArguments - 2) != [req.parameters count]) {
+        IAAction * action = [result asObject];
+        if((signature.numberOfArguments - 2) != [action.parameters count]) {
             response.statusCode = 500;
             return;
         }
         
         int i = 0;
-        while (i < [req.parameters count]) {
-            id obj = [req.parameters objectAtIndex:i];
+        while (i < [action.parameters count]) {
+            id obj = [action.parameters objectAtIndex:i];
             if(![self isNativeObject:obj]) {
                 obj = [[self deserializeObject:obj] asObject];
             }
@@ -622,13 +627,11 @@ static NSThread *bonjourThread;
             i++;
         }
         [invocation invoke];
+        response.statusCode = 201;
         if (![returnType isEqualToString:@"v"]) {
             [invocation getReturnValue:&returnValue];
-            IAAction * returnAction = [IAAction new];
-            returnAction.action = @"";
-            returnAction.parameters = [NSArray arrayWithObjects:returnValue, nil];
-            response.statusCode = 201;
-            [response respondWith:returnAction withIntAirAct:self];
+            action.parameters = [NSArray arrayWithObjects:returnValue, nil];
+            [response respondWith:action withIntAirAct:self];
         }
     }];
 }
