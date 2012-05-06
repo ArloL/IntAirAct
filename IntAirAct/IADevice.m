@@ -2,9 +2,9 @@
 
 @implementation IADevice
 
-@synthesize name = _name;
-@synthesize host = _host;
-@synthesize port = _port;
+@synthesize name;
+@synthesize host;
+@synthesize port;
 
 -(id)copy
 {
