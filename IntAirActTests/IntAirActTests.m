@@ -1,24 +1,34 @@
 #import "IntAirActTests.h"
 
+#import <IntAirAct/IntAirAct.h>
+
+@interface IntAirActTests ()
+
+@property (nonatomic, strong) IAIntAirAct * intAirAct;
+
+@end
+
 @implementation IntAirActTests
 
-- (void)setUp
+@synthesize intAirAct;
+
+-(void)setUp
 {
     [super setUp];
-    
-    // Set-up code here.
+    self.intAirAct = [IAIntAirAct new];
 }
 
-- (void)tearDown
+-(void)tearDown
 {
-    // Tear-down code here.
-    
     [super tearDown];
 }
 
-- (void)testExample
+-(void)testStart
 {
-    STFail(@"Unit tests are not implemented yet in IntAirActTests");
+    NSError * error = nil;
+	if (![self.intAirAct start:&error]) {
+		STFail(@"HTTP server failed to start: %@", error);
+	}
 }
 
 @end

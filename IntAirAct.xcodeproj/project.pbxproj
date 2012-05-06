@@ -55,6 +55,21 @@
 		276ED1701556541500C4702F /* IACapability.m in Sources */ = {isa = PBXBuildFile; fileRef = 276ED16D1556541500C4702F /* IACapability.m */; };
 		276ED1711556541500C4702F /* IACapability.m in Sources */ = {isa = PBXBuildFile; fileRef = 276ED16D1556541500C4702F /* IACapability.m */; };
 		277E5530154A42AF002F307D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552F154A42AF002F307D /* Foundation.framework */; };
+		2793654715568CFF00513FD1 /* libIntAirAct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552C154A42AF002F307D /* libIntAirAct.a */; };
+		2793654815568D0700513FD1 /* libRestKit+Blocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FE0154A7F9B003D7F41 /* libRestKit+Blocks.a */; };
+		2793654915568D0700513FD1 /* libRoutingHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */; };
+		2793654E15568D0700513FD1 /* libCocoaAsyncSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793654A15568D0700513FD1 /* libCocoaAsyncSocket.a */; };
+		2793654F15568D0700513FD1 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793654B15568D0700513FD1 /* libCocoaHTTPServer.a */; };
+		2793655015568D0700513FD1 /* libCocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793654C15568D0700513FD1 /* libCocoaLumberjack.a */; };
+		2793655115568D0700513FD1 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793654D15568D0700513FD1 /* libRestKit.a */; };
+		2793655315568D1100513FD1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655215568D1100513FD1 /* Security.framework */; };
+		2793655515568D1800513FD1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655415568D1800513FD1 /* CFNetwork.framework */; };
+		2793655715568D2400513FD1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655615568D2400513FD1 /* CoreData.framework */; };
+		2793655915568D2D00513FD1 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655815568D2D00513FD1 /* MobileCoreServices.framework */; };
+		2793655B15568D3500513FD1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655A15568D3500513FD1 /* SystemConfiguration.framework */; };
+		2793655D15568D4100513FD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655C15568D4100513FD1 /* CoreGraphics.framework */; };
+		2793658415568D8200513FD1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793658315568D8200513FD1 /* QuartzCore.framework */; };
+		279365C915568F2E00513FD1 /* IntAirAct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E5549154A4384002F307D /* IntAirAct.framework */; };
 		27A8ABDD15568861001104E9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A8ABDC15568861001104E9 /* AppKit.framework */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
@@ -93,6 +108,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 27EF34E6154AA953003D7F41;
 			remoteInfo = RoutingHTTPServerIOSTests;
+		};
+		2793654515568CEA00513FD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 277E5523154A42AE002F307D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 277E552B154A42AF002F307D;
+			remoteInfo = IntAirActStaticIOS;
+		};
+		2793658515568EEA00513FD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 277E5523154A42AE002F307D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 277E5548154A4384002F307D;
+			remoteInfo = IntAirActOSX;
 		};
 		27EF2FDF154A7F9B003D7F41 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -188,6 +217,17 @@
 		277E552C154A42AF002F307D /* libIntAirAct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIntAirAct.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E552F154A42AF002F307D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		277E5549154A4384002F307D /* IntAirAct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntAirAct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2793654A15568D0700513FD1 /* libCocoaAsyncSocket.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocoaAsyncSocket.a; path = "../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos/libCocoaAsyncSocket.a"; sourceTree = "<group>"; };
+		2793654B15568D0700513FD1 /* libCocoaHTTPServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocoaHTTPServer.a; path = "../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos/libCocoaHTTPServer.a"; sourceTree = "<group>"; };
+		2793654C15568D0700513FD1 /* libCocoaLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocoaLumberjack.a; path = "../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos/libCocoaLumberjack.a"; sourceTree = "<group>"; };
+		2793654D15568D0700513FD1 /* libRestKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libRestKit.a; path = "../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos/libRestKit.a"; sourceTree = "<group>"; };
+		2793655215568D1100513FD1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		2793655415568D1800513FD1 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		2793655615568D2400513FD1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2793655815568D2D00513FD1 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		2793655A15568D3500513FD1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		2793655C15568D4100513FD1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2793658315568D8200513FD1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		27A8ABDC15568861001104E9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKitBlocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
@@ -233,9 +273,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27FC6249154B36A400AA7502 /* SenTestingKit.framework in Frameworks */,
-				27FC624A154B36A400AA7502 /* UIKit.framework in Frameworks */,
+				2793655515568D1800513FD1 /* CFNetwork.framework in Frameworks */,
+				2793655715568D2400513FD1 /* CoreData.framework in Frameworks */,
+				2793655D15568D4100513FD1 /* CoreGraphics.framework in Frameworks */,
+				2793654E15568D0700513FD1 /* libCocoaAsyncSocket.a in Frameworks */,
+				2793654F15568D0700513FD1 /* libCocoaHTTPServer.a in Frameworks */,
+				2793655015568D0700513FD1 /* libCocoaLumberjack.a in Frameworks */,
+				2793654715568CFF00513FD1 /* libIntAirAct.a in Frameworks */,
+				2793655115568D0700513FD1 /* libRestKit.a in Frameworks */,
+				2793654815568D0700513FD1 /* libRestKit+Blocks.a in Frameworks */,
+				2793654915568D0700513FD1 /* libRoutingHTTPServer.a in Frameworks */,
 				27FC624B154B36A400AA7502 /* Foundation.framework in Frameworks */,
+				2793655915568D2D00513FD1 /* MobileCoreServices.framework in Frameworks */,
+				2793658415568D8200513FD1 /* QuartzCore.framework in Frameworks */,
+				2793655315568D1100513FD1 /* Security.framework in Frameworks */,
+				27FC6249154B36A400AA7502 /* SenTestingKit.framework in Frameworks */,
+				2793655B15568D3500513FD1 /* SystemConfiguration.framework in Frameworks */,
+				27FC624A154B36A400AA7502 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				279365C915568F2E00513FD1 /* IntAirAct.framework in Frameworks */,
 				27FC6260154B36AE00AA7502 /* SenTestingKit.framework in Frameworks */,
 				27FC6262154B36AE00AA7502 /* Cocoa.framework in Frameworks */,
 			);
@@ -278,14 +333,25 @@
 			children = (
 				27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */,
 				27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */,
+				27A8ABDC15568861001104E9 /* AppKit.framework */,
+				2793655415568D1800513FD1 /* CFNetwork.framework */,
 				27EF3017154A7FD1003D7F41 /* CocoaAsyncSocket.framework */,
 				27EF3018154A7FD1003D7F41 /* CocoaHTTPServer.framework */,
 				27EF3019154A7FD1003D7F41 /* CocoaLumberjack.framework */,
-				27EF301A154A7FD1003D7F41 /* RestKit.framework */,
-				27A8ABDC15568861001104E9 /* AppKit.framework */,
+				2793655615568D2400513FD1 /* CoreData.framework */,
+				2793655C15568D4100513FD1 /* CoreGraphics.framework */,
 				277E552F154A42AF002F307D /* Foundation.framework */,
-				27EF339A154A9E3E003D7F41 /* UIKit.framework */,
+				2793654A15568D0700513FD1 /* libCocoaAsyncSocket.a */,
+				2793654B15568D0700513FD1 /* libCocoaHTTPServer.a */,
+				2793654C15568D0700513FD1 /* libCocoaLumberjack.a */,
+				2793654D15568D0700513FD1 /* libRestKit.a */,
+				2793655815568D2D00513FD1 /* MobileCoreServices.framework */,
+				2793658315568D8200513FD1 /* QuartzCore.framework */,
+				27EF301A154A7FD1003D7F41 /* RestKit.framework */,
+				2793655215568D1100513FD1 /* Security.framework */,
 				27FC6248154B36A400AA7502 /* SenTestingKit.framework */,
+				2793655A15568D3500513FD1 /* SystemConfiguration.framework */,
+				27EF339A154A9E3E003D7F41 /* UIKit.framework */,
 				27FC6261154B36AE00AA7502 /* Cocoa.framework */,
 				27FC6263154B36AE00AA7502 /* Other Frameworks */,
 			);
@@ -476,6 +542,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2793654615568CEA00513FD1 /* PBXTargetDependency */,
 			);
 			name = IntAirActIOSTests;
 			productName = IntAirActIOSTests;
@@ -494,6 +561,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2793658615568EEA00513FD1 /* PBXTargetDependency */,
 			);
 			name = IntAirActOSXTests;
 			productName = IntAirActOSXTests;
@@ -716,6 +784,16 @@
 			target = 277E552B154A42AF002F307D /* IntAirActStaticIOS */;
 			targetProxy = 277E5541154A431C002F307D /* PBXContainerItemProxy */;
 		};
+		2793654615568CEA00513FD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 277E552B154A42AF002F307D /* IntAirActStaticIOS */;
+			targetProxy = 2793654515568CEA00513FD1 /* PBXContainerItemProxy */;
+		};
+		2793658615568EEA00513FD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 277E5548154A4384002F307D /* IntAirActOSX */;
+			targetProxy = 2793658515568EEA00513FD1 /* PBXContainerItemProxy */;
+		};
 		27EF3004154A7FB3003D7F41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "RestKit+BlocksStaticIOS";
@@ -914,6 +992,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				INFOPLIST_FILE = "IntAirAct-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = IntAirActIOSTests;
 				WRAPPER_EXTENSION = octest;
@@ -930,6 +1012,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				INFOPLIST_FILE = "IntAirAct-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = IntAirActIOSTests;
 				WRAPPER_EXTENSION = octest;
