@@ -77,6 +77,20 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
         serverQueue = dispatch_queue_create("IntAirActServer", NULL);
         services = [NSMutableSet new];
         
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationDidBecomeActive)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(stop)
+                                                     name:UIApplicationWillResignActiveNotification 
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(stop)
+                                                     name:UIApplicationWillTerminateNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -89,6 +103,16 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
     
     dispatch_release(serverQueue);
     dispatch_release(clientQueue);
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)applicationDidBecomeActive
+{
+    NSError * error;
+    if(![self start:&error]) {
+        IALogError(@"%@: Error starting IntAirAct: %@", THIS_FILE, error);
+    }
 }
 
 -(BOOL)start:(NSError **)errPtr;
@@ -97,6 +121,10 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
     
     __block BOOL success = YES;
 	__block NSError * err = nil;
+    
+    if(isRunning) {
+        return success;
+    }
     
     dispatch_sync(serverQueue, ^{ @autoreleasepool {
         [self setup];
