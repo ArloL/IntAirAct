@@ -9,11 +9,16 @@ end
 $name="IntAirAct"
 $configuration="Release"
 
-def builder(os = "IOS")
-  builder = Xcode.project($name).target($name+os).config($configuration).builder
-  (os == "OSX") ? builder.sdk = :macosx : builder.sdk = :iphoneos
-  builder
-end
+project=Xcode.project($name+'.xcodeproj')
+$iphone=project.target($name+"IOS").config($configuration).builder
+$iphone.sdk = :iphoneos
+$iphonesimulator=project.target($name+"IOS").config($configuration).builder
+$iphonesimulator.sdk = :iphonesimulator
+$iostest=project.target($name+"IOSTests").config($configuration).builder
+$osx=project.target($name+"OSX").config($configuration).builder
+$osx.sdk = :macosx
+$osxtest=project.target($name+"OSXTests").config($configuration).builder
+$osxtest.sdk = :macosx
 
 desc "Clean, Build, Test and Archive for iOS and OS X"
 task :default => [:ios, :osx]
@@ -42,21 +47,21 @@ namespace :ios do
 
   desc "Clean for iOS"
   task :clean => [:init, :removebuild] do
-    builder().clean
-    b = builder()
-    b.sdk = :iphonesimulator
-    b.clean
+    $iphone.clean
+    $iphonesimulator.clean
   end
   
   desc "Build for iOS"
   task :build => :init do
-    builder().build
+    $iphone.build
   end
   
   desc "Test for iOS"
   task :test => :init do
-    puts("Tests for iOS are not implemented - hopefully (!) - yet.")
-    #builder("IOSTests").test(:sdk => :iphonesimulator)
+    $iostest.test do |report|
+	  report.add_formatter :junit, 'build/'+$configuration+'-iphonesimulator/test-reports'
+      report.add_formatter :stdout
+    end
   end
   
   desc "Archive for iOS"
@@ -75,18 +80,20 @@ namespace :osx do
 
   desc "Clean for OS X"
   task :clean => [:init, :removebuild] do
-    builder("OSX").clean
+    $osx.clean
   end
 
   desc "Build for OS X"
   task :build => :init do
-    builder("OSX").build
+    $osx.build
   end
   
   desc "Test for OS X"
   task :test => :init do
-    puts("Tests for OS X are not implemented - hopefully (!) - yet.")
-    #builder("OSXTests").test(:sdk => :macosx)
+    $osxtest.test(:sdk => :macosx) do |report|
+	  report.add_formatter :junit, 'build/'+$configuration+'/test-reports'
+      report.add_formatter :stdout
+    end
   end
 
   desc "Archive for OS X"
