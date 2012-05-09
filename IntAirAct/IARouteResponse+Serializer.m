@@ -48,7 +48,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     } else {
         self.statusCode = 200;
         [self respondWithString:response];
-        IALogInfo(@"%@: Serialization of data: %@", THIS_FILE, response);
+        IALogVerbose(@"%@: Serialization of data: %@", THIS_FILE, response);
     }
 }
 

@@ -335,19 +335,23 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
     device.name = sender.name;
     device.host = sender.hostName;
     device.port = sender.port;
-    
-    [[self objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(RKObjectLoader *loader, NSError * error) {
-        if (error) {
-            IALogError(@"Could not get device capabilities for device %@: %@", device, error);
-        } else {
-            device.capabilities = [NSSet setWithArray:[[loader result] asCollection]];
-            [deviceDictionary setObject:device forKey:device.name];
-            if ([self.httpServer.publishedName isEqual:device.name]) {
-                ownDevice = device;
+    if ([self.httpServer.publishedName isEqual:device.name]) {
+        device.capabilities = self.capabilities;
+        ownDevice = device;
+        [deviceDictionary setObject:device forKey:device.name];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
+    } else {
+        [[self objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(RKObjectLoader *loader, NSError * error) {
+            if (error) {
+                IALogError(@"Could not get device capabilities for device %@: %@", device, error);
+            } else {
+                device.capabilities = [NSSet setWithArray:[[loader result] asCollection]];
+                [deviceDictionary setObject:device forKey:device.name];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
             }
-            [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
-        }
-    }];
+        }];
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
