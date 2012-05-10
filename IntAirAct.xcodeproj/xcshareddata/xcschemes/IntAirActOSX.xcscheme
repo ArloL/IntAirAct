@@ -28,6 +28,26 @@
       buildConfiguration = "Debug">
       <Testables>
          <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "25160E77145651060060A5C5"
+               BuildableName = "RestKitFrameworkTests.octest"
+               BlueprintName = "RestKitFrameworkTests"
+               ReferencedContainer = "container:Frameworks/RestKitBlocks/Frameworks/RestKit/RestKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27EF346D154AA74D003D7F41"
+               BuildableName = "RoutingHTTPServerOSXTests.octest"
+               BlueprintName = "RoutingHTTPServerOSXTests"
+               ReferencedContainer = "container:Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
