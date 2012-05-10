@@ -23,9 +23,9 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
 
 @property (nonatomic) dispatch_queue_t clientQueue;
 @property (nonatomic, strong) NSMutableDictionary * deviceDictionary;
-@property (nonatomic) BOOL isSetup;
 @property (nonatomic, strong) NSNetServiceBrowser * netServiceBrowser;
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
+@property (nonatomic) BOOL serverIsSetup;
 @property (nonatomic) dispatch_queue_t serverQueue;
 @property (strong) NSMutableSet * services;
 
@@ -47,15 +47,16 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
 @synthesize isRunning;
 @synthesize objectMappingProvider;
 @synthesize ownDevice;
+@synthesize port;
 @synthesize router;
 @synthesize server;
 @synthesize txtRecordDictionary;
 
 @synthesize clientQueue;
 @synthesize deviceDictionary;
-@synthesize isSetup;
 @synthesize netServiceBrowser;
 @synthesize objectManagers;
+@synthesize serverIsSetup;
 @synthesize serverQueue;
 @synthesize services;
 
@@ -76,10 +77,14 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
         
         clientQueue = dispatch_queue_create("IntAirActClient", NULL);
         deviceDictionary = [NSMutableDictionary new];
-        isSetup = NO;
+        serverIsSetup = NO;
         objectManagers = [NSMutableDictionary new];
         serverQueue = dispatch_queue_create("IntAirActServer", NULL);
         services = [NSMutableSet new];
+        
+        port = 0;
+        
+        [self setupMappingsAndRoutes];
         
 
 #if TARGET_OS_IPHONE
@@ -129,8 +134,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
     }
     
     dispatch_sync(serverQueue, ^{ @autoreleasepool {
-        [self setup];
         if(server) {
+            [self setupServer];
             success = [httpServer start:&err];
             if (success) {
                 IALogInfo(@"%@: Started IntAirActServer.", THIS_FILE);
@@ -537,38 +542,8 @@ static NSThread *bonjourThread;
     });
 }
 
--(void)setup
+-(void)setupMappingsAndRoutes
 {
-    if(isSetup) {
-        return;
-    }
-
-    if(server) {
-        [txtRecordDictionary setObject:@"1" forKey:@"version"];
-        
-        if(!httpServer) {
-            httpServer = [RoutingHTTPServer new];
-        }
-        
-        // Tell the server to broadcast its presence via ZeroConf.
-        [httpServer setType:@"_intairact._tcp."];
-        
-        // Normally there's no need to run our server on any specific port.
-        // Technologies like ZeroConf allow clients to dynamically discover the server's port at runtime.
-        // However, for easy testing you may want force a certain port so you can just hit the refresh button.
-        //[httpServer setPort:12345];
-        
-        [httpServer setTXTRecordDictionary:txtRecordDictionary];
-        
-        [httpServer setDefaultHeader:@"Content-Type" value:defaultMimeType];
-        
-        [httpServer get:@"/capabilities" withBlock:^(RouteRequest *request, RouteResponse *response) {
-            IALogTrace();
-            
-            [response respondWith:self.capabilities withIntAirAct:self];
-        }];
-    }
-    
     [self addMappingForClass:[IADevice class] withKeypath:@"devices" withAttributes:@"name", @"host", @"port", nil];
     [self addMappingForClass:[IACapability class] withKeypath:@"capabilities" withAttributes:@"capability", nil];
     
@@ -589,8 +564,39 @@ static NSThread *bonjourThread;
     [objectMappingProvider setMapping:actionMapping forKeyPath:@"actions"];
     
     [router routeClass:[IAAction class] toResourcePath:@"/action/:action" forMethod:RKRequestMethodPUT];
+}
+
+-(void)setupServer
+{
+    if(serverIsSetup) {
+        return;
+    }
+
+    [txtRecordDictionary setObject:@"1" forKey:@"version"];
     
-    isSetup = YES;
+    if(!httpServer) {
+        httpServer = [RoutingHTTPServer new];
+    }
+    
+    // Tell the server to broadcast its presence via ZeroConf.
+    [httpServer setType:@"_intairact._tcp."];
+    
+    // Normally there's no need to run our server on any specific port.
+    // Technologies like ZeroConf allow clients to dynamically discover the server's port at runtime.
+    // However, for easy testing you may want force a certain port so you can just hit the refresh button.
+    [httpServer setPort:port];
+    
+    [httpServer setTXTRecordDictionary:txtRecordDictionary];
+    
+    [httpServer setDefaultHeader:@"Content-Type" value:defaultMimeType];
+    
+    [httpServer get:@"/capabilities" withBlock:^(RouteRequest *request, RouteResponse *response) {
+        IALogTrace();
+        
+        [response respondWith:self.capabilities withIntAirAct:self];
+    }];
+    
+    serverIsSetup = YES;
 }
 
 -(RKObjectManager *)objectManagerForDevice:(IADevice *)device

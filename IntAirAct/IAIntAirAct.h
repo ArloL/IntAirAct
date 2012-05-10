@@ -14,17 +14,23 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
 
 @interface IAIntAirAct : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 
+/** A Set of all the capabilities this device has. */
 @property (nonatomic, strong, readonly) NSMutableSet * capabilities;
 
 /** Specifies whether IntAirAct is configured as a client or not.
  
+ Defaults to `YES`.
+ 
+ If YES, IntAirAct will start searching for Devices on the network.
+ */
+@property BOOL client;
+
+/** Specifies the default MIME Type used when de-/serializing objects.
+
  Defaults to `application/json`.
  
  When changing this value be sure that RestKit has a parser and a serializer (!) available for that MIME type. The included `RKXMLParserLibXML` currently does not support serialization.
  */
-@property BOOL client;
-
-/** Specifies the default MIME Type used when de-/serializing objects. */
 @property NSString * defaultMimeType;
 
 /** A list of all the currently available devices. */
@@ -56,6 +62,9 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
 
 /** Returns the current device if it has been found yet, `nil` otherwise. */
 @property (readonly) IADevice * ownDevice;
+
+/** The port on which to listen on. Default is 0. This means the system will find a free port. */
+@property (nonatomic) UInt16 port;
 
 /** IntAirAct's RKObjectRouter. This is used to setup default route mappings for objects.
  
