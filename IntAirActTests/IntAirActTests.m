@@ -4,8 +4,12 @@
 #import <CocoaLumberjack/DDTTYLogger.h>
 #import <IntAirAct/IntAirAct.h>
 #import <RestKit/RestKit.h>
+#import <RestKit+Blocks/RestKit+Blocks.h>
 
 #import "IANumber.h"
+
+// Log levels : off, error, warn, info, verbose
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface IntAirActTests()
 
@@ -17,19 +21,19 @@
 
 @synthesize intAirAct;
 
-- (id)init
+-(void)logging
 {
-    self = [super init];
-    if (self) {
-        // Configure logging framework to log to the Xcode console.
+    static dispatch_once_t once;
+    dispatch_once(&once, ^ {
         [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    }
-    return self;
+    });
 }
 
 -(void)setUp
 {
     [super setUp];
+    
+    [self logging];
     
     // Given
     self.intAirAct = [IAIntAirAct new];
@@ -38,6 +42,12 @@
 -(void)tearDown
 {
     [super tearDown];
+
+    if(self.intAirAct.isRunning) {
+        [self.intAirAct stop];
+        [NSThread sleepForTimeInterval:5];
+    }
+    self.intAirAct = nil;
 }
 
 -(void)testOwnDeviceShouldBeNil
@@ -121,6 +131,8 @@
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
     }
+    
+    [self.intAirAct stop];
 }
 
 -(void)testIntAirActShouldNotStart
@@ -141,16 +153,19 @@
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
-    } else {
-        NSDate * start = [NSDate new];
-        while(self.intAirAct.ownDevice == nil) {
-            [NSThread sleepForTimeInterval:0.5];
-            if([start timeIntervalSinceNow] < -5) {
-                STFail(@"IntAirAct should find own Device in five seconds");
-                break;
-            }
+        return;
+    }
+    NSDate * start = [NSDate new];
+    while(self.intAirAct.ownDevice == nil) {
+        [NSThread sleepForTimeInterval:0.5];
+        if([start timeIntervalSinceNow] < -60) {
+            STFail(@"IntAirAct should find own Device in five seconds");
+            return;
         }
     }
+    
+    [self.intAirAct stop];
+    [NSThread sleepForTimeInterval:5];
 }
 
 -(void)testOwnDeviceCapabilitesShouldBeEqualToResolved
@@ -170,12 +185,15 @@
             [NSThread sleepForTimeInterval:0.5];
             if([start timeIntervalSinceNow] < -5) {
                 STFail(@"IntAirAct should find own Device in five seconds");
-                break;
+                return;
             }
         }
     }
     
     STAssertEqualObjects(self.intAirAct.capabilities, self.intAirAct.ownDevice.capabilities, @"ownDevice.capabilities and capabilities should be equal");
+    
+    [self.intAirAct stop];
+    [NSThread sleepForTimeInterval:5];
 }
 
 -(void)testDefaultObjectMappings
@@ -203,7 +221,7 @@
 
 -(void)testObjectManagerForOwnDeviceShouldHaveLocalInterface
 {
-    // Then
+    // And
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
@@ -213,14 +231,90 @@
             [NSThread sleepForTimeInterval:0.5];
             if([start timeIntervalSinceNow] < -5) {
                 STFail(@"IntAirAct should find own Device in five seconds");
-                break;
+                return;
             }
         }
     }
     
+    // Then
     RKObjectManager * man = [self.intAirAct objectManagerForDevice:self.intAirAct.ownDevice];
     STAssertNotNil(man, @"Should return an RKObjectManager");
     STAssertTrue([[man.baseURL absoluteString] hasPrefix:@"http://127.0.0.1"], @"Should be a local interface");
+    
+    [self.intAirAct stop];
+    [NSThread sleepForTimeInterval:5];
+}
+
+-(void)testIntAirActShouldFindOtherDeviceInFiveSeconds
+{
+    // And
+    NSError * error = nil;
+    IAIntAirAct * iAA = [IAIntAirAct new];
+    if (![iAA start:&error]) {
+        STFail(@"IntAirAct failed to start: %@", error);
+    } else if (![self.intAirAct start:&error]) {
+    // And
+        STFail(@"IntAirAct failed to start: %@", error);
+    } else {
+        [NSThread sleepForTimeInterval:1];
+        NSDate * start = [NSDate new];
+        while(self.intAirAct.ownDevice == nil && iAA.ownDevice == nil) {
+            [NSThread sleepForTimeInterval:0.5];
+            if([start timeIntervalSinceNow] < -5) {
+                STFail(@"IntAirAct should find own Device in five seconds");
+                return;
+            }
+        }
+        
+        // Then
+        start = [NSDate new];
+        while([self.intAirAct.devices containsObject:iAA.ownDevice] && [iAA.devices containsObject:self.intAirAct.ownDevice]) {
+            [NSThread sleepForTimeInterval:0.5];
+            if([start timeIntervalSinceNow] < -5) {
+                STFail(@"IntAirAct should find other Device in five seconds");
+                return;
+            }
+        }
+        
+        // Then
+        STAssertNotNil([self.intAirAct objectManagerForDevice:iAA.ownDevice], @"Should return an RKObjectManager");        
+    }
+
+    [iAA stop];
+    [self.intAirAct stop];
+    [NSThread sleepForTimeInterval:5];
+}
+
+-(void)testResourcePathFor
+{
+    // And
+    NSError * error = nil;
+    if (![self.intAirAct start:&error]) {
+        STFail(@"HTTP server failed to start: %@", error);
+    } else {
+        NSDate * start = [NSDate new];
+        while(self.intAirAct.ownDevice == nil) {
+            [NSThread sleepForTimeInterval:0.5];
+            if([start timeIntervalSinceNow] < -5) {
+                STFail(@"IntAirAct should find own Device in five seconds");
+                return;
+            }
+        }
+    }
+    
+    // Then
+    RKObjectManager * manager = [self.intAirAct objectManagerForDevice:self.intAirAct.ownDevice];
+    STAssertNotNil(manager, @"Should return an RKObjectManager");
+    
+    IAAction * action = [IAAction new];
+    action.action = @"actionName";
+    
+    NSString * expected = @"/action/actionName";
+    
+    STAssertEqualObjects(expected, [self.intAirAct resourcePathFor:action forObjectManager:manager], @"Resource path for action should be %@ but was %@", expected, [self.intAirAct resourcePathFor:action forObjectManager:manager]);
+    
+    [self.intAirAct stop];
+    [NSThread sleepForTimeInterval:5];
 }
 
 @end

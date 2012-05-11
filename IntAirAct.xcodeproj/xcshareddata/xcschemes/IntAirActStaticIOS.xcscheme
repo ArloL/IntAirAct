@@ -37,6 +37,26 @@
                ReferencedContainer = "container:IntAirAct.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "25160D2514564E820060A5C5"
+               BuildableName = "RestKitTests.octest"
+               BlueprintName = "RestKitTests"
+               ReferencedContainer = "container:Frameworks/RestKitBlocks/Frameworks/RestKit/RestKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27EF34E5154AA953003D7F41"
+               BuildableName = "RoutingHTTPServerIOSTests.octest"
+               BlueprintName = "RoutingHTTPServerIOSTests"
+               ReferencedContainer = "container:Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

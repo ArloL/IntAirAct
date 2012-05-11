@@ -56,6 +56,14 @@
                BlueprintName = "IntAirActOSXTests"
                ReferencedContainer = "container:IntAirAct.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "IntAirActTests/testAdd">
+               </Test>
+               <Test
+                  Identifier = "IntAirActTests/testCallActionShouldFail">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

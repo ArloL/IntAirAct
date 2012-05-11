@@ -24,6 +24,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2719E8BA155C98B3009032A1 /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF301A154A7FD1003D7F41 /* RestKit.framework */; };
 		274A48A915508D97000DFAF9 /* IntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48A715508D97000DFAF9 /* IntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274A48AE15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274A48AF15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -305,6 +306,7 @@
 				279365C915568F2E00513FD1 /* IntAirAct.framework in Frameworks */,
 				27FC6260154B36AE00AA7502 /* SenTestingKit.framework in Frameworks */,
 				275CE727155C3C5100FECE59 /* CocoaLumberjack.framework in Frameworks */,
+				2719E8BA155C98B3009032A1 /* RestKit.framework in Frameworks */,
 				27FC6262154B36AE00AA7502 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
