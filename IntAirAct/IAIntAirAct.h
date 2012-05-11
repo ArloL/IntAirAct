@@ -19,17 +19,17 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
 
 /** Specifies whether IntAirAct is configured as a client or not.
  
- Defaults to `YES`.
- 
  If YES, IntAirAct will start searching for Devices on the network.
+ 
+ Defaults to `YES`.
  */
 @property BOOL client;
 
 /** Specifies the default MIME Type used when de-/serializing objects.
-
- Defaults to `application/json`.
  
  When changing this value be sure that RestKit has a parser and a serializer (!) available for that MIME type. The included `RKXMLParserLibXML` currently does not support serialization.
+
+ Defaults to `application/json`.
  */
 @property NSString * defaultMimeType;
 
