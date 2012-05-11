@@ -17,7 +17,7 @@
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
-static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
+static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 @interface IAIntAirAct ()
 
@@ -118,7 +118,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
 {
     NSError * error;
     if(![self start:&error]) {
-        IALogError(@"%@: Error starting IntAirAct: %@", THIS_FILE, error);
+        IALogError(@"%@[%p]: Error starting IntAirAct: %@", THIS_FILE, self, error);
     }
 }
 
@@ -138,17 +138,17 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
             [self setupServer];
             success = [httpServer start:&err];
             if (success) {
-                IALogInfo(@"%@: Started IntAirActServer.", THIS_FILE);
+                IALogInfo3(@"Started IntAirActServer.");
                 
                 if(client) {
                     [self startBonjour];
                 }
                 isRunning = YES;
             } else {
-                IALogError(@"%@: Failed to start IntAirActServer: %@", THIS_FILE, err);
+                IALogError(@"%@[%p]: Failed to start IntAirActServer: %@", THIS_FILE, self, err);
             }
         } else if (client) {
-            IALogInfo(@"%@: Started IntAirActServer.", THIS_FILE);
+            IALogInfo3(@"Started IntAirActServer.");
             [self startBonjour];
             isRunning = YES;
         }
@@ -264,7 +264,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
         [theNetServiceBrowser removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
         [theNetServiceBrowser scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
         [theNetServiceBrowser searchForServicesOfType:@"_intairact._tcp." inDomain:@"local."];
-        IALogInfo(@"Bonjour search started.");
+        IALogInfo3(@"Bonjour search started.");
     };
     
     [[self class] startBonjourThreadIfNeeded];
@@ -294,14 +294,14 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
 
 -(void)netServiceBrowser:(NSNetServiceBrowser *)sender didNotSearch:(NSDictionary *)errorInfo
 {
-    IALogError(@"Bonjour could not search: %@", errorInfo);
+    IALogError(@"%@[%p]: Bonjour could not search: %@", THIS_FILE, self, errorInfo);
 }
 
 -(void)netServiceBrowser:(NSNetServiceBrowser *)sender
           didFindService:(NSNetService *)ns
               moreComing:(BOOL)moreServicesComing
 {
-    IALogTrace2(@"Bonjour Service found: domain(%@) type(%@) name(%@)", [ns domain], [ns type], [ns name]);
+    IALogTrace2(@"%@[%p]: Bonjour Service found: domain(%@) type(%@) name(%@)", THIS_FILE, self, [ns domain], [ns type], [ns name]);
     [self.services addObject:ns];
     [ns setDelegate:self];
     [ns resolveWithTimeout:0.0];
@@ -311,7 +311,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
         didRemoveService:(NSNetService *)ns
               moreComing:(BOOL)moreServicesComing
 {
-    IALogTrace2(@"Bonjour Service went away: domain(%@) type(%@) name(%@)", [ns domain], [ns type], [ns name]);
+    IALogTrace2(@"%@[%p]: Bonjour Service went away: domain(%@) type(%@) name(%@)", THIS_FILE, self, [ns domain], [ns type], [ns name]);
     [self.services removeObject:ns];
     [deviceDictionary removeObjectForKey:ns.name];
     [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
@@ -324,7 +324,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
 
 -(void)netService:(NSNetService *)ns didNotResolve:(NSDictionary *)errorDict
 {
-    IALogWarn(@"Could not resolve Bonjour Service: domain(%@) type(%@) name(%@)", [ns domain], [ns type], [ns name]);
+    IALogWarn(@"%@[%p]: Could not resolve Bonjour Service: domain(%@) type(%@) name(%@)", THIS_FILE, self, [ns domain], [ns type], [ns name]);
 
     [self.services removeObject:ns];
     [deviceDictionary removeObjectForKey:ns];
@@ -334,21 +334,24 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE;
 
 -(void)netServiceDidResolveAddress:(NSNetService *)sender
 {
-	IALogTrace2(@"Bonjour Service resolved: %@:%i", [sender hostName], [sender port]);
+	IALogTrace2(@"%@[%p]: Bonjour Service resolved: %@:%i", THIS_FILE, self, [sender hostName], [sender port]);
 
     __block IADevice * device = [IADevice new];
     device.name = sender.name;
     device.host = sender.hostName;
     device.port = sender.port;
-    if ([self.httpServer.publishedName isEqual:device.name]) {
+    
+    if ([self.httpServer.publishedName isEqualToString:device.name]) {
+        IALogTrace3(@"Found own device");
         device.capabilities = self.capabilities;
         ownDevice = device;
         [deviceDictionary setObject:device forKey:device.name];
         [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
     } else {
+        IALogTrace3(@"Found other device");
         [[self objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(RKObjectLoader *loader, NSError * error) {
             if (error) {
-                IALogError(@"Could not get device capabilities for device %@: %@", device, error);
+                IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, self, device, error);
             } else {
                 device.capabilities = [NSSet setWithArray:[[loader result] asCollection]];
                 [deviceDictionary setObject:device forKey:device.name];
@@ -382,9 +385,9 @@ static NSThread *bonjourThread;
 	
 	static dispatch_once_t predicate;
 	dispatch_once(&predicate, ^{
-		
-		IALogVerbose(@"%@: Starting bonjour thread...", THIS_FILE);
-		
+        
+        IALogVerbose3(@"Starting bonjour thread…");
+        
 		bonjourThread = [[NSThread alloc] initWithTarget:self
 		                                        selector:@selector(bonjourThread)
 		                                          object:nil];
@@ -396,7 +399,7 @@ static NSThread *bonjourThread;
 {
 	@autoreleasepool {
         
-		IALogVerbose(@"%@: BonjourThread: Started", THIS_FILE);
+        IALogVerbose3(@"BonjourThread: Started");
 		
 		// We can't run the run loop unless it has an associated input source or a timer.
 		// So we'll just create a timer that will never fire - unless the server runs for 10,000 years.
@@ -408,8 +411,8 @@ static NSThread *bonjourThread;
 		                                repeats:YES];
 		
 		[[NSRunLoop currentRunLoop] run];
-		
-		IALogVerbose(@"%@: BonjourThread: Aborted", THIS_FILE);
+        
+        IALogVerbose3(@"BonjourThread: Aborted");
         
 	}
 }
@@ -478,7 +481,7 @@ static NSThread *bonjourThread;
     
     if (parsedData == nil && error) {
         // Parser error...
-        IALogError(@"%@: An error ocurred: %@", THIS_FILE, error);
+        IALogError(@"%@[%p]: An error ocurred while parsing: %@", THIS_FILE, self, error);
         return nil;
     } else {
         RKObjectMapper* mapper = [RKObjectMapper mapperWithObject:parsedData mappingProvider:self.objectMappingProvider];
@@ -489,8 +492,6 @@ static NSThread *bonjourThread;
 -(NSArray *)devicesWithCapability:(IACapability *)capability
 {
     __block NSMutableArray * result;
-    
-    IALogVerbose(@"%@", [deviceDictionary allValues]);
     
     dispatch_sync(serverQueue, ^{
         result = [NSMutableArray new];
@@ -674,7 +675,7 @@ static NSThread *bonjourThread;
         
         RKObjectMappingResult * result = [self deserializeObject:[request body]];
         if(!result && [[result asObject] isKindOfClass:[IAAction class]]) {
-            IALogError(@"Could not parse request body: %@", [request bodyAsString]);
+            IALogError(@"%@[%p]: Could not parse request body: %@", THIS_FILE, self, [request bodyAsString]);
             response.statusCode = 500;
             return;
         }
