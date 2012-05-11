@@ -349,11 +349,11 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
     } else {
         IALogTrace3(@"Found other device");
-        [[self objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(RKObjectLoader *loader, NSError * error) {
+        [[self objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(NSArray * objects, NSError * error) {
             if (error) {
                 IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, self, device, error);
             } else {
-                device.capabilities = [NSSet setWithArray:[[loader result] asCollection]];
+                device.capabilities = [NSSet setWithArray:objects];
                 [deviceDictionary setObject:device forKey:device.name];
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];

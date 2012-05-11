@@ -41,6 +41,16 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2719EADE155D987B009032A1"
+               BuildableName = "RestKit+BlocksOSXTests.octest"
+               BlueprintName = "RestKit+BlocksOSXTests"
+               ReferencedContainer = "container:Frameworks/RestKitBlocks/RestKit+Blocks.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "27EF346D154AA74D003D7F41"
                BuildableName = "RoutingHTTPServerOSXTests.octest"
                BlueprintName = "RoutingHTTPServerOSXTests"

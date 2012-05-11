@@ -24,7 +24,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		2719E8BA155C98B3009032A1 /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF301A154A7FD1003D7F41 /* RestKit.framework */; };
+		27157F79155DBF07002F34C1 /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF301A154A7FD1003D7F41 /* RestKit.framework */; };
+		2719EA46155D6D86009032A1 /* IntAirAct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E5549154A4384002F307D /* IntAirAct.framework */; };
+		2719EA47155D6D8B009032A1 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275CE725155C3C4A00FECE59 /* CocoaLumberjack.framework */; };
 		274A48A915508D97000DFAF9 /* IntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48A715508D97000DFAF9 /* IntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274A48AE15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274A48AF15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -52,7 +54,6 @@
 		274A48D515508DFD000DFAF9 /* IntAirAct-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */; };
 		274A48F415508F1B000DFAF9 /* IntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48A715508D97000DFAF9 /* IntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		275CE726155C3C4A00FECE59 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275CE725155C3C4A00FECE59 /* CocoaLumberjack.framework */; };
-		275CE727155C3C5100FECE59 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275CE725155C3C4A00FECE59 /* CocoaLumberjack.framework */; };
 		2762B949155B2BDD0042EECC /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762B948155B2BDD0042EECC /* IANumber.m */; };
 		2762B94A155B2BDD0042EECC /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762B948155B2BDD0042EECC /* IANumber.m */; };
 		276ED16E1556541500C4702F /* IACapability.h in Headers */ = {isa = PBXBuildFile; fileRef = 276ED16C1556541500C4702F /* IACapability.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -74,7 +75,6 @@
 		2793655B15568D3500513FD1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655A15568D3500513FD1 /* SystemConfiguration.framework */; };
 		2793655D15568D4100513FD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655C15568D4100513FD1 /* CoreGraphics.framework */; };
 		2793658415568D8200513FD1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793658315568D8200513FD1 /* QuartzCore.framework */; };
-		279365C915568F2E00513FD1 /* IntAirAct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E5549154A4384002F307D /* IntAirAct.framework */; };
 		27A8ABDD15568861001104E9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A8ABDC15568861001104E9 /* AppKit.framework */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
@@ -92,6 +92,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		27157F70155DBB46002F34C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2719EADF155D987B009032A1;
+			remoteInfo = "RestKit+BlocksOSXTests";
+		};
+		27157F72155DBB46002F34C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27EF2FD2154A7F9A003D7F41 /* RestKit+Blocks.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27157F0D155DAC72002F34C1;
+			remoteInfo = "RestKit+BlocksIOSTests";
+		};
 		277E5541154A431C002F307D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 277E5523154A42AE002F307D /* Project object */;
@@ -303,10 +317,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				279365C915568F2E00513FD1 /* IntAirAct.framework in Frameworks */,
+				27157F79155DBF07002F34C1 /* RestKit.framework in Frameworks */,
+				2719EA47155D6D8B009032A1 /* CocoaLumberjack.framework in Frameworks */,
+				2719EA46155D6D86009032A1 /* IntAirAct.framework in Frameworks */,
 				27FC6260154B36AE00AA7502 /* SenTestingKit.framework in Frameworks */,
-				275CE727155C3C5100FECE59 /* CocoaLumberjack.framework in Frameworks */,
-				2719E8BA155C98B3009032A1 /* RestKit.framework in Frameworks */,
 				27FC6262154B36AE00AA7502 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +408,8 @@
 			children = (
 				27EF2FE0154A7F9B003D7F41 /* libRestKit+Blocks.a */,
 				27EF2FE2154A7F9B003D7F41 /* RestKit+Blocks.framework */,
+				27157F71155DBB46002F34C1 /* RestKit+BlocksOSXTests.octest */,
+				27157F73155DBB46002F34C1 /* RestKit+BlocksIOSTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -618,6 +634,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		27157F71155DBB46002F34C1 /* RestKit+BlocksOSXTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "RestKit+BlocksOSXTests.octest";
+			remoteRef = 27157F70155DBB46002F34C1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27157F73155DBB46002F34C1 /* RestKit+BlocksIOSTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "RestKit+BlocksIOSTests.octest";
+			remoteRef = 27157F72155DBB46002F34C1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		278C8B3B154B447D007D4542 /* RoutingHTTPServerOSXTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;

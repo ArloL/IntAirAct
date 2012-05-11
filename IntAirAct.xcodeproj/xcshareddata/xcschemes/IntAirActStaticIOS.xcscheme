@@ -28,16 +28,6 @@
       buildConfiguration = "Debug">
       <Testables>
          <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27FC6246154B36A400AA7502"
-               BuildableName = "IntAirActIOSTests.octest"
-               BlueprintName = "IntAirActIOSTests"
-               ReferencedContainer = "container:IntAirAct.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
             skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -51,10 +41,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27157F0C155DAC72002F34C1"
+               BuildableName = "RestKit+BlocksIOSTests.octest"
+               BlueprintName = "RestKit+BlocksIOSTests"
+               ReferencedContainer = "container:Frameworks/RestKitBlocks/RestKit+Blocks.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "27EF34E5154AA953003D7F41"
                BuildableName = "RoutingHTTPServerIOSTests.octest"
                BlueprintName = "RoutingHTTPServerIOSTests"
                ReferencedContainer = "container:Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27FC6246154B36A400AA7502"
+               BuildableName = "IntAirActIOSTests.octest"
+               BlueprintName = "IntAirActIOSTests"
+               ReferencedContainer = "container:IntAirAct.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
