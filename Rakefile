@@ -9,7 +9,7 @@ end
 $name="IntAirAct"
 $configuration="Release"
 
-project=Xcode.project($name+'.xcodeproj')
+project=Xcode.project($name)
 $iphone=project.target($name+"IOS").config($configuration).builder
 $iphone.sdk = :iphoneos
 $iphonesimulator=project.target($name+"IOS").config($configuration).builder
