@@ -67,7 +67,7 @@ namespace :ios do
   desc "Archive for iOS"
   task :archive => ["ios:clean", "ios:build", "ios:test"] do
     cd "build/" + $configuration + "-iphoneos" do
-      sh "tar cvzf ../" + $name + "IOS.tar.gz " + $name + ".framework"
+      sh "tar cvzf ../" + $name + "IOS.tar.gz *.framework"
     end
   end
 
@@ -99,7 +99,7 @@ namespace :osx do
   desc "Archive for OS X"
   task :archive => ["osx:clean", "osx:build", "osx:test"] do
     cd "build/" + $configuration do
-      sh "tar cvzf ../" + $name + "OSX.tar.gz " + $name + ".framework"
+      sh "tar cvzf ../" + $name + "OSX.tar.gz *.framework"
     end
   end
 
