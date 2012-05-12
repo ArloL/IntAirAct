@@ -73,7 +73,7 @@ namespace :ios do
 
 end
 
-desc "Clean, Build, Test and Archive for iOS"
+desc "Clean, Build, Test and Archive for OS X"
 task :osx => ["osx:clean", "osx:build", "osx:test", "osx:archive"]
 
 namespace :osx do
