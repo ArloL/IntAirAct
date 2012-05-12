@@ -24,6 +24,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		270531DD155EDC0E00E89F98 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 270531DC155EDC0E00E89F98 /* LICENSE.txt */; };
+		270531DE155EDC1200E89F98 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270531DC155EDC0E00E89F98 /* LICENSE.txt */; };
 		27157F79155DBF07002F34C1 /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF301A154A7FD1003D7F41 /* RestKit.framework */; };
 		2719EA46155D6D86009032A1 /* IntAirAct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E5549154A4384002F307D /* IntAirAct.framework */; };
 		2719EA47155D6D8B009032A1 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275CE725155C3C4A00FECE59 /* CocoaLumberjack.framework */; };
@@ -61,8 +63,6 @@
 		276ED1701556541500C4702F /* IACapability.m in Sources */ = {isa = PBXBuildFile; fileRef = 276ED16D1556541500C4702F /* IACapability.m */; };
 		276ED1711556541500C4702F /* IACapability.m in Sources */ = {isa = PBXBuildFile; fileRef = 276ED16D1556541500C4702F /* IACapability.m */; };
 		277E5530154A42AF002F307D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552F154A42AF002F307D /* Foundation.framework */; };
-		27825331155DEDD8007525F3 /* IntAirAct-LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 27825330155DEDD8007525F3 /* IntAirAct-LICENSE.txt */; };
-		27825333155DEDE5007525F3 /* IntAirAct-LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27825330155DEDD8007525F3 /* IntAirAct-LICENSE.txt */; };
 		2793654715568CFF00513FD1 /* libIntAirAct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552C154A42AF002F307D /* libIntAirAct.a */; };
 		2793654815568D0700513FD1 /* libRestKit+Blocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FE0154A7F9B003D7F41 /* libRestKit+Blocks.a */; };
 		2793654915568D0700513FD1 /* libRoutingHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */; };
@@ -222,13 +222,14 @@
 			dstPath = "${PRODUCT_NAME}Resources";
 			dstSubfolderSpec = 16;
 			files = (
-				27825333155DEDE5007525F3 /* IntAirAct-LICENSE.txt in CopyFiles */,
+				270531DE155EDC1200E89F98 /* LICENSE.txt in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		270531DC155EDC0E00E89F98 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
 		274A48A715508D97000DFAF9 /* IntAirAct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntAirAct.h; path = IntAirAct/IntAirAct.h; sourceTree = SOURCE_ROOT; };
 		274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IARouteRequest+BodyAsString.h"; path = "IntAirAct/IARouteRequest+BodyAsString.h"; sourceTree = SOURCE_ROOT; };
 		274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IARouteRequest+BodyAsString.m"; path = "IntAirAct/IARouteRequest+BodyAsString.m"; sourceTree = SOURCE_ROOT; };
@@ -253,7 +254,6 @@
 		277E552C154A42AF002F307D /* libIntAirAct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIntAirAct.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E552F154A42AF002F307D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		277E5549154A4384002F307D /* IntAirAct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntAirAct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		27825330155DEDD8007525F3 /* IntAirAct-LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "IntAirAct-LICENSE.txt"; sourceTree = SOURCE_ROOT; };
 		2793654A15568D0700513FD1 /* libCocoaAsyncSocket.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocoaAsyncSocket.a; path = "../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos/libCocoaAsyncSocket.a"; sourceTree = "<group>"; };
 		2793654B15568D0700513FD1 /* libCocoaHTTPServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocoaHTTPServer.a; path = "../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos/libCocoaHTTPServer.a"; sourceTree = "<group>"; };
 		2793654C15568D0700513FD1 /* libCocoaLumberjack.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocoaLumberjack.a; path = "../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos/libCocoaLumberjack.a"; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 		277E5532154A42AF002F307D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				27825330155DEDD8007525F3 /* IntAirAct-LICENSE.txt */,
+				270531DC155EDC0E00E89F98 /* LICENSE.txt */,
 				274A48D115508DFD000DFAF9 /* IntAirAct-Info.plist */,
 				274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */,
 			);
@@ -715,7 +715,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27825331155DEDD8007525F3 /* IntAirAct-LICENSE.txt in Resources */,
+				270531DD155EDC0E00E89F98 /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
