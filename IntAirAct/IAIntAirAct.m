@@ -592,7 +592,7 @@ static NSThread *bonjourThread;
     [httpServer setDefaultHeader:@"Content-Type" value:defaultMimeType];
     
     [httpServer get:@"/capabilities" withBlock:^(RouteRequest *request, RouteResponse *response) {
-        IALogTrace();
+        IALogTrace3(@"GET /capabilities");
         
         [response respondWith:self.capabilities withIntAirAct:self];
     }];
