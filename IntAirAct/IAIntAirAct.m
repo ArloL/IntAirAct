@@ -139,10 +139,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             success = [httpServer start:&err];
             if (success) {
                 IALogInfo3(@"Started IntAirActServer.");
-                
-                if(client) {
-                    [self startBonjour];
-                }
+                [self startBonjour];
                 isRunning = YES;
             } else {
                 IALogError(@"%@[%p]: Failed to start IntAirActServer: %@", THIS_FILE, self, err);
