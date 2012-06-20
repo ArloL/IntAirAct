@@ -134,20 +134,18 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }
     
     dispatch_sync(serverQueue, ^{ @autoreleasepool {
+        
         if(server) {
             [self setupServer];
             success = [httpServer start:&err];
-            if (success) {
-                IALogInfo3(@"Started IntAirActServer.");
-                [self startBonjour];
-                isRunning = YES;
-            } else {
-                IALogError(@"%@[%p]: Failed to start IntAirActServer: %@", THIS_FILE, self, err);
-            }
-        } else if (client) {
+        }
+        
+        if (success) {
             IALogInfo3(@"Started IntAirActServer.");
             [self startBonjour];
             isRunning = YES;
+        } else {
+            IALogError(@"%@[%p]: Failed to start IntAirActServer: %@", THIS_FILE, self, err);
         }
 	}});
 	

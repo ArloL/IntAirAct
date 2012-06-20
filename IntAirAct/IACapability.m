@@ -6,7 +6,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"IACapability: [capability: %@]", self.capability];
+    return [NSString stringWithFormat:@"IACapability[capability: %@]", self.capability];
 }
 
 -(BOOL)isEqual:(id)object
