@@ -7,4 +7,6 @@
  */
 @property (nonatomic, strong) NSString * capability;
 
++(IACapability *)capability:(NSString *) capability;
+
 @end

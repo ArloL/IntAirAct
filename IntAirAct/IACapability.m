@@ -4,6 +4,13 @@
 
 @synthesize capability;
 
++(IACapability *)capability:(NSString *)capability
+{
+    IACapability * cap = [IACapability new];
+    cap.capability = capability;
+    return cap;
+}
+
 -(NSString *)description
 {
     return [NSString stringWithFormat:@"IACapability[capability: %@]", self.capability];
