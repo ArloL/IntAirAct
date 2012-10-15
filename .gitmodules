@@ -1,1 +1,7 @@
 
+[submodule "Frameworks/RoutingHTTPServer"]
+	path = Frameworks/RoutingHTTPServer
+	url = https://github.com/ase-lab/RoutingHTTPServerFramework.git
+[submodule "Frameworks/RestKit+Blocks"]
+	path = Frameworks/RestKit+Blocks
+	url = https://github.com/ase-lab/RestKitBlocks.git
