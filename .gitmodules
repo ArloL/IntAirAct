@@ -1,6 +1,1 @@
-[submodule "Frameworks/RoutingHTTPServer"]
-	path = Frameworks/RoutingHTTPServer
-	url = https://github.com/ArloL/RoutingHTTPServer.git
-[submodule "Frameworks/RestKitBlocks"]
-	path = Frameworks/RestKitBlocks
-	url = https://github.com/ArloL/RestKitBlocks.git
+
