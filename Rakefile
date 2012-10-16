@@ -7,6 +7,10 @@ if File.exist?('Rakefile.config')
 end
 
 $name="IntAirAct"
+
+$github_user='ase-lab'
+$github_repo='IntAirAct'
+
 $configuration="Release"
 
 project=Xcode.project($name)
@@ -116,14 +120,13 @@ task :pull => :init do
   system("git submodule foreach --recursive git pull")
 end
 
-def publish(os = "IOS")
-  github = Github.new :user => $github_username, :repo => $name, :login => $github_username, :password => $github_password
+def publish(version, os = "IOS")
+  github = Github.new :user => $github_user, :repo => $github_repo, :login => $github_login, :password => $github_password
   file = 'build/' + $name + os + ".tar.gz"
-  now = File.mtime(file)
-  name = $name + os + '-' + now.strftime("%Y-%m-%d-%H-%M-%S") + '.tar.gz'
+  name = $name + os + '-' + version + '.tar.gz'
   size = File.size(file)
-  description = 'Release from ' + now.strftime("%Y-%m-%d %H:%M:%S")
-  res = github.repos.downloads.create $github_username, $name,
+  description = os + " Framework version " + version
+  res = github.repos.downloads.create $github_user, $github_repo,
     "name" => name,
     "size" => size,
     "description" => description,
@@ -131,30 +134,35 @@ def publish(os = "IOS")
   github.repos.downloads.upload res, file
 end
 
-desc "Publish the Frameworks to github"
-task :publish => :archive do
-  publish()
-  publish("OSX")
-end
-
-desc "Create docs"
-task :docs do
-  system('appledoc --project-name ' + $name + ' --project-company "Arlo O\'Keeffe, ASE Group by Frank Maurer (University of Calgary)" --company-id org.agilesoftwareengineering --output ./build/docs --no-install-docset --keep-intermediate-files ' + $name + '/*.h')
-end
-
-desc "Publish docs"
-task :publishdocs => :docs do
-  cd "build" do
-    if !File.exists?("docs-repo")
-      system("git clone -b gh-pages git@github.com:ArloL/IntAirAct.git docs-repo")
-    end
-    cd "docs-repo" do
-      system("git pull origin gh-pages")
-      rm_rf "docs"
-      system("cp -R ../docs/html docs")
-      system("git add docs")
-      system('git commit -m "Updated docs"')
-      system("git push origin gh-pages")
-    end
+desc "Publish a new version of the framework to github"
+task :publish, :version do |t, args|
+  if !args[:version]
+    puts("Usage: rake publish[version]");
+    exit(1)
   end
+  if !defined? $github_login
+    puts("$github_login is not set");
+    exit(1)
+  end
+  if !defined? $github_password
+    puts("$github_password is not set");
+    exit(1)
+  end
+  version = args[:version]
+  #check that version is newer than current_version
+  current_version = open("Version").gets.strip
+  if Gem::Version.new(version) < Gem::Version.new(current_version)
+    puts("New version (" + version + ") is smaller than current version ("+current_version+")")
+    exit(1)
+  end
+  #write version into versionfile
+  File.open("Version", 'w') {|f| f.write(version) }
+  Rake::Task["archive"].invoke
+  system("git add Version")
+  system('git commit -m "Bump version to ' + version + '"')
+  system('git tag -a v' + version + ' -m "Framework version ' + version + '."')
+  system('git push')
+  system('git push --tags')
+  publish(version)
+  publish(version, "OSX")
 end
