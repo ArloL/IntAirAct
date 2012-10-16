@@ -2,8 +2,6 @@
 
 @implementation IACapability
 
-@synthesize capability;
-
 +(IACapability *)capability:(NSString *)capability
 {
     IACapability * cap = [IACapability new];

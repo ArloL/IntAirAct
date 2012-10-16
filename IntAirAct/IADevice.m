@@ -2,11 +2,6 @@
 
 @implementation IADevice
 
-@synthesize capabilities;
-@synthesize host;
-@synthesize name;
-@synthesize port;
-
 -(id)copy
 {
     IADevice * res = [IADevice new];

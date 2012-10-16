@@ -5,7 +5,7 @@
  
  An example could be: "GET /images".
  */
-@property (nonatomic, strong) NSString * capability;
+@property (strong) NSString * capability;
 
 +(IACapability *)capability:(NSString *) capability;
 

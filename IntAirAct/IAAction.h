@@ -2,9 +2,9 @@
 @interface IAAction : NSObject
 
 /** Name of the action to call. */
-@property (nonatomic, strong) NSString * action;
+@property (strong) NSString * action;
 
 /** The parameters of the remote procedure call. */
-@property (nonatomic, strong) NSArray * parameters;
+@property (strong) NSArray * parameters;
 
 @end
