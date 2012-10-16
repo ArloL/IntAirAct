@@ -19,7 +19,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"IADevice[name: %@, host: %@, port: %li, capabilities: %@]", self.name, self.host, self.port, self.capabilities];
+    return [NSString stringWithFormat:@"IADevice[name: %@, host: %@, port: %"FMTNSINT", capabilities: %@]", self.name, self.host, self.port, self.capabilities];
 }
 
 -(BOOL)isEqual:(id)object

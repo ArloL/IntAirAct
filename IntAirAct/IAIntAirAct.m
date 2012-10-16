@@ -329,7 +329,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(void)netServiceDidResolveAddress:(NSNetService *)sender
 {
-	IALogTrace2(@"%@[%p]: Bonjour Service resolved: %@:%li", THIS_FILE, self, [sender hostName], [sender port]);
+	IALogTrace2(@"%@[%p]: Bonjour Service resolved: %@:%"FMTNSINT, THIS_FILE, self, [sender hostName], [sender port]);
 
     __block IADevice * device = [IADevice new];
     device.name = sender.name;
@@ -601,9 +601,9 @@ static NSThread *bonjourThread;
     
     NSString * hostAndPort;
     if ([device isEqual:self.ownDevice]) {
-        hostAndPort = [NSString stringWithFormat:@"http://127.0.0.1:%li" , device.port];
+        hostAndPort = [NSString stringWithFormat:@"http://127.0.0.1:%"FMTNSINT , device.port];
     } else {
-        hostAndPort = [NSString stringWithFormat:@"http://%@:%li", device.host, device.port];
+        hostAndPort = [NSString stringWithFormat:@"http://%@:%"FMTNSINT, device.host, device.port];
     }
 
     RKObjectManager * manager = [objectManagers objectForKey:hostAndPort];
