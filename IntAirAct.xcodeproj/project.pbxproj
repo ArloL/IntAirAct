@@ -24,8 +24,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		270531DD155EDC0E00E89F98 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 270531DC155EDC0E00E89F98 /* LICENSE.txt */; };
-		270531DE155EDC1200E89F98 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 270531DC155EDC0E00E89F98 /* LICENSE.txt */; };
 		27157F79155DBF07002F34C1 /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF301A154A7FD1003D7F41 /* RestKit.framework */; };
 		2719EA46155D6D86009032A1 /* IntAirAct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E5549154A4384002F307D /* IntAirAct.framework */; };
 		2719EA47155D6D8B009032A1 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275CE725155C3C4A00FECE59 /* CocoaLumberjack.framework */; };
@@ -58,6 +56,10 @@
 		275CE726155C3C4A00FECE59 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275CE725155C3C4A00FECE59 /* CocoaLumberjack.framework */; };
 		2762B949155B2BDD0042EECC /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762B948155B2BDD0042EECC /* IANumber.m */; };
 		2762B94A155B2BDD0042EECC /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762B948155B2BDD0042EECC /* IANumber.m */; };
+		27652085162DB7D5008EA1C7 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 27652083162DB7D5008EA1C7 /* License.txt */; };
+		27652086162DB7D5008EA1C7 /* Version in Resources */ = {isa = PBXBuildFile; fileRef = 27652084162DB7D5008EA1C7 /* Version */; };
+		27652087162DB7DE008EA1C7 /* License.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27652083162DB7D5008EA1C7 /* License.txt */; };
+		27652088162DB7DE008EA1C7 /* Version in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27652084162DB7D5008EA1C7 /* Version */; };
 		276ED16E1556541500C4702F /* IACapability.h in Headers */ = {isa = PBXBuildFile; fileRef = 276ED16C1556541500C4702F /* IACapability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		276ED16F1556541500C4702F /* IACapability.h in Headers */ = {isa = PBXBuildFile; fileRef = 276ED16C1556541500C4702F /* IACapability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		276ED1701556541500C4702F /* IACapability.m in Sources */ = {isa = PBXBuildFile; fileRef = 276ED16D1556541500C4702F /* IACapability.m */; };
@@ -206,14 +208,14 @@
 			dstPath = "${PRODUCT_NAME}Resources";
 			dstSubfolderSpec = 16;
 			files = (
-				270531DE155EDC1200E89F98 /* LICENSE.txt in CopyFiles */,
+				27652087162DB7DE008EA1C7 /* License.txt in CopyFiles */,
+				27652088162DB7DE008EA1C7 /* Version in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		270531DC155EDC0E00E89F98 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
 		274A48A715508D97000DFAF9 /* IntAirAct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntAirAct.h; path = IntAirAct/IntAirAct.h; sourceTree = SOURCE_ROOT; };
 		274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IARouteRequest+BodyAsString.h"; path = "IntAirAct/IARouteRequest+BodyAsString.h"; sourceTree = SOURCE_ROOT; };
 		274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IARouteRequest+BodyAsString.m"; path = "IntAirAct/IARouteRequest+BodyAsString.m"; sourceTree = SOURCE_ROOT; };
@@ -233,6 +235,8 @@
 		275CE725155C3C4A00FECE59 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = "../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos/CocoaLumberjack.framework"; sourceTree = "<group>"; };
 		2762B947155B2BDD0042EECC /* IANumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IANumber.h; path = IntAirActTests/IANumber.h; sourceTree = "<group>"; };
 		2762B948155B2BDD0042EECC /* IANumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IANumber.m; path = IntAirActTests/IANumber.m; sourceTree = "<group>"; };
+		27652083162DB7D5008EA1C7 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
+		27652084162DB7D5008EA1C7 /* Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
 		276C19EF162CA382002C8285 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKit+Blocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		276ED16C1556541500C4702F /* IACapability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACapability.h; sourceTree = "<group>"; };
 		276ED16D1556541500C4702F /* IACapability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACapability.m; sourceTree = "<group>"; };
@@ -326,6 +330,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27652082162DB7B6008EA1C7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				27652083162DB7D5008EA1C7 /* License.txt */,
+				27652084162DB7D5008EA1C7 /* Version */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		276C19F0162CA382002C8285 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +356,7 @@
 				277E5531154A42AF002F307D /* IntAirAct */,
 				27FC6274154B374700AA7502 /* IntAirActTests */,
 				277E5532154A42AF002F307D /* Supporting Files */,
+				27652082162DB7B6008EA1C7 /* Resources */,
 				277E552E154A42AF002F307D /* Frameworks */,
 				277E552D154A42AF002F307D /* Products */,
 			);
@@ -405,7 +419,6 @@
 		277E5532154A42AF002F307D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				270531DC155EDC0E00E89F98 /* LICENSE.txt */,
 				274A48D115508DFD000DFAF9 /* IntAirAct-Info.plist */,
 				274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */,
 			);
@@ -681,7 +694,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				270531DD155EDC0E00E89F98 /* LICENSE.txt in Resources */,
+				27652085162DB7D5008EA1C7 /* License.txt in Resources */,
+				27652086162DB7D5008EA1C7 /* Version in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
