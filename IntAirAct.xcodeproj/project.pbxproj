@@ -943,7 +943,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -964,7 +963,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/IntAirAct-hcyhvpvyiwauwoawsknaxhpsnvlg/Build/Products/Debug-iphoneos\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
