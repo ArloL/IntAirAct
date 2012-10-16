@@ -11,6 +11,6 @@
 @property (nonatomic, strong) NSString * name;
 
 /** The port on which the device is running IntAirAct */
-@property (nonatomic) NSInteger port;
+@property NSInteger port;
 
 @end
