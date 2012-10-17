@@ -55,7 +55,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"IARouter[action: %@, resource: %@]", self.action, self.resource];
+    return [NSString stringWithFormat:@"IARoute[action: %@, resource: %@]", self.action, self.resource];
 }
 
 
