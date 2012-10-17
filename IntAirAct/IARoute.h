@@ -13,6 +13,8 @@
 +(IARoute*)getRoute:(NSString*)resource;
 +(IARoute*)deleteRoute:(NSString*)resource;
 
++(IARoute*)route:(NSString*)action resource:(NSString*)resource;
+
 // Constructor
 -(id)initWithAction:(NSString *)action resource:(NSString*)resource;
 
