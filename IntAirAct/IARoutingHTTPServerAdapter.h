@@ -1,8 +1,8 @@
-#import "IARouter.h"
+#import "IAServer.h"
 
 @class RoutingHTTPServer;
 
-@interface IAHTTPRouter : NSObject<IARouter>
+@interface IARoutingHTTPServerAdapter : NSObject<IAServer>
 
 -(id)initWithRoutingHTTPServer:(RoutingHTTPServer*)routingHTTPServer;
 

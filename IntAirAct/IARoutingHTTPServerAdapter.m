@@ -1,4 +1,4 @@
-#import "IAHTTPRouter.h"
+#import "IARoutingHTTPServerAdapter.h"
 
 #import <RoutingHTTPServer/RoutingHTTPServer.h>
 
@@ -8,20 +8,37 @@
 #import "RouteResponse+IAResponse.h"
 #import "IAResponse.h"
 
-@interface IAHTTPRouter ()
+@interface IARoutingHTTPServerAdapter ()
 
 @property (strong, nonatomic) RoutingHTTPServer* routingHTTPServer;
 @property (strong, nonatomic) NSArray * routes;
 
 @end
 
-@implementation IAHTTPRouter
+@implementation IARoutingHTTPServerAdapter
+
+@synthesize port = _port;
 
 -(id)initWithRoutingHTTPServer:(RoutingHTTPServer *)routingHTTPServer
 {
     self = [super init];
     if (self) {
+        
+        _port = 0;
+        
         _routingHTTPServer = routingHTTPServer;
+        
+        // Tell the server to broadcast its presence via ZeroConf.
+        [_routingHTTPServer setType:@"_intairact._tcp."];
+    }
+    return self;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"-init is not a valid initializer for the class IARoutingHTTPServerAdapter" userInfo:nil];
     }
     return self;
 }
@@ -38,6 +55,16 @@
         [rRes copyValuesFromIAResponse:iaRes];
     }];
     return YES;
+}
+
+-(BOOL)start:(NSError *__autoreleasing *)errPtr
+{
+    return [self.routingHTTPServer start:errPtr];
+}
+
+-(void)stop
+{
+    [self.routingHTTPServer stop];
 }
 
 @end
