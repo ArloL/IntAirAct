@@ -6,6 +6,7 @@
 #import "IARequest.h"
 #import "IARequest+RouteRequest.h"
 #import "RouteResponse+IAResponse.h"
+#import "IAResponse.h"
 
 @interface IAHTTPRouter ()
 

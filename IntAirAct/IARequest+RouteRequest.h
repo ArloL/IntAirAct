@@ -1,4 +1,6 @@
-#import <IntAirAct/IntAirAct.h>
+#import "IARequest.h"
+
+@class RouteRequest;
 
 @interface IARequest (RouteRequest)
 

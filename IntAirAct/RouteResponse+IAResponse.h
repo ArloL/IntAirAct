@@ -1,4 +1,4 @@
-#import <RoutingHTTPServer/RoutingHTTPServer.h>
+#import <RoutingHTTPServer/RouteResponse.h>
 
 @class IAResponse;
 

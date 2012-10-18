@@ -1,5 +1,7 @@
 #import "IARequest+RouteRequest.h"
 
+#import <RoutingHTTPServer/RouteRequest.h>
+
 @implementation IARequest (RouteRequest)
 
 +(IARequest*)requestWithRouteRequest:(RouteRequest *)routeRequest origin:(IADevice*)origin route:(IARoute*)route

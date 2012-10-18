@@ -1,5 +1,3 @@
-#import <Foundation/Foundation.h>
-
 @interface IAResponse : NSObject
 
 #warning these are global. this could create conflicts with other devs

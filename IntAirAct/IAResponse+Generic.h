@@ -1,4 +1,4 @@
-#import <IntAirAct/IntAirAct.h>
+#import "IAResponse.h"
 
 @interface IAResponse (Generic)
 

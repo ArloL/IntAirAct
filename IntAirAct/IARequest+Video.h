@@ -1,4 +1,4 @@
-#import <IntAirAct/IntAirAct.h>
+#import "IARequest.h"
 
 @interface IARequest (Video)
 

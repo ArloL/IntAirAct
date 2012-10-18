@@ -1,5 +1,3 @@
-#import <Foundation/Foundation.h>
-
 @interface IARoute : NSObject
 
 // These are the pre-defined routes included with IntAirAct.
