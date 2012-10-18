@@ -493,6 +493,7 @@
 		277E5531154A42AF002F307D /* IntAirAct */ = {
 			isa = PBXGroup;
 			children = (
+				27A1BA3D1630840800BCFB39 /* Categories */,
 				2756EE35162F77E100E76B50 /* RoutingHTTPServer */,
 				27EF3391154A9CE8003D7F41 /* Server */,
 				27EF3390154A9CE2003D7F41 /* Shared */,
@@ -517,6 +518,15 @@
 			path = IntAirAct;
 			sourceTree = "<group>";
 		};
+		27A1BA3D1630840800BCFB39 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				2756EE22162F6D9500E76B50 /* Response Serialization */,
+				2756EDFC162F667C00E76B50 /* Request Deserialization */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		27EF2FE9154A7FA7003D7F41 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,8 +539,6 @@
 		27EF338F154A9CD3003D7F41 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2756EE22162F6D9500E76B50 /* Response Serialization */,
-				2756EDFC162F667C00E76B50 /* Request Deserialization */,
 				274A48BF15508DB9000DFAF9 /* IAAction.h */,
 				274A48C015508DB9000DFAF9 /* IAAction.m */,
 				276ED16C1556541500C4702F /* IACapability.h */,

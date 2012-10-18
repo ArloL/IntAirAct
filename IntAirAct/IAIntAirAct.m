@@ -255,6 +255,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 {
 	IALogTrace2(@"%@[%p]: Bonjour Service resolved: %@:%"FMTNSINT, THIS_FILE, self, [sender hostName], [sender port]);
     
+#warning re-implement using ServiceDiscovery module
     if ([self.httpServer.publishedName isEqualToString:sender.name]) {
         IALogTrace3(@"Found own device");
         IADevice * device = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:self.capabilities];
@@ -536,6 +537,8 @@ static NSThread *bonjourThread;
     
     // keep this here because otherwise we run into a memory release issue
     __block id returnValue;
+    
+#warning reimplement using route, or remove action concept all together
     
     [self.httpServer put:[@"/action/" stringByAppendingString:actionName] withBlock:^(RouteRequest *request, RouteResponse *response) {
         IALogVerbose(@"%@", [@"PUT /action/" stringByAppendingString:actionName]);
