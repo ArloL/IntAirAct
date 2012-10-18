@@ -38,7 +38,7 @@
     return [[IARoute alloc] initWithAction:@"DELETE" resource:resource];
 }
 
-+(IARoute*)route:(NSString*)action resource:(NSString*)resource
++(IARoute*)routeWithAction:(NSString*)action resource:(NSString*)resource
 {
     return [[IARoute alloc] initWithAction:action resource:resource];
 }

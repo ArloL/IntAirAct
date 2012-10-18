@@ -11,12 +11,12 @@
 +(IARoute*)getRoute:(NSString*)resource;
 +(IARoute*)deleteRoute:(NSString*)resource;
 
-+(IARoute*)route:(NSString*)action resource:(NSString*)resource;
++(IARoute*)routeWithAction:(NSString*)action resource:(NSString*)resource;
 
 // Constructor
 -(id)initWithAction:(NSString *)action resource:(NSString*)resource;
 
-@property (readonly) NSString * action;
-@property (readonly) NSString * resource;
+@property (strong, readonly) NSString * action;
+@property (strong, readonly) NSString * resource;
 
 @end
