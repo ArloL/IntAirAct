@@ -31,13 +31,13 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         if(serializer && serializer.mapping.rootKeyPath) {
             serialized = [NSDictionary dictionaryWithObjectsAndKeys:serialized, serializer.mapping.rootKeyPath, nil];
         }
-        id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:intAirAct.defaultMimeType];
+        id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:@"application/json"];
         response = [parser stringFromObject:serialized error:&error];
     } else {
         RKObjectSerializer* serializer = [intAirAct serializerForObject:data];
         id serializedObject = [serializer serializedObject:&error];
         if(!error) {
-            id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:intAirAct.defaultMimeType];
+            id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:@"application/json"];
             response = [parser stringFromObject:serializedObject error:&error];
         }
     }
