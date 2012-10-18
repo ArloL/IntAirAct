@@ -1,4 +1,4 @@
-#import "IARouter.h"
+#import "IAServer.h"
 
 @class RKObjectLoader;
 @class RKObjectManager;
@@ -6,7 +6,6 @@
 @class RKObjectMappingResult;
 @class RKObjectRouter;
 @class RKObjectSerializer;
-@class RoutingHTTPServer;
 
 @class IAAction;
 @class IACapability;
@@ -22,35 +21,8 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
 /** A Set of all the capabilities this device has. */
 @property (nonatomic, strong, readonly) NSMutableSet * capabilities;
 
-/** Specifies whether IntAirAct is configured as a client or not.
- 
- If YES, IntAirAct will start searching for Devices on the network.
- 
- Defaults to `YES`.
- */
-@property BOOL client;
-
-/** Specifies the default MIME Type used when de-/serializing objects.
- 
- When changing this value be sure that RestKit has a parser and a serializer (!) available for that MIME type. The included `RKXMLParserLibXML` currently does not support serialization.
-
- Defaults to `application/json`.
- */
-@property NSString * defaultMimeType;
-
 /** A list of all the currently available devices. */
 @property (readonly) NSArray * devices;
-
-/** The embedded HTTP server.
- 
- It's available for publishing an endpoint like this:
- 
-    [http handleMethod:@"GET" withPath:@"/hello" block:^(RouteRequest *request, RouteResponse *response) {
-        [response setHeader:@"Content-Type" value:@"text/plain"];
-        [response respondWithString:@"Hello!"];
-    }];
- */
-@property (nonatomic, strong, readonly) RoutingHTTPServer * httpServer;
 
 /** `YES` if IntAirAct is running, `NO` otherwise. */
 @property (readonly) BOOL isRunning;
@@ -69,7 +41,7 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
 @property (readonly) IADevice * ownDevice;
 
 /** The port on which to listen on. Default is 0. This means the system will find a free port. */
-@property (nonatomic) UInt16 port;
+@property (nonatomic) NSInteger port;
 
 /** IntAirAct's RKObjectRouter. This is used to setup default route mappings for objects.
  
@@ -81,19 +53,13 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
  */
 @property (nonatomic, strong, readonly) RKObjectRouter * router;
 
-/** Specifies whether IntAirAct is configured as a server or not.
- 
- If set to `YES`, IntAirAct will start the embedded HTTP server. Defaults to `YES`.
- */
-@property BOOL server;
-
-@property (nonatomic, strong) NSMutableDictionary * txtRecordDictionary;
-
 /** Standard Constructor.
  
  Instantiates IntAirAct, but does not start it.
  */
 -(id)init;
+
+-(id)initWithServer:(NSObject<IAServer>*)server;
 
 /** Standard Deconstructor.
  

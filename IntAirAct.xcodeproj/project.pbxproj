@@ -56,8 +56,8 @@
 		2756EDE4162F568F00E76B50 /* IARoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDE1162F568F00E76B50 /* IARoute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDE5162F568F00E76B50 /* IARoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDE2162F568F00E76B50 /* IARoute.m */; };
 		2756EDE6162F568F00E76B50 /* IARoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDE2162F568F00E76B50 /* IARoute.m */; };
-		2756EDEC162F5DC600E76B50 /* IARouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDEA162F5DC600E76B50 /* IARouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2756EDED162F5DC600E76B50 /* IARouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDEA162F5DC600E76B50 /* IARouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDEC162F5DC600E76B50 /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDEA162F5DC600E76B50 /* IAServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDED162F5DC600E76B50 /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDEA162F5DC600E76B50 /* IAServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDF2162F60AC00E76B50 /* IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDF0162F60AC00E76B50 /* IAResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDF3162F60AC00E76B50 /* IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDF0162F60AC00E76B50 /* IAResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDF4162F60AC00E76B50 /* IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDF1162F60AC00E76B50 /* IAResponse.m */; };
@@ -90,10 +90,10 @@
 		2756EE2C162F6E6500E76B50 /* IAResponse+Generic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE29162F6E6500E76B50 /* IAResponse+Generic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EE2D162F6E6500E76B50 /* IAResponse+Generic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */; };
 		2756EE2E162F6E6500E76B50 /* IAResponse+Generic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */; };
-		2756EE31162F73D000E76B50 /* IAHTTPRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE2F162F73CF00E76B50 /* IAHTTPRouter.h */; };
-		2756EE32162F73D000E76B50 /* IAHTTPRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE2F162F73CF00E76B50 /* IAHTTPRouter.h */; };
-		2756EE33162F73D000E76B50 /* IAHTTPRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE30162F73D000E76B50 /* IAHTTPRouter.m */; };
-		2756EE34162F73D000E76B50 /* IAHTTPRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE30162F73D000E76B50 /* IAHTTPRouter.m */; };
+		2756EE31162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE2F162F73CF00E76B50 /* IARoutingHTTPServerAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EE32162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE2F162F73CF00E76B50 /* IARoutingHTTPServerAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EE33162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE30162F73D000E76B50 /* IARoutingHTTPServerAdapter.m */; };
+		2756EE34162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE30162F73D000E76B50 /* IARoutingHTTPServerAdapter.m */; };
 		2756EE38162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */; };
 		2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */; };
 		2756EE3A162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */; };
@@ -277,7 +277,7 @@
 		274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IntAirAct-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		2756EDE1162F568F00E76B50 /* IARoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARoute.h; sourceTree = "<group>"; };
 		2756EDE2162F568F00E76B50 /* IARoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARoute.m; sourceTree = "<group>"; };
-		2756EDEA162F5DC600E76B50 /* IARouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARouter.h; sourceTree = "<group>"; };
+		2756EDEA162F5DC600E76B50 /* IAServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAServer.h; sourceTree = "<group>"; };
 		2756EDF0162F60AC00E76B50 /* IAResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAResponse.h; sourceTree = "<group>"; };
 		2756EDF1162F60AC00E76B50 /* IAResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAResponse.m; sourceTree = "<group>"; };
 		2756EDF6162F60C200E76B50 /* IARequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARequest.h; sourceTree = "<group>"; };
@@ -294,8 +294,8 @@
 		2756EE24162F6E2200E76B50 /* IAResponse+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IAResponse+Image.m"; sourceTree = "<group>"; };
 		2756EE29162F6E6500E76B50 /* IAResponse+Generic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IAResponse+Generic.h"; sourceTree = "<group>"; };
 		2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IAResponse+Generic.m"; sourceTree = "<group>"; };
-		2756EE2F162F73CF00E76B50 /* IAHTTPRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAHTTPRouter.h; sourceTree = "<group>"; };
-		2756EE30162F73D000E76B50 /* IAHTTPRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAHTTPRouter.m; sourceTree = "<group>"; };
+		2756EE2F162F73CF00E76B50 /* IARoutingHTTPServerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARoutingHTTPServerAdapter.h; sourceTree = "<group>"; };
+		2756EE30162F73D000E76B50 /* IARoutingHTTPServerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARoutingHTTPServerAdapter.m; sourceTree = "<group>"; };
 		2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RouteResponse+IAResponse.h"; sourceTree = "<group>"; };
 		2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RouteResponse+IAResponse.m"; sourceTree = "<group>"; };
 		2762B947155B2BDD0042EECC /* IANumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IANumber.h; path = IntAirActTests/IANumber.h; sourceTree = "<group>"; };
@@ -411,8 +411,8 @@
 		2756EE35162F77E100E76B50 /* RoutingHTTPServer */ = {
 			isa = PBXGroup;
 			children = (
-				2756EE2F162F73CF00E76B50 /* IAHTTPRouter.h */,
-				2756EE30162F73D000E76B50 /* IAHTTPRouter.m */,
+				2756EE2F162F73CF00E76B50 /* IARoutingHTTPServerAdapter.h */,
+				2756EE30162F73D000E76B50 /* IARoutingHTTPServerAdapter.m */,
 				2756EE1C162F689800E76B50 /* IARequest+RouteRequest.h */,
 				2756EE1D162F689800E76B50 /* IARequest+RouteRequest.m */,
 				2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */,
@@ -502,6 +502,7 @@
 				274A48A715508D97000DFAF9 /* IntAirAct.h */,
 				2756EDEA162F5DC600E76B50 /* IARouter.h */,
 				27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */,
+				2756EDEA162F5DC600E76B50 /* IAServer.h */,
 			);
 			path = IntAirAct;
 			sourceTree = "<group>";
@@ -592,7 +593,7 @@
 				274A48C715508DB9000DFAF9 /* IADevice.h in Headers */,
 				2756EDE3162F568F00E76B50 /* IARoute.h in Headers */,
 				274A48F415508F1B000DFAF9 /* IntAirAct.h in Headers */,
-				2756EDEC162F5DC600E76B50 /* IARouter.h in Headers */,
+				2756EDEC162F5DC600E76B50 /* IAServer.h in Headers */,
 				2756EDF2162F60AC00E76B50 /* IAResponse.h in Headers */,
 				2756EDF8162F60C200E76B50 /* IARequest.h in Headers */,
 				2756EDFF162F669800E76B50 /* IARequest+Image.h in Headers */,
@@ -601,7 +602,7 @@
 				2756EE1E162F689800E76B50 /* IARequest+RouteRequest.h in Headers */,
 				2756EE25162F6E2200E76B50 /* IAResponse+Image.h in Headers */,
 				2756EE2B162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
-				2756EE31162F73D000E76B50 /* IAHTTPRouter.h in Headers */,
+				2756EE31162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */,
 				2756EE38162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
 				27A1B9B0163068CD00BCFB39 /* NSObject+SubscriptingSupport.h in Headers */,
 			);
@@ -620,7 +621,7 @@
 				2756EDE4162F568F00E76B50 /* IARoute.h in Headers */,
 				276ED16F1556541500C4702F /* IACapability.h in Headers */,
 				274A48C815508DB9000DFAF9 /* IADevice.h in Headers */,
-				2756EDED162F5DC600E76B50 /* IARouter.h in Headers */,
+				2756EDED162F5DC600E76B50 /* IAServer.h in Headers */,
 				2756EDF3162F60AC00E76B50 /* IAResponse.h in Headers */,
 				2756EDF9162F60C200E76B50 /* IARequest.h in Headers */,
 				2756EE00162F669800E76B50 /* IARequest+Image.h in Headers */,
@@ -629,7 +630,7 @@
 				2756EE1F162F689800E76B50 /* IARequest+RouteRequest.h in Headers */,
 				2756EE26162F6E2200E76B50 /* IAResponse+Image.h in Headers */,
 				2756EE2C162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
-				2756EE32162F73D000E76B50 /* IAHTTPRouter.h in Headers */,
+				2756EE32162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */,
 				2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
 				27A1B9B1163068CD00BCFB39 /* NSObject+SubscriptingSupport.h in Headers */,
 			);
@@ -904,7 +905,7 @@
 				2756EE20162F689800E76B50 /* IARequest+RouteRequest.m in Sources */,
 				2756EE27162F6E2200E76B50 /* IAResponse+Image.m in Sources */,
 				2756EE2D162F6E6500E76B50 /* IAResponse+Generic.m in Sources */,
-				2756EE33162F73D000E76B50 /* IAHTTPRouter.m in Sources */,
+				2756EE33162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */,
 				2756EE3A162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -928,7 +929,7 @@
 				2756EE21162F689800E76B50 /* IARequest+RouteRequest.m in Sources */,
 				2756EE28162F6E2200E76B50 /* IAResponse+Image.m in Sources */,
 				2756EE2E162F6E6500E76B50 /* IAResponse+Generic.m in Sources */,
-				2756EE34162F73D000E76B50 /* IAHTTPRouter.m in Sources */,
+				2756EE34162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */,
 				2756EE3B162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

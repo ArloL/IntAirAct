@@ -14,6 +14,10 @@
 #import "IALogging.h"
 #import "IARouteRequest+BodyAsString.h"
 #import "IARouteResponse+Serializer.h"
+#import "IAServer.h"
+#import "IARoute.h"
+#import "IAResponse.h"
+#import "IARoutingHTTPServerAdapter.h"
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
@@ -25,9 +29,10 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @property (nonatomic, strong) NSMutableDictionary * deviceDictionary;
 @property (nonatomic, strong) NSNetServiceBrowser * netServiceBrowser;
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
-@property (nonatomic) BOOL serverIsSetup;
 @property (nonatomic) dispatch_queue_t serverQueue;
 @property (strong) NSMutableSet * services;
+@property (strong) NSObject<IAServer> * server;
+@property (strong) RoutingHTTPServer * httpServer;
 
 -(void)startBonjour;
 -(void)stopBonjour;
@@ -39,36 +44,34 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 @implementation IAIntAirAct
 
-@synthesize client = _client;
-@synthesize defaultMimeType = _defaultMimeType;
 @synthesize isRunning = _isRunning;
-@synthesize server = _server;
-@synthesize httpServer = _httpServer;
 @synthesize ownDevice = _ownDevice;
 
--(id)init
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"-init is not a valid initializer for the class IAIntAirAct" userInfo:nil];
+    }
+    return self;
+}
+
+-(id)initWithServer:(NSObject<IAServer> *)server
 {
     self = [super init];
     if (self) {
         IALogTrace();
         
         _capabilities = [NSMutableSet new];
-        _client = YES;
-        _defaultMimeType = RKMIMETypeJSON;
         _isRunning = NO;
         _objectMappingProvider = [RKObjectMappingProvider new];
         _router = [RKObjectRouter new];
-        _server = YES;
-        _txtRecordDictionary = [NSMutableDictionary new];
         
         _clientQueue = dispatch_queue_create("IntAirActClient", NULL);
         _deviceDictionary = [NSMutableDictionary new];
-        _serverIsSetup = NO;
         _objectManagers = [NSMutableDictionary new];
         _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
         _services = [NSMutableSet new];
-        
-        _port = 0;
         
         [self setupMappingsAndRoutes];
         
@@ -120,18 +123,14 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }
     
     dispatch_sync(_serverQueue, ^{ @autoreleasepool {
-        
-        if(_server) {
-            [self setupServer];
-            success = [_httpServer start:&err];
-        }
+        success = [_server start:&err];
         
         if (success) {
-            IALogInfo3(@"Started IntAirActServer.");
+            IALogInfo3(@"Started IntAirAct.");
             [self startBonjour];
             _isRunning = YES;
         } else {
-            IALogError(@"%@[%p]: Failed to start IntAirActServer: %@", THIS_FILE, self, err);
+            IALogError(@"%@[%p]: Failed to start IntAirAct: %@", THIS_FILE, self, err);
         }
 	}});
 	
@@ -147,7 +146,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     IALogTrace();
     
     dispatch_sync(_serverQueue, ^{ @autoreleasepool {
-        [_httpServer stop];
         [_netServiceBrowser stop];
         [_services removeAllObjects];
         [_deviceDictionary removeAllObjects];
@@ -168,66 +166,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 	});
 	
 	return result;
-}
-
--(BOOL)server
-{
-    __block BOOL result;
-	
-	dispatch_sync(_serverQueue, ^{
-		result = _server;
-	});
-	
-	return result;
-}
-
--(void)setServer:(BOOL)value
-{
-    IALogTrace();
-    
-    dispatch_async(_serverQueue, ^{
-        _server = value;
-    });
-}
-
--(BOOL)client
-{
-    __block BOOL result;
-	
-	dispatch_sync(_serverQueue, ^{
-		result = _client;
-	});
-	
-	return result;
-}
-
--(void)setClient:(BOOL)value
-{
-    IALogTrace();
-    
-    dispatch_async(_serverQueue, ^{
-        _client = value;
-    });
-}
-
--(NSString *)defaultMimeType
-{
-    __block NSString * result;
-	
-	dispatch_sync(_serverQueue, ^{
-		result = _defaultMimeType;
-	});
-	
-	return result;
-}
-
--(void)setDefaultMimeType:(NSString *)value
-{
-    IALogTrace();
-    
-    dispatch_async(_serverQueue, ^{
-        _defaultMimeType = value;
-    });
 }
 
 -(void)startBonjour
@@ -450,7 +388,7 @@ static NSThread *bonjourThread;
         } else if ([data isKindOfClass:[NSString class]]) {
             bodyAsString = data;
         }
-        id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:self.defaultMimeType];
+        id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:@"application/json"];
         parsedData = [parser objectFromString:bodyAsString error:&error];
     } else {
         parsedData = data;
@@ -544,39 +482,6 @@ static NSThread *bonjourThread;
     [_router routeClass:[IAAction class] toResourcePath:@"/action/:action" forMethod:RKRequestMethodPUT];
 }
 
--(void)setupServer
-{
-    if(_serverIsSetup) {
-        return;
-    }
-
-    [_txtRecordDictionary setObject:@"1" forKey:@"version"];
-    
-    if(!_httpServer) {
-        _httpServer = [RoutingHTTPServer new];
-    }
-    
-    // Tell the server to broadcast its presence via ZeroConf.
-    [_httpServer setType:@"_intairact._tcp."];
-    
-    // Normally there's no need to run our server on any specific port.
-    // Technologies like ZeroConf allow clients to dynamically discover the server's port at runtime.
-    // However, for easy testing you may want force a certain port so you can just hit the refresh button.
-    [_httpServer setPort:_port];
-    
-    [_httpServer setTXTRecordDictionary:_txtRecordDictionary];
-    
-    [_httpServer setDefaultHeader:@"Content-Type" value:_defaultMimeType];
-    
-    [_httpServer get:@"/capabilities" withBlock:^(RouteRequest *request, RouteResponse *response) {
-        IALogTrace3(@"GET /capabilities");
-        
-        [response respondWith:self.capabilities withIntAirAct:self];
-    }];
-    
-    _serverIsSetup = YES;
-}
-
 -(RKObjectManager *)objectManagerForDevice:(IADevice *)device
 {
     IALogTrace();
@@ -594,8 +499,8 @@ static NSThread *bonjourThread;
         manager = [[RKObjectManager alloc] initWithBaseURL:[RKURL URLWithBaseURLString:hostAndPort]];
         
         // Ask for & generate JSON
-        manager.acceptMIMEType = _defaultMimeType;
-        manager.serializationMIMEType = _defaultMimeType;
+        manager.acceptMIMEType = @"application/json";
+        manager.serializationMIMEType = @"application/json";
         
         manager.mappingProvider = _objectMappingProvider;
         
@@ -612,20 +517,6 @@ static NSThread *bonjourThread;
 {
     IALogTrace();
     return [manager.router resourcePathForObject:resource method:RKRequestMethodPUT];
-}
-
--(RoutingHTTPServer *)httpServer
-{
-    __block RoutingHTTPServer * result;
-	
-	dispatch_sync(_serverQueue, ^{
-        if(!_httpServer) {
-            _httpServer = [RoutingHTTPServer new];
-        }
-        result = _httpServer;
-	});
-	
-	return result;
 }
 
 -(RKObjectSerializer *)serializerForObject:(id)object
@@ -698,9 +589,19 @@ static NSThread *bonjourThread;
     return NO;
 }
 
+-(void)setPort:(NSInteger)port
+{
+    self.server.port = port;
+}
+
+-(NSInteger)port
+{
+    return self.server.port;
+}
+
 -(BOOL)route:(IARoute *)route withHandler:(IARequestHandler)block
 {
-    return YES;
+    return [self.server route:route withHandler:block];
 }
 
 @end
