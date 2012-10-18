@@ -1,7 +1,5 @@
 @interface IAResponse : NSObject
 
-#warning these are global. this could create conflicts with other devs
-
 #define OK @200
 #define CREATED @201
 
