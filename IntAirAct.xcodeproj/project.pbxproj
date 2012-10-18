@@ -52,6 +52,52 @@
 		274A48C915508DB9000DFAF9 /* IADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48C215508DB9000DFAF9 /* IADevice.m */; };
 		274A48CA15508DB9000DFAF9 /* IADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48C215508DB9000DFAF9 /* IADevice.m */; };
 		274A48F415508F1B000DFAF9 /* IntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48A715508D97000DFAF9 /* IntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDE3162F568F00E76B50 /* IARoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDE1162F568F00E76B50 /* IARoute.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDE4162F568F00E76B50 /* IARoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDE1162F568F00E76B50 /* IARoute.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDE5162F568F00E76B50 /* IARoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDE2162F568F00E76B50 /* IARoute.m */; };
+		2756EDE6162F568F00E76B50 /* IARoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDE2162F568F00E76B50 /* IARoute.m */; };
+		2756EDEC162F5DC600E76B50 /* IARouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDEA162F5DC600E76B50 /* IARouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDED162F5DC600E76B50 /* IARouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDEA162F5DC600E76B50 /* IARouter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDF2162F60AC00E76B50 /* IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDF0162F60AC00E76B50 /* IAResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDF3162F60AC00E76B50 /* IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDF0162F60AC00E76B50 /* IAResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDF4162F60AC00E76B50 /* IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDF1162F60AC00E76B50 /* IAResponse.m */; };
+		2756EDF5162F60AC00E76B50 /* IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDF1162F60AC00E76B50 /* IAResponse.m */; };
+		2756EDF8162F60C200E76B50 /* IARequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDF6162F60C200E76B50 /* IARequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDF9162F60C200E76B50 /* IARequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDF6162F60C200E76B50 /* IARequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EDFA162F60C200E76B50 /* IARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDF7162F60C200E76B50 /* IARequest.m */; };
+		2756EDFB162F60C200E76B50 /* IARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDF7162F60C200E76B50 /* IARequest.m */; };
+		2756EDFF162F669800E76B50 /* IARequest+Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDFD162F669800E76B50 /* IARequest+Image.h */; };
+		2756EE00162F669800E76B50 /* IARequest+Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDFD162F669800E76B50 /* IARequest+Image.h */; };
+		2756EE01162F669800E76B50 /* IARequest+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDFE162F669800E76B50 /* IARequest+Image.m */; };
+		2756EE02162F669800E76B50 /* IARequest+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDFE162F669800E76B50 /* IARequest+Image.m */; };
+		2756EE05162F66F000E76B50 /* IARequest+Video.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE03162F66F000E76B50 /* IARequest+Video.h */; };
+		2756EE06162F66F000E76B50 /* IARequest+Video.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE03162F66F000E76B50 /* IARequest+Video.h */; };
+		2756EE07162F66F000E76B50 /* IARequest+Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE04162F66F000E76B50 /* IARequest+Video.m */; };
+		2756EE08162F66F000E76B50 /* IARequest+Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE04162F66F000E76B50 /* IARequest+Video.m */; };
+		2756EE0C162F672B00E76B50 /* IARequest+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE0A162F672B00E76B50 /* IARequest+JSON.h */; };
+		2756EE0D162F672B00E76B50 /* IARequest+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE0A162F672B00E76B50 /* IARequest+JSON.h */; };
+		2756EE0E162F672B00E76B50 /* IARequest+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE0B162F672B00E76B50 /* IARequest+JSON.m */; };
+		2756EE0F162F672B00E76B50 /* IARequest+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE0B162F672B00E76B50 /* IARequest+JSON.m */; };
+		2756EE1E162F689800E76B50 /* IARequest+RouteRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE1C162F689800E76B50 /* IARequest+RouteRequest.h */; };
+		2756EE1F162F689800E76B50 /* IARequest+RouteRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE1C162F689800E76B50 /* IARequest+RouteRequest.h */; };
+		2756EE20162F689800E76B50 /* IARequest+RouteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE1D162F689800E76B50 /* IARequest+RouteRequest.m */; };
+		2756EE21162F689800E76B50 /* IARequest+RouteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE1D162F689800E76B50 /* IARequest+RouteRequest.m */; };
+		2756EE25162F6E2200E76B50 /* IAResponse+Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE23162F6E2200E76B50 /* IAResponse+Image.h */; };
+		2756EE26162F6E2200E76B50 /* IAResponse+Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE23162F6E2200E76B50 /* IAResponse+Image.h */; };
+		2756EE27162F6E2200E76B50 /* IAResponse+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE24162F6E2200E76B50 /* IAResponse+Image.m */; };
+		2756EE28162F6E2200E76B50 /* IAResponse+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE24162F6E2200E76B50 /* IAResponse+Image.m */; };
+		2756EE2B162F6E6500E76B50 /* IAResponse+Generic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE29162F6E6500E76B50 /* IAResponse+Generic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EE2C162F6E6500E76B50 /* IAResponse+Generic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE29162F6E6500E76B50 /* IAResponse+Generic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2756EE2D162F6E6500E76B50 /* IAResponse+Generic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */; };
+		2756EE2E162F6E6500E76B50 /* IAResponse+Generic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */; };
+		2756EE31162F73D000E76B50 /* IAHTTPRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE2F162F73CF00E76B50 /* IAHTTPRouter.h */; };
+		2756EE32162F73D000E76B50 /* IAHTTPRouter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE2F162F73CF00E76B50 /* IAHTTPRouter.h */; };
+		2756EE33162F73D000E76B50 /* IAHTTPRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE30162F73D000E76B50 /* IAHTTPRouter.m */; };
+		2756EE34162F73D000E76B50 /* IAHTTPRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE30162F73D000E76B50 /* IAHTTPRouter.m */; };
+		2756EE38162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */; };
+		2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */; };
+		2756EE3A162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */; };
+		2756EE3B162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */; };
 		2762B949155B2BDD0042EECC /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762B948155B2BDD0042EECC /* IANumber.m */; };
 		2762B94A155B2BDD0042EECC /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762B948155B2BDD0042EECC /* IANumber.m */; };
 		27652085162DB7D5008EA1C7 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 27652083162DB7D5008EA1C7 /* License.txt */; };
@@ -227,6 +273,29 @@
 		274A48CC15508DEB000DFAF9 /* IntAirActTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntAirActTests.m; path = IntAirActTests/IntAirActTests.m; sourceTree = "<group>"; };
 		274A48D115508DFD000DFAF9 /* IntAirAct-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IntAirAct-Info.plist"; sourceTree = SOURCE_ROOT; };
 		274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IntAirAct-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		2756EDE1162F568F00E76B50 /* IARoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARoute.h; sourceTree = "<group>"; };
+		2756EDE2162F568F00E76B50 /* IARoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARoute.m; sourceTree = "<group>"; };
+		2756EDEA162F5DC600E76B50 /* IARouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARouter.h; sourceTree = "<group>"; };
+		2756EDF0162F60AC00E76B50 /* IAResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAResponse.h; sourceTree = "<group>"; };
+		2756EDF1162F60AC00E76B50 /* IAResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAResponse.m; sourceTree = "<group>"; };
+		2756EDF6162F60C200E76B50 /* IARequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARequest.h; sourceTree = "<group>"; };
+		2756EDF7162F60C200E76B50 /* IARequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARequest.m; sourceTree = "<group>"; };
+		2756EDFD162F669800E76B50 /* IARequest+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARequest+Image.h"; sourceTree = "<group>"; };
+		2756EDFE162F669800E76B50 /* IARequest+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARequest+Image.m"; sourceTree = "<group>"; };
+		2756EE03162F66F000E76B50 /* IARequest+Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARequest+Video.h"; sourceTree = "<group>"; };
+		2756EE04162F66F000E76B50 /* IARequest+Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARequest+Video.m"; sourceTree = "<group>"; };
+		2756EE0A162F672B00E76B50 /* IARequest+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARequest+JSON.h"; sourceTree = "<group>"; };
+		2756EE0B162F672B00E76B50 /* IARequest+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARequest+JSON.m"; sourceTree = "<group>"; };
+		2756EE1C162F689800E76B50 /* IARequest+RouteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARequest+RouteRequest.h"; sourceTree = "<group>"; };
+		2756EE1D162F689800E76B50 /* IARequest+RouteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARequest+RouteRequest.m"; sourceTree = "<group>"; };
+		2756EE23162F6E2200E76B50 /* IAResponse+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IAResponse+Image.h"; sourceTree = "<group>"; };
+		2756EE24162F6E2200E76B50 /* IAResponse+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IAResponse+Image.m"; sourceTree = "<group>"; };
+		2756EE29162F6E6500E76B50 /* IAResponse+Generic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IAResponse+Generic.h"; sourceTree = "<group>"; };
+		2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IAResponse+Generic.m"; sourceTree = "<group>"; };
+		2756EE2F162F73CF00E76B50 /* IAHTTPRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAHTTPRouter.h; sourceTree = "<group>"; };
+		2756EE30162F73D000E76B50 /* IAHTTPRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAHTTPRouter.m; sourceTree = "<group>"; };
+		2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RouteResponse+IAResponse.h"; sourceTree = "<group>"; };
+		2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RouteResponse+IAResponse.m"; sourceTree = "<group>"; };
 		2762B947155B2BDD0042EECC /* IANumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IANumber.h; path = IntAirActTests/IANumber.h; sourceTree = "<group>"; };
 		2762B948155B2BDD0042EECC /* IANumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IANumber.m; path = IntAirActTests/IANumber.m; sourceTree = "<group>"; };
 		27652083162DB7D5008EA1C7 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
@@ -312,6 +381,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2756EDFC162F667C00E76B50 /* Request Deserialization */ = {
+			isa = PBXGroup;
+			children = (
+				2756EDFD162F669800E76B50 /* IARequest+Image.h */,
+				2756EDFE162F669800E76B50 /* IARequest+Image.m */,
+				2756EE03162F66F000E76B50 /* IARequest+Video.h */,
+				2756EE04162F66F000E76B50 /* IARequest+Video.m */,
+				2756EE0A162F672B00E76B50 /* IARequest+JSON.h */,
+				2756EE0B162F672B00E76B50 /* IARequest+JSON.m */,
+			);
+			name = "Request Deserialization";
+			sourceTree = "<group>";
+		};
+		2756EE22162F6D9500E76B50 /* Response Serialization */ = {
+			isa = PBXGroup;
+			children = (
+				2756EE23162F6E2200E76B50 /* IAResponse+Image.h */,
+				2756EE24162F6E2200E76B50 /* IAResponse+Image.m */,
+				2756EE29162F6E6500E76B50 /* IAResponse+Generic.h */,
+				2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */,
+			);
+			name = "Response Serialization";
+			sourceTree = "<group>";
+		};
+		2756EE35162F77E100E76B50 /* RoutingHTTPServer */ = {
+			isa = PBXGroup;
+			children = (
+				2756EE2F162F73CF00E76B50 /* IAHTTPRouter.h */,
+				2756EE30162F73D000E76B50 /* IAHTTPRouter.m */,
+				2756EE1C162F689800E76B50 /* IARequest+RouteRequest.h */,
+				2756EE1D162F689800E76B50 /* IARequest+RouteRequest.m */,
+				2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */,
+				2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */,
+			);
+			name = RoutingHTTPServer;
+			sourceTree = "<group>";
+		};
 		27652082162DB7B6008EA1C7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,12 +490,14 @@
 		277E5531154A42AF002F307D /* IntAirAct */ = {
 			isa = PBXGroup;
 			children = (
+				2756EE35162F77E100E76B50 /* RoutingHTTPServer */,
 				27EF3391154A9CE8003D7F41 /* Server */,
 				27EF3390154A9CE2003D7F41 /* Shared */,
 				27EF338F154A9CD3003D7F41 /* Model */,
 				274A48B615508DAC000DFAF9 /* IAIntAirAct.h */,
 				274A48B715508DAC000DFAF9 /* IAIntAirAct.m */,
 				274A48A715508D97000DFAF9 /* IntAirAct.h */,
+				2756EDEA162F5DC600E76B50 /* IARouter.h */,
 			);
 			path = IntAirAct;
 			sourceTree = "<group>";
@@ -416,12 +524,20 @@
 		27EF338F154A9CD3003D7F41 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2756EE22162F6D9500E76B50 /* Response Serialization */,
+				2756EDFC162F667C00E76B50 /* Request Deserialization */,
 				274A48BF15508DB9000DFAF9 /* IAAction.h */,
 				274A48C015508DB9000DFAF9 /* IAAction.m */,
 				276ED16C1556541500C4702F /* IACapability.h */,
 				276ED16D1556541500C4702F /* IACapability.m */,
 				274A48C115508DB9000DFAF9 /* IADevice.h */,
 				274A48C215508DB9000DFAF9 /* IADevice.m */,
+				2756EDE1162F568F00E76B50 /* IARoute.h */,
+				2756EDE2162F568F00E76B50 /* IARoute.m */,
+				2756EDF0162F60AC00E76B50 /* IAResponse.h */,
+				2756EDF1162F60AC00E76B50 /* IAResponse.m */,
+				2756EDF6162F60C200E76B50 /* IARequest.h */,
+				2756EDF7162F60C200E76B50 /* IARequest.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -470,7 +586,19 @@
 				274A48BD15508DAC000DFAF9 /* IALogging.h in Headers */,
 				274A48C315508DB9000DFAF9 /* IAAction.h in Headers */,
 				274A48C715508DB9000DFAF9 /* IADevice.h in Headers */,
+				2756EDE3162F568F00E76B50 /* IARoute.h in Headers */,
 				274A48F415508F1B000DFAF9 /* IntAirAct.h in Headers */,
+				2756EDEC162F5DC600E76B50 /* IARouter.h in Headers */,
+				2756EDF2162F60AC00E76B50 /* IAResponse.h in Headers */,
+				2756EDF8162F60C200E76B50 /* IARequest.h in Headers */,
+				2756EDFF162F669800E76B50 /* IARequest+Image.h in Headers */,
+				2756EE05162F66F000E76B50 /* IARequest+Video.h in Headers */,
+				2756EE0C162F672B00E76B50 /* IARequest+JSON.h in Headers */,
+				2756EE1E162F689800E76B50 /* IARequest+RouteRequest.h in Headers */,
+				2756EE25162F6E2200E76B50 /* IAResponse+Image.h in Headers */,
+				2756EE2B162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
+				2756EE31162F73D000E76B50 /* IAHTTPRouter.h in Headers */,
+				2756EE38162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,8 +612,20 @@
 				274A48BA15508DAC000DFAF9 /* IAIntAirAct.h in Headers */,
 				274A48BE15508DAC000DFAF9 /* IALogging.h in Headers */,
 				274A48C415508DB9000DFAF9 /* IAAction.h in Headers */,
+				2756EDE4162F568F00E76B50 /* IARoute.h in Headers */,
 				276ED16F1556541500C4702F /* IACapability.h in Headers */,
 				274A48C815508DB9000DFAF9 /* IADevice.h in Headers */,
+				2756EDED162F5DC600E76B50 /* IARouter.h in Headers */,
+				2756EDF3162F60AC00E76B50 /* IAResponse.h in Headers */,
+				2756EDF9162F60C200E76B50 /* IARequest.h in Headers */,
+				2756EE00162F669800E76B50 /* IARequest+Image.h in Headers */,
+				2756EE06162F66F000E76B50 /* IARequest+Video.h in Headers */,
+				2756EE0D162F672B00E76B50 /* IARequest+JSON.h in Headers */,
+				2756EE1F162F689800E76B50 /* IARequest+RouteRequest.h in Headers */,
+				2756EE26162F6E2200E76B50 /* IAResponse+Image.h in Headers */,
+				2756EE2C162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
+				2756EE32162F73D000E76B50 /* IAHTTPRouter.h in Headers */,
+				2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,6 +889,17 @@
 				274A48C515508DB9000DFAF9 /* IAAction.m in Sources */,
 				274A48C915508DB9000DFAF9 /* IADevice.m in Sources */,
 				276ED1701556541500C4702F /* IACapability.m in Sources */,
+				2756EDE5162F568F00E76B50 /* IARoute.m in Sources */,
+				2756EDF4162F60AC00E76B50 /* IAResponse.m in Sources */,
+				2756EDFA162F60C200E76B50 /* IARequest.m in Sources */,
+				2756EE01162F669800E76B50 /* IARequest+Image.m in Sources */,
+				2756EE07162F66F000E76B50 /* IARequest+Video.m in Sources */,
+				2756EE0E162F672B00E76B50 /* IARequest+JSON.m in Sources */,
+				2756EE20162F689800E76B50 /* IARequest+RouteRequest.m in Sources */,
+				2756EE27162F6E2200E76B50 /* IAResponse+Image.m in Sources */,
+				2756EE2D162F6E6500E76B50 /* IAResponse+Generic.m in Sources */,
+				2756EE33162F73D000E76B50 /* IAHTTPRouter.m in Sources */,
+				2756EE3A162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,6 +913,17 @@
 				274A48C615508DB9000DFAF9 /* IAAction.m in Sources */,
 				274A48CA15508DB9000DFAF9 /* IADevice.m in Sources */,
 				276ED1711556541500C4702F /* IACapability.m in Sources */,
+				2756EDE6162F568F00E76B50 /* IARoute.m in Sources */,
+				2756EDF5162F60AC00E76B50 /* IAResponse.m in Sources */,
+				2756EDFB162F60C200E76B50 /* IARequest.m in Sources */,
+				2756EE02162F669800E76B50 /* IARequest+Image.m in Sources */,
+				2756EE08162F66F000E76B50 /* IARequest+Video.m in Sources */,
+				2756EE0F162F672B00E76B50 /* IARequest+JSON.m in Sources */,
+				2756EE21162F689800E76B50 /* IARequest+RouteRequest.m in Sources */,
+				2756EE28162F6E2200E76B50 /* IAResponse+Image.m in Sources */,
+				2756EE2E162F6E6500E76B50 /* IAResponse+Generic.m in Sources */,
+				2756EE34162F73D000E76B50 /* IAHTTPRouter.m in Sources */,
+				2756EE3B162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
