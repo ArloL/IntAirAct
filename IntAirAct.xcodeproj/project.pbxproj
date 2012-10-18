@@ -504,6 +504,7 @@
 				2756EDEA162F5DC600E76B50 /* IARouter.h */,
 				27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */,
 				2756EDEA162F5DC600E76B50 /* IAServer.h */,
+				27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */,
 			);
 			path = IntAirAct;
 			sourceTree = "<group>";
