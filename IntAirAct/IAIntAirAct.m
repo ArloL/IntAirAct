@@ -702,4 +702,9 @@ static NSThread *bonjourThread;
     return NO;
 }
 
+-(BOOL)route:(IARoute *)route withHandler:(IARequestHandler)block
+{
+    return YES;
+}
+
 @end

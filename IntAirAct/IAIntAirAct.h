@@ -1,3 +1,5 @@
+#import "IARouter.h"
+
 @class RKObjectLoader;
 @class RKObjectManager;
 @class RKObjectMappingProvider;
@@ -9,6 +11,9 @@
 @class IAAction;
 @class IACapability;
 @class IADevice;
+@class IARoute;
+@class IARequest;
+@class IAResponse;
 
 static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
 
@@ -182,5 +187,7 @@ static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
  @return An RKObjectSerializer for the specified object.
  */
 -(RKObjectSerializer *)serializerForObject:(id)object;
+
+-(BOOL)route:(IARoute*)route withHandler:(IARequestHandler)block;
 
 @end
