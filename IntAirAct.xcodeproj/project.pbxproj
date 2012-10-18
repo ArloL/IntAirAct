@@ -122,6 +122,8 @@
 		2793655B15568D3500513FD1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655A15568D3500513FD1 /* SystemConfiguration.framework */; };
 		2793655D15568D4100513FD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655C15568D4100513FD1 /* CoreGraphics.framework */; };
 		2793658415568D8200513FD1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793658315568D8200513FD1 /* QuartzCore.framework */; };
+		27A1B9B0163068CD00BCFB39 /* NSObject+SubscriptingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */; };
+		27A1B9B1163068CD00BCFB39 /* NSObject+SubscriptingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */; };
 		27A8ABDD15568861001104E9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A8ABDC15568861001104E9 /* AppKit.framework */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
@@ -317,6 +319,7 @@
 		2793655A15568D3500513FD1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2793655C15568D4100513FD1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2793658315568D8200513FD1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SubscriptingSupport.h"; sourceTree = "<group>"; };
 		27A8ABDC15568861001104E9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
 		27EF339A154A9E3E003D7F41 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -498,6 +501,7 @@
 				274A48B715508DAC000DFAF9 /* IAIntAirAct.m */,
 				274A48A715508D97000DFAF9 /* IntAirAct.h */,
 				2756EDEA162F5DC600E76B50 /* IARouter.h */,
+				27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */,
 			);
 			path = IntAirAct;
 			sourceTree = "<group>";
@@ -599,6 +603,7 @@
 				2756EE2B162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
 				2756EE31162F73D000E76B50 /* IAHTTPRouter.h in Headers */,
 				2756EE38162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
+				27A1B9B0163068CD00BCFB39 /* NSObject+SubscriptingSupport.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +631,7 @@
 				2756EE2C162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
 				2756EE32162F73D000E76B50 /* IAHTTPRouter.h in Headers */,
 				2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
+				27A1B9B1163068CD00BCFB39 /* NSObject+SubscriptingSupport.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

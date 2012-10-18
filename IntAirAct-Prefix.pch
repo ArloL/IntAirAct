@@ -11,3 +11,5 @@
 #else
 #define FMTNSINT "i"
 #endif
+
+#import "NSObject+SubscriptingSupport.h"
