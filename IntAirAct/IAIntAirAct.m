@@ -316,26 +316,22 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 -(void)netServiceDidResolveAddress:(NSNetService *)sender
 {
 	IALogTrace2(@"%@[%p]: Bonjour Service resolved: %@:%"FMTNSINT, THIS_FILE, self, [sender hostName], [sender port]);
-
-    __block IADevice * device = [IADevice new];
-    device.name = sender.name;
-    device.host = sender.hostName;
-    device.port = sender.port;
     
-    if ([self.httpServer.publishedName isEqualToString:device.name]) {
+    if ([self.httpServer.publishedName isEqualToString:sender.name]) {
         IALogTrace3(@"Found own device");
-        device.capabilities = self.capabilities;
+        IADevice * device = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:self.capabilities];
         _ownDevice = device;
         [_deviceDictionary setObject:device forKey:device.name];
         [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
     } else {
         IALogTrace3(@"Found other device");
+        IADevice * device = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:nil];
         [[self objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(NSArray * objects, NSError * error) {
             if (error) {
                 IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, self, device, error);
             } else {
-                device.capabilities = [NSSet setWithArray:objects];
-                [_deviceDictionary setObject:device forKey:device.name];
+                IADevice * dev = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:[NSSet setWithArray:objects]];
+                [_deviceDictionary setObject:dev forKey:dev.name];
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
             }
