@@ -26,9 +26,9 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 
 @implementation SDServiceDiscovery
 
-+(id)new
+- (id)init
 {
-    return [[self alloc] initWithQueue:dispatch_queue_create("SDServiceDiscovery", NULL)];
+    return [self initWithQueue:nil];
 }
 
 - (id)initWithQueue:(dispatch_queue_t)queue
