@@ -1,3 +1,7 @@
+static NSString * const SDServiceDiscoveryError = @"SDServiceDiscoveryError";
+static NSString * const SDServiceFound = @"SDServiceFound";
+static NSString * const SDServiceLost = @"SDServiceLost";
+
 @interface SDServiceDiscovery : NSObject<NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 
 -(id)initWithQueue:(dispatch_queue_t)queue;
