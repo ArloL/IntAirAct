@@ -448,22 +448,14 @@
 		2768898F1630E6E600CE03B4 /* ServiceDiscovery */ = {
 			isa = PBXGroup;
 			children = (
-				2768899F1630F29200CE03B4 /* NSNotificationCenter */,
 				27A1BA8D16308F8A00BCFB39 /* SDServiceDiscovery.h */,
 				27A1BA8E16308F8A00BCFB39 /* SDServiceDiscovery.m */,
 				276889931630E6FD00CE03B4 /* SDService.h */,
 				276889941630E6FD00CE03B4 /* SDService.m */,
-			);
-			name = ServiceDiscovery;
-			sourceTree = "<group>";
-		};
-		2768899F1630F29200CE03B4 /* NSNotificationCenter */ = {
-			isa = PBXGroup;
-			children = (
 				276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */,
 				2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */,
 			);
-			name = NSNotificationCenter;
+			name = ServiceDiscovery;
 			sourceTree = "<group>";
 		};
 		276C19F0162CA382002C8285 /* Products */ = {
