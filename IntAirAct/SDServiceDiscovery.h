@@ -1,6 +1,6 @@
-static NSString * const SDServiceDiscoveryError = @"SDServiceDiscoveryError";
-static NSString * const SDServiceFound = @"SDServiceFound";
-static NSString * const SDServiceLost = @"SDServiceLost";
+extern NSString * SDServiceDiscoveryError;
+extern NSString * SDServiceFound;
+extern NSString * SDServiceLost;
 
 @interface SDServiceDiscovery : NSObject<NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 
