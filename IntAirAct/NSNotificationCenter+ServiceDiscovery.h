@@ -3,7 +3,7 @@
 typedef void (^SDServiceHandler)(SDService * service);
 typedef void (^SDErrorHandler)(NSDictionary * service);
 
-@interface NSNotificationCenter (ServiceFound)
+@interface NSNotificationCenter (ServiceDiscovery)
 
 +(id)addHandlerForServiceFound:(SDServiceHandler)handler;
 +(id)addHandlerForServiceLost:(SDServiceHandler)handler;

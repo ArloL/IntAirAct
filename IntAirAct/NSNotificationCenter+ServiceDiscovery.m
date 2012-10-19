@@ -2,7 +2,7 @@
 
 #import "SDServiceDiscovery.h"
 
-@implementation NSNotificationCenter (ServiceFound)
+@implementation NSNotificationCenter (ServiceDiscovery)
 
 +(id)addHandlerForServiceFound:(SDServiceHandler)handler
 {
