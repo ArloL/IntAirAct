@@ -13,7 +13,7 @@ NSString * SDServiceLost = @"SDServiceLost";
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
-static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; // | IA_LOG_FLAG_TRACE
+static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 @interface SDServiceDiscovery ()
 
