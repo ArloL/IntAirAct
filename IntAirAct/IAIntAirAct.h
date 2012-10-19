@@ -14,7 +14,8 @@
 @class IARequest;
 @class IAResponse;
 
-static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
+extern NSString * IADeviceFound;
+extern NSString * IADeviceLost;
 
 @interface IAIntAirAct : NSObject
 

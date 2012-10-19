@@ -20,6 +20,9 @@
 #import "IAResponse.h"
 #import "IARoutingHTTPServerAdapter.h"
 
+NSString * IADeviceFound = @"IADeviceFound";
+NSString * IADeviceLost = @"IADeviceLost";
+
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
 static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
@@ -122,7 +125,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         [self.serviceDiscovery stop];
         [_deviceDictionary removeAllObjects];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:nil];
         });
         _ownDevice = nil;
         _isRunning = NO;
@@ -249,13 +252,10 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(void)setup
 {
-    [NSNotificationCenter addHandlerForServiceFound:^(SDService *sender) {
-        if ([self.httpServer.publishedName isEqualToString:sender.name]) {
+    [NSNotificationCenter addHandlerForServiceFound:^(SDService *sender, BOOL ownDevice) {
+        if (ownDevice) {
             IALogTrace3(@"Found own device");
-            IADevice * device = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:self.capabilities];
-            _ownDevice = device;
-            [_deviceDictionary setObject:device forKey:device.name];
-            [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
+            _ownDevice = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:self.capabilities];
         } else {
             IALogTrace3(@"Found other device");
             IADevice * device = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:nil];
@@ -266,15 +266,16 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
                     IADevice * dev = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:[NSSet setWithArray:objects]];
                     [_deviceDictionary setObject:dev forKey:dev.name];
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:self];
                 }
             }];
         }
     }];
     
     [NSNotificationCenter addHandlerForServiceLost:^(SDService *service) {
+        IADevice * dev = [_deviceDictionary objectForKey:service.name]
         [_deviceDictionary removeObjectForKey:service.name];
-        [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:self];
     }];
     
     #if TARGET_OS_IPHONE
