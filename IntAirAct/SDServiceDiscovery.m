@@ -77,7 +77,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 
 -(void)searchForServicesOfType:(NSString *)type
 {
-    return [self searchForServicesOfType:type inDomain:@"local."];
+    return [self searchForServicesOfType:type
+                                inDomain:@"local."];
 }
 
 -(void)searchForServicesOfType:(NSString*)type
@@ -124,7 +125,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 
 -(void)stopSearchingForServicesOfType:(NSString *)type
 {
-    [self stopSearchingForServicesOfType:type inDomain:@"local."];
+    [self stopSearchingForServicesOfType:type
+                                inDomain:@"local."];
 }
 
 -(void)stopSearchingForServicesOfType:(NSString*)type
