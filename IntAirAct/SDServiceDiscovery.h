@@ -1,32 +1,42 @@
 @interface SDServiceDiscovery : NSObject<NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 
-@property (strong) NSString * type;
-@property (strong) NSString * domain;
-@property (strong) NSString * name;
-@property NSInteger port;
-@property BOOL autostart;
-
--(void)startSearching;
+-(void)stop;
 -(void)stopSearching;
+-(void)stopPublishing;
 
--(void)startSearchingForType:(NSString*)type
-                    inDomain:(NSString*)domain;
+-(BOOL)searchForServicesOfType:(NSString*)type;
 
--(void)stopSearchingForType:(NSString*)type
+-(BOOL)searchForServicesOfType:(NSString*)type
+                      inDomain:(NSString*)domain;
+
+-(void)stopSearchingForServicesOfType:(NSString*)type;
+
+-(void)stopSearchingForServicesOfType:(NSString*)type
+                             inDomain:(NSString*)domain;
+
+-(void)publishServiceOfType:(NSString*)type
+                     onPort:(int)port;
+
+-(void)publishServiceOfType:(NSString*)type
+                     onPort:(int)port
+                   withName:(NSString*)name;
+
+-(void)publishServiceOfType:(NSString*)type
+                     onPort:(int)port
+                   withName:(NSString*)name
                    inDomain:(NSString*)domain;
 
--(void)stopAllSearches;
+-(void)publishServiceOfType:(NSString*)type
+                     onPort:(int)port
+                   withName:(NSString*)name
+                   inDomain:(NSString*)domain
+                  txtRecord:(NSDictionary*)txtRecord;
 
--(void)publishServiceWithName:(NSString*)name
-                         port:(int)port
-                       ofType:(NSString*)type
-                     inDomain:(NSString*)domain;
+-(void)stopPublishingServiceOfType:(NSString*)type
+                            onPort:(int)port;
 
--(void)stopPublishingServiceWithName:(NSString*)name
-                                port:(int)port
-                              ofType:(NSString*)type
-                            inDomain:(NSString*)domain;
-
--(void)stopPublishingServices;
+-(void)stopPublishingServiceOfType:(NSString*)type
+                            onPort:(int)port
+                          inDomain:(NSString*)domain;
 
 @end

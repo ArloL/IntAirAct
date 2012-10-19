@@ -29,11 +29,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
                                 queue:dispatch_queue_create("SDServiceDiscovery", NULL)];
 }
 
-+(NSString*)keyForType:(NSString*)type andDomain:(NSString*)domain
-{
-    return [NSString stringWithFormat:@"%@.%@", type, domain];
-}
-
 - (id)initWithType:(NSString*)type
             domain:(NSString*)domain
          autostart:(BOOL)autostart
@@ -41,12 +36,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 {
     self = [super init];
     if (self) {
-        _type = type;
-        _domain = domain;
-        _name = @"";
-        _port = 80;
-        _autostart = autostart;
-        
         _netServiceBrowsers = [NSMutableDictionary new];
         _netServices = [NSMutableDictionary new];
         
@@ -60,19 +49,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
         }
         
         _resolvingServices = [NSMutableArray new];
-        
-        #if TARGET_OS_IPHONE
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(applicationWillBecomeActive )
-                                                         name:UIApplicationWillBecomeActiveNotification
-                                                       object:nil];
-        #else
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(applicationWillBecomeActive)
-                                                         name:NSApplicationWillBecomeActiveNotification
-                                                       object:nil];
-        #endif
-
     }
     return self;
 }
@@ -80,9 +56,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 -(void)dealloc
 {
     IALogTrace();
-    
-#warning stop all searches
-#warning remove all publishes
+
     [self stop];
     
     #if NEEDS_DISPATCH_RETAIN_RELEASE
@@ -92,74 +66,55 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
     #endif
 }
 
--(void)applicationWillBecomeActive
-{
-    IALogTrace();
-    if(self.autostart) {
-        [self start];
-    }
-    // this method should only be called on the first run, therefore myself as an observer
-    #if TARGET_OS_IPHONE
-        [[NSNotificationCenter defaultCenter] removeObeserver:self
-                                                         name:UIApplicationWillBecomeActiveNotification
-                                                       object:nil];
-    #else
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:NSApplicationWillBecomeActiveNotification
-                                                      object:nil];
-    #endif
-}
-
--(void)start
-{
-    [self startSearching];
-}
-
 -(void)stop
 {
-    [self stopAllSearches];
+    [self stopSearching];
+    [self stopPublishing];
 }
 
 #pragma mark Searching
 
--(void)startSearching
+-(BOOL)searchForServicesOfType:(NSString *)type
 {
-    [self startSearchingForType:self.type inDomain:self.domain];
+    return [self searchForServicesOfType:type inDomain:@"local."];
 }
 
--(void)startSearchingForType:(NSString*)type inDomain:(NSString*)domain
+-(BOOL)searchForServicesOfType:(NSString*)type
+                      inDomain:(NSString*)domain
 {
     IALogTrace();
     
-    if(self.netServiceBrowsers[[type stringByAppendingString:domain]] != nil) {
+    if(self.netServiceBrowsers[[[self class] keyForType:type domain:domain]] != nil) {
         IALogWarn(@"%@[%p]: Already searching for type %@ in domain %@", THIS_FILE, self, type, domain);
-        return;
+        return NO;
     }
     
     dispatch_async(self.queue, ^{
         NSNetServiceBrowser * netServiceBrowser = [NSNetServiceBrowser new];
         [netServiceBrowser setDelegate:self];
-        NSString * key = [[self class] keyForType:type andDomain:domain];
+        NSString * key = [[self class] keyForType:type domain:domain];
         _netServiceBrowsers[key] = netServiceBrowser;
         
         dispatch_block_t bonjourBlock = ^{
             [netServiceBrowser removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
             [netServiceBrowser scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
             [netServiceBrowser searchForServicesOfType:type inDomain:domain];
-            IALogError(@"%@[%p]: Bonjour search started for type %@ in domain %@", THIS_FILE, self, type, domain);
+            IALogInfo(@"%@[%p]: Bonjour search started for type %@ in domain %@", THIS_FILE, self, type, domain);
         };
         
         [[self class] startBonjourThreadIfNeeded];
         [[self class] performBonjourBlock:bonjourBlock];
     });
+    
+    return YES;
 }
 
--(void)stopAllSearches
+-(void)stopSearching
 {
     IALogTrace();
 	
 	dispatch_sync(self.queue, ^{
-        for(NSNetServiceBrowser * netServiceBrowser in _netServiceBrowsers) {
+        for(NSNetServiceBrowser * netServiceBrowser in [_netServiceBrowsers allValues]) {
             dispatch_block_t bonjourBlock = ^{
                 [netServiceBrowser stop];
             };
@@ -169,19 +124,19 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
     });
 }
 
--(void)stopSearching
+-(void)stopSearchingForServicesOfType:(NSString *)type
 {
-    [self stopSearchingForType:self.type inDomain:self.domain];
+    [self stopSearchingForServicesOfType:type inDomain:@"local."];
 }
 
--(void)stopSearchingForType:(NSString*)type inDomain:(NSString*)domain
+-(void)stopSearchingForServicesOfType:(NSString*)type
+                             inDomain:(NSString*)domain
 {
     IALogTrace();
 	
 	dispatch_sync(self.queue, ^{
-        NSString * key = [[self class] keyForType:type andDomain:domain];
+        NSString * key = [[self class] keyForType:type domain:domain];
         NSNetServiceBrowser * netServiceBrowser = _netServiceBrowsers[key];
-        
         
         if (netServiceBrowser)
         {
@@ -198,30 +153,45 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 
 #pragma mark Publishing
 
--(void)publishServiceWithName:(NSString *)name ofType:(NSString *)type inDomain:(NSString *)domain
+-(void)publishServiceOfType:(NSString*)type
+                     onPort:(int)port
 {
-    
+    [self publishServiceOfType:type onPort:port withName:@""];
 }
 
--(void)stopPublishingServiceWithName:(NSString *)name ofType:(NSString *)type inDomain:(NSString *)domain
+-(void)publishServiceOfType:(NSString*)type
+                     onPort:(int)port
+                   withName:(NSString*)name
 {
-    
+    [self publishServiceOfType:type onPort:port withName:name inDomain:@"local."];
 }
 
-- (void)publishBonjour
+-(void)publishServiceOfType:(NSString*)type
+                     onPort:(int)port
+                   withName:(NSString*)name
+                   inDomain:(NSString*)domain
 {
-	IALogTrace();
+    [self publishServiceOfType:type onPort:port withName:name inDomain:domain txtRecord:nil];
+}
+
+-(void)publishServiceOfType:(NSString*)type
+                     onPort:(int)port
+                   withName:(NSString*)name
+                   inDomain:(NSString*)domain
+                  txtRecord:(NSDictionary*)txtRecord
+{
+    IALogTrace();
 	
 	dispatch_sync(self.queue, ^{
-        NSNetService * netService = [[NSNetService alloc] initWithDomain:_domain type:_type name:_name port:(int)_port];
+        NSNetService * netService = [[NSNetService alloc] initWithDomain:domain type:type name:name port:port];
 		[netService setDelegate:self];
-        NSString * key = [NSString stringWithFormat:@"%@%@%@%"FMTNSINT, _type, _domain, _name, _port];
+        NSString * key = [[self class] keyForType:type domain:domain port:port];
         self.netServices[key] = netService;
 		
 		NSNetService *theNetService = netService;
 		NSData *txtRecordData = nil;
-		//if (txtRecordDictionary)
-		//	txtRecordData = [NSNetService dataFromTXTRecordDictionary:txtRecordDictionary];
+		if (txtRecord)
+            txtRecordData = [NSNetService dataFromTXTRecordDictionary:txtRecord];
 		
 		dispatch_block_t bonjourBlock = ^{
 			
@@ -242,41 +212,44 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
     });
 }
 
-- (void)unpublishBonjour
+-(void)stopPublishing
+{
+    IALogTrace();
+	
+	dispatch_sync(self.queue, ^{
+        for(NSNetService * netService in [_netServices allValues]) {
+            dispatch_block_t bonjourBlock = ^{
+                [netService stop];
+            };
+            [[self class] performBonjourBlock:bonjourBlock];
+        }
+        [_netServices removeAllObjects];
+    });
+}
+
+-(void)stopPublishingServiceOfType:(NSString *)type
+                            onPort:(int)port
+{
+    [self stopPublishingServiceOfType:type onPort:port inDomain:@"local."];
+}
+
+-(void)stopPublishingServiceOfType:(NSString *)type
+                            onPort:(int)port
+                          inDomain:(NSString *)domain
 {
 	IALogTrace();
 	
 	dispatch_sync(self.queue, ^{
-        
-        NSString * key = [NSString stringWithFormat:@"%@%@%@%"FMTNSINT, _type, _domain, _name, _port];
+        NSString * key = [[self class] keyForType:type domain:domain port:port];
         NSNetService * netService = _netServices[key];
-        if (netService)
-        {
-            NSNetService *theNetService = netService;
-		
+        if (netService) {
             dispatch_block_t bonjourBlock = ^{
-                [theNetService stop];
+                [netService stop];
             };
-		
             [[self class] performBonjourBlock:bonjourBlock];
-		
             [_netServices removeObjectForKey:key];
         }
     });
-}
-
-/**
- * Republishes the service via bonjour if the server is running.
- * If the service was not previously published, this method will publish it (if the server is running).
- **/
-- (void)republishBonjour
-{
-	IALogTrace();
-	
-	dispatch_async(self.queue, ^{
-		[self unpublishBonjour];
-		[self publishBonjour];
-	});
 }
 
 #pragma mark Delegate functions of Browser
@@ -404,6 +377,18 @@ static NSThread *bonjourThread;
                  onThread:bonjourThread
                withObject:block
             waitUntilDone:YES];
+}
+
+#pragma mark Methods for creating the keys that store the nsnetservice and browser objects
+
++(NSString*)keyForType:(NSString*)type domain:(NSString*)domain
+{
+    return [NSString stringWithFormat:@"%@.%@", type, domain];
+}
+
++(NSString*)keyForType:(NSString*)type domain:(NSString*)domain port:(int)port
+{
+    return [NSString stringWithFormat:@"%@%@%i", type, domain, port];
 }
 
 @end
