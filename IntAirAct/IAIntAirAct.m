@@ -266,16 +266,16 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
                     IADevice * dev = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:[NSSet setWithArray:objects]];
                     [_deviceDictionary setObject:dev forKey:dev.name];
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:self];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:dev];
                 }
             }];
         }
     }];
     
     [NSNotificationCenter addHandlerForServiceLost:^(SDService *service) {
-        IADevice * dev = [_deviceDictionary objectForKey:service.name]
+        IADevice * dev = [_deviceDictionary objectForKey:service.name];
         [_deviceDictionary removeObjectForKey:service.name];
-        [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:dev];
     }];
     
     #if TARGET_OS_IPHONE
