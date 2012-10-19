@@ -12,7 +12,11 @@
 -(id)addHandlerForServiceFound:(SDServiceHandler)handler
 {
     return [self addObserverForName:SDServiceFound object:nil queue:nil usingBlock:^(NSNotification *note) {
-        handler(note.object);
+        if([note.object isKindOfClass:[SDService class]]) {
+            handler(note.object);
+        } else {
+            handler(nil);
+        }
     }];
 }
 
