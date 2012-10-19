@@ -1,12 +1,14 @@
 @interface SDServiceDiscovery : NSObject<NSNetServiceBrowserDelegate, NSNetServiceDelegate>
 
+-(id)initWithQueue:(dispatch_queue_t)queue;
+
 -(void)stop;
 -(void)stopSearching;
 -(void)stopPublishing;
 
--(BOOL)searchForServicesOfType:(NSString*)type;
+-(void)searchForServicesOfType:(NSString*)type;
 
--(BOOL)searchForServicesOfType:(NSString*)type
+-(void)searchForServicesOfType:(NSString*)type
                       inDomain:(NSString*)domain;
 
 -(void)stopSearchingForServicesOfType:(NSString*)type;

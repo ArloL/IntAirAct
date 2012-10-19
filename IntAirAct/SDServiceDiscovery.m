@@ -23,24 +23,20 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 
 +(id)new
 {
-    return [[self alloc] initWithType:@"_http._tcp"
-                               domain:@"local."
-                            autostart:YES
-                                queue:dispatch_queue_create("SDServiceDiscovery", NULL)];
+    return [[self alloc] initWithQueue:dispatch_queue_create("SDServiceDiscovery", NULL)];
 }
 
-- (id)initWithType:(NSString*)type
-            domain:(NSString*)domain
-         autostart:(BOOL)autostart
-             queue:(dispatch_queue_t)queue
+- (id)initWithQueue:(dispatch_queue_t)queue
 {
     self = [super init];
     if (self) {
         _netServiceBrowsers = [NSMutableDictionary new];
         _netServices = [NSMutableDictionary new];
+        _resolvingServices = [NSMutableArray new];
         
         if(queue) {
             _queue = queue;
+            // we need to retain queues that are handed in in iOS < 6 and OS X < 10.8
             #if NEEDS_DISPATCH_RETAIN_RELEASE
                 dispatch_retain(queue);
             #endif
@@ -48,7 +44,12 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
             _queue = dispatch_queue_create("SDServiceDiscovery", NULL);
         }
         
-        _resolvingServices = [NSMutableArray new];
+        // Automatically stop when the app becomes inactive on iOS
+        #if TARGET_OS_IPHONE
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:UIApplicationWillResignActiveNotification object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:UIApplicationWillTerminateNotification object:nil];
+        #endif
     }
     return self;
 }
@@ -74,12 +75,12 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 
 #pragma mark Searching
 
--(BOOL)searchForServicesOfType:(NSString *)type
+-(void)searchForServicesOfType:(NSString *)type
 {
     return [self searchForServicesOfType:type inDomain:@"local."];
 }
 
--(BOOL)searchForServicesOfType:(NSString*)type
+-(void)searchForServicesOfType:(NSString*)type
                       inDomain:(NSString*)domain
 {
     IALogTrace();
@@ -105,8 +106,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
         [[self class] startBonjourThreadIfNeeded];
         [[self class] performBonjourBlock:bonjourBlock];
     });
-    
-    return YES;
 }
 
 -(void)stopSearching
