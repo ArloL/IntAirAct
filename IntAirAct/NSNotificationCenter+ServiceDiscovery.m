@@ -1,4 +1,4 @@
-#import "NSNotificationCenter+ServiceFound.h"
+#import "NSNotificationCenter+ServiceDiscovery.h"
 
 #import "SDServiceDiscovery.h"
 
