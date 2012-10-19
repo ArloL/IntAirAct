@@ -110,6 +110,8 @@
 		2768899C1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2768899D1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */; };
 		2768899E1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */; };
+		276889A81630F61700CE03B4 /* ServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889A71630F61700CE03B4 /* ServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		276889A91630F61700CE03B4 /* ServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889A71630F61700CE03B4 /* ServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		276ED16E1556541500C4702F /* IACapability.h in Headers */ = {isa = PBXBuildFile; fileRef = 276ED16C1556541500C4702F /* IACapability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		276ED16F1556541500C4702F /* IACapability.h in Headers */ = {isa = PBXBuildFile; fileRef = 276ED16C1556541500C4702F /* IACapability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		276ED1701556541500C4702F /* IACapability.m in Sources */ = {isa = PBXBuildFile; fileRef = 276ED16D1556541500C4702F /* IACapability.m */; };
@@ -315,6 +317,7 @@
 		276889941630E6FD00CE03B4 /* SDService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDService.m; sourceTree = "<group>"; };
 		276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+ServiceDiscovery.h"; sourceTree = "<group>"; };
 		2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+ServiceDiscovery.m"; sourceTree = "<group>"; };
+		276889A71630F61700CE03B4 /* ServiceDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDiscovery.h; sourceTree = "<group>"; };
 		276C19EF162CA382002C8285 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKit+Blocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		276ED16C1556541500C4702F /* IACapability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACapability.h; sourceTree = "<group>"; };
 		276ED16D1556541500C4702F /* IACapability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACapability.m; sourceTree = "<group>"; };
@@ -454,6 +457,7 @@
 				276889941630E6FD00CE03B4 /* SDService.m */,
 				276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */,
 				2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */,
+				276889A71630F61700CE03B4 /* ServiceDiscovery.h */,
 			);
 			name = ServiceDiscovery;
 			sourceTree = "<group>";
@@ -642,6 +646,7 @@
 				27A1BA8F16308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */,
 				276889951630E6FD00CE03B4 /* SDService.h in Headers */,
 				2768899B1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h in Headers */,
+				276889A81630F61700CE03B4 /* ServiceDiscovery.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,6 +677,7 @@
 				27A1BA9016308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */,
 				276889961630E6FD00CE03B4 /* SDService.h in Headers */,
 				2768899C1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h in Headers */,
+				276889A91630F61700CE03B4 /* ServiceDiscovery.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
