@@ -7,6 +7,7 @@
 #import <RestKit/RestKit.h>
 #import <RoutingHTTPServer/RoutingHTTPServer.h>
 #import <RestKit+Blocks/RKObjectManager+Blocks.h>
+#import "ServiceDiscovery.h"
 
 #import "IAAction.h"
 #import "IACapability.h"
@@ -18,7 +19,6 @@
 #import "IARoute.h"
 #import "IAResponse.h"
 #import "IARoutingHTTPServerAdapter.h"
-#import "SDServiceDiscovery.h"
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
@@ -67,16 +67,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
         _serviceDiscovery = [[SDServiceDiscovery alloc] initWithQueue:_serverQueue];
         
-        [self setupMappingsAndRoutes];
-        
-
-#if TARGET_OS_IPHONE
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:UIApplicationWillResignActiveNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:UIApplicationWillTerminateNotification object:nil];
-#endif
+        [self setup];
     }
     return self;
 }
@@ -147,42 +138,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 	});
 	
 	return result;
-}
-
--(void)netServiceBrowser:(NSNetServiceBrowser *)sender
-        didRemoveService:(NSNetService *)ns
-              moreComing:(BOOL)moreServicesComing
-{
-    IALogTrace2(@"%@[%p]: Bonjour Service went away: domain(%@) type(%@) name(%@)", THIS_FILE, self, [ns domain], [ns type], [ns name]);
-    [_deviceDictionary removeObjectForKey:ns.name];
-    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
-}
-
--(void)netServiceDidResolveAddress:(NSNetService *)sender
-{
-	IALogTrace2(@"%@[%p]: Bonjour Service resolved: %@:%"FMTNSINT, THIS_FILE, self, [sender hostName], [sender port]);
-    
-#warning re-implement using ServiceDiscovery module
-    if ([self.httpServer.publishedName isEqualToString:sender.name]) {
-        IALogTrace3(@"Found own device");
-        IADevice * device = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:self.capabilities];
-        _ownDevice = device;
-        [_deviceDictionary setObject:device forKey:device.name];
-        [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
-    } else {
-        IALogTrace3(@"Found other device");
-        IADevice * device = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:nil];
-        [[self objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(NSArray * objects, NSError * error) {
-            if (error) {
-                IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, self, device, error);
-            } else {
-                IADevice * dev = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:[NSSet setWithArray:objects]];
-                [_deviceDictionary setObject:dev forKey:dev.name];
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
-            }
-        }];
-    }
 }
 
 
@@ -292,8 +247,44 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     });
 }
 
--(void)setupMappingsAndRoutes
+-(void)setup
 {
+    [NSNotificationCenter addHandlerForServiceFound:^(SDService *sender) {
+        if ([self.httpServer.publishedName isEqualToString:sender.name]) {
+            IALogTrace3(@"Found own device");
+            IADevice * device = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:self.capabilities];
+            _ownDevice = device;
+            [_deviceDictionary setObject:device forKey:device.name];
+            [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
+        } else {
+            IALogTrace3(@"Found other device");
+            IADevice * device = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:nil];
+            [[self objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(NSArray * objects, NSError * error) {
+                if (error) {
+                    IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, self, device, error);
+                } else {
+                    IADevice * dev = [IADevice deviceWithName:sender.name host:sender.hostName port:sender.port capabilities:[NSSet setWithArray:objects]];
+                    [_deviceDictionary setObject:dev forKey:dev.name];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
+                }
+            }];
+        }
+    }];
+    
+    [NSNotificationCenter addHandlerForServiceLost:^(SDService *service) {
+        [_deviceDictionary removeObjectForKey:service.name];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
+    }];
+    
+    #if TARGET_OS_IPHONE
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:UIApplicationWillResignActiveNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:UIApplicationWillTerminateNotification object:nil];
+    #endif
+    
     [self addMappingForClass:[IADevice class] withKeypath:@"devices" withAttributes:@"name", @"host", @"port", nil];
     [self addMappingForClass:[IACapability class] withKeypath:@"capabilities" withAttributes:@"capability", nil];
     
