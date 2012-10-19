@@ -32,7 +32,7 @@
                      onPort:(int)port
                    withName:(NSString*)name
                    inDomain:(NSString*)domain
-                  txtRecord:(NSDictionary*)txtRecord;
+                  TXTRecord:(NSDictionary*)TXTRecord;
 
 -(void)stopPublishingServiceOfType:(NSString*)type
                             onPort:(int)port;

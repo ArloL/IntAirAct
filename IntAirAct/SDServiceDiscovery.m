@@ -173,14 +173,14 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
                         onPort:port
                       withName:name
                       inDomain:domain
-                     txtRecord:nil];
+                     TXTRecord:nil];
 }
 
 -(void)publishServiceOfType:(NSString*)type
                      onPort:(int)port
                    withName:(NSString*)name
                    inDomain:(NSString*)domain
-                  txtRecord:(NSDictionary*)txtRecord
+                  TXTRecord:(NSDictionary*)TXTRecord
 {
     IALogTrace();
 	
@@ -197,8 +197,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 		
 		NSNetService *theNetService = netService;
 		NSData *txtRecordData = nil;
-		if (txtRecord)
-            txtRecordData = [NSNetService dataFromTXTRecordDictionary:txtRecord];
+		if (TXTRecord)
+            txtRecordData = [NSNetService dataFromTXTRecordDictionary:TXTRecord];
 		
 		dispatch_block_t bonjourBlock = ^{
 			
