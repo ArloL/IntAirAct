@@ -18,6 +18,7 @@
 #import "IARoute.h"
 #import "IAResponse.h"
 #import "IARoutingHTTPServerAdapter.h"
+#import "SDServiceDiscovery.h"
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
@@ -27,18 +28,12 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 @property (nonatomic) dispatch_queue_t clientQueue;
 @property (nonatomic, strong) NSMutableDictionary * deviceDictionary;
-@property (nonatomic, strong) NSNetServiceBrowser * netServiceBrowser;
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
 @property (nonatomic) dispatch_queue_t serverQueue;
 @property (strong) NSMutableSet * services;
 @property (strong) NSObject<IAServer> * server;
 @property (strong) RoutingHTTPServer * httpServer;
-
--(void)startBonjour;
--(void)stopBonjour;
-
-+(void)startBonjourThreadIfNeeded;
-+(void)performBonjourBlock:(dispatch_block_t)block;
+@property (strong) SDServiceDiscovery * serviceDiscovery;
 
 @end
 
@@ -72,6 +67,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _objectManagers = [NSMutableDictionary new];
         _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
         _services = [NSMutableSet new];
+        _serviceDiscovery = [[SDServiceDiscovery alloc] initWithQueue:_serverQueue];
         
         [self setupMappingsAndRoutes];
         
@@ -82,10 +78,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:UIApplicationWillResignActiveNotification object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:UIApplicationWillTerminateNotification object:nil];
-#else
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive) name:NSApplicationDidBecomeActiveNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:NSApplicationWillTerminateNotification object:nil];
 #endif
     }
     return self;
@@ -101,14 +93,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     dispatch_release(_clientQueue);
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
--(void)applicationDidBecomeActive
-{
-    NSError * error;
-    if(![self start:&error]) {
-        IALogError(@"%@[%p]: Error starting IntAirAct: %@", THIS_FILE, self, error);
-    }
 }
 
 -(BOOL)start:(NSError **)errPtr;
@@ -127,7 +111,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         
         if (success) {
             IALogInfo3(@"Started IntAirAct.");
-            [self startBonjour];
+            [self.serviceDiscovery searchForServicesOfType:@"_intairact._tcp"];
             _isRunning = YES;
         } else {
             IALogError(@"%@[%p]: Failed to start IntAirAct: %@", THIS_FILE, self, err);
@@ -145,8 +129,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 {
     IALogTrace();
     
-    dispatch_sync(_serverQueue, ^{ @autoreleasepool {
-        [_netServiceBrowser stop];
+    dispatch_sync(self.serverQueue, ^{ @autoreleasepool {
+        [self.serviceDiscovery stop];
         [_services removeAllObjects];
         [_deviceDictionary removeAllObjects];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -166,49 +150,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 	});
 	
 	return result;
-}
-
--(void)startBonjour
-{
-	IALogTrace();
-	
-	NSAssert(dispatch_get_current_queue() == _serverQueue, @"Invalid queue");
-	
-    self.netServiceBrowser = [NSNetServiceBrowser new];
-    [self.netServiceBrowser setDelegate:self];
-    
-    NSNetServiceBrowser *theNetServiceBrowser = self.netServiceBrowser;
-    
-    dispatch_block_t bonjourBlock = ^{
-        [theNetServiceBrowser removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
-        [theNetServiceBrowser scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-        [theNetServiceBrowser searchForServicesOfType:@"_intairact._tcp." inDomain:@"local."];
-        IALogInfo3(@"Bonjour search started.");
-    };
-    
-    [[self class] startBonjourThreadIfNeeded];
-    [[self class] performBonjourBlock:bonjourBlock];
-}
-
--(void)stopBonjour
-{
-	IALogTrace();
-	
-	NSAssert(dispatch_get_current_queue() == _serverQueue, @"Invalid queue");
-	
-	if (self.netServiceBrowser)
-	{
-		NSNetServiceBrowser *theNetServiceBrowser = self.netServiceBrowser;
-		
-		dispatch_block_t bonjourBlock = ^{
-			
-			[theNetServiceBrowser stop];
-		};
-		
-		[[self class] performBonjourBlock:bonjourBlock];
-		
-		self.netServiceBrowser = nil;
-	}
 }
 
 -(void)netServiceBrowser:(NSNetServiceBrowser *)sender didNotSearch:(NSDictionary *)errorInfo
@@ -276,80 +217,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             }
         }];
     }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark Bonjour Thread
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * NSNetService is runloop based, so it requires a thread with a runloop.
- * This gives us two options:
- * 
- * - Use the main thread
- * - Setup our own dedicated thread
- * 
- * Since we have various blocks of code that need to synchronously access the netservice objects,
- * using the main thread becomes troublesome and a potential for deadlock.
- **/
-
-static NSThread *bonjourThread;
-
-+ (void)startBonjourThreadIfNeeded
-{
-	IALogTrace();
-	
-	static dispatch_once_t predicate;
-	dispatch_once(&predicate, ^{
-        
-        IALogVerbose3(@"Starting bonjour thread…");
-        
-		bonjourThread = [[NSThread alloc] initWithTarget:self
-		                                        selector:@selector(bonjourThread)
-		                                          object:nil];
-		[bonjourThread start];
-	});
-}
-
-+ (void)bonjourThread
-{
-	@autoreleasepool {
-        
-        IALogVerbose3(@"BonjourThread: Started");
-		
-		// We can't run the run loop unless it has an associated input source or a timer.
-		// So we'll just create a timer that will never fire - unless the server runs for 10,000 years.
-		
-		[NSTimer scheduledTimerWithTimeInterval:[[NSDate distantFuture] timeIntervalSinceNow]
-		                                 target:self
-		                               selector:@selector(donothingatall:)
-		                               userInfo:nil
-		                                repeats:YES];
-		
-		[[NSRunLoop currentRunLoop] run];
-        
-        IALogVerbose3(@"BonjourThread: Aborted");
-        
-	}
-}
-
-+ (void)executeBonjourBlock:(dispatch_block_t)block
-{
-	IALogTrace();
-	
-	NSAssert([NSThread currentThread] == bonjourThread, @"Executed on incorrect thread");
-	
-	block();
-}
-
-+ (void)performBonjourBlock:(dispatch_block_t)block
-{
-	IALogTrace();
-	
-	[self performSelector:@selector(executeBonjourBlock:)
-	             onThread:bonjourThread
-	           withObject:block
-	        waitUntilDone:YES];
 }
 
 
