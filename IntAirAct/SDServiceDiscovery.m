@@ -5,6 +5,11 @@
 #endif
 
 #import "IALogging.h"
+#import "SDService.h"
+
+NSString * SDServiceDiscoveryError = @"SDServiceDiscoveryError";
+NSString * SDServiceFound = @"SDServiceFound";
+NSString * SDServiceLost = @"SDServiceLost";
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
@@ -33,6 +38,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
         _netServiceBrowsers = [NSMutableDictionary new];
         _netServices = [NSMutableDictionary new];
         _resolvingServices = [NSMutableArray new];
+        _notificationCenter = [NSNotificationCenter defaultCenter];
         
         if(queue) {
             _queue = queue;
