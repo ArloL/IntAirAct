@@ -43,13 +43,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
         } else {
             _queue = dispatch_queue_create("SDServiceDiscovery", NULL);
         }
-        
-        // Automatically stop when the app becomes inactive on iOS
-        #if TARGET_OS_IPHONE
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:UIApplicationWillResignActiveNotification object:nil];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stop) name:UIApplicationWillTerminateNotification object:nil];
-        #endif
     }
     return self;
 }
