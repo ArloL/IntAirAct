@@ -87,7 +87,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
     
     if(self.netServiceBrowsers[[[self class] keyForType:type domain:domain]] != nil) {
         IALogWarn(@"%@[%p]: Already searching for type %@ in domain %@", THIS_FILE, self, type, domain);
-        return NO;
     }
     
     dispatch_async(self.queue, ^{
