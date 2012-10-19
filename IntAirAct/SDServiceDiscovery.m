@@ -154,14 +154,19 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 -(void)publishServiceOfType:(NSString*)type
                      onPort:(int)port
 {
-    [self publishServiceOfType:type onPort:port withName:@""];
+    [self publishServiceOfType:type
+                        onPort:port
+                      withName:@""];
 }
 
 -(void)publishServiceOfType:(NSString*)type
                      onPort:(int)port
                    withName:(NSString*)name
 {
-    [self publishServiceOfType:type onPort:port withName:name inDomain:@"local."];
+    [self publishServiceOfType:type
+                        onPort:port
+                      withName:name
+                      inDomain:@"local."];
 }
 
 -(void)publishServiceOfType:(NSString*)type
@@ -169,7 +174,11 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
                    withName:(NSString*)name
                    inDomain:(NSString*)domain
 {
-    [self publishServiceOfType:type onPort:port withName:name inDomain:domain txtRecord:nil];
+    [self publishServiceOfType:type
+                        onPort:port
+                      withName:name
+                      inDomain:domain
+                     txtRecord:nil];
 }
 
 -(void)publishServiceOfType:(NSString*)type
@@ -228,7 +237,9 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 -(void)stopPublishingServiceOfType:(NSString *)type
                             onPort:(int)port
 {
-    [self stopPublishingServiceOfType:type onPort:port inDomain:@"local."];
+    [self stopPublishingServiceOfType:type
+                               onPort:port
+                             inDomain:@"local."];
 }
 
 -(void)stopPublishingServiceOfType:(NSString *)type
