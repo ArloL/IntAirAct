@@ -56,8 +56,6 @@
 		2756EDE4162F568F00E76B50 /* IARoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDE1162F568F00E76B50 /* IARoute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDE5162F568F00E76B50 /* IARoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDE2162F568F00E76B50 /* IARoute.m */; };
 		2756EDE6162F568F00E76B50 /* IARoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDE2162F568F00E76B50 /* IARoute.m */; };
-		2756EDEC162F5DC600E76B50 /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDEA162F5DC600E76B50 /* IAServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2756EDED162F5DC600E76B50 /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDEA162F5DC600E76B50 /* IAServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDF2162F60AC00E76B50 /* IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDF0162F60AC00E76B50 /* IAResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDF3162F60AC00E76B50 /* IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDF0162F60AC00E76B50 /* IAResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDF4162F60AC00E76B50 /* IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDF1162F60AC00E76B50 /* IAResponse.m */; };
@@ -104,6 +102,14 @@
 		27652086162DB7D5008EA1C7 /* Version in Resources */ = {isa = PBXBuildFile; fileRef = 27652084162DB7D5008EA1C7 /* Version */; };
 		27652087162DB7DE008EA1C7 /* License.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27652083162DB7D5008EA1C7 /* License.txt */; };
 		27652088162DB7DE008EA1C7 /* Version in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27652084162DB7D5008EA1C7 /* Version */; };
+		276889951630E6FD00CE03B4 /* SDService.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889931630E6FD00CE03B4 /* SDService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		276889961630E6FD00CE03B4 /* SDService.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889931630E6FD00CE03B4 /* SDService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		276889971630E6FD00CE03B4 /* SDService.m in Sources */ = {isa = PBXBuildFile; fileRef = 276889941630E6FD00CE03B4 /* SDService.m */; };
+		276889981630E6FD00CE03B4 /* SDService.m in Sources */ = {isa = PBXBuildFile; fileRef = 276889941630E6FD00CE03B4 /* SDService.m */; };
+		2768899B1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2768899C1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2768899D1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */; };
+		2768899E1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */; };
 		276ED16E1556541500C4702F /* IACapability.h in Headers */ = {isa = PBXBuildFile; fileRef = 276ED16C1556541500C4702F /* IACapability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		276ED16F1556541500C4702F /* IACapability.h in Headers */ = {isa = PBXBuildFile; fileRef = 276ED16C1556541500C4702F /* IACapability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		276ED1701556541500C4702F /* IACapability.m in Sources */ = {isa = PBXBuildFile; fileRef = 276ED16D1556541500C4702F /* IACapability.m */; };
@@ -122,8 +128,12 @@
 		2793655B15568D3500513FD1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655A15568D3500513FD1 /* SystemConfiguration.framework */; };
 		2793655D15568D4100513FD1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793655C15568D4100513FD1 /* CoreGraphics.framework */; };
 		2793658415568D8200513FD1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2793658315568D8200513FD1 /* QuartzCore.framework */; };
-		27A1B9B0163068CD00BCFB39 /* NSObject+SubscriptingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */; };
-		27A1B9B1163068CD00BCFB39 /* NSObject+SubscriptingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */; };
+		27A1BA8A16308F5000BCFB39 /* NSObject+SubscriptingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1BA8916308F5000BCFB39 /* NSObject+SubscriptingSupport.h */; };
+		27A1BA8B16308F5000BCFB39 /* NSObject+SubscriptingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1BA8916308F5000BCFB39 /* NSObject+SubscriptingSupport.h */; };
+		27A1BA8F16308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1BA8D16308F8A00BCFB39 /* SDServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27A1BA9016308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1BA8D16308F8A00BCFB39 /* SDServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27A1BA9116308F8A00BCFB39 /* SDServiceDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A1BA8E16308F8A00BCFB39 /* SDServiceDiscovery.m */; };
+		27A1BA9216308F8A00BCFB39 /* SDServiceDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A1BA8E16308F8A00BCFB39 /* SDServiceDiscovery.m */; };
 		27A8ABDD15568861001104E9 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27A8ABDC15568861001104E9 /* AppKit.framework */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
@@ -277,7 +287,6 @@
 		274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IntAirAct-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		2756EDE1162F568F00E76B50 /* IARoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARoute.h; sourceTree = "<group>"; };
 		2756EDE2162F568F00E76B50 /* IARoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARoute.m; sourceTree = "<group>"; };
-		2756EDEA162F5DC600E76B50 /* IAServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAServer.h; sourceTree = "<group>"; };
 		2756EDF0162F60AC00E76B50 /* IAResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAResponse.h; sourceTree = "<group>"; };
 		2756EDF1162F60AC00E76B50 /* IAResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAResponse.m; sourceTree = "<group>"; };
 		2756EDF6162F60C200E76B50 /* IARequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARequest.h; sourceTree = "<group>"; };
@@ -302,6 +311,10 @@
 		2762B948155B2BDD0042EECC /* IANumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IANumber.m; path = IntAirActTests/IANumber.m; sourceTree = "<group>"; };
 		27652083162DB7D5008EA1C7 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		27652084162DB7D5008EA1C7 /* Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
+		276889931630E6FD00CE03B4 /* SDService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDService.h; sourceTree = "<group>"; };
+		276889941630E6FD00CE03B4 /* SDService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDService.m; sourceTree = "<group>"; };
+		276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+ServiceDiscovery.h"; sourceTree = "<group>"; };
+		2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+ServiceDiscovery.m"; sourceTree = "<group>"; };
 		276C19EF162CA382002C8285 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKit+Blocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		276ED16C1556541500C4702F /* IACapability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACapability.h; sourceTree = "<group>"; };
 		276ED16D1556541500C4702F /* IACapability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACapability.m; sourceTree = "<group>"; };
@@ -319,7 +332,9 @@
 		2793655A15568D3500513FD1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2793655C15568D4100513FD1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2793658315568D8200513FD1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SubscriptingSupport.h"; sourceTree = "<group>"; };
+		27A1BA8916308F5000BCFB39 /* NSObject+SubscriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SubscriptingSupport.h"; sourceTree = "<group>"; };
+		27A1BA8D16308F8A00BCFB39 /* SDServiceDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDServiceDiscovery.h; sourceTree = "<group>"; };
+		27A1BA8E16308F8A00BCFB39 /* SDServiceDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDServiceDiscovery.m; sourceTree = "<group>"; };
 		27A8ABDC15568861001104E9 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
 		27EF339A154A9E3E003D7F41 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -430,6 +445,27 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		2768898F1630E6E600CE03B4 /* ServiceDiscovery */ = {
+			isa = PBXGroup;
+			children = (
+				2768899F1630F29200CE03B4 /* NSNotificationCenter */,
+				27A1BA8D16308F8A00BCFB39 /* SDServiceDiscovery.h */,
+				27A1BA8E16308F8A00BCFB39 /* SDServiceDiscovery.m */,
+				276889931630E6FD00CE03B4 /* SDService.h */,
+				276889941630E6FD00CE03B4 /* SDService.m */,
+			);
+			name = ServiceDiscovery;
+			sourceTree = "<group>";
+		};
+		2768899F1630F29200CE03B4 /* NSNotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */,
+				2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */,
+			);
+			name = NSNotificationCenter;
+			sourceTree = "<group>";
+		};
 		276C19F0162CA382002C8285 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,6 +529,7 @@
 		277E5531154A42AF002F307D /* IntAirAct */ = {
 			isa = PBXGroup;
 			children = (
+				2768898F1630E6E600CE03B4 /* ServiceDiscovery */,
 				27A1BA3D1630840800BCFB39 /* Categories */,
 				2756EE35162F77E100E76B50 /* RoutingHTTPServer */,
 				27EF3391154A9CE8003D7F41 /* Server */,
@@ -501,10 +538,6 @@
 				274A48B615508DAC000DFAF9 /* IAIntAirAct.h */,
 				274A48B715508DAC000DFAF9 /* IAIntAirAct.m */,
 				274A48A715508D97000DFAF9 /* IntAirAct.h */,
-				2756EDEA162F5DC600E76B50 /* IARouter.h */,
-				27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */,
-				2756EDEA162F5DC600E76B50 /* IAServer.h */,
-				27A1B9AE163068CD00BCFB39 /* NSObject+SubscriptingSupport.h */,
 			);
 			path = IntAirAct;
 			sourceTree = "<group>";
@@ -522,6 +555,7 @@
 		27A1BA3D1630840800BCFB39 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				27A1BA8916308F5000BCFB39 /* NSObject+SubscriptingSupport.h */,
 				2756EE22162F6D9500E76B50 /* Response Serialization */,
 				2756EDFC162F667C00E76B50 /* Request Deserialization */,
 			);
@@ -602,7 +636,6 @@
 				274A48C715508DB9000DFAF9 /* IADevice.h in Headers */,
 				2756EDE3162F568F00E76B50 /* IARoute.h in Headers */,
 				274A48F415508F1B000DFAF9 /* IntAirAct.h in Headers */,
-				2756EDEC162F5DC600E76B50 /* IAServer.h in Headers */,
 				2756EDF2162F60AC00E76B50 /* IAResponse.h in Headers */,
 				2756EDF8162F60C200E76B50 /* IARequest.h in Headers */,
 				2756EDFF162F669800E76B50 /* IARequest+Image.h in Headers */,
@@ -613,7 +646,10 @@
 				2756EE2B162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
 				2756EE31162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */,
 				2756EE38162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
-				27A1B9B0163068CD00BCFB39 /* NSObject+SubscriptingSupport.h in Headers */,
+				27A1BA8A16308F5000BCFB39 /* NSObject+SubscriptingSupport.h in Headers */,
+				27A1BA8F16308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */,
+				276889951630E6FD00CE03B4 /* SDService.h in Headers */,
+				2768899B1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,7 +666,6 @@
 				2756EDE4162F568F00E76B50 /* IARoute.h in Headers */,
 				276ED16F1556541500C4702F /* IACapability.h in Headers */,
 				274A48C815508DB9000DFAF9 /* IADevice.h in Headers */,
-				2756EDED162F5DC600E76B50 /* IAServer.h in Headers */,
 				2756EDF3162F60AC00E76B50 /* IAResponse.h in Headers */,
 				2756EDF9162F60C200E76B50 /* IARequest.h in Headers */,
 				2756EE00162F669800E76B50 /* IARequest+Image.h in Headers */,
@@ -641,7 +676,10 @@
 				2756EE2C162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
 				2756EE32162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */,
 				2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
-				27A1B9B1163068CD00BCFB39 /* NSObject+SubscriptingSupport.h in Headers */,
+				27A1BA8B16308F5000BCFB39 /* NSObject+SubscriptingSupport.h in Headers */,
+				27A1BA9016308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */,
+				276889961630E6FD00CE03B4 /* SDService.h in Headers */,
+				2768899C1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,6 +954,9 @@
 				2756EE2D162F6E6500E76B50 /* IAResponse+Generic.m in Sources */,
 				2756EE33162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */,
 				2756EE3A162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */,
+				27A1BA9116308F8A00BCFB39 /* SDServiceDiscovery.m in Sources */,
+				276889971630E6FD00CE03B4 /* SDService.m in Sources */,
+				2768899D1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,6 +981,9 @@
 				2756EE2E162F6E6500E76B50 /* IAResponse+Generic.m in Sources */,
 				2756EE34162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */,
 				2756EE3B162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */,
+				27A1BA9216308F8A00BCFB39 /* SDServiceDiscovery.m in Sources */,
+				276889981630E6FD00CE03B4 /* SDService.m in Sources */,
+				2768899E1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
