@@ -393,7 +393,7 @@ static NSThread *bonjourThread;
             waitUntilDone:YES];
 }
 
-#pragma mark Methods for creating the keys that store the nsnetservice and browser objects
+#pragma mark Methods for creating the keys to identify nsnetservice and -browser objects
 
 +(NSString*)keyForType:(NSString*)type domain:(NSString*)domain
 {
