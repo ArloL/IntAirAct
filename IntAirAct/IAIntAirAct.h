@@ -16,7 +16,7 @@
 
 static NSString * const IADeviceUpdate = @"IAIntAirActDeviceUpdate";
 
-@interface IAIntAirAct : NSObject <NSNetServiceBrowserDelegate, NSNetServiceDelegate>
+@interface IAIntAirAct : NSObject
 
 /** A Set of all the capabilities this device has. */
 @property (nonatomic, strong, readonly) NSMutableSet * capabilities;
