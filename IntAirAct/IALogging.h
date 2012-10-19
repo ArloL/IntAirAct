@@ -99,6 +99,9 @@
 #define IALogError(frmt, ...)    LOG_OBJC_MAYBE(IA_LOG_ASYNC_ERROR,   intAirActLogLevel, IA_LOG_FLAG_ERROR,  \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
+#define IALogError2(mess)         LOG_OBJC_MAYBE(IA_LOG_ASYNC_INFO,    intAirActLogLevel, IA_LOG_FLAG_INFO,    \
+IA_LOG_CONTEXT, @"%@[%p]: %@", THIS_FILE, self, mess)
+
 #define IALogWarn(frmt, ...)     LOG_OBJC_MAYBE(IA_LOG_ASYNC_WARN,    intAirActLogLevel, IA_LOG_FLAG_WARN,   \
 IA_LOG_CONTEXT, frmt, ##__VA_ARGS__)
 
