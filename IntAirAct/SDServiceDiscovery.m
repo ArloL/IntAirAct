@@ -43,7 +43,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
         
         if(queue) {
             _queue = queue;
-            // we need to retain queues that are handed in in iOS < 6 and OS X < 10.8
+            // we need to retain queues in iOS < 6 and OS X < 10.8
             #if NEEDS_DISPATCH_RETAIN_RELEASE
                 dispatch_retain(queue);
             #endif
