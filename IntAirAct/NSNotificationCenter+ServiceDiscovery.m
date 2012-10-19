@@ -4,12 +4,12 @@
 
 @implementation NSNotificationCenter (ServiceDiscovery)
 
-+(id)addHandlerForServiceFound:(SDServiceHandler)handler
++(id)addHandlerForServiceFound:(SDServiceFoundHandler)handler
 {
     return [[self defaultCenter] addHandlerForServiceFound:handler];
 }
 
-+(id)addHandlerForServiceLost:(SDServiceHandler)handler
++(id)addHandlerForServiceLost:(SDServiceLostHandler)handler
 {
     return [[self defaultCenter] addHandlerForServiceLost:handler];
 }
@@ -19,18 +19,18 @@
     return [[self defaultCenter] addHandlerForServiceDiscoveryError:handler];
 }
 
--(id)addHandlerForServiceFound:(SDServiceHandler)handler
+-(id)addHandlerForServiceFound:(SDServiceFoundHandler)handler
 {
     return [self addObserverForName:SDServiceFound object:nil queue:nil usingBlock:^(NSNotification *note) {
         if([note.object isKindOfClass:[SDService class]]) {
-            handler(note.object);
+            handler(note.object, YES);
         } else {
-            handler(nil);
+            handler(nil, NO);
         }
     }];
 }
 
--(id)addHandlerForServiceLost:(SDServiceHandler)handler
+-(id)addHandlerForServiceLost:(SDServiceLostHandler)handler
 {
     return [self addObserverForName:SDServiceLost object:nil queue:nil usingBlock:^(NSNotification *note) {
         if([note.object isKindOfClass:[SDService class]]) {
