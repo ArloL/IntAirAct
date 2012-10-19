@@ -21,6 +21,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 @property (nonatomic, strong) NSMutableDictionary * netServices;
 @property (nonatomic) dispatch_queue_t queue;
 @property (nonatomic, strong) NSMutableArray * resolvingServices;
+@property (nonatomic, strong) NSNotificationCenter * notificationCenter;
 
 @end
 
@@ -273,6 +274,12 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
             didNotSearch:(NSDictionary *)errorInfo
 {
     IALogError(@"%@[%p]: Bonjour could not search: %@", THIS_FILE, self, errorInfo);
+    [self.notificationCenter postNotificationName:SDServiceDiscoveryError object:errorInfo];
+}
+
+-(void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)sender
+{
+    IALogTrace();
 }
 
 -(void)netServiceBrowser:(NSNetServiceBrowser *)sender
@@ -285,30 +292,36 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
     [netService resolveWithTimeout:0.0];
 }
 
--(void)netServiceBrowser:(NSNetServiceBrowser *)sender
-        didRemoveService:(NSNetService *)netService
-              moreComing:(BOOL)moreServicesComing
-{
-    IALogVerbose(@"%@[%p]: Bonjour Service went away: name(%@) type(%@) domain(%@)", THIS_FILE, self, netService.name, netService.type, netService.domain);
-    [self.resolvingServices removeObject:netService];
-}
-
--(void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)sender
-{
-    IALogTrace();
-}
-
 -(void)netService:(NSNetService *)netService
     didNotResolve:(NSDictionary *)errorDict
 {
     IALogWarn(@"%@[%p]: Could not resolve Bonjour Service: name(%@) type(%@) domain(%@)", THIS_FILE, self, netService.name, netService.type, netService.domain);
     [self.resolvingServices removeObject:netService];
+    SDService * service = [SDService serviceWithName:netService.name
+                                            hostName:netService.hostName
+                                                port:netService.port];
+    [self.notificationCenter postNotificationName:SDServiceDiscoveryError object:service];
 }
 
 -(void)netServiceDidResolveAddress:(NSNetService *)netService
 {
 	IALogVerbose(@"%@[%p]: Bonjour Service resolved: name(%@) host(%@:%"FMTNSINT") type(%@) domain(%@)", THIS_FILE, self, netService.name, netService.hostName, netService.port, netService.type, netService.domain);
     [self.resolvingServices removeObject:netService];
+    SDService * service = [SDService serviceWithName:netService.name
+                                            hostName:netService.hostName
+                                                port:netService.port];
+    [self.notificationCenter postNotificationName:SDServiceFound object:service];
+}
+
+-(void)netServiceBrowser:(NSNetServiceBrowser *)sender
+        didRemoveService:(NSNetService *)netService
+              moreComing:(BOOL)moreServicesComing
+{
+    IALogVerbose(@"%@[%p]: Bonjour Service went away: name(%@) type(%@) domain(%@)", THIS_FILE, self, netService.name, netService.type, netService.domain);
+    SDService * service = [SDService serviceWithName:netService.name
+                                            hostName:netService.hostName
+                                                port:netService.port];
+    [self.notificationCenter postNotificationName:SDServiceLost object:service];
 }
 
 #pragma mark Delegate functions of publishing
