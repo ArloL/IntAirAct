@@ -30,7 +30,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @property (nonatomic, strong) NSMutableDictionary * deviceDictionary;
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
 @property (nonatomic) dispatch_queue_t serverQueue;
-@property (strong) NSMutableSet * services;
 @property (strong) NSObject<IAServer> * server;
 @property (strong) RoutingHTTPServer * httpServer;
 @property (strong) SDServiceDiscovery * serviceDiscovery;
@@ -66,7 +65,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _deviceDictionary = [NSMutableDictionary new];
         _objectManagers = [NSMutableDictionary new];
         _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
-        _services = [NSMutableSet new];
         _serviceDiscovery = [[SDServiceDiscovery alloc] initWithQueue:_serverQueue];
         
         [self setupMappingsAndRoutes];
@@ -131,7 +129,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     
     dispatch_sync(self.serverQueue, ^{ @autoreleasepool {
         [self.serviceDiscovery stop];
-        [_services removeAllObjects];
         [_deviceDictionary removeAllObjects];
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:nil];
@@ -152,43 +149,12 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 	return result;
 }
 
--(void)netServiceBrowser:(NSNetServiceBrowser *)sender didNotSearch:(NSDictionary *)errorInfo
-{
-    IALogError(@"%@[%p]: Bonjour could not search: %@", THIS_FILE, self, errorInfo);
-}
-
--(void)netServiceBrowser:(NSNetServiceBrowser *)sender
-          didFindService:(NSNetService *)ns
-              moreComing:(BOOL)moreServicesComing
-{
-    IALogTrace2(@"%@[%p]: Bonjour Service found: domain(%@) type(%@) name(%@)", THIS_FILE, self, [ns domain], [ns type], [ns name]);
-    [self.services addObject:ns];
-    [ns setDelegate:self];
-    [ns resolveWithTimeout:0.0];
-}
-
 -(void)netServiceBrowser:(NSNetServiceBrowser *)sender
         didRemoveService:(NSNetService *)ns
               moreComing:(BOOL)moreServicesComing
 {
     IALogTrace2(@"%@[%p]: Bonjour Service went away: domain(%@) type(%@) name(%@)", THIS_FILE, self, [ns domain], [ns type], [ns name]);
-    [self.services removeObject:ns];
     [_deviceDictionary removeObjectForKey:ns.name];
-    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
-}
-
--(void)netServiceBrowserDidStopSearch:(NSNetServiceBrowser *)sender
-{
-    IALogTrace();
-}
-
--(void)netService:(NSNetService *)ns didNotResolve:(NSDictionary *)errorDict
-{
-    IALogWarn(@"%@[%p]: Could not resolve Bonjour Service: domain(%@) type(%@) name(%@)", THIS_FILE, self, [ns domain], [ns type], [ns name]);
-
-    [self.services removeObject:ns];
-    [_deviceDictionary removeObjectForKey:ns];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceUpdate object:self];
 }
 
