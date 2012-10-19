@@ -189,10 +189,15 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 {
     IALogTrace();
 	
-	dispatch_sync(self.queue, ^{
+	dispatch_async(self.queue, ^{
+        NSString * key = [[self class] keyForType:type domain:domain port:port];
+        if(self.netServices[key] != nil) {
+            IALogWarn(@"%@[%p]: Already searching for type %@ in domain %@", THIS_FILE, self, type, domain);
+            return;
+        }
         NSNetService * netService = [[NSNetService alloc] initWithDomain:domain type:type name:name port:port];
 		[netService setDelegate:self];
-        NSString * key = [[self class] keyForType:type domain:domain port:port];
+        
         self.netServices[key] = netService;
 		
 		NSNetService *theNetService = netService;
