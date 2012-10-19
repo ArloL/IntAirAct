@@ -85,14 +85,14 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 {
     IALogTrace();
     
-    if(self.netServiceBrowsers[[[self class] keyForType:type domain:domain]] != nil) {
+    NSString * key = [[self class] keyForType:type domain:domain];
+    if(self.netServiceBrowsers[key] != nil) {
         IALogWarn(@"%@[%p]: Already searching for type %@ in domain %@", THIS_FILE, self, type, domain);
     }
     
     dispatch_async(self.queue, ^{
         NSNetServiceBrowser * netServiceBrowser = [NSNetServiceBrowser new];
         [netServiceBrowser setDelegate:self];
-        NSString * key = [[self class] keyForType:type domain:domain];
         _netServiceBrowsers[key] = netServiceBrowser;
         
         dispatch_block_t bonjourBlock = ^{
