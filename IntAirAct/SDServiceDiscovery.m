@@ -297,10 +297,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE | IA_LOG_FLAG_TRACE; /
 {
     IALogWarn(@"%@[%p]: Could not resolve Bonjour Service: name(%@) type(%@) domain(%@)", THIS_FILE, self, netService.name, netService.type, netService.domain);
     [self.resolvingServices removeObject:netService];
-    SDService * service = [SDService serviceWithName:netService.name
-                                            hostName:netService.hostName
-                                                port:netService.port];
-    [self.notificationCenter postNotificationName:SDServiceDiscoveryError object:service];
 }
 
 -(void)netServiceDidResolveAddress:(NSNetService *)netService
