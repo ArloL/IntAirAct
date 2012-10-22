@@ -76,24 +76,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     STAssertEquals((UInt16) 0, self.intAirAct.port, @"Default port should be zero but was %i", self.intAirAct.port);
 }
 
--(void)testDefaultClientShouldBeYES
-{   
-    // Then
-    STAssertTrue(self.intAirAct.client, @"Client should be YES");
-}
-
--(void)testDefaultServerShouldBeYES
-{
-    // Then
-    STAssertTrue(self.intAirAct.server, @"Server should be YES");
-}
-
--(void)testDefaultMimeTypeShouldBeJSON
-{
-    // Then
-    STAssertEqualObjects(@"application/json", self.intAirAct.defaultMimeType, @"defaultMimeType should be JSON");
-}
-
 -(void)testDefaultCapabilitiesShouldBeEmpty
 {
     // Then
@@ -108,22 +90,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     STAssertTrue([self.intAirAct.devices count] == 0, @"Devices should be empty");
 }
 
--(void)testHTTPServerShouldNotBeNil
-{
-    // Then
-    STAssertNotNil(self.intAirAct.httpServer, @"httpServer should not be nil");
-}
-
 -(void)testIsRunningShouldBeNO
 {
     // Then
     STAssertFalse(self.intAirAct.isRunning, @"isRunning should be NO");
-}
-
--(void)testTXTRecordDictionaryShouldNotBeNil
-{
-    // Then
-    STAssertNotNil(self.intAirAct.txtRecordDictionary, @"txtRecordDictionary should not be nil");
 }
 
 -(void)testIntAirActShouldStart
