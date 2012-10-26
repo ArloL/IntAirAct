@@ -265,6 +265,20 @@
 			remoteGlobalIDString = 270B11A91628E667005A82FA;
 			remoteInfo = RoutingHTTPServerIOS;
 		};
+		D5291ECD1639DA7B0017DB63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 271173A41634CCB20077D393;
+			remoteInfo = CocoaLumberjackIOSTests;
+		};
+		D5291ECF1639DA7B0017DB63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 271173CF1634CE850077D393;
+			remoteInfo = CocoaLumberjackOSXTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -489,6 +503,8 @@
 			children = (
 				276C7E651634C51500631ECD /* libCocoaLumberjack.a */,
 				276C7E671634C51500631ECD /* CocoaLumberjack.framework */,
+				D5291ECE1639DA7B0017DB63 /* CocoaLumberjackIOSTests.octest */,
+				D5291ED01639DA7B0017DB63 /* CocoaLumberjackOSXTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -896,6 +912,20 @@
 			fileType = wrapper.framework;
 			path = RoutingHTTPServer.framework;
 			remoteRef = 27EF2FFF154A7FA8003D7F41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5291ECE1639DA7B0017DB63 /* CocoaLumberjackIOSTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CocoaLumberjackIOSTests.octest;
+			remoteRef = D5291ECD1639DA7B0017DB63 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5291ED01639DA7B0017DB63 /* CocoaLumberjackOSXTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CocoaLumberjackOSXTests.octest;
+			remoteRef = D5291ECF1639DA7B0017DB63 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
