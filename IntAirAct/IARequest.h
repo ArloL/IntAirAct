@@ -15,4 +15,7 @@
 - (NSString *)metadata:(NSString *)field;
 - (id)parameter:(NSString *)name;
 
+/** @return The body of the request as a string. */
+-(NSString *)bodyAsString;
+
 @end

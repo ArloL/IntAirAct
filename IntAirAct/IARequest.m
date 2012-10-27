@@ -30,4 +30,9 @@
     return [NSString stringWithFormat:@"IARequest[route: %@, metadata: %@, parameters: %@, origin: %@]", self.route, self.metadata, self.parameters, self.origin];
 }
 
+-(NSString *)bodyAsString
+{
+    return [[NSString alloc] initWithBytes:[[self body] bytes] length:[[self body] length] encoding:NSUTF8StringEncoding];
+}
+
 @end
