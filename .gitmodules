@@ -5,3 +5,6 @@
 [submodule "Frameworks/RestKit+Blocks"]
 	path = Frameworks/RestKit+Blocks
 	url = https://github.com/ase-lab/RestKitBlocks.git
+[submodule "Frameworks/ServiceDiscovery"]
+	path = Frameworks/ServiceDiscovery
+	url = https://github.com/ase-lab/ServiceDiscovery.git
