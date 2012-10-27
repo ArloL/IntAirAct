@@ -5,7 +5,6 @@
 #endif
 
 #import <RestKit/RestKit.h>
-#import <RoutingHTTPServer/RoutingHTTPServer.h>
 #import <RestKit+Blocks/RKObjectManager+Blocks.h>
 #import <ServiceDiscovery/ServiceDiscovery.h>
 
@@ -18,6 +17,7 @@
 #import "IAServer.h"
 #import "IARoute.h"
 #import "IAResponse.h"
+#import "IARequest.h"
 #import "IARoutingHTTPServerAdapter.h"
 
 NSString * IADeviceFound = @"IADeviceFound";
@@ -34,7 +34,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
 @property (nonatomic) dispatch_queue_t serverQueue;
 @property (strong) NSObject<IAServer> * server;
-@property (strong) RoutingHTTPServer * httpServer;
 @property (strong) SDServiceDiscovery * serviceDiscovery;
 
 @property (nonatomic, strong) IADevice * ownDevice;
@@ -379,22 +378,20 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     // keep this here because otherwise we run into a memory release issue
     __block id returnValue;
     
-#warning reimplement using route, or remove action concept all together
-    
-    [self.httpServer put:[@"/action/" stringByAppendingString:actionName] withBlock:^(RouteRequest *request, RouteResponse *response) {
+    [self route:[IARoute routeWithAction:@"GET" resource:[@"/action/" stringByAppendingString:actionName]] withHandler:^(IARequest *request, IAResponse *response) {
         IALogVerbose(@"%@", [@"PUT /action/" stringByAppendingString:actionName]);
-        IALogTrace2(@"Request: %@", request.bodyAsString);
+        IALogTrace2(@"Request: %@", [request bodyAsString]);
         
         RKObjectMappingResult * result = [self deserializeObject:[request body]];
         if(!result && [[result asObject] isKindOfClass:[IAAction class]]) {
             IALogError(@"%@[%p]: Could not parse request body: %@", THIS_FILE, self, [request bodyAsString]);
-            response.statusCode = 500;
+            response.statusCode = @500;
             return;
         }
         
         IAAction * action = [result asObject];
         if((signature.numberOfArguments - 2) != [action.parameters count]) {
-            response.statusCode = 500;
+            response.statusCode = @500;
             return;
         }
         
@@ -408,7 +405,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             i++;
         }
         [invocation invoke];
-        response.statusCode = 201;
+        response.statusCode = @201;
         if (![returnType isEqualToString:@"v"]) {
             [invocation getReturnValue:&returnValue];
             action.parameters = [NSArray arrayWithObjects:returnValue, nil];
