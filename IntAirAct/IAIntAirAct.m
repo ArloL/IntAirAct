@@ -37,6 +37,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @property (strong) RoutingHTTPServer * httpServer;
 @property (strong) SDServiceDiscovery * serviceDiscovery;
 
+@property (nonatomic, strong) IADevice * ownDevice;
+
 @end
 
 @implementation IAIntAirAct
@@ -255,19 +257,23 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(void)setup
 {
+    // Reference myself weakly from inside the block to avoid a retain cycle like:
+    // IAIntAiract -> SDServiceDisovery -> block -> IAIntAirAct
+    __weak IAIntAirAct * myself = self;
+    
     [self.serviceDiscovery addHandlerForServiceFound:^(SDService *service, BOOL ownService) {
         if (ownService) {
-            IALogTrace3(@"Found own device");
-            _ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:self.capabilities];
+            IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found own device");
+            myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:self.capabilities];
         } else {
-            IALogTrace3(@"Found other device");
+            IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found other device");
             IADevice * device = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
-            [[self objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(NSArray * objects, NSError * error) {
+            [[myself objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(NSArray * objects, NSError * error) {
                 if (error) {
-                    IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, self, device, error);
+                    IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, myself, device, error);
                 } else {
                     IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:[NSSet setWithArray:objects]];
-                    [_deviceDictionary setObject:dev forKey:dev.name];
+                    [myself.deviceDictionary setObject:dev forKey:dev.name];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:dev];
                 }
@@ -276,8 +282,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }];
     
     [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
-        IADevice * dev = [_deviceDictionary objectForKey:service.name];
-        [_deviceDictionary removeObjectForKey:service.name];
+        IADevice * dev = [myself.deviceDictionary objectForKey:service.name];
+        [myself.deviceDictionary removeObjectForKey:service.name];
         [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:dev];
     }];
     
