@@ -51,7 +51,7 @@ task :load_project do
   $osx = $project.target($name+'OSX').config($configuration).builder
   $osx.sdk = :macosx
   $osxtests = $project.target($name+'OSXTests').config($configuration).builder
-  $osx.sdk = :macosx
+  $osxtests.sdk = :macosx
 end
 
 desc 'Clean, Build, Test and Archive for iOS'
@@ -71,9 +71,13 @@ namespace :ios do
   
   desc 'Test for iOS'
   task :test => [:init, :load_project] do
-    $iostests.test do |report|
+    $iostests.build
+    report = $iostests.test do |report|
 	  report.add_formatter :junit, 'build/'+$configuration+'-iphonesimulator/test-reports'
       report.add_formatter :stdout
+    end
+    if report.failed? || report.suites.count == 0  || report.suites[0].tests.count == 0
+      fail('At least one test failed.')
     end
   end
   
@@ -103,9 +107,13 @@ namespace :osx do
   
   desc 'Test for OS X'
   task :test => [:init, :load_project] do
-    $osxtests.test() do |report|
+    $osxtests.build
+    report = $osxtests.test(:sdk => :macosx) do |report|
 	  report.add_formatter :junit, 'build/'+$configuration+'/test-reports'
       report.add_formatter :stdout
+    end
+    if report.failed? || report.suites.count == 0  || report.suites[0].tests.count == 0
+      fail('At least one test failed.')
     end
   end
 
