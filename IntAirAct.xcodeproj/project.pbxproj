@@ -98,16 +98,6 @@
 		27652086162DB7D5008EA1C7 /* Version in Resources */ = {isa = PBXBuildFile; fileRef = 27652084162DB7D5008EA1C7 /* Version */; };
 		27652087162DB7DE008EA1C7 /* License.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27652083162DB7D5008EA1C7 /* License.txt */; };
 		27652088162DB7DE008EA1C7 /* Version in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27652084162DB7D5008EA1C7 /* Version */; };
-		276889951630E6FD00CE03B4 /* SDService.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889931630E6FD00CE03B4 /* SDService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		276889961630E6FD00CE03B4 /* SDService.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889931630E6FD00CE03B4 /* SDService.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		276889971630E6FD00CE03B4 /* SDService.m in Sources */ = {isa = PBXBuildFile; fileRef = 276889941630E6FD00CE03B4 /* SDService.m */; };
-		276889981630E6FD00CE03B4 /* SDService.m in Sources */ = {isa = PBXBuildFile; fileRef = 276889941630E6FD00CE03B4 /* SDService.m */; };
-		2768899B1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2768899D1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */; };
-		276889A81630F61700CE03B4 /* ServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889A71630F61700CE03B4 /* ServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		276889A91630F61700CE03B4 /* ServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889A71630F61700CE03B4 /* ServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		276C7E581634C3B500631ECD /* NSNotificationCenter+ServiceDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */; };
-		276C7E591634C3C300631ECD /* NSNotificationCenter+ServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		276C7E731634C60D00631ECD /* libIntAirAct.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E552C154A42AF002F307D /* libIntAirAct.a */; };
 		276C7E871634C75400631ECD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C7E671634C51500631ECD /* CocoaLumberjack.framework */; };
 		276C7E8A1634C76200631ECD /* RoutingHTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */; };
@@ -119,10 +109,6 @@
 		276ED1711556541500C4702F /* IACapability.m in Sources */ = {isa = PBXBuildFile; fileRef = 276ED16D1556541500C4702F /* IACapability.m */; };
 		27A1BA8A16308F5000BCFB39 /* NSObject+SubscriptingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1BA8916308F5000BCFB39 /* NSObject+SubscriptingSupport.h */; };
 		27A1BA8B16308F5000BCFB39 /* NSObject+SubscriptingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1BA8916308F5000BCFB39 /* NSObject+SubscriptingSupport.h */; };
-		27A1BA8F16308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1BA8D16308F8A00BCFB39 /* SDServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27A1BA9016308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1BA8D16308F8A00BCFB39 /* SDServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27A1BA9116308F8A00BCFB39 /* SDServiceDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A1BA8E16308F8A00BCFB39 /* SDServiceDiscovery.m */; };
-		27A1BA9216308F8A00BCFB39 /* SDServiceDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A1BA8E16308F8A00BCFB39 /* SDServiceDiscovery.m */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		D53C33D7163B6326007420CD /* libCocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C7E651634C51500631ECD /* libCocoaLumberjack.a */; };
@@ -145,6 +131,8 @@
 		D53C34C7163B72FE007420CD /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C33EB163B6364007420CD /* RestKit.framework */; };
 		D53C3523163C1E45007420CD /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = D53C3522163C1E45007420CD /* IAServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D53C3524163C1E45007420CD /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = D53C3522163C1E45007420CD /* IAServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D5D070CB163C4691009B0E74 /* ServiceDiscovery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D070C1163C4658009B0E74 /* ServiceDiscovery.framework */; };
+		D5D070CE163C469C009B0E74 /* libServiceDiscovery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D070BF163C4658009B0E74 /* libServiceDiscovery.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -330,6 +318,48 @@
 			remoteGlobalIDString = 259C301615128079003066A2;
 			remoteInfo = RestKitResources;
 		};
+		D5D070BE163C4658009B0E74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 270B11901628E5A8005A82FA;
+			remoteInfo = ServiceDiscoveryStaticIOS;
+		};
+		D5D070C0163C4658009B0E74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 270B11B21628E676005A82FA;
+			remoteInfo = ServiceDiscoveryOSX;
+		};
+		D5D070C2163C4658009B0E74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27EB034F16349C4C003F5656;
+			remoteInfo = ServiceDiscoveryIOSTests;
+		};
+		D5D070C4163C4658009B0E74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 27EB036B16349D4A003F5656;
+			remoteInfo = ServiceDiscoveryOSXTests;
+		};
+		D5D070C9163C468D009B0E74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 270B11B11628E676005A82FA;
+			remoteInfo = ServiceDiscoveryOSX;
+		};
+		D5D070CC163C4699009B0E74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 270B118F1628E5A8005A82FA;
+			remoteInfo = ServiceDiscoveryStaticIOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -389,11 +419,6 @@
 		2762B948155B2BDD0042EECC /* IANumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IANumber.m; path = IntAirActTests/IANumber.m; sourceTree = "<group>"; };
 		27652083162DB7D5008EA1C7 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		27652084162DB7D5008EA1C7 /* Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
-		276889931630E6FD00CE03B4 /* SDService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDService.h; sourceTree = "<group>"; };
-		276889941630E6FD00CE03B4 /* SDService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDService.m; sourceTree = "<group>"; };
-		276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+ServiceDiscovery.h"; sourceTree = "<group>"; };
-		2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+ServiceDiscovery.m"; sourceTree = "<group>"; };
-		276889A71630F61700CE03B4 /* ServiceDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDiscovery.h; sourceTree = "<group>"; };
 		276C19EF162CA382002C8285 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKit+Blocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaLumberjack.xcodeproj; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaAsyncSocket/Frameworks/CocoaLumberjack/CocoaLumberjack.xcodeproj; sourceTree = "<group>"; };
 		276ED16C1556541500C4702F /* IACapability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACapability.h; sourceTree = "<group>"; };
@@ -401,8 +426,6 @@
 		277E552C154A42AF002F307D /* libIntAirAct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIntAirAct.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E5549154A4384002F307D /* IntAirAct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntAirAct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A1BA8916308F5000BCFB39 /* NSObject+SubscriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SubscriptingSupport.h"; sourceTree = "<group>"; };
-		27A1BA8D16308F8A00BCFB39 /* SDServiceDiscovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDServiceDiscovery.h; sourceTree = "<group>"; };
-		27A1BA8E16308F8A00BCFB39 /* SDServiceDiscovery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDServiceDiscovery.m; sourceTree = "<group>"; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
 		27FC6247154B36A400AA7502 /* IntAirActIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC625F154B36AD00AA7502 /* IntAirActOSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActOSXTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -418,6 +441,7 @@
 		D53C341B163B6400007420CD /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D53C341D163B6416007420CD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D53C3522163C1E45007420CD /* IAServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAServer.h; sourceTree = "<group>"; };
+		D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ServiceDiscovery.xcodeproj; path = Frameworks/ServiceDiscovery/ServiceDiscovery.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +449,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5D070CE163C469C009B0E74 /* libServiceDiscovery.a in Frameworks */,
 				D53C34C4163B722F007420CD /* libRestKit+Blocks.a in Frameworks */,
 				D53C33DA163B6331007420CD /* libRoutingHTTPServer.a in Frameworks */,
 				D53C33D7163B6326007420CD /* libCocoaLumberjack.a in Frameworks */,
@@ -435,6 +460,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5D070CB163C4691009B0E74 /* ServiceDiscovery.framework in Frameworks */,
 				D53C34C7163B72FE007420CD /* RestKit.framework in Frameworks */,
 				D53C34C6163B72F1007420CD /* RestKit+Blocks.framework in Frameworks */,
 				276C7E8A1634C76200631ECD /* RoutingHTTPServer.framework in Frameworks */,
@@ -521,20 +547,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		2768898F1630E6E600CE03B4 /* ServiceDiscovery */ = {
-			isa = PBXGroup;
-			children = (
-				27A1BA8D16308F8A00BCFB39 /* SDServiceDiscovery.h */,
-				27A1BA8E16308F8A00BCFB39 /* SDServiceDiscovery.m */,
-				276889931630E6FD00CE03B4 /* SDService.h */,
-				276889941630E6FD00CE03B4 /* SDService.m */,
-				276889991630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h */,
-				2768899A1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m */,
-				276889A71630F61700CE03B4 /* ServiceDiscovery.h */,
-			);
-			name = ServiceDiscovery;
-			sourceTree = "<group>";
-		};
 		276C19F0162CA382002C8285 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,7 +605,6 @@
 		277E5531154A42AF002F307D /* IntAirAct */ = {
 			isa = PBXGroup;
 			children = (
-				2768898F1630E6E600CE03B4 /* ServiceDiscovery */,
 				27A1BA3D1630840800BCFB39 /* Categories */,
 				2756EE35162F77E100E76B50 /* RoutingHTTPServer */,
 				27EF3391154A9CE8003D7F41 /* Server */,
@@ -702,6 +713,7 @@
 		D53C33F1163B6378007420CD /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */,
 				276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */,
 				D53C33DD163B6364007420CD /* RestKit.xcodeproj */,
 				276C19EF162CA382002C8285 /* RestKit+Blocks.xcodeproj */,
@@ -734,6 +746,17 @@
 			name = "iOS-Testing";
 			sourceTree = "<group>";
 		};
+		D5D070B3163C4658009B0E74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5D070BF163C4658009B0E74 /* libServiceDiscovery.a */,
+				D5D070C1163C4658009B0E74 /* ServiceDiscovery.framework */,
+				D5D070C3163C4658009B0E74 /* ServiceDiscoveryIOSTests.octest */,
+				D5D070C5163C4658009B0E74 /* ServiceDiscoveryOSXTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -762,10 +785,6 @@
 				2756EE31162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */,
 				2756EE38162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
 				27A1BA8A16308F5000BCFB39 /* NSObject+SubscriptingSupport.h in Headers */,
-				27A1BA8F16308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */,
-				276889951630E6FD00CE03B4 /* SDService.h in Headers */,
-				2768899B1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h in Headers */,
-				276889A81630F61700CE03B4 /* ServiceDiscovery.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,7 +798,6 @@
 				274A48BA15508DAC000DFAF9 /* IAIntAirAct.h in Headers */,
 				274A48BE15508DAC000DFAF9 /* IALogging.h in Headers */,
 				274A48C415508DB9000DFAF9 /* IAAction.h in Headers */,
-				276C7E591634C3C300631ECD /* NSNotificationCenter+ServiceDiscovery.h in Headers */,
 				2756EDE4162F568F00E76B50 /* IARoute.h in Headers */,
 				276ED16F1556541500C4702F /* IACapability.h in Headers */,
 				274A48C815508DB9000DFAF9 /* IADevice.h in Headers */,
@@ -795,9 +813,6 @@
 				2756EE32162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */,
 				2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
 				27A1BA8B16308F5000BCFB39 /* NSObject+SubscriptingSupport.h in Headers */,
-				27A1BA9016308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */,
-				276889961630E6FD00CE03B4 /* SDService.h in Headers */,
-				276889A91630F61700CE03B4 /* ServiceDiscovery.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +832,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D5D070CD163C4699009B0E74 /* PBXTargetDependency */,
 				276C1A04162CA39B002C8285 /* PBXTargetDependency */,
 				27EF3006154A7FB3003D7F41 /* PBXTargetDependency */,
 			);
@@ -837,6 +853,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D5D070CA163C468D009B0E74 /* PBXTargetDependency */,
 				276C1A08162CA3AB002C8285 /* PBXTargetDependency */,
 				27EF3014154A7FC8003D7F41 /* PBXTargetDependency */,
 			);
@@ -917,6 +934,10 @@
 				{
 					ProductGroup = 27EF2FE9154A7FA7003D7F41 /* Products */;
 					ProjectRef = 27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */;
+				},
+				{
+					ProductGroup = D5D070B3163C4658009B0E74 /* Products */;
+					ProjectRef = D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1050,6 +1071,34 @@
 			remoteRef = D53C33EE163B6364007420CD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		D5D070BF163C4658009B0E74 /* libServiceDiscovery.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libServiceDiscovery.a;
+			remoteRef = D5D070BE163C4658009B0E74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5D070C1163C4658009B0E74 /* ServiceDiscovery.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ServiceDiscovery.framework;
+			remoteRef = D5D070C0163C4658009B0E74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5D070C3163C4658009B0E74 /* ServiceDiscoveryIOSTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ServiceDiscoveryIOSTests.octest;
+			remoteRef = D5D070C2163C4658009B0E74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D5D070C5163C4658009B0E74 /* ServiceDiscoveryOSXTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ServiceDiscoveryOSXTests.octest;
+			remoteRef = D5D070C4163C4658009B0E74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1157,9 +1206,6 @@
 				2756EE2D162F6E6500E76B50 /* IAResponse+Generic.m in Sources */,
 				2756EE33162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */,
 				2756EE3A162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */,
-				27A1BA9116308F8A00BCFB39 /* SDServiceDiscovery.m in Sources */,
-				276889971630E6FD00CE03B4 /* SDService.m in Sources */,
-				2768899D1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,7 +1213,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				276C7E581634C3B500631ECD /* NSNotificationCenter+ServiceDiscovery.m in Sources */,
 				274A48B115508DA1000DFAF9 /* IARouteRequest+BodyAsString.m in Sources */,
 				274A48B515508DA1000DFAF9 /* IARouteResponse+Serializer.m in Sources */,
 				274A48BC15508DAC000DFAF9 /* IAIntAirAct.m in Sources */,
@@ -1185,8 +1230,6 @@
 				2756EE2E162F6E6500E76B50 /* IAResponse+Generic.m in Sources */,
 				2756EE34162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */,
 				2756EE3B162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */,
-				27A1BA9216308F8A00BCFB39 /* SDServiceDiscovery.m in Sources */,
-				276889981630E6FD00CE03B4 /* SDService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,6 +1298,16 @@
 			isa = PBXTargetDependency;
 			name = RoutingHTTPServerIOS;
 			targetProxy = 27EF32AB154A98AF003D7F41 /* PBXContainerItemProxy */;
+		};
+		D5D070CA163C468D009B0E74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ServiceDiscoveryOSX;
+			targetProxy = D5D070C9163C468D009B0E74 /* PBXContainerItemProxy */;
+		};
+		D5D070CD163C4699009B0E74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ServiceDiscoveryStaticIOS;
+			targetProxy = D5D070CC163C4699009B0E74 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
