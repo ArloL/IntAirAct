@@ -1,3 +1,5 @@
+@class IAIntAirAct;
+
 @interface IAResponse : NSObject
 
 #define OK @200
@@ -9,5 +11,10 @@
 @property (strong) NSNumber * statusCode;
 @property (strong) NSData * body;
 @property (strong, readonly) NSMutableDictionary * metadata;
+
+- (void)respondWith:(id)data withIntAirAct:(IAIntAirAct *)intAirAct;
+- (void)respondWithString:(NSString *)string;
+- (void)respondWithString:(NSString *)string encoding:(NSStringEncoding)encoding;
+- (void)respondWithData:(NSData *)data;
 
 @end

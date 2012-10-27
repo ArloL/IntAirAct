@@ -108,6 +108,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         
         if (success) {
             IALogInfo3(@"Started IntAirAct.");
+            int port = (int)_server.port;
+            [self.serviceDiscovery publishServiceOfType:@"_intairact._tcp" onPort:port];
             [self.serviceDiscovery searchForServicesOfType:@"_intairact._tcp"];
             _isRunning = YES;
         } else {
@@ -297,6 +299,11 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     
     [self addMappingForClass:[IADevice class] withKeypath:@"devices" withAttributes:@"name", @"host", @"port", nil];
     [self addMappingForClass:[IACapability class] withKeypath:@"capabilities" withAttributes:@"capability", nil];
+    
+    [self route:[IARoute routeWithAction:@"GET" resource:@"/capabilities"] withHandler:^(IARequest *request, IAResponse *response) {
+        IALogTrace3(@"GET /capabilities");
+        [response respondWith:self.capabilities withIntAirAct:self];
+    }];
     
     RKObjectMapping * actionSerialization = [RKObjectMapping mappingForClass:[NSDictionary class]];
     actionSerialization.rootKeyPath = @"actions";
