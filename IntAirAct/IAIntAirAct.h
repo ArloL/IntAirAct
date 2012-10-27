@@ -39,7 +39,7 @@ extern NSString * IADeviceLost;
 @property (nonatomic, strong, readonly) RKObjectMappingProvider * objectMappingProvider;
 
 /** Returns the current device if it has been found yet, `nil` otherwise. */
-@property (readonly) IADevice * ownDevice;
+@property (nonatomic, strong, readonly) IADevice * ownDevice;
 
 /** The port on which to listen on. Default is 0. This means the system will find a free port. */
 @property (nonatomic) NSInteger port;
