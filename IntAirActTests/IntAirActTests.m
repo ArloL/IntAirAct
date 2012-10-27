@@ -3,6 +3,7 @@
 #import <CocoaLumberjack/DDLog.h>
 #import <CocoaLumberjack/DDTTYLogger.h>
 #import <IntAirAct/IntAirAct.h>
+#import <IntAirAct/IARoutingHTTPServerAdapter.h>
 #import <RestKit/RestKit.h>
 #import <RestKit+Blocks/RestKit+Blocks.h>
 
@@ -29,6 +30,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     });
 }
 
+-(IAIntAirAct*)newIntAirAct
+{
+    RoutingHTTPServer * routingHTTPServer = [RoutingHTTPServer new];
+    IARoutingHTTPServerAdapter * routingHTTPServerAdapter = [[IARoutingHTTPServerAdapter alloc] initWithRoutingHTTPServer:routingHTTPServer];
+    return [[IAIntAirAct alloc] initWithServer:routingHTTPServerAdapter];
+}
+
 -(void)setUp
 {
     [super setUp];
@@ -37,7 +45,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self logging];
 
     // Given
-    self.intAirAct = [IAIntAirAct new];
+    self.intAirAct = [self newIntAirAct];
 }
 
 -(void)tearDown
@@ -71,9 +79,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 -(void)testDefaultPortShouldBeZero
-{   
+{
+    NSInteger expectedPort = 0;
     // Then
-    STAssertEquals((UInt16) 0, self.intAirAct.port, @"Default port should be zero but was %i", self.intAirAct.port);
+    STAssertEquals(expectedPort, self.intAirAct.port, @"Default port should be %i but was %i", expectedPort, self.intAirAct.port);
 }
 
 -(void)testDefaultCapabilitiesShouldBeEmpty
@@ -221,7 +230,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     // And
     NSError * error = nil;
-    IAIntAirAct * iAA = [IAIntAirAct new];
+    IAIntAirAct * iAA = [self newIntAirAct];
     if (![iAA start:&error]) {
         STFail(@"IntAirAct failed to start: %@", error);
     } else if (![self.intAirAct start:&error]) {
@@ -290,7 +299,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 -(void)testTimeout
 {
-    
     RKClient * client = [RKClient clientWithBaseURL:[NSURL URLWithString:@"http://127.0.0.1"]];
     client.timeoutInterval = 5;
     
