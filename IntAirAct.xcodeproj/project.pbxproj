@@ -127,7 +127,6 @@
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		D53C33D7163B6326007420CD /* libCocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C7E651634C51500631ECD /* libCocoaLumberjack.a */; };
 		D53C33DA163B6331007420CD /* libRoutingHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */; };
-		D53C33F0163B636A007420CD /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C33E7163B6364007420CD /* libRestKit.a */; };
 		D53C340A163B639F007420CD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3409163B639F007420CD /* CFNetwork.framework */; };
 		D53C340C163B63A7007420CD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C340B163B63A7007420CD /* CoreGraphics.framework */; };
 		D53C340E163B63AF007420CD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C340D163B63AF007420CD /* CoreData.framework */; };
@@ -138,9 +137,14 @@
 		D53C341A163B63F3007420CD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3419163B63F3007420CD /* MobileCoreServices.framework */; };
 		D53C341C163B6400007420CD /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C341B163B6400007420CD /* libxml2.dylib */; };
 		D53C341E163B6416007420CD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C341D163B6416007420CD /* QuartzCore.framework */; };
-		D53C341F163B643E007420CD /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C33EB163B6364007420CD /* RestKit.framework */; };
 		D53C3420163B644D007420CD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3411163B63BE007420CD /* SenTestingKit.framework */; };
 		D53C3421163B6455007420CD /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C33EB163B6364007420CD /* RestKit.framework */; };
+		D53C34C3163B6AA4007420CD /* RoutingHTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */; };
+		D53C34C4163B722F007420CD /* libRestKit+Blocks.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C19FC162CA383002C8285 /* libRestKit+Blocks.a */; };
+		D53C34C6163B72F1007420CD /* RestKit+Blocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C19FE162CA383002C8285 /* RestKit+Blocks.framework */; };
+		D53C34C7163B72FE007420CD /* RestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C33EB163B6364007420CD /* RestKit.framework */; };
+		D53C3523163C1E45007420CD /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = D53C3522163C1E45007420CD /* IAServer.h */; };
+		D53C3524163C1E45007420CD /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = D53C3522163C1E45007420CD /* IAServer.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -413,6 +417,7 @@
 		D53C3419163B63F3007420CD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D53C341B163B6400007420CD /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D53C341D163B6416007420CD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D53C3522163C1E45007420CD /* IAServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAServer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,7 +425,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D53C33F0163B636A007420CD /* libRestKit.a in Frameworks */,
+				D53C34C4163B722F007420CD /* libRestKit+Blocks.a in Frameworks */,
 				D53C33DA163B6331007420CD /* libRoutingHTTPServer.a in Frameworks */,
 				D53C33D7163B6326007420CD /* libCocoaLumberjack.a in Frameworks */,
 			);
@@ -430,7 +435,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D53C341F163B643E007420CD /* RestKit.framework in Frameworks */,
+				D53C34C7163B72FE007420CD /* RestKit.framework in Frameworks */,
+				D53C34C6163B72F1007420CD /* RestKit+Blocks.framework in Frameworks */,
 				276C7E8A1634C76200631ECD /* RoutingHTTPServer.framework in Frameworks */,
 				276C7E871634C75400631ECD /* CocoaLumberjack.framework in Frameworks */,
 			);
@@ -458,6 +464,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D53C34C3163B6AA4007420CD /* RoutingHTTPServer.framework in Frameworks */,
 				D53C3421163B6455007420CD /* RestKit.framework in Frameworks */,
 				D53C3420163B644D007420CD /* SenTestingKit.framework in Frameworks */,
 				276C7E8C1634C77100631ECD /* CocoaLumberjack.framework in Frameworks */,
@@ -660,6 +667,7 @@
 		27EF3391154A9CE8003D7F41 /* Server */ = {
 			isa = PBXGroup;
 			children = (
+				D53C3522163C1E45007420CD /* IAServer.h */,
 				274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */,
 				274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */,
 				274A48AC15508DA1000DFAF9 /* IARouteResponse+Serializer.h */,
@@ -757,6 +765,7 @@
 				276889951630E6FD00CE03B4 /* SDService.h in Headers */,
 				2768899B1630F00C00CE03B4 /* NSNotificationCenter+ServiceDiscovery.h in Headers */,
 				276889A81630F61700CE03B4 /* ServiceDiscovery.h in Headers */,
+				D53C3523163C1E45007420CD /* IAServer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,6 +797,7 @@
 				27A1BA9016308F8A00BCFB39 /* SDServiceDiscovery.h in Headers */,
 				276889961630E6FD00CE03B4 /* SDService.h in Headers */,
 				276889A91630F61700CE03B4 /* ServiceDiscovery.h in Headers */,
+				D53C3524163C1E45007420CD /* IAServer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
