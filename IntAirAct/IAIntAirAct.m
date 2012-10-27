@@ -111,8 +111,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         if (success) {
             IALogInfo3(@"Started IntAirAct.");
             int port = (int)_server.port;
-            [self.serviceDiscovery publishServiceOfType:@"_intairact._tcp" onPort:port];
-            [self.serviceDiscovery searchForServicesOfType:@"_intairact._tcp"];
+            [self.serviceDiscovery publishServiceOfType:@"_intairact._tcp." onPort:port];
+            [self.serviceDiscovery searchForServicesOfType:@"_intairact._tcp."];
             _isRunning = YES;
         } else {
             IALogError(@"%@[%p]: Failed to start IntAirAct: %@", THIS_FILE, self, err);
