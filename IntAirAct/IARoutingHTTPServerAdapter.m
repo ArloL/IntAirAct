@@ -69,7 +69,12 @@
 
 -(NSInteger)port
 {
-    return self.routingHTTPServer.port;
+    int listeningPort = self.routingHTTPServer.listeningPort;
+    if(listeningPort == 0) {
+        return self.routingHTTPServer.port;
+    } else {
+        return listeningPort;
+    }
 }
 
 -(void)setPort:(NSInteger)port
