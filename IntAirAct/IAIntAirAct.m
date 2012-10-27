@@ -33,8 +33,10 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @property (nonatomic, strong) NSMutableSet * mDevices;
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
 @property (nonatomic) dispatch_queue_t serverQueue;
-@property (strong) NSObject<IAServer> * server;
-@property (strong) SDServiceDiscovery * serviceDiscovery;
+@property (nonatomic, strong) NSObject<IAServer> * server;
+@property (nonatomic, strong) SDServiceDiscovery * serviceDiscovery;
+@property (nonatomic, strong) id serviceFoundObserver;
+@property (nonatomic, strong) id serviceLostObserver;
 
 @property (nonatomic, strong) IADevice * ownDevice;
 
@@ -88,7 +90,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     dispatch_release(_clientQueue);
 #endif
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self.serviceFoundObserver];
+    [[NSNotificationCenter defaultCenter] removeObserver:self.serviceLostObserver];
 }
 
 -(BOOL)start:(NSError **)errPtr;
@@ -262,7 +265,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     // IAIntAiract -> SDServiceDisovery -> block -> IAIntAirAct
     __weak IAIntAirAct * myself = self;
     
-    [self.serviceDiscovery addHandlerForServiceFound:^(SDService *service, BOOL ownService) {
+    self.serviceFoundObserver = [self.serviceDiscovery addHandlerForServiceFound:^(SDService *service, BOOL ownService) {
         if (ownService) {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found own device");
             myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:self.capabilities];
@@ -282,7 +285,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         }
     }];
     
-    [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
+    self.serviceLostObserver = [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
         IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
         [myself.mDevices removeObject:dev];
         [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:dev];
