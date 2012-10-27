@@ -67,4 +67,14 @@
     [self.routingHTTPServer stop];
 }
 
+-(NSInteger)port
+{
+    return self.routingHTTPServer.port;
+}
+
+-(void)setPort:(NSInteger)port
+{
+    self.routingHTTPServer.port = port;
+}
+
 @end
