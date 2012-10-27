@@ -133,6 +133,7 @@
 		D53C3524163C1E45007420CD /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = D53C3522163C1E45007420CD /* IAServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D5D070CB163C4691009B0E74 /* ServiceDiscovery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D070C1163C4658009B0E74 /* ServiceDiscovery.framework */; };
 		D5D070CE163C469C009B0E74 /* libServiceDiscovery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D070BF163C4658009B0E74 /* libServiceDiscovery.a */; };
+		D5D070CF163C4B2E009B0E74 /* ServiceDiscovery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5D070C1163C4658009B0E74 /* ServiceDiscovery.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -490,6 +491,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5D070CF163C4B2E009B0E74 /* ServiceDiscovery.framework in Frameworks */,
 				D53C34C3163B6AA4007420CD /* RoutingHTTPServer.framework in Frameworks */,
 				D53C3421163B6455007420CD /* RestKit.framework in Frameworks */,
 				D53C3420163B644D007420CD /* SenTestingKit.framework in Frameworks */,
