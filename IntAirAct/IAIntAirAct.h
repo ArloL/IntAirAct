@@ -24,7 +24,7 @@ extern NSString * IADeviceLost;
 @property (nonatomic, strong, readonly) NSMutableSet * capabilities;
 
 /** A list of all the currently available devices. */
-@property (readonly) NSArray * devices;
+@property (readonly) NSSet * devices;
 
 /** `YES` if IntAirAct is running, `NO` otherwise. */
 @property (readonly) BOOL isRunning;

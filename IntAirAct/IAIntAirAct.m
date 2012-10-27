@@ -30,7 +30,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @interface IAIntAirAct ()
 
 @property (nonatomic) dispatch_queue_t clientQueue;
-@property (nonatomic, strong) NSMutableDictionary * deviceDictionary;
+@property (nonatomic, strong) NSMutableSet * mDevices;
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
 @property (nonatomic) dispatch_queue_t serverQueue;
 @property (strong) NSObject<IAServer> * server;
@@ -66,7 +66,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _router = [RKObjectRouter new];
         
         _clientQueue = dispatch_queue_create("IntAirActClient", NULL);
-        _deviceDictionary = [NSMutableDictionary new];
+        _mDevices = [NSMutableSet new];
         _objectManagers = [NSMutableDictionary new];
         _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
         _serviceDiscovery = serviceDiscovery;
@@ -129,7 +129,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     
     dispatch_sync(self.serverQueue, ^{ @autoreleasepool {
         [self.serviceDiscovery stop];
-        [_deviceDictionary removeAllObjects];
+        [_mDevices removeAllObjects];
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:nil];
         });
@@ -208,7 +208,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     
     dispatch_sync(_serverQueue, ^{
         result = [NSMutableArray new];
-        for(IADevice * dev in [_deviceDictionary allValues]) {
+        for(IADevice * dev in _mDevices) {
             if([dev.capabilities containsObject:capability]) {
                 [result addObject:dev];
             }
@@ -234,7 +234,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     __block NSArray * result;
 	
 	dispatch_sync(_serverQueue, ^{
-        result = [_deviceDictionary allValues];
+        result = [_mDevices copy];
 	});
 	
 	return result;
@@ -274,7 +274,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
                     IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, myself, device, error);
                 } else {
                     IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:[NSSet setWithArray:objects]];
-                    [myself.deviceDictionary setObject:dev forKey:dev.name];
+                    [myself.mDevices addObject:dev];
                     
                     [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:dev];
                 }
@@ -283,8 +283,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }];
     
     [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
-        IADevice * dev = [myself.deviceDictionary objectForKey:service.name];
-        [myself.deviceDictionary removeObjectForKey:service.name];
+        IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
+        [myself.mDevices removeObject:dev];
         [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:dev];
     }];
     
