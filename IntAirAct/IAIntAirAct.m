@@ -55,7 +55,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     return self;
 }
 
--(id)initWithServer:(NSObject<IAServer> *)server
+-(id)initWithServer:(NSObject<IAServer> *)server andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery
 {
     self = [super init];
     if (self) {
@@ -70,7 +70,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _deviceDictionary = [NSMutableDictionary new];
         _objectManagers = [NSMutableDictionary new];
         _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
-        _serviceDiscovery = [[SDServiceDiscovery alloc] initWithQueue:nil];
+        _serviceDiscovery = serviceDiscovery;
         _server = server;
         
         [self setup];

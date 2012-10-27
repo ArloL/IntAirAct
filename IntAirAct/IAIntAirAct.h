@@ -6,6 +6,7 @@
 @class RKObjectMappingResult;
 @class RKObjectRouter;
 @class RKObjectSerializer;
+@class SDServiceDiscovery;
 
 @class IAAction;
 @class IACapability;
@@ -60,7 +61,7 @@ extern NSString * IADeviceLost;
  */
 -(id)init;
 
--(id)initWithServer:(NSObject<IAServer>*)server;
+-(id)initWithServer:(NSObject<IAServer> *)server andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery;
 
 /** Standard Deconstructor.
  

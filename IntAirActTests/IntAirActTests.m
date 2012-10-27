@@ -6,6 +6,7 @@
 #import <IntAirAct/IARoutingHTTPServerAdapter.h>
 #import <RestKit/RestKit.h>
 #import <RestKit+Blocks/RestKit+Blocks.h>
+#import <ServiceDiscovery/ServiceDiscovery.h>
 
 #import "IANumber.h"
 
@@ -34,7 +35,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     RoutingHTTPServer * routingHTTPServer = [RoutingHTTPServer new];
     IARoutingHTTPServerAdapter * routingHTTPServerAdapter = [[IARoutingHTTPServerAdapter alloc] initWithRoutingHTTPServer:routingHTTPServer];
-    return [[IAIntAirAct alloc] initWithServer:routingHTTPServerAdapter];
+    SDServiceDiscovery * serviceDiscovery = [SDServiceDiscovery new];
+    return [[IAIntAirAct alloc] initWithServer:routingHTTPServerAdapter andServiceDiscovery:serviceDiscovery];
 }
 
 -(void)setUp
