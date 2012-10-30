@@ -18,6 +18,9 @@
 extern NSString * IADeviceFound;
 extern NSString * IADeviceLost;
 
+typedef void (^IADeviceFoundHandler)(IADevice * device, BOOL ownDevice);
+typedef void (^IADeviceLostHandler)(IADevice * device);
+
 @interface IAIntAirAct : NSObject
 
 /** A Set of all the capabilities this device has. */
@@ -157,5 +160,9 @@ extern NSString * IADeviceLost;
 -(RKObjectSerializer *)serializerForObject:(id)object;
 
 -(BOOL)route:(IARoute*)route withHandler:(IARequestHandler)block;
+
+-(void)removeObserver:(id)observer;
+-(id)addHandlerForDeviceFound:(IADeviceFoundHandler)handler;
+-(id)addHandlerForDeviceLost:(IADeviceLostHandler)handler;
 
 @end

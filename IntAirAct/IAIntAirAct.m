@@ -37,6 +37,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @property (nonatomic, strong) SDServiceDiscovery * serviceDiscovery;
 @property (nonatomic, strong) id serviceFoundObserver;
 @property (nonatomic, strong) id serviceLostObserver;
+@property (nonatomic, strong) NSNotificationCenter * notificationCenter;
 
 @property (nonatomic, strong) IADevice * ownDevice;
 
@@ -73,6 +74,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
         _serviceDiscovery = serviceDiscovery;
         _server = server;
+        _notificationCenter = [NSNotificationCenter defaultCenter];
         
         [self setup];
     }
@@ -270,6 +272,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         if (ownService) {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found own device");
             myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:self.capabilities];
+            [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":myself.ownDevice, @"ownDevice":@YES}];
         } else {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found other device");
             IADevice * device = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
@@ -280,7 +283,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
                     IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:[NSSet setWithArray:objects]];
                     [myself.mDevices addObject:dev];
                     
-                    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:dev];
+                    [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":dev}];
                 }
             }];
         }
@@ -289,7 +292,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     self.serviceLostObserver = [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
         IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
         [myself.mDevices removeObject:dev];
-        [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:dev];
+        [myself.notificationCenter postNotificationName:IADeviceLost object:myself userInfo:@{@"device":dev}];
     }];
     
     [self addMappingForClass:[IADevice class] withKeypath:@"devices" withAttributes:@"name", @"host", @"port", nil];
@@ -439,6 +442,41 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 -(BOOL)route:(IARoute *)route withHandler:(IARequestHandler)block
 {
     return [self.server route:route withHandler:block];
+}
+
+#pragma mark Notification support
+
+-(void)removeObserver:(id)observer
+{
+    [self.notificationCenter removeObserver:observer];
+}
+
+-(id)addHandlerForDeviceFound:(IADeviceFoundHandler)handler
+{
+    return [self.notificationCenter addObserverForName:IADeviceFound object:self queue:nil usingBlock:^(NSNotification *note) {
+        if(note.userInfo) {
+            NSObject * obj = note.userInfo[@"device"];
+            if(obj && [obj isKindOfClass:[IADevice class]]) {
+                if(note.userInfo[@"ownDevice"] == @YES) {
+                    handler((IADevice *)obj, YES);
+                } else {
+                    handler((IADevice *)obj, NO);
+                }
+            }
+        }
+    }];
+}
+
+-(id)addHandlerForDeviceLost:(IADeviceLostHandler)handler
+{
+    return [self.notificationCenter addObserverForName:IADeviceLost object:self queue:nil usingBlock:^(NSNotification *note) {
+        if(note.userInfo) {
+            NSObject * obj = note.userInfo[@"device"];
+            if(obj && [obj isKindOfClass:[IADevice class]]) {
+                handler((IADevice *)obj);
+            }
+        }
+    }];
 }
 
 @end
