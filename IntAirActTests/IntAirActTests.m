@@ -232,13 +232,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         STFail(@"IntAirAct failed to start: %@", error);
     } else {
         NSDate * start = [NSDate new];
-        while(self.intAirAct.ownDevice == nil && iAA.ownDevice == nil) {
+        while(self.intAirAct.ownDevice == nil || iAA.ownDevice == nil) {
             [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
             if([start timeIntervalSinceNow] < -5) {
                 STFail(@"IntAirAct should find own Device in five seconds");
                 return;
             }
         }
+        
+        STAssertNotNil(self.intAirAct.ownDevice, @"ownDevice should not be nil");
+        STAssertNotNil(iAA.ownDevice, @"ownDevice should not be nil");
         
         // Then
         start = [NSDate new];
