@@ -141,15 +141,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     NSDate * start = [NSDate new];
     while(self.intAirAct.ownDevice == nil) {
-        [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
         if([start timeIntervalSinceNow] < -5) {
             STFail(@"IntAirAct should find own Device in five seconds");
             return;
         }
+        [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
     }
-    
-    [self.intAirAct stop];
-    [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
 }
 
 -(void)testOwnDeviceCapabilitesShouldBeEqualToResolved
@@ -175,9 +172,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     
     STAssertEqualObjects(self.intAirAct.capabilities, self.intAirAct.ownDevice.capabilities, @"ownDevice.capabilities and capabilities should be equal");
-    
-    [self.intAirAct stop];
-    [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
 }
 
 -(void)testDefaultObjectMappings
@@ -224,9 +218,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     RKObjectManager * man = [self.intAirAct objectManagerForDevice:self.intAirAct.ownDevice];
     STAssertNotNil(man, @"Should return an RKObjectManager");
     STAssertTrue([[man.baseURL absoluteString] hasPrefix:@"http://127.0.0.1"], @"Should be a local interface");
-    
-    [self.intAirAct stop];
-    [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
 }
 
 -(void)testIntAirActShouldFindOtherDeviceInFiveSeconds
@@ -264,8 +255,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 
     [iAA stop];
-    [self.intAirAct stop];
-    [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
 }
 
 -(void)testResourcePathFor
