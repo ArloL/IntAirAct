@@ -19,15 +19,6 @@
     return self;
 }
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"-init is not a valid initializer for the class IADevice" userInfo:nil];
-    }
-    return self;
-}
-
 -(id)copy
 {
     return [IADevice deviceWithName:self.name host:self.host port:self.port capabilities:[self.capabilities copy]];
