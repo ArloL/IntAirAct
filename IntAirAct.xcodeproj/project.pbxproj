@@ -1378,10 +1378,6 @@
 				"ARCHS[sdk=iphonesimulator*]" = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/IntAirAct-azunxbvnreftevdovakzxoxwomxg/Build/Products/Debug-iphoneos\"",
-				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME)PrivateHeaders";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
@@ -1395,10 +1391,6 @@
 				"ARCHS[sdk=iphonesimulator*]" = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/IntAirAct-azunxbvnreftevdovakzxoxwomxg/Build/Products/Debug-iphoneos\"",
-				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME)PrivateHeaders";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
@@ -1426,7 +1418,6 @@
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				INSTALL_PATH = "@executable_path/../Frameworks";
@@ -1445,7 +1436,6 @@
 					"$(inherited)",
 					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				INSTALL_PATH = "@executable_path/../Frameworks";
@@ -1463,7 +1453,6 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
-				INFOPLIST_FILE = "IntAirAct-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = IntAirActIOSTests;
 				WRAPPER_EXTENSION = octest;
@@ -1479,7 +1468,6 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
-				INFOPLIST_FILE = "IntAirAct-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = IntAirActIOSTests;
 				WRAPPER_EXTENSION = octest;
@@ -1491,12 +1479,9 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
-				INFOPLIST_FILE = "IntAirAct-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = IntAirActOSXTests;
 				SDKROOT = macosx;
@@ -1510,12 +1495,9 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
-				INFOPLIST_FILE = "IntAirAct-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = IntAirActOSXTests;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = octest;
