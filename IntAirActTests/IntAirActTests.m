@@ -37,6 +37,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     RoutingHTTPServer * routingHTTPServer = [RoutingHTTPServer new];
     IARoutingHTTPServerAdapter * routingHTTPServerAdapter = [[IARoutingHTTPServerAdapter alloc] initWithRoutingHTTPServer:routingHTTPServer];
     SDServiceDiscovery * serviceDiscovery = [SDServiceDiscovery new];
+    [serviceDiscovery setLogLevel:SD_LOG_LEVEL_VERBOSE];
     return [[IAIntAirAct alloc] initWithServer:routingHTTPServerAdapter andServiceDiscovery:serviceDiscovery];
 }
 
