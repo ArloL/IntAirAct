@@ -27,9 +27,6 @@
         _port = 0;
         
         _routingHTTPServer = routingHTTPServer;
-        
-        // Tell the server to broadcast its presence via ZeroConf.
-        [_routingHTTPServer setType:@"_intairact._tcp."];
     }
     return self;
 }
