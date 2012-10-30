@@ -28,6 +28,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     static dispatch_once_t once;
     dispatch_once(&once, ^ {
         [DDLog addLogger:[DDTTYLogger sharedInstance]];
+        [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     });
 }
 
