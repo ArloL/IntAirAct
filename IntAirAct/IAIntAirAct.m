@@ -377,12 +377,12 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     // keep this here because otherwise we run into a memory release issue
     __block id returnValue;
     
-    [self route:[IARoute routeWithAction:@"GET" resource:[@"/action/" stringByAppendingString:actionName]] withHandler:^(IARequest *request, IAResponse *response) {
+    [self route:[IARoute routeWithAction:@"PUT" resource:[@"/action/" stringByAppendingString:actionName]] withHandler:^(IARequest *request, IAResponse *response) {
         IALogVerbose(@"%@", [@"PUT /action/" stringByAppendingString:actionName]);
         IALogTrace2(@"Request: %@", [request bodyAsString]);
         
         RKObjectMappingResult * result = [self deserializeObject:[request body]];
-        if(!result && [[result asObject] isKindOfClass:[IAAction class]]) {
+        if(!result || ![[result asObject] isKindOfClass:[IAAction class]]) {
             IALogError(@"%@[%p]: Could not parse request body: %@", THIS_FILE, self, [request bodyAsString]);
             response.statusCode = @500;
             return;
