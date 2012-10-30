@@ -56,9 +56,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // Tear-down code here.
     if(self.intAirAct.isRunning) {
         [self.intAirAct stop];
-        [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
+        // Bonjour takes a while to shutdown everything properly
+        sleep(1);
     }
-    self.intAirAct = nil;
     
     [super tearDown];
 }
