@@ -10,7 +10,7 @@
         _metadata = metadata;
         _parameters = parameters;
         _origin = origin;
-        _body = _body;
+        _body = body;
     }
     return self;
 }
