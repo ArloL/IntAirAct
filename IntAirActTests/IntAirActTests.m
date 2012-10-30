@@ -248,7 +248,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
         // Then
         start = [NSDate new];
-        while([self.intAirAct.devices containsObject:iAA.ownDevice] && [iAA.devices containsObject:self.intAirAct.ownDevice]) {
+        while(![self.intAirAct.devices containsObject:iAA.ownDevice] && ![iAA.devices containsObject:self.intAirAct.ownDevice]) {
             [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
             if([start timeIntervalSinceNow] < -5) {
                 STFail(@"IntAirAct should find other Device in five seconds");
@@ -261,6 +261,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 
     [iAA stop];
+    sleep(1);
 }
 
 -(void)testResourcePathFor
