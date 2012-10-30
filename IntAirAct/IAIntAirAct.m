@@ -130,8 +130,9 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 {
     IALogTrace();
     
-    dispatch_sync(self.serverQueue, ^{ @autoreleasepool {
-        [self.serviceDiscovery stop];
+    dispatch_sync(_serverQueue, ^{ @autoreleasepool {
+        [_server stop];
+        [_serviceDiscovery stop];
         [_mDevices removeAllObjects];
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:nil];
