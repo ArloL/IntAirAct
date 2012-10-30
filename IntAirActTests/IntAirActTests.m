@@ -13,6 +13,8 @@
 // Log levels : off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
+#define WAIT_TIME 5
+
 @interface IntAirActTests()
 
 @property (nonatomic, strong) IAIntAirAct * intAirAct;
@@ -308,6 +310,45 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             STFail(@"IntAirAct should call add in five seconds");
             return;
         }
+    }
+}
+
+-(void)testIntAirActShouldFindOwnDeviceInFiveSeconds2
+{
+    NSDate * startTimePlusWaitTime;
+    __block BOOL found = NO;
+    __block NSCondition * cond = [NSCondition new];
+    id deviceFoundObserver;
+    
+    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+        if(ownDevice) {
+            found = YES;
+            [cond signal];
+        }
+    }];
+    
+    // Then
+    NSError * error = nil;
+    if (![self.intAirAct start:&error]) {
+        STFail(@"HTTP server failed to start: %@", error);
+        return;
+    }
+    
+    startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
+    
+    [cond lock];
+    while(!found && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
+        [cond waitUntilDate:startTimePlusWaitTime];
+    }
+    [cond unlock];
+    
+    STAssertNotNil(self.intAirAct.ownDevice, @"ownDevice should be set");
+
+    [self.intAirAct stop];
+    sleep(1);
+    
+    if (!found) {
+        STFail(@"Did not find service");
     }
 }
 
