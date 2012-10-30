@@ -288,9 +288,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSString * expected = @"/action/actionName";
     
     STAssertEqualObjects(expected, [self.intAirAct resourcePathFor:action forObjectManager:manager], @"Resource path for action should be %@ but was %@", expected, [self.intAirAct resourcePathFor:action forObjectManager:manager]);
-    
-    [self.intAirAct stop];
-    [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
 }
 
 -(void)testTimeout
