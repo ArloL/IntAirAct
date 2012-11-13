@@ -9,7 +9,6 @@
 @class SDServiceDiscovery;
 
 @class IAAction;
-@class IACapability;
 @class IADevice;
 @class IARoute;
 @class IARequest;
@@ -23,7 +22,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 @interface IAIntAirAct : NSObject
 
-/** A Set of all the capabilities this device has. */
+/** A Set of all the supported routes this device has. */
 @property (nonatomic, strong) NSMutableSet * supportedRoutes;
 
 /** A list of all the currently available devices. */
@@ -126,13 +125,13 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  */
 -(RKObjectMappingResult *)deserializeObject:(id)data;
 
-/** Get an array of devices with a certain capability.
+/** Get an array of devices that support a certain route.
  
- @param capability the capability which the devices should have.
+ @param route the route which the devices should support.
  
- @return an array of devices with the specified capability.
+ @return an array of devices that support the specified route.
  */
--(NSArray *)devicesWithCapability:(IACapability *)capability;
+-(NSArray *)devicesSupportingRoute:(IARoute *)route;
 
 /** Return an RKObjectManager for the specified device.
  

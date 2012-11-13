@@ -9,7 +9,6 @@
 #import <ServiceDiscovery/ServiceDiscovery.h>
 
 #import "IAAction.h"
-#import "IACapability.h"
 #import "IADevice.h"
 #import "IALogging.h"
 #import "IARouteRequest+BodyAsString.h"
@@ -157,16 +156,16 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     self.serviceFoundObserver = [self.serviceDiscovery addHandlerForServiceFound:^(SDService *service, BOOL ownService) {
         if (ownService) {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found own device");
-            myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:self.supportedRoutes];
+            myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port supportedRoutes:self.supportedRoutes];
             [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":myself.ownDevice, @"ownDevice":@YES}];
         } else {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found other device");
-            IADevice * device = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
-            [[myself objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(NSArray * objects, NSError * error) {
+            IADevice * device = [IADevice deviceWithName:service.name host:service.hostName port:service.port supportedRoutes:nil];
+            [[myself objectManagerForDevice:device] loadObjectsAtResourcePath:@"/routes" handler:^(NSArray * objects, NSError * error) {
                 if (error) {
-                    IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, myself, device, error);
+                    IALogError(@"%@[%p]: Could not get supported routes of device %@: %@", THIS_FILE, myself, device, error);
                 } else {
-                    IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:[NSSet setWithArray:objects]];
+                    IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port supportedRoutes:[NSSet setWithArray:objects]];
                     [myself.mDevices addObject:dev];
                     
                     [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":dev}];
@@ -176,16 +175,16 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }];
     
     self.serviceLostObserver = [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
-        IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
+        IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port supportedRoutes:nil];
         [myself.mDevices removeObject:dev];
         [myself.notificationCenter postNotificationName:IADeviceLost object:myself userInfo:@{@"device":dev}];
     }];
     
     [self addMappingForClass:[IADevice class] withKeypath:@"devices" withAttributes:@"name", @"host", @"port", nil];
-    [self addMappingForClass:[IACapability class] withKeypath:@"capabilities" withAttributes:@"capability", nil];
+    [self addMappingForClass:[IARoute class] withKeypath:@"routes" withAttributes:@"action", @"resource", nil];
     
-    [self route:[IARoute routeWithAction:@"GET" resource:@"/capabilities"] withHandler:^(IARequest *request, IAResponse *response) {
-        IALogTrace3(@"GET /capabilities");
+    [self route:[IARoute routeWithAction:@"GET" resource:@"/routes"] withHandler:^(IARequest *request, IAResponse *response) {
+        IALogTrace3(@"GET /routes");
         [response respondWith:self.supportedRoutes withIntAirAct:self];
     }];
     
@@ -308,14 +307,14 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }
 }
 
--(NSArray *)devicesWithCapability:(IACapability *)capability
+-(NSArray *)devicesSupportingRoute:(IARoute *)route
 {
     __block NSMutableArray * result;
     
     dispatch_sync(_serverQueue, ^{
         result = [NSMutableArray new];
         for(IADevice * dev in _mDevices) {
-            if([dev.capabilities containsObject:capability]) {
+            if([dev.supportedRoutes containsObject:route]) {
                 [result addObject:dev];
             }
         }
@@ -429,10 +428,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             [response respondWith:action withIntAirAct:self];
         }
     }];
-    
-    IACapability * cap = [IACapability new];
-    cap.capability = [@"PUT /action/" stringByAppendingString:actionName];
-    [self.supportedRoutes addObject:cap];
+
+    [self.supportedRoutes addObject:[IARoute routeWithAction:@"PUT" resource:[@"/action/" stringByAppendingString:actionName]]];
 }
 
 

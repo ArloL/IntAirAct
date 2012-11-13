@@ -1,5 +1,4 @@
 #import "IAAction.h"
-#import "IACapability.h"
 #import "IADevice.h"
 #import "IARoute.h"
 #import "IARequest.h"

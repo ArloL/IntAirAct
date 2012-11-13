@@ -91,11 +91,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     STAssertEquals(expectedPort, self.intAirAct.port, @"Default port should be %i but was %i", expectedPort, self.intAirAct.port);
 }
 
--(void)testDefaultCapabilitiesShouldBeEmpty
+-(void)testDefaultSupportedRoutesShouldBeEmpty
 {
     // Then
-    STAssertNotNil(self.intAirAct.supportedRoutes, @"Capabilities should not be nil");
-    STAssertTrue([self.intAirAct.supportedRoutes count] == 0, @"Capabilities should be empty");
+    STAssertNotNil(self.intAirAct.supportedRoutes, @"Supported routes should not be nil");
+    STAssertTrue([self.intAirAct.supportedRoutes count] == 0, @"Supported routes should be empty");
 }
 
 -(void)testDefaultDevicesShouldBeEmpty
@@ -152,12 +152,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
--(void)testOwnDeviceCapabilitesShouldBeEqualToResolved
+-(void)testOwnDeviceSupportedRoutesShouldBeEqualToResolved
 {
     // And
-    IACapability * cap = [IACapability new];
-    cap.capability = @"capability string";
-    [self.intAirAct.supportedRoutes addObject:cap];
+    [self.intAirAct.supportedRoutes addObject:[IARoute routeWithAction:@"GET" resource:@"/example"]];
     
     // Then
     NSError * error = nil;
@@ -174,7 +172,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         }
     }
     
-    STAssertEqualObjects(self.intAirAct.supportedRoutes, self.intAirAct.ownDevice.capabilities, @"ownDevice.capabilities and capabilities should be equal");
+    STAssertEqualObjects(self.intAirAct.supportedRoutes, self.intAirAct.ownDevice.supportedRoutes, @"ownDevice.supportedRoutes and supportedRoutes should be equal");
 }
 
 -(void)testDefaultObjectMappings
@@ -186,8 +184,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     STAssertNotNil([self.intAirAct.objectMappingProvider serializationMappingForClass:[IAAction class]], @"A serialization mapping should exist");
     STAssertNotNil([self.intAirAct.objectMappingProvider mappingForKeyPath:@"actions"], @"A deserialization mapping should exist");
     
-    STAssertNotNil([self.intAirAct.objectMappingProvider serializationMappingForClass:[IACapability class]], @"A serialization mapping should exist");
-    STAssertNotNil([self.intAirAct.objectMappingProvider mappingForKeyPath:@"capabilities"], @"A deserialization mapping should exist");
+    STAssertNotNil([self.intAirAct.objectMappingProvider serializationMappingForClass:[IARoute class]], @"A serialization mapping should exist");
+    STAssertNotNil([self.intAirAct.objectMappingProvider mappingForKeyPath:@"routes"], @"A deserialization mapping should exist");
 }
 
 -(void)testAddMappingForClass

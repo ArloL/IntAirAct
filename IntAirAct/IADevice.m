@@ -2,16 +2,16 @@
 
 @implementation IADevice
 
-+(IADevice *)deviceWithName:(NSString *)name host:(NSString *)host port:(NSInteger)port capabilities:(NSSet *)capabilities
++(IADevice *)deviceWithName:(NSString *)name host:(NSString *)host port:(NSInteger)port supportedRoutes:(NSSet *)supportedRoutes
 {
-    return [[IADevice alloc] initWithName:name host:host port:port capabilities:capabilities];
+    return [[IADevice alloc] initWithName:name host:host port:port supportedRoutes:supportedRoutes];
 }
 
-- (id)initWithName:(NSString*)name host:(NSString*)host port:(NSInteger)port capabilities:(NSSet*)capabilities
+- (id)initWithName:(NSString*)name host:(NSString*)host port:(NSInteger)port supportedRoutes:(NSSet*)supportedRoutes
 {
     self = [super init];
     if (self) {
-        _capabilities = capabilities;
+        _supportedRoutes = supportedRoutes;
         _name = name;
         _host = host;
         _port = port;
@@ -21,12 +21,12 @@
 
 -(id)copy
 {
-    return [IADevice deviceWithName:self.name host:self.host port:self.port capabilities:[self.capabilities copy]];
+    return [IADevice deviceWithName:self.name host:self.host port:self.port supportedRoutes:[self.supportedRoutes copy]];
 }
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"IADevice[name: %@, host: %@, port: %"FMTNSINT", capabilities: %@]", self.name, self.host, self.port, self.capabilities];
+    return [NSString stringWithFormat:@"IADevice[name: %@, host: %@, port: %"FMTNSINT", supportedRoutes: %@]", self.name, self.host, self.port, self.supportedRoutes];
 }
 
 -(BOOL)isEqual:(id)object

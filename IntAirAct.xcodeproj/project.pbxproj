@@ -103,10 +103,6 @@
 		276C7E8A1634C76200631ECD /* RoutingHTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */; };
 		276C7E8B1634C76E00631ECD /* IntAirAct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E5549154A4384002F307D /* IntAirAct.framework */; };
 		276C7E8C1634C77100631ECD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C7E671634C51500631ECD /* CocoaLumberjack.framework */; };
-		276ED16E1556541500C4702F /* IACapability.h in Headers */ = {isa = PBXBuildFile; fileRef = 276ED16C1556541500C4702F /* IACapability.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		276ED16F1556541500C4702F /* IACapability.h in Headers */ = {isa = PBXBuildFile; fileRef = 276ED16C1556541500C4702F /* IACapability.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		276ED1701556541500C4702F /* IACapability.m in Sources */ = {isa = PBXBuildFile; fileRef = 276ED16D1556541500C4702F /* IACapability.m */; };
-		276ED1711556541500C4702F /* IACapability.m in Sources */ = {isa = PBXBuildFile; fileRef = 276ED16D1556541500C4702F /* IACapability.m */; };
 		27A1BA8A16308F5000BCFB39 /* NSObject+SubscriptingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1BA8916308F5000BCFB39 /* NSObject+SubscriptingSupport.h */; };
 		27A1BA8B16308F5000BCFB39 /* NSObject+SubscriptingSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 27A1BA8916308F5000BCFB39 /* NSObject+SubscriptingSupport.h */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
@@ -422,8 +418,6 @@
 		27652084162DB7D5008EA1C7 /* Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
 		276C19EF162CA382002C8285 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKit+Blocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaLumberjack.xcodeproj; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaAsyncSocket/Frameworks/CocoaLumberjack/CocoaLumberjack.xcodeproj; sourceTree = "<group>"; };
-		276ED16C1556541500C4702F /* IACapability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IACapability.h; sourceTree = "<group>"; };
-		276ED16D1556541500C4702F /* IACapability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IACapability.m; sourceTree = "<group>"; };
 		277E552C154A42AF002F307D /* libIntAirAct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIntAirAct.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E5549154A4384002F307D /* IntAirAct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntAirAct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A1BA8916308F5000BCFB39 /* NSObject+SubscriptingSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SubscriptingSupport.h"; sourceTree = "<group>"; };
@@ -655,8 +649,6 @@
 			children = (
 				274A48BF15508DB9000DFAF9 /* IAAction.h */,
 				274A48C015508DB9000DFAF9 /* IAAction.m */,
-				276ED16C1556541500C4702F /* IACapability.h */,
-				276ED16D1556541500C4702F /* IACapability.m */,
 				274A48C115508DB9000DFAF9 /* IADevice.h */,
 				274A48C215508DB9000DFAF9 /* IADevice.m */,
 				2756EDE1162F568F00E76B50 /* IARoute.h */,
@@ -769,7 +761,6 @@
 				274A48AE15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */,
 				274A48B215508DA1000DFAF9 /* IARouteResponse+Serializer.h in Headers */,
 				274A48B915508DAC000DFAF9 /* IAIntAirAct.h in Headers */,
-				276ED16E1556541500C4702F /* IACapability.h in Headers */,
 				274A48BD15508DAC000DFAF9 /* IALogging.h in Headers */,
 				274A48C315508DB9000DFAF9 /* IAAction.h in Headers */,
 				274A48C715508DB9000DFAF9 /* IADevice.h in Headers */,
@@ -801,7 +792,6 @@
 				274A48BE15508DAC000DFAF9 /* IALogging.h in Headers */,
 				274A48C415508DB9000DFAF9 /* IAAction.h in Headers */,
 				2756EDE4162F568F00E76B50 /* IARoute.h in Headers */,
-				276ED16F1556541500C4702F /* IACapability.h in Headers */,
 				274A48C815508DB9000DFAF9 /* IADevice.h in Headers */,
 				2756EDF3162F60AC00E76B50 /* IAResponse.h in Headers */,
 				2756EDF9162F60C200E76B50 /* IARequest.h in Headers */,
@@ -1196,7 +1186,6 @@
 				274A48BB15508DAC000DFAF9 /* IAIntAirAct.m in Sources */,
 				274A48C515508DB9000DFAF9 /* IAAction.m in Sources */,
 				274A48C915508DB9000DFAF9 /* IADevice.m in Sources */,
-				276ED1701556541500C4702F /* IACapability.m in Sources */,
 				2756EDE5162F568F00E76B50 /* IARoute.m in Sources */,
 				2756EDF4162F60AC00E76B50 /* IAResponse.m in Sources */,
 				2756EDFA162F60C200E76B50 /* IARequest.m in Sources */,
@@ -1220,7 +1209,6 @@
 				274A48BC15508DAC000DFAF9 /* IAIntAirAct.m in Sources */,
 				274A48C615508DB9000DFAF9 /* IAAction.m in Sources */,
 				274A48CA15508DB9000DFAF9 /* IADevice.m in Sources */,
-				276ED1711556541500C4702F /* IACapability.m in Sources */,
 				2756EDE6162F568F00E76B50 /* IARoute.m in Sources */,
 				2756EDF5162F60AC00E76B50 /* IAResponse.m in Sources */,
 				2756EDFB162F60C200E76B50 /* IARequest.m in Sources */,
