@@ -271,7 +271,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     self.serviceFoundObserver = [self.serviceDiscovery addHandlerForServiceFound:^(SDService *service, BOOL ownService) {
         if (ownService) {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found own device");
-            myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:self.capabilities];
+            myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:self.supportedRoutes];
             [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":myself.ownDevice, @"ownDevice":@YES}];
         } else {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found other device");
@@ -300,7 +300,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     
     [self route:[IARoute routeWithAction:@"GET" resource:@"/capabilities"] withHandler:^(IARequest *request, IAResponse *response) {
         IALogTrace3(@"GET /capabilities");
-        [response respondWith:self.capabilities withIntAirAct:self];
+        [response respondWith:self.supportedRoutes withIntAirAct:self];
     }];
     
     RKObjectMapping * actionSerialization = [RKObjectMapping mappingForClass:[NSDictionary class]];
@@ -414,7 +414,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     
     IACapability * cap = [IACapability new];
     cap.capability = [@"PUT /action/" stringByAppendingString:actionName];
-    [self.capabilities addObject:cap];
+    [self.supportedRoutes addObject:cap];
 }
 
 

@@ -24,7 +24,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 @interface IAIntAirAct : NSObject
 
 /** A Set of all the capabilities this device has. */
-@property (nonatomic, strong, readonly) NSMutableSet * capabilities;
+@property (nonatomic, strong, readonly) NSMutableSet * supportedRoutes;
 
 /** A list of all the currently available devices. */
 @property (readonly) NSSet * devices;
