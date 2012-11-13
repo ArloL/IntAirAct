@@ -94,8 +94,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 -(void)testDefaultCapabilitiesShouldBeEmpty
 {
     // Then
-    STAssertNotNil(self.intAirAct.capabilities, @"Capabilities should not be nil");
-    STAssertTrue([self.intAirAct.capabilities count] == 0, @"Capabilities should be empty");
+    STAssertNotNil(self.intAirAct.supportedRoutes, @"Capabilities should not be nil");
+    STAssertTrue([self.intAirAct.supportedRoutes count] == 0, @"Capabilities should be empty");
 }
 
 -(void)testDefaultDevicesShouldBeEmpty
@@ -157,7 +157,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // And
     IACapability * cap = [IACapability new];
     cap.capability = @"capability string";
-    [self.intAirAct.capabilities addObject:cap];
+    [self.intAirAct.supportedRoutes addObject:cap];
     
     // Then
     NSError * error = nil;
@@ -174,7 +174,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         }
     }
     
-    STAssertEqualObjects(self.intAirAct.capabilities, self.intAirAct.ownDevice.capabilities, @"ownDevice.capabilities and capabilities should be equal");
+    STAssertEqualObjects(self.intAirAct.supportedRoutes, self.intAirAct.ownDevice.capabilities, @"ownDevice.capabilities and capabilities should be equal");
 }
 
 -(void)testDefaultObjectMappings
