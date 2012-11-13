@@ -27,10 +27,10 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 @property (nonatomic, strong) NSMutableSet * supportedRoutes;
 
 /** A list of all the currently available devices. */
-@property (readonly) NSSet * devices;
+@property (nonatomic, readonly) NSSet * devices;
 
 /** `YES` if IntAirAct is running, `NO` otherwise. */
-@property (readonly) BOOL isRunning;
+@property (nonatomic, readonly) BOOL isRunning;
 
 /** IntAirAct's RKObjectMappingProvider. This is used to add and retrieve object mappings.
  
