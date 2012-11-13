@@ -63,7 +63,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     if (self) {
         IALogTrace();
         
-        _capabilities = [NSMutableSet new];
+        _supportedRoutes = [NSMutableSet new];
         _isRunning = NO;
         _objectMappingProvider = [RKObjectMappingProvider new];
         _router = [RKObjectRouter new];
