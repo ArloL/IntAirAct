@@ -48,6 +48,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @synthesize isRunning = _isRunning;
 @synthesize ownDevice = _ownDevice;
 
+#pragma mark Constructor, Deconstructor
+
 - (id)init
 {
     self = [super init];
@@ -95,6 +97,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     [[NSNotificationCenter defaultCenter] removeObserver:self.serviceFoundObserver];
     [[NSNotificationCenter defaultCenter] removeObserver:self.serviceLostObserver];
 }
+
+#pragma mark Start, Stop, Setup
 
 -(BOOL)start:(NSError **)errPtr;
 {
@@ -144,6 +148,68 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }});
 }
 
+-(void)setup
+{
+    // Reference myself weakly from inside the block to avoid a retain cycle like:
+    // IAIntAiract -> SDServiceDisovery -> block -> IAIntAirAct
+    __weak IAIntAirAct * myself = self;
+    
+    self.serviceFoundObserver = [self.serviceDiscovery addHandlerForServiceFound:^(SDService *service, BOOL ownService) {
+        if (ownService) {
+            IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found own device");
+            myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:self.supportedRoutes];
+            [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":myself.ownDevice, @"ownDevice":@YES}];
+        } else {
+            IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found other device");
+            IADevice * device = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
+            [[myself objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(NSArray * objects, NSError * error) {
+                if (error) {
+                    IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, myself, device, error);
+                } else {
+                    IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:[NSSet setWithArray:objects]];
+                    [myself.mDevices addObject:dev];
+                    
+                    [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":dev}];
+                }
+            }];
+        }
+    }];
+    
+    self.serviceLostObserver = [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
+        IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
+        [myself.mDevices removeObject:dev];
+        [myself.notificationCenter postNotificationName:IADeviceLost object:myself userInfo:@{@"device":dev}];
+    }];
+    
+    [self addMappingForClass:[IADevice class] withKeypath:@"devices" withAttributes:@"name", @"host", @"port", nil];
+    [self addMappingForClass:[IACapability class] withKeypath:@"capabilities" withAttributes:@"capability", nil];
+    
+    [self route:[IARoute routeWithAction:@"GET" resource:@"/capabilities"] withHandler:^(IARequest *request, IAResponse *response) {
+        IALogTrace3(@"GET /capabilities");
+        [response respondWith:self.supportedRoutes withIntAirAct:self];
+    }];
+    
+    RKObjectMapping * actionSerialization = [RKObjectMapping mappingForClass:[NSDictionary class]];
+    actionSerialization.rootKeyPath = @"actions";
+    [actionSerialization mapAttributes:@"action", nil];
+    RKDynamicObjectMapping * parametersSerialization = [RKDynamicObjectMapping dynamicMappingUsingBlock:^(RKDynamicObjectMapping *dynamicMapping) {
+        dynamicMapping.forceRootKeyPath = YES;
+        dynamicMapping.objectMappingForDataBlock = ^ RKObjectMapping* (id mappableData) {
+            return [self.objectMappingProvider serializationMappingForClass:[mappableData class]];
+        };
+    }];
+    [actionSerialization hasMany:@"parameters" withMapping:parametersSerialization];
+    [_objectMappingProvider setSerializationMapping:actionSerialization forClass:[IAAction class]];
+    
+    RKObjectMapping * actionMapping = [RKObjectMapping mappingForClass:[IAAction class]];
+    [actionMapping mapAttributes:@"action", @"parameters", nil];
+    [_objectMappingProvider setMapping:actionMapping forKeyPath:@"actions"];
+    
+    [_router routeClass:[IAAction class] toResourcePath:@"/action/:action" forMethod:RKRequestMethodPUT];
+}
+
+#pragma mark Properties
+
 -(BOOL)isRunning
 {
 	__block BOOL result;
@@ -154,6 +220,40 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 	
 	return result;
 }
+
+-(IADevice *)ownDevice
+{
+    __block IADevice * result;
+	
+	dispatch_sync(_serverQueue, ^{
+        result = _ownDevice;
+	});
+	
+	return result;
+}
+
+-(NSArray *)devices
+{
+    __block NSArray * result;
+	
+	dispatch_sync(_serverQueue, ^{
+        result = [_mDevices copy];
+	});
+	
+	return result;
+}
+
+-(void)setPort:(NSInteger)port
+{
+    self.server.port = port;
+}
+
+-(NSInteger)port
+{
+    return self.server.port;
+}
+
+#pragma mark Methods
 
 
 -(void)addMappingForClass:(Class)className withKeypath:(NSString *)keyPath withAttributes:(NSString *)attributeKeyPath, ...
@@ -224,28 +324,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     return result;
 }
 
--(IADevice *)ownDevice
-{
-    __block IADevice * result;
-	
-	dispatch_sync(_serverQueue, ^{
-        result = _ownDevice;
-	});
-	
-	return result;
-}
-
--(NSArray *)devices
-{
-    __block NSArray * result;
-	
-	dispatch_sync(_serverQueue, ^{
-        result = [_mDevices copy];
-	});
-	
-	return result;
-}
-
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction * action, NSError * error))handler
 {
     dispatch_async(_clientQueue, ^{
@@ -260,66 +338,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             [manager putObject:action delegate:nil];
         }
     });
-}
-
--(void)setup
-{
-    // Reference myself weakly from inside the block to avoid a retain cycle like:
-    // IAIntAiract -> SDServiceDisovery -> block -> IAIntAirAct
-    __weak IAIntAirAct * myself = self;
-    
-    self.serviceFoundObserver = [self.serviceDiscovery addHandlerForServiceFound:^(SDService *service, BOOL ownService) {
-        if (ownService) {
-            IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found own device");
-            myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:self.supportedRoutes];
-            [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":myself.ownDevice, @"ownDevice":@YES}];
-        } else {
-            IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found other device");
-            IADevice * device = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
-            [[myself objectManagerForDevice:device] loadObjectsAtResourcePath:@"/capabilities" handler:^(NSArray * objects, NSError * error) {
-                if (error) {
-                    IALogError(@"%@[%p]: Could not get device capabilities for device %@: %@", THIS_FILE, myself, device, error);
-                } else {
-                    IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:[NSSet setWithArray:objects]];
-                    [myself.mDevices addObject:dev];
-                    
-                    [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":dev}];
-                }
-            }];
-        }
-    }];
-    
-    self.serviceLostObserver = [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
-        IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port capabilities:nil];
-        [myself.mDevices removeObject:dev];
-        [myself.notificationCenter postNotificationName:IADeviceLost object:myself userInfo:@{@"device":dev}];
-    }];
-    
-    [self addMappingForClass:[IADevice class] withKeypath:@"devices" withAttributes:@"name", @"host", @"port", nil];
-    [self addMappingForClass:[IACapability class] withKeypath:@"capabilities" withAttributes:@"capability", nil];
-    
-    [self route:[IARoute routeWithAction:@"GET" resource:@"/capabilities"] withHandler:^(IARequest *request, IAResponse *response) {
-        IALogTrace3(@"GET /capabilities");
-        [response respondWith:self.supportedRoutes withIntAirAct:self];
-    }];
-    
-    RKObjectMapping * actionSerialization = [RKObjectMapping mappingForClass:[NSDictionary class]];
-    actionSerialization.rootKeyPath = @"actions";
-    [actionSerialization mapAttributes:@"action", nil];
-    RKDynamicObjectMapping * parametersSerialization = [RKDynamicObjectMapping dynamicMappingUsingBlock:^(RKDynamicObjectMapping *dynamicMapping) {
-        dynamicMapping.forceRootKeyPath = YES;
-        dynamicMapping.objectMappingForDataBlock = ^ RKObjectMapping* (id mappableData) {
-            return [self.objectMappingProvider serializationMappingForClass:[mappableData class]];
-        };
-    }];
-    [actionSerialization hasMany:@"parameters" withMapping:parametersSerialization];
-    [_objectMappingProvider setSerializationMapping:actionSerialization forClass:[IAAction class]];
-    
-    RKObjectMapping * actionMapping = [RKObjectMapping mappingForClass:[IAAction class]];
-    [actionMapping mapAttributes:@"action", @"parameters", nil];
-    [_objectMappingProvider setMapping:actionMapping forKeyPath:@"actions"];
-    
-    [_router routeClass:[IAAction class] toResourcePath:@"/action/:action" forMethod:RKRequestMethodPUT];
 }
 
 -(RKObjectManager *)objectManagerForDevice:(IADevice *)device
@@ -427,16 +445,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         }
     }
     return NO;
-}
-
--(void)setPort:(NSInteger)port
-{
-    self.server.port = port;
-}
-
--(NSInteger)port
-{
-    return self.server.port;
 }
 
 -(BOOL)route:(IARoute *)route withHandler:(IARequestHandler)block
