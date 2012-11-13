@@ -58,5 +58,26 @@
     return [NSString stringWithFormat:@"IARoute[action: %@, resource: %@]", self.action, self.resource];
 }
 
+-(BOOL)isEqual:(id)object
+{
+    if (self == object) {
+        return YES;
+    }
+    
+    if (object == nil || ![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    
+    IARoute * route = (IARoute*) object;
+    return (self.action == route.action || [self.action isEqual:route.action]) && (self.resource == route.resource || [self.resource isEqual:route.resource]);
+}
+
+-(NSUInteger)hash
+{
+    NSUInteger hash = 66;
+    hash = hash * 31 + self.action.hash;
+    hash = hash * 31 + self.resource.hash;
+    return hash;
+}
 
 @end
