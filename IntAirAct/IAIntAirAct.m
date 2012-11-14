@@ -33,6 +33,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
 @property (nonatomic) dispatch_queue_t serverQueue;
 @property (nonatomic, strong) NSObject<IAServer> * server;
+@property (nonatomic, strong) NSObject<IAClient> * client;
 @property (nonatomic, strong) SDServiceDiscovery * serviceDiscovery;
 @property (nonatomic, strong) id serviceFoundObserver;
 @property (nonatomic, strong) id serviceLostObserver;
@@ -58,7 +59,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     return self;
 }
 
--(id)initWithServer:(NSObject<IAServer> *)server andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery
+-(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAClient>*)  client andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery
 {
     self = [super init];
     if (self) {
@@ -75,6 +76,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
         _serviceDiscovery = serviceDiscovery;
         _server = server;
+        _client = client;
         _notificationCenter = [NSNotificationCenter defaultCenter];
         
         [self setup];

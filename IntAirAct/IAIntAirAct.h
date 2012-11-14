@@ -1,4 +1,5 @@
 #import "IAServer.h"
+#import "IAClient.h"
 
 @class RKObjectLoader;
 @class RKObjectManager;
@@ -61,9 +62,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  
  Instantiates IntAirAct, but does not start it.
  */
--(id)init;
-
--(id)initWithServer:(NSObject<IAServer> *)server andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery;
+-(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAServer> *) client andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery;
 
 /** Standard Deconstructor.
  
