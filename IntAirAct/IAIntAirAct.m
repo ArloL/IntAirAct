@@ -88,11 +88,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     
 	[self stop];
     
-#if NEEDS_DISPATCH_RETAIN_RELEASE
-    dispatch_release(_serverQueue);
-    dispatch_release(_clientQueue);
-#endif
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self.serviceFoundObserver];
     [[NSNotificationCenter defaultCenter] removeObserver:self.serviceLostObserver];
 }
