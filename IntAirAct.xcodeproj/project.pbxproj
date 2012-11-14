@@ -103,6 +103,8 @@
 		276C7E8A1634C76200631ECD /* RoutingHTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */; };
 		276C7E8B1634C76E00631ECD /* IntAirAct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E5549154A4384002F307D /* IntAirAct.framework */; };
 		276C7E8C1634C77100631ECD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C7E671634C51500631ECD /* CocoaLumberjack.framework */; };
+		277BDCB51654644B00A7AB46 /* IAClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 277BDCB41654644B00A7AB46 /* IAClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		277BDCB61654644B00A7AB46 /* IAClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 277BDCB41654644B00A7AB46 /* IAClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		D53C33D7163B6326007420CD /* libCocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C7E651634C51500631ECD /* libCocoaLumberjack.a */; };
@@ -416,6 +418,7 @@
 		27652084162DB7D5008EA1C7 /* Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
 		276C19EF162CA382002C8285 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKit+Blocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaLumberjack.xcodeproj; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaAsyncSocket/Frameworks/CocoaLumberjack/CocoaLumberjack.xcodeproj; sourceTree = "<group>"; };
+		277BDCB41654644B00A7AB46 /* IAClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAClient.h; sourceTree = "<group>"; };
 		277E552C154A42AF002F307D /* libIntAirAct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIntAirAct.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E5549154A4384002F307D /* IntAirAct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntAirAct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
@@ -562,6 +565,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		277BDCB31654643A00A7AB46 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				277BDCB41654644B00A7AB46 /* IAClient.h */,
+			);
+			name = Client;
+			sourceTree = "<group>";
+		};
 		277E5521154A42AE002F307D = {
 			isa = PBXGroup;
 			children = (
@@ -598,6 +609,7 @@
 		277E5531154A42AF002F307D /* IntAirAct */ = {
 			isa = PBXGroup;
 			children = (
+				277BDCB31654643A00A7AB46 /* Client */,
 				27A1BA3D1630840800BCFB39 /* Categories */,
 				2756EE35162F77E100E76B50 /* RoutingHTTPServer */,
 				27EF3391154A9CE8003D7F41 /* Server */,
@@ -773,6 +785,7 @@
 				2756EE2B162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
 				2756EE31162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */,
 				2756EE38162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
+				277BDCB51654644B00A7AB46 /* IAClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,6 +812,7 @@
 				2756EE2C162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
 				2756EE32162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */,
 				2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
+				277BDCB61654644B00A7AB46 /* IAClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
