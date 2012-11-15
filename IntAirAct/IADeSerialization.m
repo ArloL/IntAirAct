@@ -24,7 +24,39 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(id)bodyAs:(Class)class
 {
-    return nil;
+    NSError * error;
+    id result = [self.body objectFromJSONDataWithParseOptions:0 error:&error];
+    if (error) {
+        IALogError(@"Error ocurred while serializing: %@", error);
+        return nil;
+    }
+
+    return [self deserialize:result class:class];
+}
+
+-(id)deserialize:(id)data class:(Class)class
+{
+    if ([data isKindOfClass:NSClassFromString(@"JKArray")]) {
+        NSMutableArray * array = [NSMutableArray new];
+        for (id obj in data) {
+            [array addObject:[self deserialize:obj class:class]];
+        }
+        return array;
+    } else{
+        id obj = [class new];
+        unsigned int outCount, i;
+        objc_property_t *properties = class_copyPropertyList(class, &outCount);
+        for(i = 0; i < outCount; i++) {
+            objc_property_t property = properties[i];
+            const char *propName = property_getName(property);
+            if(propName) {
+                NSString *propertyName = [NSString stringWithUTF8String:propName];
+                [obj setValue:data[propertyName] forKey:propertyName];
+            }
+        }
+        free(properties);
+        return obj;
+    }
 }
 
 -(void)setBodyWith:(id)data
@@ -32,11 +64,9 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     if([data isKindOfClass:[UIImage class]]) {
         [self setBodyWithImage:data];
     } else {
-        id mappedObj = [self mapObject:data];
-
-        // i have to create the native type
+        id serializedObject = [self serialize:data];
         NSError * error;
-        NSData * result = [mappedObj JSONDataWithOptions:0 error:&error];
+        NSData * result = [serializedObject JSONDataWithOptions:0 error:&error];
         if (error) {
             IALogError(@"Error ocurred while serializing: %@", error);
         } else {
@@ -45,12 +75,12 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }
 }
 
--(id)mapObject:(id)data
+-(id)serialize:(id)data
 {
     if ([data isKindOfClass:[NSArray class]]) {
         NSMutableArray * array = [NSMutableArray new];
         for (id obj in data) {
-            [array addObject:[self mapObject:obj]];
+            [array addObject:[self serialize:obj]];
         }
         return array;
     } else {
