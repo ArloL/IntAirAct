@@ -77,7 +77,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(id)serialize:(id)data
 {
-    if ([data isKindOfClass:[NSArray class]]) {
+    if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSSet class]]) {
         NSMutableArray * array = [NSMutableArray new];
         for (id obj in data) {
             [array addObject:[self serialize:obj]];
