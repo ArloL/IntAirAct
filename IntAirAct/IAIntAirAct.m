@@ -59,7 +59,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     return self;
 }
 
--(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAClient>*)  client andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery
+-(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAClient>*)client andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery
 {
     self = [super init];
     if (self) {
