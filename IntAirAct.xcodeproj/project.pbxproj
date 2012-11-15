@@ -232,6 +232,27 @@
 			remoteGlobalIDString = 277E5548154A4384002F307D;
 			remoteInfo = IntAirActOSX;
 		};
+		27E54A251654A5D900EFD933 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E54A1C1654A5D900EFD933 /* ObjectMapper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CDB496A0157E572E00C2157F;
+			remoteInfo = ObjectMapper;
+		};
+		27E54A271654A5D900EFD933 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E54A1C1654A5D900EFD933 /* ObjectMapper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CDB496B0157E572F00C2157F;
+			remoteInfo = ObjectMapperTests;
+		};
+		27E54A291654A5FB00EFD933 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 27E54A1C1654A5D900EFD933 /* ObjectMapper.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CDB4969F157E572E00C2157F;
+			remoteInfo = ObjectMapper;
+		};
 		27EF2FFD154A7FA8003D7F41 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */;
@@ -444,6 +465,7 @@
 		27E54A131654A59C00EFD933 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		27E54A141654A59C00EFD933 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		27E54A151654A59C00EFD933 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		27E54A1C1654A5D900EFD933 /* ObjectMapper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectMapper.xcodeproj; path = Frameworks/ObjectMapper/ObjectMapper.xcodeproj; sourceTree = "<group>"; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
 		27FC6247154B36A400AA7502 /* IntAirActIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC625F154B36AD00AA7502 /* IntAirActOSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActOSXTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -636,6 +658,7 @@
 		277E552E154A42AF002F307D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27E54A1C1654A5D900EFD933 /* ObjectMapper.xcodeproj */,
 				27E54A111654A59C00EFD933 /* JSONKit */,
 				D53C3414163B63CD007420CD /* iOS-Testing */,
 				D53C3413163B63C3007420CD /* Shared-Testing */,
@@ -690,6 +713,15 @@
 			);
 			name = JSONKit;
 			path = Frameworks/JSONKit;
+			sourceTree = "<group>";
+		};
+		27E54A1D1654A5D900EFD933 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27E54A261654A5D900EFD933 /* libObjectMapper.a */,
+				27E54A281654A5D900EFD933 /* ObjectMapperTests.octest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		27EF2FE9154A7FA7003D7F41 /* Products */ = {
@@ -887,6 +919,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				27E54A2A1654A5FB00EFD933 /* PBXTargetDependency */,
 				D5D070CD163C4699009B0E74 /* PBXTargetDependency */,
 				276C1A04162CA39B002C8285 /* PBXTargetDependency */,
 				27EF3006154A7FB3003D7F41 /* PBXTargetDependency */,
@@ -979,6 +1012,10 @@
 					ProjectRef = 276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */;
 				},
 				{
+					ProductGroup = 27E54A1D1654A5D900EFD933 /* Products */;
+					ProjectRef = 27E54A1C1654A5D900EFD933 /* ObjectMapper.xcodeproj */;
+				},
+				{
 					ProductGroup = 276C19F0162CA382002C8285 /* Products */;
 					ProjectRef = 276C19EF162CA382002C8285 /* RestKit+Blocks.xcodeproj */;
 				},
@@ -1047,6 +1084,20 @@
 			fileType = wrapper.framework;
 			path = CocoaLumberjack.framework;
 			remoteRef = 276C7E661634C51500631ECD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27E54A261654A5D900EFD933 /* libObjectMapper.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libObjectMapper.a;
+			remoteRef = 27E54A251654A5D900EFD933 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		27E54A281654A5D900EFD933 /* ObjectMapperTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ObjectMapperTests.octest;
+			remoteRef = 27E54A271654A5D900EFD933 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */ = {
@@ -1344,6 +1395,11 @@
 			isa = PBXTargetDependency;
 			target = 277E5548154A4384002F307D /* IntAirActOSX */;
 			targetProxy = 2793658515568EEA00513FD1 /* PBXContainerItemProxy */;
+		};
+		27E54A2A1654A5FB00EFD933 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ObjectMapper;
+			targetProxy = 27E54A291654A5FB00EFD933 /* PBXContainerItemProxy */;
 		};
 		27EF3006154A7FB3003D7F41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
