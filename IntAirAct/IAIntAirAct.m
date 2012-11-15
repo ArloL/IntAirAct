@@ -267,6 +267,26 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     return result;
 }
 
+-(IADevice *)deviceWithName:(NSString *)name
+{
+    __block IADevice * result;
+
+    dispatch_sync(_serverQueue, ^{
+        if ([_ownDevice.name isEqualToString:name]) {
+            result = _ownDevice;
+        } else {
+            [_mDevices enumerateObjectsUsingBlock:^(IADevice * dev, BOOL *stop) {
+                if([dev.name isEqualToString:name]) {
+                    result = dev;
+                    *stop = YES;
+                }
+            }];
+        }
+	});
+
+    return result;
+}
+
 -(BOOL)route:(IARoute *)route withHandler:(IARequestHandler)handler
 {
     [self.supportedRoutes addObject:route];

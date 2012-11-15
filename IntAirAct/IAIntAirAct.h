@@ -77,6 +77,8 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  */
 -(NSArray *)devicesSupportingRoute:(IARoute *)route;
 
+-(IADevice *)deviceWithName:(NSString *)name;
+
 -(BOOL)route:(IARoute*)route withHandler:(IARequestHandler)handler;
 
 -(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device;
