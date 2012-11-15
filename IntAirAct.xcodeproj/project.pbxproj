@@ -116,12 +116,6 @@
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27E54A1016549BDE00EFD933 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C340F163B63B6007420CD /* UIKit.framework */; };
-		27E54A161654A59C00EFD933 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 27E54A121654A59C00EFD933 /* CHANGELOG.md */; };
-		27E54A171654A59C00EFD933 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E54A131654A59C00EFD933 /* JSONKit.h */; };
-		27E54A181654A59C00EFD933 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E54A131654A59C00EFD933 /* JSONKit.h */; };
-		27E54A191654A59C00EFD933 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54A141654A59C00EFD933 /* JSONKit.m */; };
-		27E54A1A1654A59C00EFD933 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54A141654A59C00EFD933 /* JSONKit.m */; };
-		27E54A1B1654A59C00EFD933 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 27E54A151654A59C00EFD933 /* README.md */; };
 		D53C33D7163B6326007420CD /* libCocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C7E651634C51500631ECD /* libCocoaLumberjack.a */; };
 		D53C33DA163B6331007420CD /* libRoutingHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */; };
 		D53C340A163B639F007420CD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3409163B639F007420CD /* CFNetwork.framework */; };
@@ -440,10 +434,6 @@
 		277BDCCB16546F2100A7AB46 /* NSURL+QueryParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryParameters.m"; sourceTree = "<group>"; };
 		277E552C154A42AF002F307D /* libIntAirAct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIntAirAct.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E5549154A4384002F307D /* IntAirAct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntAirAct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		27E54A121654A59C00EFD933 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
-		27E54A131654A59C00EFD933 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		27E54A141654A59C00EFD933 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		27E54A151654A59C00EFD933 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
 		27FC6247154B36A400AA7502 /* IntAirActIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC625F154B36AD00AA7502 /* IntAirActOSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActOSXTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -636,7 +626,6 @@
 		277E552E154A42AF002F307D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				27E54A111654A59C00EFD933 /* JSONKit */,
 				D53C3414163B63CD007420CD /* iOS-Testing */,
 				D53C3413163B63C3007420CD /* Shared-Testing */,
 				D53C33F1163B6378007420CD /* Shared */,
@@ -678,18 +667,6 @@
 				2756EDFC162F667C00E76B50 /* Request Deserialization */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		27E54A111654A59C00EFD933 /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				27E54A121654A59C00EFD933 /* CHANGELOG.md */,
-				27E54A131654A59C00EFD933 /* JSONKit.h */,
-				27E54A141654A59C00EFD933 /* JSONKit.m */,
-				27E54A151654A59C00EFD933 /* README.md */,
-			);
-			name = JSONKit;
-			path = Frameworks/JSONKit;
 			sourceTree = "<group>";
 		};
 		27EF2FE9154A7FA7003D7F41 /* Products */ = {
@@ -837,7 +814,6 @@
 				277BDCBA1654675500A7AB46 /* IANSURLAdapter.h in Headers */,
 				277BDCC016546A1F00A7AB46 /* NSURLRequest+IARequest.h in Headers */,
 				277BDCCC16546F2100A7AB46 /* NSURL+QueryParameters.h in Headers */,
-				27E54A171654A59C00EFD933 /* JSONKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -867,7 +843,6 @@
 				277BDCBB1654675500A7AB46 /* IANSURLAdapter.h in Headers */,
 				277BDCC116546A1F00A7AB46 /* NSURLRequest+IARequest.h in Headers */,
 				277BDCCD16546F2100A7AB46 /* NSURL+QueryParameters.h in Headers */,
-				27E54A181654A59C00EFD933 /* JSONKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1163,8 +1138,6 @@
 			files = (
 				27652085162DB7D5008EA1C7 /* License.txt in Resources */,
 				27652086162DB7D5008EA1C7 /* Version in Resources */,
-				27E54A161654A59C00EFD933 /* CHANGELOG.md in Resources */,
-				27E54A1B1654A59C00EFD933 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1264,7 +1237,6 @@
 				277BDCBC1654675500A7AB46 /* IANSURLAdapter.m in Sources */,
 				277BDCC216546A1F00A7AB46 /* NSURLRequest+IARequest.m in Sources */,
 				277BDCCE16546F2100A7AB46 /* NSURL+QueryParameters.m in Sources */,
-				27E54A191654A59C00EFD933 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1290,7 +1262,6 @@
 				277BDCBD1654675500A7AB46 /* IANSURLAdapter.m in Sources */,
 				277BDCC316546A1F00A7AB46 /* NSURLRequest+IARequest.m in Sources */,
 				277BDCCF16546F2100A7AB46 /* NSURL+QueryParameters.m in Sources */,
-				27E54A1A1654A59C00EFD933 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
