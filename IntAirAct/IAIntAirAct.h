@@ -62,7 +62,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  
  Instantiates IntAirAct, but does not start it.
  */
--(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAServer> *) client andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery;
+-(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAClient> *)client andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery;
 
 /** Standard Deconstructor.
  
