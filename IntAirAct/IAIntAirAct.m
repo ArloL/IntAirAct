@@ -156,8 +156,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
                 if (error) {
                     IALogError(@"%@[%p]: Could not get supported routes of device %@: %@", THIS_FILE, myself, device, error);
                 } else {
-#warning supportedRoutes not set yet
-                    IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port supportedRoutes:[NSSet setWithArray:nil]];
+                    IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port supportedRoutes:[NSSet setWithArray:[response bodyAs:[IARoute class]]]];
                     [myself.mDevices addObject:dev];
 
                     [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:myself userInfo:@{@"device":dev}];
