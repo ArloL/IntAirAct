@@ -519,14 +519,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		277BDCB31654643A00A7AB46 /* Client */ = {
-			isa = PBXGroup;
-			children = (
-				277BDCB41654644B00A7AB46 /* IAClient.h */,
-			);
-			name = Client;
-			sourceTree = "<group>";
-		};
 		277BDCB71654670800A7AB46 /* NSURL */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,15 +569,14 @@
 			isa = PBXGroup;
 			children = (
 				277BDCB71654670800A7AB46 /* NSURL */,
-				277BDCB31654643A00A7AB46 /* Client */,
-				27A1BA3D1630840800BCFB39 /* DeSerialization */,
 				2756EE35162F77E100E76B50 /* RoutingHTTPServer */,
-				27EF3391154A9CE8003D7F41 /* Server */,
-				27EF3390154A9CE2003D7F41 /* Shared */,
 				27EF338F154A9CD3003D7F41 /* Model */,
+				274A48A715508D97000DFAF9 /* IntAirAct.h */,
 				274A48B615508DAC000DFAF9 /* IAIntAirAct.h */,
 				274A48B715508DAC000DFAF9 /* IAIntAirAct.m */,
-				274A48A715508D97000DFAF9 /* IntAirAct.h */,
+				274A48B815508DAC000DFAF9 /* IALogging.h */,
+				D53C3522163C1E45007420CD /* IAServer.h */,
+				277BDCB41654644B00A7AB46 /* IAClient.h */,
 			);
 			path = IntAirAct;
 			sourceTree = "<group>";
@@ -598,15 +589,6 @@
 			);
 			name = "Supporting Files";
 			path = IntAirAct;
-			sourceTree = "<group>";
-		};
-		27A1BA3D1630840800BCFB39 /* DeSerialization */ = {
-			isa = PBXGroup;
-			children = (
-				27E54AE71654B54900EFD933 /* IADeSerialization.h */,
-				27E54AE81654B54900EFD933 /* IADeSerialization.m */,
-			);
-			name = DeSerialization;
 			sourceTree = "<group>";
 		};
 		27EF2FE9154A7FA7003D7F41 /* Products */ = {
@@ -623,6 +605,8 @@
 		27EF338F154A9CD3003D7F41 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				27E54AE71654B54900EFD933 /* IADeSerialization.h */,
+				27E54AE81654B54900EFD933 /* IADeSerialization.m */,
 				274A48C115508DB9000DFAF9 /* IADevice.h */,
 				274A48C215508DB9000DFAF9 /* IADevice.m */,
 				2756EDE1162F568F00E76B50 /* IARoute.h */,
@@ -633,22 +617,6 @@
 				2756EDF7162F60C200E76B50 /* IARequest.m */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		27EF3390154A9CE2003D7F41 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				274A48B815508DAC000DFAF9 /* IALogging.h */,
-			);
-			name = Shared;
-			sourceTree = "<group>";
-		};
-		27EF3391154A9CE8003D7F41 /* Server */ = {
-			isa = PBXGroup;
-			children = (
-				D53C3522163C1E45007420CD /* IAServer.h */,
-			);
-			name = Server;
 			sourceTree = "<group>";
 		};
 		27FC6274154B374700AA7502 /* IntAirActTests */ = {
