@@ -251,6 +251,15 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 #pragma mark Methods
 
+-(void)sendRequest:(IARequest *)request toDevice:(IADevice *)device
+{
+    [self.client sendRequest:request toDevice:device];
+}
+
+-(void)sendRequest:(IARequest *)request toDevice:(IADevice *)device withHandler:(IAResponseHandler)handler
+{
+    [self.client sendRequest:request toDevice:device withHandler:handler];
+}
 
 -(void)addMappingForClass:(Class)className withKeypath:(NSString *)keyPath withAttributes:(NSString *)attributeKeyPath, ...
 {

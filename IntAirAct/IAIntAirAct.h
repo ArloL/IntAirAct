@@ -95,6 +95,9 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  @param target the target on which to execute the selector
  */
 -(void)addAction:(NSString *)action withSelector:(SEL)selector andTarget:(id)target;
+-(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device;
+
+-(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device withHandler:(IAResponseHandler)handler;
 
 /** Adds a de- and a serialization mapping to the objectMappingProvider for the specified class.
  
