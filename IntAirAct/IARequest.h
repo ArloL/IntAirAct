@@ -3,6 +3,8 @@
 
 @interface IARequest : NSObject
 
++(IARequest*)requestWithRoute:(IARoute*)route metadata:(NSDictionary*)metadata parameters:(NSDictionary*)parameters origin:(IADevice*)origin body:(NSData*)body;
+
 -(id)initWithRoute:(IARoute*)route metadata:(NSDictionary*)metadata parameters:(NSDictionary*)parameters origin:(IADevice*)origin body:(NSData*)body;
 
 @property (strong, readonly) IARoute * route;

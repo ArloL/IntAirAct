@@ -2,6 +2,11 @@
 
 @implementation IARequest
 
++(IARequest *)requestWithRoute:(IARoute *)route metadata:(NSDictionary *)metadata parameters:(NSDictionary *)parameters origin:(IADevice *)origin body:(NSData *)body
+{
+    return [[IARequest alloc] initWithRoute:route metadata:metadata parameters:parameters origin:origin body:body];
+}
+
 -(id)initWithRoute:(IARoute *)route metadata:(NSDictionary *)metadata parameters:(NSDictionary *)parameters origin:(IADevice *)origin body:(NSData *)body
 {
     self = [super init];
