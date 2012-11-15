@@ -35,7 +35,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         RKObjectSerializer * serializer;
         id serialized = [NSMutableArray new];
         for(id entry in data) {
-            serializer = [intAirAct serializerForObject:entry];
+#warning serializer is nil
+            serializer = nil;
             id serializedObject = [serializer serializedObject:&error withRootKeyPath:NO];
             if(error) {
                 IALogWarn(@"Could not serialize Object: %@", entry);
@@ -49,7 +50,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
         id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:@"application/json"];
         response = [parser stringFromObject:serialized error:&error];
     } else {
-        RKObjectSerializer* serializer = [intAirAct serializerForObject:data];
+#warning serializer is nil
+        RKObjectSerializer* serializer = nil;
         id serializedObject = [serializer serializedObject:&error];
         if(!error) {
             id<RKParser> parser = [[RKParserRegistry sharedRegistry] parserForMIMEType:@"application/json"];
