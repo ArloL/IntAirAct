@@ -2,6 +2,7 @@
 
 #import <RoutingHTTPServer/RoutingHTTPServer.h>
 
+#import "IAIntAirAct.h"
 #import "IARoute.h"
 #import "IARequest.h"
 #import "IARequest+RouteRequest.h"
@@ -46,7 +47,11 @@
     // do more fancy checking, like * case before /specific case
     // add route to array
     [self.routingHTTPServer handleMethod:route.action withPath:route.resource block:^(RouteRequest * rReq, RouteResponse * rRes) {
-        IARequest * iaReq = [IARequest requestWithRouteRequest:rReq origin:nil route:route];
+        IADevice * origin = nil;
+        if (rReq.headers[@"X-IA-Source"]) {
+            origin = [self.intAirAct deviceWithName:rReq.headers[@"X-IA-Source"]];
+        }
+        IARequest * iaReq = [IARequest requestWithRouteRequest:rReq origin:origin route:route];
         IAResponse * iaRes = [IAResponse new];
         handler(iaReq, iaRes);
         [rRes copyValuesFromIAResponse:iaRes];
