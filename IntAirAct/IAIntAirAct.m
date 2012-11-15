@@ -5,6 +5,7 @@
 #endif
 
 #import <ServiceDiscovery/ServiceDiscovery.h>
+#import <RoutingHTTPServer/RoutingHTTPServer.h>
 
 #import "IADevice.h"
 #import "IALogging.h"
@@ -13,6 +14,7 @@
 #import "IAResponse.h"
 #import "IARequest.h"
 #import "IARoutingHTTPServerAdapter.h"
+#import "IANSURLAdapter.h"
 
 NSString * IADeviceFound = @"IADeviceFound";
 NSString * IADeviceLost = @"IADeviceLost";
@@ -43,6 +45,22 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @synthesize ownDevice = _ownDevice;
 
 #pragma mark Constructor, Deconstructor
+
++(IAIntAirAct *)instance
+{
+    RoutingHTTPServer * routingHTTPServer = [RoutingHTTPServer new];
+    IARoutingHTTPServerAdapter * routingHTTPServerAdapter = [[IARoutingHTTPServerAdapter alloc] initWithRoutingHTTPServer:routingHTTPServer];
+    SDServiceDiscovery * serviceDiscovery = [SDServiceDiscovery new];
+    IANSURLAdapter * nsURLAdapter = [IANSURLAdapter new];
+
+    // create, setup and start IntAirAct
+    IAIntAirAct * intAirAct = [[IAIntAirAct alloc] initWithServer:routingHTTPServerAdapter client:nsURLAdapter andServiceDiscovery:serviceDiscovery];
+
+    // necessary to set the origin on incoming requests
+    routingHTTPServerAdapter.intAirAct = intAirAct;
+    
+    return intAirAct;
+}
 
 - (id)init
 {
