@@ -32,35 +32,18 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 /** `YES` if IntAirAct is running, `NO` otherwise. */
 @property (nonatomic, readonly) BOOL isRunning;
 
-/** IntAirAct's RKObjectMappingProvider. This is used to add and retrieve object mappings.
- 
- A usage example:
- 
-    RKObjectMapping * mapping = [RKObjectMapping mappingForClass:[Contact class]];
-    [mapping mapAttributesFromSet:@"firstName", @"lastName", nil];
-    [intairact.objectMappingProvider setMapping:mapping forKeyPath:@"contacts"];
- */
-@property (nonatomic, strong, readonly) RKObjectMappingProvider * objectMappingProvider;
-
 /** Returns the current device if it has been found yet, `nil` otherwise. */
 @property (nonatomic, strong, readonly) IADevice * ownDevice;
 
 /** The port on which to listen on. Default is 0. This means the system will find a free port. */
 @property (nonatomic) NSInteger port;
 
-/** IntAirAct's RKObjectRouter. This is used to setup default route mappings for objects.
- 
- Use this to setup default routes for serializable Objects like this:
- 
-    [intairact.router routeClass:[Contact class] toResourcePath:@"/contacts/:identifier"];
- 
- This automatically maps all GET, POST, PUT and DELETE calls to /contacts/:identifier.
- */
-@property (nonatomic, strong, readonly) RKObjectRouter * router;
-
 /** Standard Constructor.
  
  Instantiates IntAirAct, but does not start it.
+ 
+ @param server An optional NSError instance.
+ @param serviceDiscovery An optional NSError instance.
  */
 -(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAClient> *)client andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery;
 
@@ -81,89 +64,110 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  
  @param errPtr An optional NSError instance.
  @return Returns `YES` if successful, `NO` on failure and sets the errPtr (if given).
- 
  */
 -(BOOL)start:(NSError **)errPtr;
 
 /** Stops IntAirAct. */
 -(void)stop;
 
-/** Add an action to the server.
+/** Get an array of devices that support a certain route.
  
- @param action the name of the action
- @param selector the selector that is executed when the action is called
- @param target the target on which to execute the selector
+ @param route the route which the devices should support.
+ @return an array of devices that support the specified route.
  */
--(void)addAction:(NSString *)action withSelector:(SEL)selector andTarget:(id)target;
+-(NSArray *)devicesSupportingRoute:(IARoute *)route;
+
+-(BOOL)route:(IARoute*)route withHandler:(IARequestHandler)handler;
+
 -(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device;
 
 -(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device withHandler:(IAResponseHandler)handler;
 
+-(void)removeObserver:(id)observer;
+
+-(id)addHandlerForDeviceFound:(IADeviceFoundHandler)handler;
+
+-(id)addHandlerForDeviceLost:(IADeviceLostHandler)handler;
+
 /** Adds a de- and a serialization mapping to the objectMappingProvider for the specified class.
- 
+
  A usage example:
- 
-    [intairact addMappingForClass:[Contact class] withKeypath:@"contacts" withAttributes:@"firstName", @"lastName", nil];
- 
+
+ [intairact addMappingForClass:[Contact class] withKeypath:@"contacts" withAttributes:@"firstName", @"lastName", nil];
+
  @param className The class to be de-/serialized.
  @param keyPath The keypath to use for the mapping. This has to be unique to the application.
  @param attributeKeyPath An attribute to map.
  @param ... A comma separated list of attributes to map.
  */
--(void)addMappingForClass:(Class)className withKeypath:(NSString *)keyPath withAttributes:(NSString *)attributeKeyPath, ...  NS_REQUIRES_NIL_TERMINATION;
+-(void)addMappingForClass:(Class)className withKeypath:(NSString *)keyPath withAttributes:(NSString *)attributeKeyPath, ...  NS_REQUIRES_NIL_TERMINATION __attribute__ ((deprecated));
 
 /** Execute an action on a specific device.
- 
+
  If you specify a handler block the return parameter will be set on the action.parameters array.
- 
+
  @param action the action to execute.
  @param device the device on which to execute the action.
  @param handler a block for handling errors or return parameters.
  */
--(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction * action, NSError * error))handler;
+-(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction * action, NSError * error))handler __attribute__ ((deprecated));
 
 /**
  @param data the data to deserialize
  */
--(RKObjectMappingResult *)deserializeObject:(id)data;
-
-/** Get an array of devices that support a certain route.
- 
- @param route the route which the devices should support.
- 
- @return an array of devices that support the specified route.
- */
--(NSArray *)devicesSupportingRoute:(IARoute *)route;
+-(RKObjectMappingResult *)deserializeObject:(id)data __attribute__ ((deprecated));
 
 /** Return an RKObjectManager for the specified device.
- 
+
  @param device the device for which we want an RKObjectManager.
- 
+
  @return an RKObjectManager for the specified device
  */
--(RKObjectManager *)objectManagerForDevice:(IADevice *)device;
+-(RKObjectManager *)objectManagerForDevice:(IADevice *)device __attribute__ ((deprecated));
 
 /** Returns a resourcePath for a specified resource.
- 
+
  @param resource the resource to get the path for
- @param manager the object manager 
- 
+ @param manager the object manager
+
  @return the resourcePath for the specified resource
  */
--(NSString *)resourcePathFor:(NSObject *)resource forObjectManager:(RKObjectManager *)manager;
+-(NSString *)resourcePathFor:(NSObject *)resource forObjectManager:(RKObjectManager *)manager  __attribute__ ((deprecated));
 
 /** Return an RKObjectSerializer for the specified object.
- 
+
  @param object the object for which to get an RKObjectSerializer for
- 
+
  @return An RKObjectSerializer for the specified object.
  */
--(RKObjectSerializer *)serializerForObject:(id)object;
+-(RKObjectSerializer *)serializerForObject:(id)object __attribute__ ((deprecated));
 
--(BOOL)route:(IARoute*)route withHandler:(IARequestHandler)block;
+/** IntAirAct's RKObjectMappingProvider. This is used to add and retrieve object mappings.
 
--(void)removeObserver:(id)observer;
--(id)addHandlerForDeviceFound:(IADeviceFoundHandler)handler;
--(id)addHandlerForDeviceLost:(IADeviceLostHandler)handler;
+ A usage example:
+
+ RKObjectMapping * mapping = [RKObjectMapping mappingForClass:[Contact class]];
+ [mapping mapAttributesFromSet:@"firstName", @"lastName", nil];
+ [intairact.objectMappingProvider setMapping:mapping forKeyPath:@"contacts"];
+ */
+@property (nonatomic, strong, readonly) RKObjectMappingProvider * objectMappingProvider __attribute__ ((deprecated));
+
+/** IntAirAct's RKObjectRouter. This is used to setup default route mappings for objects.
+
+ Use this to setup default routes for serializable Objects like this:
+
+ [intairact.router routeClass:[Contact class] toResourcePath:@"/contacts/:identifier"];
+
+ This automatically maps all GET, POST, PUT and DELETE calls to /contacts/:identifier.
+ */
+@property (nonatomic, strong, readonly) RKObjectRouter * router __attribute__ ((deprecated));
+
+/** Add an action to the server.
+
+ @param action the name of the action
+ @param selector the selector that is executed when the action is called
+ @param target the target on which to execute the selector
+ */
+-(void)addAction:(NSString *)action withSelector:(SEL)selector andTarget:(id)target __attribute__ ((deprecated));
 
 @end
