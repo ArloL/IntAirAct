@@ -1,22 +1,36 @@
-#import "IAResponse+Generic.h"
+#import "IADeSerialization.h"
 
 #import <UIKit/UIKit.h>
 #import <RestKit/JSONKit.h>
 #import <objc/runtime.h>
 
-#import "IAResponse+Image.h"
 #import "IALogging.h"
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
-static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRACE
+static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
-@implementation IAResponse (Generic)
+@implementation IADeSerialization
 
--(void)respondWith:(id)data
+-(id)initWithBody:(NSData *)body
+{
+    self = [super init];
+    if (self) {
+        _body = body;
+    }
+    return self;
+
+}
+
+-(id)bodyAs:(Class)class
+{
+    return nil;
+}
+
+-(void)setBodyWith:(id)data
 {
     if([data isKindOfClass:[UIImage class]]) {
-        [self respondWithImage:data];
+        [self setBodyWithImage:data];
     } else {
         id mappedObj = [self mapObject:data];
 
@@ -26,7 +40,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
         if (error) {
             IALogError(@"Error ocurred while serializing: %@", error);
         } else {
-            [self respondWithData:result];
+            [self setBodyWithData:result];
         }
     }
 }
@@ -56,6 +70,28 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRAC
 
         return dic;
     }
+}
+
+-(void)setBodyWithImage:(UIImage *)image
+{
+#warning serialization not implemented
+}
+
+-(NSString *)bodyAsString
+{
+    return [[NSString alloc] initWithBytes:[[self body] bytes] length:[[self body] length] encoding:NSUTF8StringEncoding];
+}
+
+- (void)setBodyWithString:(NSString *)string {
+	[self setBodyWithString:string encoding:NSUTF8StringEncoding];
+}
+
+- (void)setBodyWithString:(NSString *)string encoding:(NSStringEncoding)encoding {
+	[self setBodyWithData:[string dataUsingEncoding:encoding]];
+}
+
+- (void)setBodyWithData:(NSData *)data {
+    self.body = data;
 }
 
 @end

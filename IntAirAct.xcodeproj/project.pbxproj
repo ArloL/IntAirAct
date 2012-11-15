@@ -56,30 +56,10 @@
 		2756EDF9162F60C200E76B50 /* IARequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDF6162F60C200E76B50 /* IARequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDFA162F60C200E76B50 /* IARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDF7162F60C200E76B50 /* IARequest.m */; };
 		2756EDFB162F60C200E76B50 /* IARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDF7162F60C200E76B50 /* IARequest.m */; };
-		2756EDFF162F669800E76B50 /* IARequest+Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDFD162F669800E76B50 /* IARequest+Image.h */; };
-		2756EE00162F669800E76B50 /* IARequest+Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDFD162F669800E76B50 /* IARequest+Image.h */; };
-		2756EE01162F669800E76B50 /* IARequest+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDFE162F669800E76B50 /* IARequest+Image.m */; };
-		2756EE02162F669800E76B50 /* IARequest+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDFE162F669800E76B50 /* IARequest+Image.m */; };
-		2756EE05162F66F000E76B50 /* IARequest+Video.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE03162F66F000E76B50 /* IARequest+Video.h */; };
-		2756EE06162F66F000E76B50 /* IARequest+Video.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE03162F66F000E76B50 /* IARequest+Video.h */; };
-		2756EE07162F66F000E76B50 /* IARequest+Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE04162F66F000E76B50 /* IARequest+Video.m */; };
-		2756EE08162F66F000E76B50 /* IARequest+Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE04162F66F000E76B50 /* IARequest+Video.m */; };
-		2756EE0C162F672B00E76B50 /* IARequest+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE0A162F672B00E76B50 /* IARequest+JSON.h */; };
-		2756EE0D162F672B00E76B50 /* IARequest+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE0A162F672B00E76B50 /* IARequest+JSON.h */; };
-		2756EE0E162F672B00E76B50 /* IARequest+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE0B162F672B00E76B50 /* IARequest+JSON.m */; };
-		2756EE0F162F672B00E76B50 /* IARequest+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE0B162F672B00E76B50 /* IARequest+JSON.m */; };
 		2756EE1E162F689800E76B50 /* IARequest+RouteRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE1C162F689800E76B50 /* IARequest+RouteRequest.h */; };
 		2756EE1F162F689800E76B50 /* IARequest+RouteRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE1C162F689800E76B50 /* IARequest+RouteRequest.h */; };
 		2756EE20162F689800E76B50 /* IARequest+RouteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE1D162F689800E76B50 /* IARequest+RouteRequest.m */; };
 		2756EE21162F689800E76B50 /* IARequest+RouteRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE1D162F689800E76B50 /* IARequest+RouteRequest.m */; };
-		2756EE25162F6E2200E76B50 /* IAResponse+Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE23162F6E2200E76B50 /* IAResponse+Image.h */; };
-		2756EE26162F6E2200E76B50 /* IAResponse+Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE23162F6E2200E76B50 /* IAResponse+Image.h */; };
-		2756EE27162F6E2200E76B50 /* IAResponse+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE24162F6E2200E76B50 /* IAResponse+Image.m */; };
-		2756EE28162F6E2200E76B50 /* IAResponse+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE24162F6E2200E76B50 /* IAResponse+Image.m */; };
-		2756EE2B162F6E6500E76B50 /* IAResponse+Generic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE29162F6E6500E76B50 /* IAResponse+Generic.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2756EE2C162F6E6500E76B50 /* IAResponse+Generic.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE29162F6E6500E76B50 /* IAResponse+Generic.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2756EE2D162F6E6500E76B50 /* IAResponse+Generic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */; };
-		2756EE2E162F6E6500E76B50 /* IAResponse+Generic.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */; };
 		2756EE31162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE2F162F73CF00E76B50 /* IARoutingHTTPServerAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EE32162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE2F162F73CF00E76B50 /* IARoutingHTTPServerAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EE33162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE30162F73D000E76B50 /* IARoutingHTTPServerAdapter.m */; };
@@ -116,6 +96,10 @@
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27E54A1016549BDE00EFD933 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C340F163B63B6007420CD /* UIKit.framework */; };
+		27E54AE91654B54900EFD933 /* IADeSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E54AE71654B54900EFD933 /* IADeSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27E54AEA1654B54900EFD933 /* IADeSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E54AE71654B54900EFD933 /* IADeSerialization.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27E54AEB1654B54900EFD933 /* IADeSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54AE81654B54900EFD933 /* IADeSerialization.m */; };
+		27E54AEC1654B54900EFD933 /* IADeSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E54AE81654B54900EFD933 /* IADeSerialization.m */; };
 		D53C33D7163B6326007420CD /* libCocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C7E651634C51500631ECD /* libCocoaLumberjack.a */; };
 		D53C33DA163B6331007420CD /* libRoutingHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */; };
 		D53C340A163B639F007420CD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3409163B639F007420CD /* CFNetwork.framework */; };
@@ -403,18 +387,8 @@
 		2756EDF1162F60AC00E76B50 /* IAResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAResponse.m; sourceTree = "<group>"; };
 		2756EDF6162F60C200E76B50 /* IARequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARequest.h; sourceTree = "<group>"; };
 		2756EDF7162F60C200E76B50 /* IARequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARequest.m; sourceTree = "<group>"; };
-		2756EDFD162F669800E76B50 /* IARequest+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARequest+Image.h"; sourceTree = "<group>"; };
-		2756EDFE162F669800E76B50 /* IARequest+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARequest+Image.m"; sourceTree = "<group>"; };
-		2756EE03162F66F000E76B50 /* IARequest+Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARequest+Video.h"; sourceTree = "<group>"; };
-		2756EE04162F66F000E76B50 /* IARequest+Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARequest+Video.m"; sourceTree = "<group>"; };
-		2756EE0A162F672B00E76B50 /* IARequest+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARequest+JSON.h"; sourceTree = "<group>"; };
-		2756EE0B162F672B00E76B50 /* IARequest+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARequest+JSON.m"; sourceTree = "<group>"; };
 		2756EE1C162F689800E76B50 /* IARequest+RouteRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IARequest+RouteRequest.h"; sourceTree = "<group>"; };
 		2756EE1D162F689800E76B50 /* IARequest+RouteRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IARequest+RouteRequest.m"; sourceTree = "<group>"; };
-		2756EE23162F6E2200E76B50 /* IAResponse+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IAResponse+Image.h"; sourceTree = "<group>"; };
-		2756EE24162F6E2200E76B50 /* IAResponse+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IAResponse+Image.m"; sourceTree = "<group>"; };
-		2756EE29162F6E6500E76B50 /* IAResponse+Generic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IAResponse+Generic.h"; sourceTree = "<group>"; };
-		2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IAResponse+Generic.m"; sourceTree = "<group>"; };
 		2756EE2F162F73CF00E76B50 /* IARoutingHTTPServerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARoutingHTTPServerAdapter.h; sourceTree = "<group>"; };
 		2756EE30162F73D000E76B50 /* IARoutingHTTPServerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARoutingHTTPServerAdapter.m; sourceTree = "<group>"; };
 		2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RouteResponse+IAResponse.h"; sourceTree = "<group>"; };
@@ -434,6 +408,8 @@
 		277BDCCB16546F2100A7AB46 /* NSURL+QueryParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryParameters.m"; sourceTree = "<group>"; };
 		277E552C154A42AF002F307D /* libIntAirAct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIntAirAct.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E5549154A4384002F307D /* IntAirAct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntAirAct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		27E54AE71654B54900EFD933 /* IADeSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IADeSerialization.h; sourceTree = "<group>"; };
+		27E54AE81654B54900EFD933 /* IADeSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IADeSerialization.m; sourceTree = "<group>"; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
 		27FC6247154B36A400AA7502 /* IntAirActIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FC625F154B36AD00AA7502 /* IntAirActOSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActOSXTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -511,30 +487,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2756EDFC162F667C00E76B50 /* Request Deserialization */ = {
-			isa = PBXGroup;
-			children = (
-				2756EDFD162F669800E76B50 /* IARequest+Image.h */,
-				2756EDFE162F669800E76B50 /* IARequest+Image.m */,
-				2756EE03162F66F000E76B50 /* IARequest+Video.h */,
-				2756EE04162F66F000E76B50 /* IARequest+Video.m */,
-				2756EE0A162F672B00E76B50 /* IARequest+JSON.h */,
-				2756EE0B162F672B00E76B50 /* IARequest+JSON.m */,
-			);
-			name = "Request Deserialization";
-			sourceTree = "<group>";
-		};
-		2756EE22162F6D9500E76B50 /* Response Serialization */ = {
-			isa = PBXGroup;
-			children = (
-				2756EE23162F6E2200E76B50 /* IAResponse+Image.h */,
-				2756EE24162F6E2200E76B50 /* IAResponse+Image.m */,
-				2756EE29162F6E6500E76B50 /* IAResponse+Generic.h */,
-				2756EE2A162F6E6500E76B50 /* IAResponse+Generic.m */,
-			);
-			name = "Response Serialization";
-			sourceTree = "<group>";
-		};
 		2756EE35162F77E100E76B50 /* RoutingHTTPServer */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,7 +590,7 @@
 			children = (
 				277BDCB71654670800A7AB46 /* NSURL */,
 				277BDCB31654643A00A7AB46 /* Client */,
-				27A1BA3D1630840800BCFB39 /* Categories */,
+				27A1BA3D1630840800BCFB39 /* DeSerialization */,
 				2756EE35162F77E100E76B50 /* RoutingHTTPServer */,
 				27EF3391154A9CE8003D7F41 /* Server */,
 				27EF3390154A9CE2003D7F41 /* Shared */,
@@ -660,13 +612,13 @@
 			path = IntAirAct;
 			sourceTree = "<group>";
 		};
-		27A1BA3D1630840800BCFB39 /* Categories */ = {
+		27A1BA3D1630840800BCFB39 /* DeSerialization */ = {
 			isa = PBXGroup;
 			children = (
-				2756EE22162F6D9500E76B50 /* Response Serialization */,
-				2756EDFC162F667C00E76B50 /* Request Deserialization */,
+				27E54AE71654B54900EFD933 /* IADeSerialization.h */,
+				27E54AE81654B54900EFD933 /* IADeSerialization.m */,
 			);
-			name = Categories;
+			name = DeSerialization;
 			sourceTree = "<group>";
 		};
 		27EF2FE9154A7FA7003D7F41 /* Products */ = {
@@ -801,19 +753,15 @@
 				274A48F415508F1B000DFAF9 /* IntAirAct.h in Headers */,
 				2756EDF2162F60AC00E76B50 /* IAResponse.h in Headers */,
 				2756EDF8162F60C200E76B50 /* IARequest.h in Headers */,
-				2756EDFF162F669800E76B50 /* IARequest+Image.h in Headers */,
-				2756EE05162F66F000E76B50 /* IARequest+Video.h in Headers */,
-				2756EE0C162F672B00E76B50 /* IARequest+JSON.h in Headers */,
 				2756EE1E162F689800E76B50 /* IARequest+RouteRequest.h in Headers */,
-				2756EE25162F6E2200E76B50 /* IAResponse+Image.h in Headers */,
 				D53C3523163C1E45007420CD /* IAServer.h in Headers */,
-				2756EE2B162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
 				2756EE31162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */,
 				2756EE38162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
 				277BDCB51654644B00A7AB46 /* IAClient.h in Headers */,
 				277BDCBA1654675500A7AB46 /* IANSURLAdapter.h in Headers */,
 				277BDCC016546A1F00A7AB46 /* NSURLRequest+IARequest.h in Headers */,
 				277BDCCC16546F2100A7AB46 /* NSURL+QueryParameters.h in Headers */,
+				27E54AE91654B54900EFD933 /* IADeSerialization.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,19 +778,15 @@
 				274A48C815508DB9000DFAF9 /* IADevice.h in Headers */,
 				2756EDF3162F60AC00E76B50 /* IAResponse.h in Headers */,
 				2756EDF9162F60C200E76B50 /* IARequest.h in Headers */,
-				2756EE00162F669800E76B50 /* IARequest+Image.h in Headers */,
-				2756EE06162F66F000E76B50 /* IARequest+Video.h in Headers */,
-				2756EE0D162F672B00E76B50 /* IARequest+JSON.h in Headers */,
 				2756EE1F162F689800E76B50 /* IARequest+RouteRequest.h in Headers */,
 				D53C3524163C1E45007420CD /* IAServer.h in Headers */,
-				2756EE26162F6E2200E76B50 /* IAResponse+Image.h in Headers */,
-				2756EE2C162F6E6500E76B50 /* IAResponse+Generic.h in Headers */,
 				2756EE32162F73D000E76B50 /* IARoutingHTTPServerAdapter.h in Headers */,
 				2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */,
 				277BDCB61654644B00A7AB46 /* IAClient.h in Headers */,
 				277BDCBB1654675500A7AB46 /* IANSURLAdapter.h in Headers */,
 				277BDCC116546A1F00A7AB46 /* NSURLRequest+IARequest.h in Headers */,
 				277BDCCD16546F2100A7AB46 /* NSURL+QueryParameters.h in Headers */,
+				27E54AEA1654B54900EFD933 /* IADeSerialization.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1226,17 +1170,13 @@
 				2756EDE5162F568F00E76B50 /* IARoute.m in Sources */,
 				2756EDF4162F60AC00E76B50 /* IAResponse.m in Sources */,
 				2756EDFA162F60C200E76B50 /* IARequest.m in Sources */,
-				2756EE01162F669800E76B50 /* IARequest+Image.m in Sources */,
-				2756EE07162F66F000E76B50 /* IARequest+Video.m in Sources */,
-				2756EE0E162F672B00E76B50 /* IARequest+JSON.m in Sources */,
 				2756EE20162F689800E76B50 /* IARequest+RouteRequest.m in Sources */,
-				2756EE27162F6E2200E76B50 /* IAResponse+Image.m in Sources */,
-				2756EE2D162F6E6500E76B50 /* IAResponse+Generic.m in Sources */,
 				2756EE33162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */,
 				2756EE3A162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */,
 				277BDCBC1654675500A7AB46 /* IANSURLAdapter.m in Sources */,
 				277BDCC216546A1F00A7AB46 /* NSURLRequest+IARequest.m in Sources */,
 				277BDCCE16546F2100A7AB46 /* NSURL+QueryParameters.m in Sources */,
+				27E54AEB1654B54900EFD933 /* IADeSerialization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1251,17 +1191,13 @@
 				2756EDE6162F568F00E76B50 /* IARoute.m in Sources */,
 				2756EDF5162F60AC00E76B50 /* IAResponse.m in Sources */,
 				2756EDFB162F60C200E76B50 /* IARequest.m in Sources */,
-				2756EE02162F669800E76B50 /* IARequest+Image.m in Sources */,
-				2756EE08162F66F000E76B50 /* IARequest+Video.m in Sources */,
-				2756EE0F162F672B00E76B50 /* IARequest+JSON.m in Sources */,
 				2756EE21162F689800E76B50 /* IARequest+RouteRequest.m in Sources */,
-				2756EE28162F6E2200E76B50 /* IAResponse+Image.m in Sources */,
-				2756EE2E162F6E6500E76B50 /* IAResponse+Generic.m in Sources */,
 				2756EE34162F73D000E76B50 /* IARoutingHTTPServerAdapter.m in Sources */,
 				2756EE3B162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */,
 				277BDCBD1654675500A7AB46 /* IANSURLAdapter.m in Sources */,
 				277BDCC316546A1F00A7AB46 /* NSURLRequest+IARequest.m in Sources */,
 				277BDCCF16546F2100A7AB46 /* NSURL+QueryParameters.m in Sources */,
+				27E54AEC1654B54900EFD933 /* IADeSerialization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

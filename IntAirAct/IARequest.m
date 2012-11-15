@@ -2,6 +2,8 @@
 
 @implementation IARequest
 
+@synthesize body = _body;
+
 +(IARequest *)requestWithRoute:(IARoute *)route metadata:(NSDictionary *)metadata parameters:(NSDictionary *)parameters origin:(IADevice *)origin body:(NSData *)body
 {
     return [[IARequest alloc] initWithRoute:route metadata:metadata parameters:parameters origin:origin body:body];
@@ -33,11 +35,6 @@
 -(NSString *)description
 {
     return [NSString stringWithFormat:@"IARequest[route: %@, metadata: %@, parameters: %@, origin: %@]", self.route, self.metadata, self.parameters, self.origin];
-}
-
--(NSString *)bodyAsString
-{
-    return [[NSString alloc] initWithBytes:[[self body] bytes] length:[[self body] length] encoding:NSUTF8StringEncoding];
 }
 
 @end

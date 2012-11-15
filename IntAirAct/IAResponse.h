@@ -1,6 +1,8 @@
+#import "IADeSerialization.h"
+
 @class IAIntAirAct;
 
-@interface IAResponse : NSObject
+@interface IAResponse : IADeSerialization
 
 #define OK @200
 #define CREATED @201
@@ -9,11 +11,6 @@
 #define NOT_FOUND @404
 
 @property (strong) NSNumber * statusCode;
-@property (strong) NSData * body;
 @property (strong, readonly) NSMutableDictionary * metadata;
-
-- (void)respondWithString:(NSString *)string;
-- (void)respondWithString:(NSString *)string encoding:(NSStringEncoding)encoding;
-- (void)respondWithData:(NSData *)data;
 
 @end
