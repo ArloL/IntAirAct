@@ -15,6 +15,7 @@
     urlRequest.HTTPMethod = request.route.action;
     urlRequest.HTTPBody = request.body;
     [urlRequest setAllHTTPHeaderFields:request.metadata];
+    [urlRequest addValue:request.origin.name forHTTPHeaderField:@"X-IA-Source"];
     return urlRequest;
 }
 
