@@ -3,6 +3,11 @@
 #import <UIKit/UIKit.h>
 
 #import "IAResponse+Image.h"
+#import "IALogging.h"
+
+// Log levels: off, error, warn, info, verbose
+// Other flags: trace
+static const int intAirActLogLevel = IA_LOG_LEVEL_VERBOSE; // | IA_LOG_FLAG_TRACE
 
 @implementation IAResponse (Generic)
 
