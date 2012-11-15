@@ -251,6 +251,28 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 #pragma mark Methods
 
+-(NSArray *)devicesSupportingRoute:(IARoute *)route
+{
+    __block NSMutableArray * result;
+
+    dispatch_sync(_serverQueue, ^{
+        result = [NSMutableArray new];
+        for(IADevice * dev in _mDevices) {
+            if([dev.supportedRoutes containsObject:route]) {
+                [result addObject:dev];
+            }
+        }
+	});
+
+    return result;
+}
+
+-(BOOL)route:(IARoute *)route withHandler:(IARequestHandler)handler
+{
+    [self.supportedRoutes addObject:route];
+    return [self.server route:route withHandler:handler];
+}
+
 -(void)sendRequest:(IARequest *)request toDevice:(IADevice *)device
 {
     [self.client sendRequest:request toDevice:device];
@@ -311,22 +333,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         RKObjectMapper* mapper = [RKObjectMapper mapperWithObject:parsedData mappingProvider:self.objectMappingProvider];
         return [mapper performMapping];
     }
-}
-
--(NSArray *)devicesSupportingRoute:(IARoute *)route
-{
-    __block NSMutableArray * result;
-    
-    dispatch_sync(_serverQueue, ^{
-        result = [NSMutableArray new];
-        for(IADevice * dev in _mDevices) {
-            if([dev.supportedRoutes containsObject:route]) {
-                [result addObject:dev];
-            }
-        }
-	});
-
-    return result;
 }
 
 -(void)callAction:(IAAction *)action onDevice:(IADevice *)device withHandler:(void (^)(IAAction * action, NSError * error))handler
@@ -448,11 +454,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         }
     }
     return NO;
-}
-
--(BOOL)route:(IARoute *)route withHandler:(IARequestHandler)block
-{
-    return [self.server route:route withHandler:block];
 }
 
 #pragma mark Notification support
