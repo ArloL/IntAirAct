@@ -12,7 +12,6 @@
 @property (strong) NSData * body;
 @property (strong, readonly) NSMutableDictionary * metadata;
 
-- (void)respondWith:(id)data withIntAirAct:(IAIntAirAct *)intAirAct;
 - (void)respondWithString:(NSString *)string;
 - (void)respondWithString:(NSString *)string encoding:(NSStringEncoding)encoding;
 - (void)respondWithData:(NSData *)data;

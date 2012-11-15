@@ -15,6 +15,7 @@
 #import "IAResponse.h"
 #import "IARequest.h"
 #import "IARoutingHTTPServerAdapter.h"
+#import "IAResponse+Generic.h"
 
 NSString * IADeviceFound = @"IADeviceFound";
 NSString * IADeviceLost = @"IADeviceLost";
@@ -174,7 +175,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     
     [self route:[IARoute routeWithAction:@"GET" resource:@"/routes"] withHandler:^(IARequest *request, IAResponse *response) {
         IALogTrace3(@"GET /routes");
-        [response respondWith:self.supportedRoutes withIntAirAct:self];
+        [response respondWith:self.supportedRoutes];
     }];
 }
 

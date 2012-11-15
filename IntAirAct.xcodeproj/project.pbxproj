@@ -115,6 +115,7 @@
 		277BDCCF16546F2100A7AB46 /* NSURL+QueryParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 277BDCCB16546F2100A7AB46 /* NSURL+QueryParameters.m */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
+		27E54A1016549BDE00EFD933 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C340F163B63B6007420CD /* UIKit.framework */; };
 		D53C33D7163B6326007420CD /* libCocoaLumberjack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C7E651634C51500631ECD /* libCocoaLumberjack.a */; };
 		D53C33DA163B6331007420CD /* libRoutingHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF2FFE154A7FA8003D7F41 /* libRoutingHTTPServer.a */; };
 		D53C340A163B639F007420CD /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3409163B639F007420CD /* CFNetwork.framework */; };
@@ -456,6 +457,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E54A1016549BDE00EFD933 /* UIKit.framework in Frameworks */,
 				D5D070CE163C469C009B0E74 /* libServiceDiscovery.a in Frameworks */,
 				D53C34C4163B722F007420CD /* libRestKit+Blocks.a in Frameworks */,
 				D53C33DA163B6331007420CD /* libRoutingHTTPServer.a in Frameworks */,

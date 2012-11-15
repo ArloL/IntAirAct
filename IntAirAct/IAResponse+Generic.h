@@ -2,6 +2,6 @@
 
 @interface IAResponse (Generic)
 
--(void)respond:(id)data;
+-(void)respondWith:(id)data;
 
 @end
