@@ -2,9 +2,9 @@
 
 @implementation IAResponse (Image)
 
--(void)respondWithImage:(NSString *)image
+-(void)respondWithImage:(UIImage *)image
 {
-    
+#warning serialization not implemented
 }
 
 @end
