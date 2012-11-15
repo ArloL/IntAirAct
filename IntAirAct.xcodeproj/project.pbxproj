@@ -25,14 +25,6 @@
 
 /* Begin PBXBuildFile section */
 		274A48A915508D97000DFAF9 /* IntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48A715508D97000DFAF9 /* IntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		274A48AE15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		274A48AF15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		274A48B015508DA1000DFAF9 /* IARouteRequest+BodyAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */; };
-		274A48B115508DA1000DFAF9 /* IARouteRequest+BodyAsString.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */; };
-		274A48B215508DA1000DFAF9 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AC15508DA1000DFAF9 /* IARouteResponse+Serializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		274A48B315508DA1000DFAF9 /* IARouteResponse+Serializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48AC15508DA1000DFAF9 /* IARouteResponse+Serializer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		274A48B415508DA1000DFAF9 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48AD15508DA1000DFAF9 /* IARouteResponse+Serializer.m */; };
-		274A48B515508DA1000DFAF9 /* IARouteResponse+Serializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48AD15508DA1000DFAF9 /* IARouteResponse+Serializer.m */; };
 		274A48B915508DAC000DFAF9 /* IAIntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48B615508DAC000DFAF9 /* IAIntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274A48BA15508DAC000DFAF9 /* IAIntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48B615508DAC000DFAF9 /* IAIntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274A48BB15508DAC000DFAF9 /* IAIntAirAct.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48B715508DAC000DFAF9 /* IAIntAirAct.m */; };
@@ -368,10 +360,6 @@
 
 /* Begin PBXFileReference section */
 		274A48A715508D97000DFAF9 /* IntAirAct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntAirAct.h; path = IntAirAct/IntAirAct.h; sourceTree = SOURCE_ROOT; };
-		274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IARouteRequest+BodyAsString.h"; path = "IntAirAct/IARouteRequest+BodyAsString.h"; sourceTree = SOURCE_ROOT; };
-		274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IARouteRequest+BodyAsString.m"; path = "IntAirAct/IARouteRequest+BodyAsString.m"; sourceTree = SOURCE_ROOT; };
-		274A48AC15508DA1000DFAF9 /* IARouteResponse+Serializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "IARouteResponse+Serializer.h"; path = "IntAirAct/IARouteResponse+Serializer.h"; sourceTree = SOURCE_ROOT; };
-		274A48AD15508DA1000DFAF9 /* IARouteResponse+Serializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "IARouteResponse+Serializer.m"; path = "IntAirAct/IARouteResponse+Serializer.m"; sourceTree = SOURCE_ROOT; };
 		274A48B615508DAC000DFAF9 /* IAIntAirAct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAIntAirAct.h; path = IntAirAct/IAIntAirAct.h; sourceTree = SOURCE_ROOT; };
 		274A48B715508DAC000DFAF9 /* IAIntAirAct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAIntAirAct.m; path = IntAirAct/IAIntAirAct.m; sourceTree = SOURCE_ROOT; };
 		274A48B815508DAC000DFAF9 /* IALogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IALogging.h; path = IntAirAct/IALogging.h; sourceTree = SOURCE_ROOT; };
@@ -659,10 +647,6 @@
 			isa = PBXGroup;
 			children = (
 				D53C3522163C1E45007420CD /* IAServer.h */,
-				274A48AA15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h */,
-				274A48AB15508DA1000DFAF9 /* IARouteRequest+BodyAsString.m */,
-				274A48AC15508DA1000DFAF9 /* IARouteResponse+Serializer.h */,
-				274A48AD15508DA1000DFAF9 /* IARouteResponse+Serializer.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -744,8 +728,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274A48AE15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */,
-				274A48B215508DA1000DFAF9 /* IARouteResponse+Serializer.h in Headers */,
 				274A48B915508DAC000DFAF9 /* IAIntAirAct.h in Headers */,
 				274A48BD15508DAC000DFAF9 /* IALogging.h in Headers */,
 				274A48C715508DB9000DFAF9 /* IADevice.h in Headers */,
@@ -770,8 +752,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				274A48A915508D97000DFAF9 /* IntAirAct.h in Headers */,
-				274A48AF15508DA1000DFAF9 /* IARouteRequest+BodyAsString.h in Headers */,
-				274A48B315508DA1000DFAF9 /* IARouteResponse+Serializer.h in Headers */,
 				274A48BA15508DAC000DFAF9 /* IAIntAirAct.h in Headers */,
 				274A48BE15508DAC000DFAF9 /* IALogging.h in Headers */,
 				2756EDE4162F568F00E76B50 /* IARoute.h in Headers */,
@@ -1163,8 +1143,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274A48B015508DA1000DFAF9 /* IARouteRequest+BodyAsString.m in Sources */,
-				274A48B415508DA1000DFAF9 /* IARouteResponse+Serializer.m in Sources */,
 				274A48BB15508DAC000DFAF9 /* IAIntAirAct.m in Sources */,
 				274A48C915508DB9000DFAF9 /* IADevice.m in Sources */,
 				2756EDE5162F568F00E76B50 /* IARoute.m in Sources */,
@@ -1184,8 +1162,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				274A48B115508DA1000DFAF9 /* IARouteRequest+BodyAsString.m in Sources */,
-				274A48B515508DA1000DFAF9 /* IARouteResponse+Serializer.m in Sources */,
 				274A48BC15508DAC000DFAF9 /* IAIntAirAct.m in Sources */,
 				274A48CA15508DB9000DFAF9 /* IADevice.m in Sources */,
 				2756EDE6162F568F00E76B50 /* IARoute.m in Sources */,
