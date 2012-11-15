@@ -2,7 +2,7 @@
 @class IARequest;
 @class IAResponse;
 
-typedef void (^IAResponseHandler)(IAResponse *response);
+typedef void (^IAResponseHandler)(IAResponse *response, NSError * error);
 
 @protocol IAClient <NSObject>
 
