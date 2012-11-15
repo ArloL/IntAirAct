@@ -35,7 +35,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @property (nonatomic, strong) SDServiceDiscovery * serviceDiscovery;
 @property (nonatomic, strong) id serviceFoundObserver;
 @property (nonatomic, strong) id serviceLostObserver;
-@property (nonatomic, strong) NSNotificationCenter * notificationCenter;
 
 @property (nonatomic, strong) IADevice * ownDevice;
 
@@ -73,7 +72,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _serviceDiscovery = serviceDiscovery;
         _server = server;
         _client = client;
-        _notificationCenter = [NSNotificationCenter defaultCenter];
         
         [self setup];
     }
@@ -150,7 +148,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         if (ownService) {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found own device");
             myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostName port:service.port supportedRoutes:self.supportedRoutes];
-            [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":myself.ownDevice, @"ownDevice":@YES}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:myself userInfo:@{@"device":myself.ownDevice, @"ownDevice":@YES}];
         } else {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found other device");
             IADevice * device = [IADevice deviceWithName:service.name host:service.hostName port:service.port supportedRoutes:nil];
@@ -163,7 +161,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
                     IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port supportedRoutes:[NSSet setWithArray:nil]];
                     [myself.mDevices addObject:dev];
 
-                    [myself.notificationCenter postNotificationName:IADeviceFound object:myself userInfo:@{@"device":dev}];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:myself userInfo:@{@"device":dev}];
                 }
             }];
         }
@@ -172,7 +170,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     self.serviceLostObserver = [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
         IADevice * dev = [IADevice deviceWithName:service.name host:service.hostName port:service.port supportedRoutes:nil];
         [myself.mDevices removeObject:dev];
-        [myself.notificationCenter postNotificationName:IADeviceLost object:myself userInfo:@{@"device":dev}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:myself userInfo:@{@"device":dev}];
     }];
     
     [self route:[IARoute routeWithAction:@"GET" resource:@"/routes"] withHandler:^(IARequest *request, IAResponse *response) {
@@ -284,12 +282,12 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(void)removeObserver:(id)observer
 {
-    [self.notificationCenter removeObserver:observer];
+    [[NSNotificationCenter defaultCenter] removeObserver:observer];
 }
 
 -(id)addHandlerForDeviceFound:(IADeviceFoundHandler)handler
 {
-    return [self.notificationCenter addObserverForName:IADeviceFound object:self queue:nil usingBlock:^(NSNotification *note) {
+    return [[NSNotificationCenter defaultCenter] addObserverForName:IADeviceFound object:self queue:nil usingBlock:^(NSNotification *note) {
         if(note.userInfo) {
             NSObject * obj = note.userInfo[@"device"];
             if(obj && [obj isKindOfClass:[IADevice class]]) {
@@ -305,7 +303,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(id)addHandlerForDeviceLost:(IADeviceLostHandler)handler
 {
-    return [self.notificationCenter addObserverForName:IADeviceLost object:self queue:nil usingBlock:^(NSNotification *note) {
+    return [[NSNotificationCenter defaultCenter] addObserverForName:IADeviceLost object:self queue:nil usingBlock:^(NSNotification *note) {
         if(note.userInfo) {
             NSObject * obj = note.userInfo[@"device"];
             if(obj && [obj isKindOfClass:[IADevice class]]) {
