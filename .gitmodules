@@ -11,6 +11,3 @@
 [submodule "Frameworks/JSONKit"]
 	path = Frameworks/JSONKit
 	url = https://github.com/johnezang/JSONKit.git
-[submodule "Frameworks/ObjectMapper"]
-	path = Frameworks/ObjectMapper
-	url = https://github.com/mattiaslevin/ObjectMapper.git
