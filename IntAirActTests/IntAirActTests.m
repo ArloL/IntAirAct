@@ -3,10 +3,6 @@
 #import <CocoaLumberjack/DDLog.h>
 #import <CocoaLumberjack/DDTTYLogger.h>
 #import <IntAirAct/IntAirAct.h>
-#import <IntAirAct/IARoutingHTTPServerAdapter.h>
-#import <RestKit/RestKit.h>
-#import <RestKit+Blocks/RestKit+Blocks.h>
-#import <ServiceDiscovery/ServiceDiscovery.h>
 
 #import "IANumber.h"
 
@@ -34,15 +30,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     });
 }
 
--(IAIntAirAct*)newIntAirAct
-{
-    RoutingHTTPServer * routingHTTPServer = [RoutingHTTPServer new];
-    IARoutingHTTPServerAdapter * routingHTTPServerAdapter = [[IARoutingHTTPServerAdapter alloc] initWithRoutingHTTPServer:routingHTTPServer];
-    SDServiceDiscovery * serviceDiscovery = [SDServiceDiscovery new];
-    [serviceDiscovery setLogLevel:SD_LOG_LEVEL_VERBOSE];
-    return [[IAIntAirAct alloc] initWithServer:routingHTTPServerAdapter andServiceDiscovery:serviceDiscovery];
-}
-
 -(void)setUp
 {
     [super setUp];
@@ -51,7 +38,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self logging];
 
     // Given
-    self.intAirAct = [self newIntAirAct];
+    self.intAirAct = [IAIntAirAct instance];
 }
 
 -(void)tearDown
@@ -72,18 +59,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     STAssertNil(self.intAirAct.ownDevice, @"Own Device should be nil");
 }
 
--(void)testRouterShouldNotBeNil
-{
-    // Then
-    STAssertNotNil(self.intAirAct.router, @"Router should not be nil");
-}
-
--(void)testObjectMappingProviderShouldNotBeNil
-{   
-    // Then
-    STAssertNotNil(self.intAirAct.objectMappingProvider, @"ObjectMappingProvider should not be nil");
-}
-
 -(void)testDefaultPortShouldBeZero
 {
     NSInteger expectedPort = 0;
@@ -95,7 +70,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     // Then
     STAssertNotNil(self.intAirAct.supportedRoutes, @"Supported routes should not be nil");
-    STAssertTrue([self.intAirAct.supportedRoutes count] == 0, @"Supported routes should be empty");
+    STAssertTrue([self.intAirAct.supportedRoutes count] == 1, @"Supported routes only have GET /routes");
 }
 
 -(void)testDefaultDevicesShouldBeEmpty
@@ -175,57 +150,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     STAssertEqualObjects(self.intAirAct.supportedRoutes, self.intAirAct.ownDevice.supportedRoutes, @"ownDevice.supportedRoutes and supportedRoutes should be equal");
 }
 
--(void)testDefaultObjectMappings
-{
-    // Then
-    STAssertNotNil([self.intAirAct.objectMappingProvider serializationMappingForClass:[IADevice class]], @"A serialization mapping should exist");
-    STAssertNotNil([self.intAirAct.objectMappingProvider mappingForKeyPath:@"devices"], @"A deserialization mapping should exist");
-    
-    STAssertNotNil([self.intAirAct.objectMappingProvider serializationMappingForClass:[IAAction class]], @"A serialization mapping should exist");
-    STAssertNotNil([self.intAirAct.objectMappingProvider mappingForKeyPath:@"actions"], @"A deserialization mapping should exist");
-    
-    STAssertNotNil([self.intAirAct.objectMappingProvider serializationMappingForClass:[IARoute class]], @"A serialization mapping should exist");
-    STAssertNotNil([self.intAirAct.objectMappingProvider mappingForKeyPath:@"routes"], @"A deserialization mapping should exist");
-}
-
--(void)testAddMappingForClass
-{
-    // And
-    [self.intAirAct addMappingForClass:[IANumber class] withKeypath:@"numbers" withAttributes:@"number", nil];
- 
-    // Then
-    STAssertNotNil([self.intAirAct.objectMappingProvider serializationMappingForClass:[IANumber class]], @"A serialization mapping should exist");
-    STAssertNotNil([self.intAirAct.objectMappingProvider mappingForKeyPath:@"numbers"], @"A deserialization mapping should exist");
-}
-
--(void)testObjectManagerForOwnDeviceShouldHaveLocalInterface
-{
-    // And
-    NSError * error = nil;
-    if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
-    } else {
-        NSDate * start = [NSDate new];
-        while(self.intAirAct.ownDevice == nil) {
-            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-            if([start timeIntervalSinceNow] < -5) {
-                STFail(@"IntAirAct should find own Device in five seconds");
-                return;
-            }
-        }
-    }
-    
-    // Then
-    RKObjectManager * man = [self.intAirAct objectManagerForDevice:self.intAirAct.ownDevice];
-    STAssertNotNil(man, @"Should return an RKObjectManager");
-    STAssertTrue([[man.baseURL absoluteString] hasPrefix:@"http://127.0.0.1"], @"Should be a local interface");
-}
-
 -(void)testIntAirActShouldFindOtherDeviceInFiveSeconds
 {
     // And
     NSError * error = nil;
-    IAIntAirAct * iAA = [self newIntAirAct];
+    IAIntAirAct * iAA = [IAIntAirAct instance];
     if (![iAA start:&error]) {
         STFail(@"IntAirAct failed to start: %@", error);
     } else if (![self.intAirAct start:&error]) {
@@ -253,63 +182,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                 return;
             }
         }
-        
-        // Then
-        STAssertNotNil([self.intAirAct objectManagerForDevice:iAA.ownDevice], @"Should return an RKObjectManager");        
     }
 
     [iAA stop];
     sleep(1);
-}
-
--(void)testResourcePathFor
-{
-    // And
-    NSError * error = nil;
-    if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
-    } else {
-        NSDate * start = [NSDate new];
-        while(self.intAirAct.ownDevice == nil) {
-            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-            if([start timeIntervalSinceNow] < -5) {
-                STFail(@"IntAirAct should find own Device in five seconds");
-                return;
-            }
-        }
-    }
-    
-    // Then
-    RKObjectManager * manager = [self.intAirAct objectManagerForDevice:self.intAirAct.ownDevice];
-    STAssertNotNil(manager, @"Should return an RKObjectManager");
-    
-    IAAction * action = [IAAction new];
-    action.action = @"actionName";
-    
-    NSString * expected = @"/action/actionName";
-    
-    STAssertEqualObjects(expected, [self.intAirAct resourcePathFor:action forObjectManager:manager], @"Resource path for action should be %@ but was %@", expected, [self.intAirAct resourcePathFor:action forObjectManager:manager]);
-}
-
--(void)testTimeout
-{
-    RKClient * client = [RKClient clientWithBaseURL:[NSURL URLWithString:@"http://127.0.0.1"]];
-    client.timeoutInterval = 5;
-    
-    __block BOOL finished = NO;
-    
-    [client get:@"/" withCompletionHandler:^(RKResponse *response, NSError *error) {
-        finished = YES;
-    }];
-    
-    NSDate * start = [NSDate new];
-    while(!finished) {
-        [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-        if([start timeIntervalSinceNow] < -5) {
-            STFail(@"IntAirAct should call add in five seconds");
-            return;
-        }
-    }
 }
 
 -(void)testIntAirActShouldFindOwnDeviceInFiveSeconds2
