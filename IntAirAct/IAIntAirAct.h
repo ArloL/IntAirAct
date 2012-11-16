@@ -37,18 +37,17 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  */
 -(id)init;
 
-/** Standard Constructor.
+/**
+ Instantiates IntAirAct.
  
- Instantiates IntAirAct, but does not start it.
- 
- @param server An optional NSError instance.
- @param serviceDiscovery An optional NSError instance.
+ @param server The server to use for publishing routes.
+ @param client The client to use when sending requests to other devices.
  */
 -(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAClient> *)client;
 
 /** Standard Deconstructor.
  
- Stops the server, and clients, and releases any resources connected with this instance.
+ Stops the server and releases any resources connected with this instance.
  */
 -(void)dealloc;
 
