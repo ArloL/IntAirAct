@@ -12,7 +12,6 @@
 @interface IARoutingHTTPServerAdapter ()
 
 @property (strong, nonatomic) RoutingHTTPServer* routingHTTPServer;
-@property (strong, nonatomic) NSArray * routes;
 
 @end
 
