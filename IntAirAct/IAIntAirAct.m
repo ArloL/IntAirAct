@@ -98,9 +98,10 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     IALogTrace();
     
 	[self stop];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self.serviceFoundObserver];
-    [[NSNotificationCenter defaultCenter] removeObserver:self.serviceLostObserver];
+
+    [self.serviceDiscovery removeHandler:self.serviceFoundObserver];
+    [self.serviceDiscovery removeHandler:self.serviceLostObserver];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark Start, Stop, Setup
@@ -191,6 +192,22 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         IALogTrace3(@"GET /routes");
         [response setBodyWith:self.supportedRoutes];
     }];
+
+#if TARGET_OS_IPHONE
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(stop)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(stop)
+                                                 name:UIApplicationWillTerminateNotification
+                                               object:nil];
+#else
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(stop)
+                                                 name:NSApplicationWillTerminateNotification
+                                               object:nil];
+#endif
 }
 
 #pragma mark Properties
