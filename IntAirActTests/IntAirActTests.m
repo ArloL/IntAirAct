@@ -38,7 +38,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self logging];
 
     // Given
-    self.intAirAct = [IAIntAirAct instance];
+    self.intAirAct = [IAIntAirAct new];
 }
 
 -(void)tearDown
@@ -154,7 +154,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     // And
     NSError * error = nil;
-    IAIntAirAct * iAA = [IAIntAirAct instance];
+    IAIntAirAct * iAA = [IAIntAirAct new];
     if (![iAA start:&error]) {
         STFail(@"IntAirAct failed to start: %@", error);
     } else if (![self.intAirAct start:&error]) {
