@@ -20,23 +20,18 @@
 
 @synthesize port = _port;
 
+- (id)init
+{
+    return [self initWithRoutingHTTPServer:[RoutingHTTPServer new]];
+}
+
 -(id)initWithRoutingHTTPServer:(RoutingHTTPServer *)routingHTTPServer
 {
     self = [super init];
     if (self) {
-        
         _port = 0;
         
         _routingHTTPServer = routingHTTPServer;
-    }
-    return self;
-}
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"-init is not a valid initializer for the class IARoutingHTTPServerAdapter" userInfo:nil];
     }
     return self;
 }
