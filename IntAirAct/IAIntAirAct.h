@@ -44,7 +44,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  @param server An optional NSError instance.
  @param serviceDiscovery An optional NSError instance.
  */
--(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAClient> *)client andServiceDiscovery:(SDServiceDiscovery*)serviceDiscovery;
+-(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAClient> *)client;
 
 /** Standard Deconstructor.
  
