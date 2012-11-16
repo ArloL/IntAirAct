@@ -3,22 +3,22 @@
 @implementation IARoute
 
 // Short-hand constructors for custom routes.
-+(IARoute*)putRoute:(NSString*)resource
++(IARoute*)put:(NSString*)resource
 {
     return [[IARoute alloc] initWithAction:@"PUT" resource:resource];
 }
 
-+(IARoute*)postRoute:(NSString*)resource
++(IARoute*)post:(NSString*)resource
 {
     return [[IARoute alloc] initWithAction:@"POST" resource:resource];
 }
 
-+(IARoute*)getRoute:(NSString*)resource
++(IARoute*)get:(NSString*)resource
 {
     return [[IARoute alloc] initWithAction:@"GET" resource:resource];
 }
 
-+(IARoute*)deleteRoute:(NSString*)resource
++(IARoute*)delete:(NSString*)resource
 {
     return [[IARoute alloc] initWithAction:@"DELETE" resource:resource];
 }
