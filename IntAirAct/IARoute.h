@@ -1,10 +1,5 @@
 @interface IARoute : NSObject
 
-// These are the pre-defined routes included with IntAirAct.
-+(IARoute*)imageRoute;
-+(IARoute*)textRoute;
-+(IARoute*)videoRoute;
-
 // Short-hand constructors for custom routes.
 +(IARoute*)putRoute:(NSString*)resource;
 +(IARoute*)postRoute:(NSString*)resource;

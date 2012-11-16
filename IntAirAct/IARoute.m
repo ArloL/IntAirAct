@@ -2,21 +2,6 @@
 
 @implementation IARoute
 
-+(IARoute*)imageRoute
-{
-    return [[IARoute alloc] initWithAction:@"PUT" resource:@"/image"];
-}
-
-+(IARoute*)textRoute
-{
-    return [[IARoute alloc] initWithAction:@"PUT" resource:@"/text"];
-}
-
-+(IARoute*)videoRoute
-{
-    return [[IARoute alloc] initWithAction:@"PUT" resource:@"/video"];
-}
-
 // Short-hand constructors for custom routes.
 +(IARoute*)putRoute:(NSString*)resource
 {
