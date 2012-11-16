@@ -22,16 +22,6 @@
     return self;
 }
 
--(NSString *)metadata:(NSString *)field
-{
-    return self.metadata[field];
-}
-
--(id)parameter:(NSString *)name
-{
-    return self.parameters[name];
-}
-
 -(NSString *)description
 {
     return [NSString stringWithFormat:@"IARequest[route: %@, metadata: %@, parameters: %@, origin: %@]", self.route, self.metadata, self.parameters, self.origin];

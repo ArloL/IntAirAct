@@ -14,8 +14,4 @@
 @property (strong, readonly) NSDictionary * parameters;
 @property (strong, readonly) IADevice * origin;
 
-// accessor methods for metadata and parameters
-- (NSString *)metadata:(NSString *)field;
-- (id)parameter:(NSString *)name;
-
 @end
