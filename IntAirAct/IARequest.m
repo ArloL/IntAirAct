@@ -11,13 +11,12 @@
 
 -(id)initWithRoute:(IARoute *)route metadata:(NSDictionary *)metadata parameters:(NSDictionary *)parameters origin:(IADevice *)origin body:(NSData *)body
 {
-    self = [super init];
+    self = [super initWithBody:body];
     if (self) {
         _route = route;
         _metadata = metadata;
         _parameters = parameters;
         _origin = origin;
-        _body = body;
     }
     return self;
 }
