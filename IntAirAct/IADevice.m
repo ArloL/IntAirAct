@@ -24,18 +24,25 @@
     return [NSString stringWithFormat:@"IADevice[name: %@, host: %@, port: %"FMTNSINT", supportedRoutes: %@]", self.name, self.host, self.port, self.supportedRoutes];
 }
 
--(BOOL)isEqual:(id)object
+- (BOOL)isEqual:(id)object
 {
-    if([object isKindOfClass:[IADevice class]]) {
-        IADevice * device = object;
-        return [self.name isEqualToString:device.name];
+    if (self == object) {
+        return YES;
     }
-    return [super isEqual:object];
+
+    if (object == nil || ![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+
+    IADevice * service = (IADevice*) object;
+    return (self.name == service.name || [self.name isEqual:service.name]);
 }
 
--(NSUInteger)hash
+- (NSUInteger)hash
 {
-    return [self.name hash];
+    NSUInteger hash = 830;
+    hash = hash * 31 + self.name.hash;
+    return hash;
 }
 
 @end
