@@ -73,6 +73,9 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _objectManagers = [NSMutableDictionary new];
         _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
         _serviceDiscovery = [SDServiceDiscovery new];
+#if DEBUG
+        [_serviceDiscovery setLogLevel:SD_LOG_LEVEL_INFO];
+#endif
         _server = server;
         _client = client;
         
