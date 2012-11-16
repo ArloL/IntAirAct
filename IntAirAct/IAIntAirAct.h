@@ -32,7 +32,10 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 /** The port on which to listen on. Default is 0. This means the system will find a free port. */
 @property (nonatomic) NSInteger port;
 
-+(IAIntAirAct*)instance;
+/**
+ Instantiates IntAirAct with RoutingHTTPServerAdapter as the server and IANSURLAdapter as the client.
+ */
+-(id)init;
 
 /** Standard Constructor.
  

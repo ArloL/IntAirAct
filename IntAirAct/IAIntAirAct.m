@@ -46,28 +46,16 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 #pragma mark Constructor, Deconstructor
 
-+(IAIntAirAct *)instance
-{
-    RoutingHTTPServer * routingHTTPServer = [RoutingHTTPServer new];
-    IARoutingHTTPServerAdapter * routingHTTPServerAdapter = [[IARoutingHTTPServerAdapter alloc] initWithRoutingHTTPServer:routingHTTPServer];
-    SDServiceDiscovery * serviceDiscovery = [SDServiceDiscovery new];
-    IANSURLAdapter * nsURLAdapter = [IANSURLAdapter new];
-
-    // create, setup and start IntAirAct
-    IAIntAirAct * intAirAct = [[IAIntAirAct alloc] initWithServer:routingHTTPServerAdapter client:nsURLAdapter andServiceDiscovery:serviceDiscovery];
-
-    // necessary to set the origin on incoming requests
-    routingHTTPServerAdapter.intAirAct = intAirAct;
-    
-    return intAirAct;
-}
-
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:@"-init is not a valid initializer for the class IAIntAirAct" userInfo:nil];
-    }
+    IARoutingHTTPServerAdapter * routingHTTPServerAdapter = [IARoutingHTTPServerAdapter new];
+    IANSURLAdapter * nsURLAdapter = [IANSURLAdapter new];
+
+    self = [self initWithServer:routingHTTPServerAdapter client:nsURLAdapter];
+    
+    // necessary to set the origin on incoming requests
+    routingHTTPServerAdapter.intAirAct = self;
+
     return self;
 }
 
