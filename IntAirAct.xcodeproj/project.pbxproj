@@ -36,6 +36,8 @@
 		274A48C915508DB9000DFAF9 /* IADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48C215508DB9000DFAF9 /* IADevice.m */; };
 		274A48CA15508DB9000DFAF9 /* IADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48C215508DB9000DFAF9 /* IADevice.m */; };
 		274A48F415508F1B000DFAF9 /* IntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48A715508D97000DFAF9 /* IntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2754AA521656CBD000BC8CA3 /* IADeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2754AA511656CBD000BC8CA3 /* IADeviceTests.m */; };
+		2754AA531656CBD000BC8CA3 /* IADeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2754AA511656CBD000BC8CA3 /* IADeviceTests.m */; };
 		2756EDE3162F568F00E76B50 /* IARoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDE1162F568F00E76B50 /* IARoute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDE4162F568F00E76B50 /* IARoute.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EDE1162F568F00E76B50 /* IARoute.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2756EDE5162F568F00E76B50 /* IARoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EDE2162F568F00E76B50 /* IARoute.m */; };
@@ -369,6 +371,8 @@
 		274A48CC15508DEB000DFAF9 /* IntAirActTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntAirActTests.m; path = IntAirActTests/IntAirActTests.m; sourceTree = "<group>"; };
 		274A48D115508DFD000DFAF9 /* IntAirAct-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IntAirAct-Info.plist"; sourceTree = SOURCE_ROOT; };
 		274A48D215508DFD000DFAF9 /* IntAirAct-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IntAirAct-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		2754AA501656CBD000BC8CA3 /* IADeviceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IADeviceTests.h; path = IntAirActTests/IADeviceTests.h; sourceTree = "<group>"; };
+		2754AA511656CBD000BC8CA3 /* IADeviceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IADeviceTests.m; path = IntAirActTests/IADeviceTests.m; sourceTree = "<group>"; };
 		2756EDE1162F568F00E76B50 /* IARoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARoute.h; sourceTree = "<group>"; };
 		2756EDE2162F568F00E76B50 /* IARoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARoute.m; sourceTree = "<group>"; };
 		2756EDF0162F60AC00E76B50 /* IAResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAResponse.h; sourceTree = "<group>"; };
@@ -626,6 +630,8 @@
 				274A48CC15508DEB000DFAF9 /* IntAirActTests.m */,
 				2762B947155B2BDD0042EECC /* IANumber.h */,
 				2762B948155B2BDD0042EECC /* IANumber.m */,
+				2754AA501656CBD000BC8CA3 /* IADeviceTests.h */,
+				2754AA511656CBD000BC8CA3 /* IADeviceTests.m */,
 			);
 			name = IntAirActTests;
 			sourceTree = "<group>";
@@ -1151,6 +1157,7 @@
 			files = (
 				27C172601550952500BF2BFE /* IntAirActTests.m in Sources */,
 				2762B949155B2BDD0042EECC /* IANumber.m in Sources */,
+				2754AA521656CBD000BC8CA3 /* IADeviceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1160,6 +1167,7 @@
 			files = (
 				27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */,
 				2762B94A155B2BDD0042EECC /* IANumber.m in Sources */,
+				2754AA531656CBD000BC8CA3 /* IADeviceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
