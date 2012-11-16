@@ -19,11 +19,6 @@
     return self;
 }
 
--(id)copy
-{
-    return [IADevice deviceWithName:self.name host:self.host port:self.port supportedRoutes:[self.supportedRoutes copy]];
-}
-
 -(NSString *)description
 {
     return [NSString stringWithFormat:@"IADevice[name: %@, host: %@, port: %"FMTNSINT", supportedRoutes: %@]", self.name, self.host, self.port, self.supportedRoutes];
