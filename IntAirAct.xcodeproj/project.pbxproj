@@ -87,6 +87,12 @@
 		277BDCCD16546F2100A7AB46 /* NSURL+QueryParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 277BDCCA16546F2100A7AB46 /* NSURL+QueryParameters.h */; };
 		277BDCCE16546F2100A7AB46 /* NSURL+QueryParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 277BDCCB16546F2100A7AB46 /* NSURL+QueryParameters.m */; };
 		277BDCCF16546F2100A7AB46 /* NSURL+QueryParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 277BDCCB16546F2100A7AB46 /* NSURL+QueryParameters.m */; };
+		27880000165705ED006DCE70 /* IARouteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFF165705ED006DCE70 /* IARouteTests.m */; };
+		27880001165705ED006DCE70 /* IARouteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFF165705ED006DCE70 /* IARouteTests.m */; };
+		2788FFF8165703A5006DCE70 /* IARequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFF7165703A5006DCE70 /* IARequestTests.m */; };
+		2788FFF9165703A5006DCE70 /* IARequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFF7165703A5006DCE70 /* IARequestTests.m */; };
+		2788FFFC16570542006DCE70 /* IAResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFB16570542006DCE70 /* IAResponseTests.m */; };
+		2788FFFD16570542006DCE70 /* IAResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFB16570542006DCE70 /* IAResponseTests.m */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27E54A1016549BDE00EFD933 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C340F163B63B6007420CD /* UIKit.framework */; };
@@ -400,6 +406,12 @@
 		277BDCCB16546F2100A7AB46 /* NSURL+QueryParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryParameters.m"; sourceTree = "<group>"; };
 		277E552C154A42AF002F307D /* libIntAirAct.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libIntAirAct.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		277E5549154A4384002F307D /* IntAirAct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntAirAct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2788FFF6165703A5006DCE70 /* IARequestTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARequestTests.h; sourceTree = "<group>"; };
+		2788FFF7165703A5006DCE70 /* IARequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARequestTests.m; sourceTree = "<group>"; };
+		2788FFFA16570542006DCE70 /* IAResponseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAResponseTests.h; path = IntAirActTests/IAResponseTests.h; sourceTree = "<group>"; };
+		2788FFFB16570542006DCE70 /* IAResponseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAResponseTests.m; path = IntAirActTests/IAResponseTests.m; sourceTree = "<group>"; };
+		2788FFFE165705ED006DCE70 /* IARouteTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IARouteTests.h; path = IntAirActTests/IARouteTests.h; sourceTree = "<group>"; };
+		2788FFFF165705ED006DCE70 /* IARouteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IARouteTests.m; path = IntAirActTests/IARouteTests.m; sourceTree = "<group>"; };
 		27E54AE71654B54900EFD933 /* IADeSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IADeSerialization.h; sourceTree = "<group>"; };
 		27E54AE81654B54900EFD933 /* IADeSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IADeSerialization.m; sourceTree = "<group>"; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
@@ -632,6 +644,12 @@
 				2762B948155B2BDD0042EECC /* IANumber.m */,
 				2754AA501656CBD000BC8CA3 /* IADeviceTests.h */,
 				2754AA511656CBD000BC8CA3 /* IADeviceTests.m */,
+				2788FFF6165703A5006DCE70 /* IARequestTests.h */,
+				2788FFF7165703A5006DCE70 /* IARequestTests.m */,
+				2788FFFA16570542006DCE70 /* IAResponseTests.h */,
+				2788FFFB16570542006DCE70 /* IAResponseTests.m */,
+				2788FFFE165705ED006DCE70 /* IARouteTests.h */,
+				2788FFFF165705ED006DCE70 /* IARouteTests.m */,
 			);
 			name = IntAirActTests;
 			sourceTree = "<group>";
@@ -1158,6 +1176,9 @@
 				27C172601550952500BF2BFE /* IntAirActTests.m in Sources */,
 				2762B949155B2BDD0042EECC /* IANumber.m in Sources */,
 				2754AA521656CBD000BC8CA3 /* IADeviceTests.m in Sources */,
+				2788FFF8165703A5006DCE70 /* IARequestTests.m in Sources */,
+				2788FFFC16570542006DCE70 /* IAResponseTests.m in Sources */,
+				27880000165705ED006DCE70 /* IARouteTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,6 +1189,9 @@
 				27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */,
 				2762B94A155B2BDD0042EECC /* IANumber.m in Sources */,
 				2754AA531656CBD000BC8CA3 /* IADeviceTests.m in Sources */,
+				2788FFF9165703A5006DCE70 /* IARequestTests.m in Sources */,
+				2788FFFD16570542006DCE70 /* IAResponseTests.m in Sources */,
+				27880001165705ED006DCE70 /* IARouteTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
