@@ -26,7 +26,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 @interface IAIntAirAct ()
 
 @property (nonatomic) dispatch_queue_t clientQueue;
-@property (nonatomic, strong) NSMutableSet * mDevices;
+@property (nonatomic, strong) NSMutableSet * foundDevices;
 @property (nonatomic, strong) NSMutableDictionary * objectManagers;
 @property (nonatomic) dispatch_queue_t serverQueue;
 @property (nonatomic, strong) NSObject<IAServer> * server;
@@ -69,7 +69,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _isRunning = NO;
         
         _clientQueue = dispatch_queue_create("IntAirActClient", NULL);
-        _mDevices = [NSMutableSet new];
+        _foundDevices = [NSMutableSet new];
         _objectManagers = [NSMutableDictionary new];
         _serverQueue = dispatch_queue_create("IntAirActServer", NULL);
         _serviceDiscovery = [SDServiceDiscovery new];
@@ -133,7 +133,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     dispatch_sync(_serverQueue, ^{ @autoreleasepool {
         [_server stop];
         [_serviceDiscovery stop];
-        [_mDevices removeAllObjects];
+        [_foundDevices removeAllObjects];
         dispatch_async(dispatch_get_main_queue(), ^{
             [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:nil];
         });
@@ -162,7 +162,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
                     IALogError(@"%@[%p]: Could not get supported routes of device %@: %@", THIS_FILE, myself, device, error);
                 } else {
                     IADevice * dev = [IADevice deviceWithName:service.name host:service.hostname port:service.port supportedRoutes:[NSSet setWithArray:[response bodyAs:[IARoute class]]]];
-                    [myself.mDevices addObject:dev];
+                    [myself.foundDevices addObject:dev];
 
                     [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:myself userInfo:@{@"device":dev}];
                 }
@@ -172,7 +172,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     
     self.serviceLostObserver = [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
         IADevice * dev = [IADevice deviceWithName:service.name host:service.hostname port:service.port supportedRoutes:nil];
-        [myself.mDevices removeObject:dev];
+        [myself.foundDevices removeObject:dev];
         [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:myself userInfo:@{@"device":dev}];
     }];
     
@@ -227,7 +227,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     __block NSArray * result;
 	
 	dispatch_sync(_serverQueue, ^{
-        result = [_mDevices copy];
+        result = [_foundDevices copy];
 	});
 	
 	return result;
@@ -251,7 +251,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
     dispatch_sync(_serverQueue, ^{
         result = [NSMutableArray new];
-        for(IADevice * dev in _mDevices) {
+        for(IADevice * dev in _foundDevices) {
             if([dev.supportedRoutes containsObject:route]) {
                 [result addObject:dev];
             }
@@ -269,7 +269,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         if ([_ownDevice.name isEqualToString:name]) {
             result = _ownDevice;
         } else {
-            [_mDevices enumerateObjectsUsingBlock:^(IADevice * dev, BOOL *stop) {
+            [_foundDevices enumerateObjectsUsingBlock:^(IADevice * dev, BOOL *stop) {
                 if([dev.name isEqualToString:name]) {
                     result = dev;
                     *stop = YES;
