@@ -79,13 +79,23 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(id)serialize:(id)data
 {
-    if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSSet class]]) {
+    if (data == nil) {
+        return nil;
+    } else if ([data isKindOfClass:[NSString class]] || [data isKindOfClass:[NSNumber class]]) {
+        return data;
+    } else if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSSet class]]) {
         NSMutableArray * array = [NSMutableArray new];
         for (id obj in data) {
             [array addObject:[self serialize:obj]];
         }
         return array;
-    } else {
+    } else if ([data isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary * dic = [NSMutableDictionary new];
+        [data enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            dic[[self serialize:key]] = [self serialize:obj];
+        }];
+        return dic;
+    } else if ([data isKindOfClass:[NSObject class]]) {
         // find the names of all the properties
         NSMutableDictionary * dic = [NSMutableDictionary new];
         unsigned int outCount, i;
@@ -95,12 +105,18 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             const char *propName = property_getName(property);
             if(propName) {
                 NSString *propertyName = [NSString stringWithUTF8String:propName];
-                [dic setValue:[data valueForKey:propertyName] forKey:propertyName];
+                [dic setValue:[self serialize:[data valueForKey:propertyName]] forKey:propertyName];
             }
         }
         free(properties);
 
-        return dic;
+        if (dic.count == 0) {
+            return data;
+        } else {
+            return dic;
+        }
+    } else {
+        return data;
     }
 }
 
