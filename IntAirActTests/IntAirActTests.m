@@ -222,7 +222,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
     
     [cond lock];
-    while(!foundOne && !foundTwo && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
+    while((!foundOne || !foundTwo) && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
         [cond waitUntilDate:startTimePlusWaitTime];
     }
     [cond unlock];
