@@ -40,7 +40,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     NSData * body = [NSData new];
     IADeSerialization * deSerialization = [[IADeSerialization alloc] initWithBody:body];
-    STAssertEquals(body, deSerialization.body, @"Body should be the same");
+    STAssertEquals(deSerialization.body, body, nil);
 }
 
 - (void)testSetBodyWithString
@@ -48,7 +48,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSString * body = @"example string";
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWithString:body];
-    STAssertEqualObjects(body, deSerialization.bodyAsString, @"Should be 'example string'");
+    STAssertEqualObjects(deSerialization.bodyAsString, body, nil);
 }
 
 - (void)testSetBodyWithWithAString
@@ -56,7 +56,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSString * body = @"example string";
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:body];
-    STAssertEqualObjects(body, deSerialization.bodyAsString, @"Should be 'example string'");
+    STAssertEqualObjects(deSerialization.bodyAsString, body, nil);
 }
 
 - (void)testSetBodyWithWithAnNSArrayOfString
@@ -64,7 +64,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSArray * array = @[ @"example string" ];
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:array];
-    STAssertEqualObjects(@"[\"example string\"]", deSerialization.bodyAsString, @"Should be 'example string'");
+    STAssertEqualObjects(deSerialization.bodyAsString, @"[\"example string\"]", nil);
+}
+
+- (void)testSetBodyWithWithAnNSNumber
+{
+    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    [deSerialization setBodyWith:@50];
+    STAssertEqualObjects(deSerialization.bodyAsString, @"50", nil);
 }
 
 - (void)testSetBodyWithWithAnNSArrayOfNSNumber
@@ -72,14 +79,23 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSArray * array = @[ @50 ];
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:array];
-    STAssertEqualObjects(@"[50]", deSerialization.bodyAsString, @"Should be 'example string'");
+    STAssertEqualObjects(deSerialization.bodyAsString, @"[50]", nil);
 }
 
-- (void)testSetBodyWithWithAnNSNumber
+- (void)testSetBodyWithWithAnNSDictionary
 {
+    NSDictionary * dictionary = @{ @"key" : @"value" };
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
-    [deSerialization setBodyWith:@50];
-    STAssertEqualObjects(@"50", deSerialization.bodyAsString, @"Should be 'example string'");
+    [deSerialization setBodyWith:dictionary];
+    STAssertEqualObjects(deSerialization.bodyAsString, @"{\"key\":\"value\"}", nil);
+}
+
+- (void)testSetBodyWithWithAnNSDictionaryUsingNSNumberKeys
+{
+    NSDictionary * dictionary = @{ @50 : @"value" };
+    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    [deSerialization setBodyWith:dictionary];
+    STAssertEqualObjects(deSerialization.bodyAsString, @"{\"50\":\"value\"}", nil);
 }
 
 - (void)testSetBodyWithWithAnIANumber
@@ -89,7 +105,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:number];
     NSString * expected = @"{\"number\":50}";
-    STAssertEqualObjects(expected, deSerialization.bodyAsString, @"Should be the same");
+    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
 }
 
 - (void)testSetBodyWithWithAnIAModelWithInt
@@ -99,13 +115,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:model];
     NSString * expected = @"{\"intProperty\":50}";
-    STAssertEqualObjects(expected, deSerialization.bodyAsString, @"Should be the same");
+    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
 }
 
 - (void)testDescription
 {
     IADeSerialization * deSerialization = [IADeSerialization new];
-    STAssertNotNil(deSerialization.description, @"Description should not be nil");
+    STAssertNotNil(deSerialization.description, nil);
 }
 
 @end
