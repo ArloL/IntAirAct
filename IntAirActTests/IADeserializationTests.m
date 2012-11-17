@@ -6,6 +6,7 @@
 
 #import "IANumber.h"
 #import "IAModelWithInt.h"
+#import "IAModelWithFloat.h"
 
 // Log levels : off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -115,6 +116,24 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:model];
     NSString * expected = @"{\"intProperty\":50}";
+    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
+}
+
+- (void)testSetBodyWithWithAnIAModelWithFloat
+{
+    IAModelWithFloat * model = [IAModelWithFloat new];
+    model.floatProperty = 5.434;
+    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    [deSerialization setBodyWith:model];
+    NSString * expected = [NSString stringWithFormat:@"{\"floatProperty\":%.17g}", 5.434f];
+    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
+}
+
+- (void)testSetBodyWithWithNil
+{
+    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    [deSerialization setBodyWith:nil];
+    NSString * expected = @"";
     STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
 }
 
