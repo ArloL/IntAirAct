@@ -102,17 +102,10 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     } else if ([data isKindOfClass:[NSObject class]]) {
         // find the names of all the properties
         NSMutableDictionary * dic = [NSMutableDictionary new];
-        unsigned int outCount, i;
-        objc_property_t *properties = class_copyPropertyList([data class], &outCount);
-        for(i = 0; i < outCount; i++) {
-            objc_property_t property = properties[i];
-            const char *propName = property_getName(property);
-            if(propName) {
-                NSString *propertyName = [NSString stringWithUTF8String:propName];
-                dic[propertyName] = [self serialize:[data valueForKey:propertyName]];
-            }
-        }
-        free(properties);
+        NSDictionary * properties = [IADeSerialization propertiesWithEncodedTypes:[data class]];
+        [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            dic[key] = [self serialize:[data valueForKey:key]];
+        }];
 
         if (dic.count == 0) {
             return data;
@@ -135,6 +128,47 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 - (void)setBodyWithData:(NSData *)data {
     self.body = data;
+}
+
++(NSDictionary *)propertiesWithEncodedTypes:(Class)class
+{
+
+    // DO NOT use a static variable to cache this, it will cause problem with subclasses of classes that are subclasses of SQLitePersistentObject
+
+    // Recurse up the classes, but stop at NSObject. Each class only reports its own properties, not those inherited from its superclass
+    NSMutableDictionary *theProps;
+
+    if (class != [NSObject class])
+    	theProps = (NSMutableDictionary *)[self propertiesWithEncodedTypes:[class superclass]];
+    else
+    	return [NSMutableDictionary dictionary];
+
+    unsigned int outCount;
+
+
+    objc_property_t *propList = class_copyPropertyList(class, &outCount);
+    int i;
+
+    // Loop through properties and add declarations for the create
+    for (i=0; i < outCount; i++)
+    {
+    	objc_property_t * oneProp = propList + i;
+    	NSString *propName = [NSString stringWithUTF8String:property_getName(*oneProp)];
+    	NSString *attrs = [NSString stringWithUTF8String: property_getAttributes(*oneProp)];
+    	NSArray *attrParts = [attrs componentsSeparatedByString:@","];
+    	if (propName)
+    	{
+    		if ([attrParts count] > 0)
+    		{
+    			NSString *propType = [[attrParts objectAtIndex:0] substringFromIndex:1];
+    			[theProps setObject:propType forKey:propName];
+    		}
+    	}
+    }
+
+    free(propList);
+    
+    return theProps;	
 }
 
 @end
