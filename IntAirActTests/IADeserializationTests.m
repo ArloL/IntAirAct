@@ -58,14 +58,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     STAssertEqualObjects(deSerialization.bodyAsString, @"[\"example string\"]", nil);
 }
 
-- (void)testBodyAsAnNSNumber
-{
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
-    [deSerialization setBodyWith:@50];
-    NSNumber * value = [deSerialization bodyAs:[NSNumber class]];
-    STAssertEqualObjects(value, @50, nil);
-}
-
 - (void)testBodyAsAnNSArrayOfNSNumber
 {
     NSArray * array = @[ @50 ];
