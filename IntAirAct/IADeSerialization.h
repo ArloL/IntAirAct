@@ -15,7 +15,6 @@
 -(NSString *)bodyAsString;
 
 - (void)setBodyWithString:(NSString *)string;
-- (void)setBodyWithString:(NSString *)string encoding:(NSStringEncoding)encoding;
 - (void)setBodyWithData:(NSData *)data;
 
 @end
