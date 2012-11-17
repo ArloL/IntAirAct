@@ -316,13 +316,9 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             NSObject * obj = note.userInfo[@"device"];
             if(obj && [obj isKindOfClass:[IADevice class]]) {
                 if(note.userInfo[@"ownDevice"] == @YES) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        handler((IADevice *)obj, YES);
-                    });
+                    handler((IADevice *)obj, YES);
                 } else {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        handler((IADevice *)obj, NO);
-                    });
+                    handler((IADevice *)obj, NO);
                 }
             }
         }
@@ -335,9 +331,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         if(note.userInfo) {
             NSObject * obj = note.userInfo[@"device"];
             if(obj && [obj isKindOfClass:[IADevice class]]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    handler((IADevice *)obj);
-                });
+                handler((IADevice *)obj);
             }
         }
     }];
