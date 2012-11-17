@@ -109,7 +109,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             const char *propName = property_getName(property);
             if(propName) {
                 NSString *propertyName = [NSString stringWithUTF8String:propName];
-                [dic setValue:[self serialize:[data valueForKey:propertyName]] forKey:propertyName];
+                dic[propertyName] = [self serialize:[data valueForKey:propertyName]];
             }
         }
         free(properties);
