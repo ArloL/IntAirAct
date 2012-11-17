@@ -1,8 +1,8 @@
 #import "IADeSerialization.h"
 
 #import <UIKit/UIKit.h>
-#import <RestKit/JSONKit.h>
 #import <objc/runtime.h>
+#import "JSONKit.h"
 
 #import "IALogging.h"
 
