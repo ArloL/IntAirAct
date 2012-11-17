@@ -105,85 +105,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 -(void)testIntAirActShouldFindOwnDeviceInFiveSeconds
 {
-    // Then
-    NSError * error = nil;
-    if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
-        return;
-    }
-    NSDate * start = [NSDate new];
-    while(self.intAirAct.ownDevice == nil) {
-        if([start timeIntervalSinceNow] < -5) {
-            STFail(@"IntAirAct should find own Device in five seconds");
-            return;
-        }
-        [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-    }
-}
-
--(void)testOwnDeviceSupportedRoutesShouldBeEqualToResolved
-{
-    // And
-    [self.intAirAct.supportedRoutes addObject:[IARoute routeWithAction:@"GET" resource:@"/example"]];
-    
-    // Then
-    NSError * error = nil;
-    if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
-    } else {
-        NSDate * start = [NSDate new];
-        while(self.intAirAct.ownDevice == nil) {
-            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-            if([start timeIntervalSinceNow] < -5) {
-                STFail(@"IntAirAct should find own Device in five seconds");
-                return;
-            }
-        }
-    }
-    
-    STAssertEqualObjects(self.intAirAct.supportedRoutes, self.intAirAct.ownDevice.supportedRoutes, @"ownDevice.supportedRoutes and supportedRoutes should be equal");
-}
-
--(void)testIntAirActShouldFindOtherDeviceInFiveSeconds
-{
-    // And
-    NSError * error = nil;
-    IAIntAirAct * iAA = [IAIntAirAct new];
-    if (![iAA start:&error]) {
-        STFail(@"IntAirAct failed to start: %@", error);
-    } else if (![self.intAirAct start:&error]) {
-    // And
-        STFail(@"IntAirAct failed to start: %@", error);
-    } else {
-        NSDate * start = [NSDate new];
-        while(self.intAirAct.ownDevice == nil || iAA.ownDevice == nil) {
-            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-            if([start timeIntervalSinceNow] < -5) {
-                STFail(@"IntAirAct should find own Device in five seconds");
-                return;
-            }
-        }
-        
-        STAssertNotNil(self.intAirAct.ownDevice, @"ownDevice should not be nil");
-        STAssertNotNil(iAA.ownDevice, @"ownDevice should not be nil");
-        
-        // Then
-        start = [NSDate new];
-        while(![self.intAirAct.devices containsObject:iAA.ownDevice] && ![iAA.devices containsObject:self.intAirAct.ownDevice]) {
-            [[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
-            if([start timeIntervalSinceNow] < -5) {
-                STFail(@"IntAirAct should find other Device in five seconds");
-                return;
-            }
-        }
-    }
-
-    [iAA stop];
-    sleep(1);
-}
-
--(void)testIntAirActShouldFindOwnDeviceInFiveSeconds2
-{
     NSDate * startTimePlusWaitTime;
     __block BOOL found = NO;
     __block NSCondition * cond = [NSCondition new];
@@ -212,12 +133,109 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [cond unlock];
     
     STAssertNotNil(self.intAirAct.ownDevice, @"ownDevice should be set");
-
+    
+    [self.intAirAct removeObserver:deviceFoundObserver];
+    
     [self.intAirAct stop];
     sleep(1);
     
     if (!found) {
         STFail(@"Did not find service");
+    }
+}
+
+-(void)testOwnDeviceSupportedRoutesShouldBeEqualToResolved
+{
+    [self.intAirAct.supportedRoutes addObject:[IARoute routeWithAction:@"GET" resource:@"/example"]];
+    
+    NSDate * startTimePlusWaitTime;
+    __block BOOL found = NO;
+    __block NSCondition * cond = [NSCondition new];
+    id deviceFoundObserver;
+    
+    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+        if(ownDevice) {
+            found = YES;
+            [cond signal];
+        }
+    }];
+    
+    // Then
+    NSError * error = nil;
+    if (![self.intAirAct start:&error]) {
+        STFail(@"HTTP server failed to start: %@", error);
+        return;
+    }
+    
+    startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
+    
+    [cond lock];
+    while(!found && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
+        [cond waitUntilDate:startTimePlusWaitTime];
+    }
+    [cond unlock];
+    
+    STAssertEqualObjects(self.intAirAct.supportedRoutes, self.intAirAct.ownDevice.supportedRoutes, @"ownDevice.supportedRoutes and supportedRoutes should be equal");
+    
+    [self.intAirAct removeObserver:deviceFoundObserver];
+    
+    [self.intAirAct stop];
+    sleep(1);
+}
+
+-(void)testIntAirActShouldFindOtherDeviceInFiveSeconds
+{
+    NSDate * startTimePlusWaitTime;
+    __block NSCondition * cond = [NSCondition new];
+    __block BOOL foundOne = NO;
+    __block BOOL foundTwo = NO;
+    id deviceFoundObserverOne;
+    id deviceFoundObserverTwo;
+    
+    deviceFoundObserverOne = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+        if(!ownDevice) {
+            foundOne = YES;
+            [cond signal];
+        }
+    }];
+    
+    NSError * error = nil;
+    if (![self.intAirAct start:&error]) {
+        STFail(@"HTTP server failed to start: %@", error);
+        return;
+    }
+    
+    IAIntAirAct * iAA = [IAIntAirAct new];
+    
+    deviceFoundObserverTwo = [iAA addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+        if(!ownDevice) {
+            foundTwo = YES;
+            [cond signal];
+        }
+    }];
+    
+    if (![iAA start:&error]) {
+        STFail(@"HTTP server failed to start: %@", error);
+        return;
+    }
+    
+    startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
+    
+    [cond lock];
+    while(!foundOne && !foundTwo && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
+        [cond waitUntilDate:startTimePlusWaitTime];
+    }
+    [cond unlock];
+    
+    [self.intAirAct removeObserver:deviceFoundObserverOne];
+    [iAA removeObserver:deviceFoundObserverTwo];
+    
+    [self.intAirAct stop];
+    [iAA stop];
+    sleep(1);
+    
+    if (!foundOne || !foundTwo) {
+        STFail(@"Did not find each other");
     }
 }
 
