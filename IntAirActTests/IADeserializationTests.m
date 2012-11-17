@@ -42,12 +42,28 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     STAssertEquals(body, deSerialization.body, @"Body should be the same");
 }
 
-- (void)testBodyAsWithEmptyBody
+- (void)testSetBodyWithString
 {
     NSString * body = @"example string";
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWithString:body];
     STAssertEqualObjects(body, deSerialization.bodyAsString, @"Should be 'example string'");
+}
+
+- (void)testSetBodyWithWithAString
+{
+    NSString * body = @"example string";
+    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    [deSerialization setBodyWith:body];
+    STAssertEqualObjects(body, deSerialization.bodyAsString, @"Should be 'example string'");
+}
+
+- (void)testSetBodyWithWithAnNSArrayOfString
+{
+    NSArray * array = @[ @"example string" ];
+    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    [deSerialization setBodyWith:array];
+    STAssertEqualObjects(@"[\"example string\"]", deSerialization.bodyAsString, @"Should be 'example string'");
 }
 
 - (void)testsetBodyWithWithAnNSNumber
