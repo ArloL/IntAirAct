@@ -92,7 +92,11 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     } else if ([data isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary * dic = [NSMutableDictionary new];
         [data enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            dic[[self serialize:key]] = [self serialize:obj];
+            if ([key isKindOfClass:[NSString class]]) {
+                dic[key] = [self serialize:obj];
+            } else {
+                IALogWarn(@"%@: Dictionary key is not a string", THIS_FILE);
+            }
         }];
         return dic;
     } else if ([data isKindOfClass:[NSObject class]]) {
