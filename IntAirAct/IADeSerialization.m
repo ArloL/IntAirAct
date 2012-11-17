@@ -19,7 +19,67 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         _body = body;
     }
     return self;
+}
 
+-(void)setBodyWith:(id)data
+{
+    if([data isKindOfClass:[NSString class]]) {
+        [self setBodyWithString:data];
+    } else if([data isKindOfClass:[NSNumber class]]) {
+        [self setBodyWithNumber:data];
+    } else {
+        id serializedObject = [self serialize:data];
+        NSError * error;
+        NSData * result = [serializedObject JSONDataWithOptions:0 error:&error];
+        if (error) {
+            IALogError(@"Error ocurred while serializing: %@", error);
+        } else {
+            self.body = result;
+        }
+    }
+}
+
+- (void)setBodyWithString:(NSString *)string {
+    self.body = [string dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+- (void)setBodyWithNumber:(NSNumber *)number {
+    [self setBodyWithString:[NSString stringWithFormat:@"%@", number]];
+}
+
+-(id)serialize:(id)data
+{
+    if (data == nil) {
+        return nil;
+    } else if ([data isKindOfClass:[NSString class]] || [data isKindOfClass:[NSNumber class]]) {
+        return data;
+    } else if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSSet class]]) {
+        NSMutableArray * result = [NSMutableArray new];
+        for (id obj in data) {
+            [result addObject:[self serialize:obj]];
+        }
+        return result;
+    } else if ([data isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary * result = [NSMutableDictionary new];
+        [data enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            if ([key isKindOfClass:[NSString class]]) {
+                result[key] = [self serialize:obj];
+            } else {
+                IALogWarn(@"%@: Dictionary key is not a string", THIS_FILE);
+            }
+        }];
+        return result;
+    } else if ([data isKindOfClass:[NSObject class]]) {
+        // find the names of all the properties
+        NSDictionary * properties = [IADeSerialization propertiesWithEncodedTypes:[data class]];
+        NSMutableDictionary * result = [NSMutableDictionary new];
+        [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            result[key] = [self serialize:[data valueForKey:key]];
+        }];
+        return result;
+    } else {
+        return data;
+    }
 }
 
 -(id)bodyAs:(Class)class
@@ -44,111 +104,67 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 {
     if (data == nil) {
         return nil;
-    } else if ([data isKindOfClass:[NSString class]] && [class isSubclassOfClass:[NSString class]]) {
+    } else if (!class) {
         return data;
-    } else if ([data isKindOfClass:[NSNumber class]] && [class isSubclassOfClass:[NSNumber class]]) {
-        return data;
-    } else if ([data isKindOfClass:NSClassFromString(@"JKDictionary")] && [class isSubclassOfClass:[NSDictionary class]]) {
-        NSMutableDictionary * dic = [NSMutableDictionary new];
-        [data enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            dic[key] = obj;
-        }];
-        return dic;
-    } else if ([data isKindOfClass:NSClassFromString(@"JKArray")] && [class isSubclassOfClass:[NSArray class]]) {
-        NSMutableArray * array = [NSMutableArray new];
-        for (id obj in data) {
-            [array addObject:[self deserialize:obj class:class]];
-        }
-        return array;
-    } else {
-        id newObj = [class new];
-        NSDictionary * properties = [IADeSerialization propertiesWithEncodedTypes:class];
-        [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            NSString * encodedType = obj;
-            if ([encodedType isEqual:@"f"]) {
-                [newObj setValue:data[key] forKey:key];
-            } else if ([encodedType isEqual:@"i"]) {
-                [newObj setValue:data[key] forKey:key];
-            } else {
-                encodedType = [[encodedType substringToIndex:encodedType.length-1] substringFromIndex:2];
-                Class class = NSClassFromString(encodedType);
-                id value = [self deserialize:data[key] class:class];
-                [newObj setValue:value forKey:key];
-            }
-        }];
-        return newObj;
-    }
-}
-
--(void)setBodyWith:(id)data
-{
-    if([data isKindOfClass:[NSString class]]) {
-        [self setBodyWithString:data];
-    } else if([data isKindOfClass:[NSNumber class]]) {
-        [self setBodyWithString:[NSString stringWithFormat:@"%@", data]];
-    } else {
-        id serializedObject = [self serialize:data];
-        NSError * error;
-        NSData * result = [serializedObject JSONDataWithOptions:0 error:&error];
-        if (error) {
-            IALogError(@"Error ocurred while serializing: %@", error);
-        } else {
-            [self setBodyWithData:result];
-        }
-    }
-}
-
--(id)serialize:(id)data
-{
-    if (data == nil) {
-        return nil;
-    } else if ([data isKindOfClass:[NSString class]] || [data isKindOfClass:[NSNumber class]]) {
-        return data;
-    } else if ([data isKindOfClass:[NSArray class]] || [data isKindOfClass:[NSSet class]]) {
-        NSMutableArray * array = [NSMutableArray new];
-        for (id obj in data) {
-            [array addObject:[self serialize:obj]];
-        }
-        return array;
-    } else if ([data isKindOfClass:[NSDictionary class]]) {
-        NSMutableDictionary * dic = [NSMutableDictionary new];
-        [data enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            if ([key isKindOfClass:[NSString class]]) {
-                dic[key] = [self serialize:obj];
-            } else {
-                IALogWarn(@"%@: Dictionary key is not a string", THIS_FILE);
-            }
-        }];
-        return dic;
-    } else if ([data isKindOfClass:[NSObject class]]) {
-        // find the names of all the properties
-        NSMutableDictionary * dic = [NSMutableDictionary new];
-        NSDictionary * properties = [IADeSerialization propertiesWithEncodedTypes:[data class]];
-        [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            dic[key] = [self serialize:[data valueForKey:key]];
-        }];
-
-        if (dic.count == 0) {
+    } else if ([data isKindOfClass:[NSString class]]) {
+        if ([class isSubclassOfClass:[NSString class]]) {
             return data;
+        } else if ([class isSubclassOfClass:[NSNumber class]]) {
+            NSNumberFormatter * f = [NSNumberFormatter new];
+            return [f numberFromString:data];
         } else {
-            return dic;
+            return nil;
         }
-    } else {
-        return data;
+    } else if ([data isKindOfClass:[NSNumber class]]) {
+        if ([class isSubclassOfClass:[NSNumber class]]) {
+            return data;
+        } else if ([class isSubclassOfClass:[NSString class]]) {
+            return [data description];
+        } else {
+            return nil;
+        }
+    } else if ([data isKindOfClass:NSClassFromString(@"JKDictionary")]) {
+        if ([class isSubclassOfClass:[NSDictionary class]]) {
+            NSMutableDictionary * result = [NSMutableDictionary new];
+            [data enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                result[key] = obj;
+            }];
+            return result;
+        } else {
+            id result = [class new];
+            NSDictionary * properties = [IADeSerialization propertiesWithEncodedTypes:class];
+            [properties enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                NSString * encodedType = obj;
+                if ([encodedType isEqual:@"f"]) {
+                    [result setValue:data[key] forKey:key];
+                } else if ([encodedType isEqual:@"i"]) {
+                    [result setValue:data[key] forKey:key];
+                } else {
+                    encodedType = [[encodedType substringToIndex:encodedType.length-1] substringFromIndex:2];
+                    Class class = NSClassFromString(encodedType);
+                    id value = [self deserialize:data[key] class:class];
+                    [result setValue:value forKey:key];
+                }
+            }];
+            return result;
+        }
+    } else if ([data isKindOfClass:NSClassFromString(@"JKArray")]) {
+        if ([class isSubclassOfClass:[NSArray class]]) {
+            NSMutableArray * result = [NSMutableArray new];
+            for (id obj in data) {
+                [result addObject:[self deserialize:obj class:nil]];
+            }
+            return result;
+        } else {
+            return nil;
+        }
     }
+    return nil;
 }
 
 -(NSString *)bodyAsString
 {
     return [[NSString alloc] initWithBytes:[self.body bytes] length:[self.body length] encoding:NSUTF8StringEncoding];
-}
-
-- (void)setBodyWithString:(NSString *)string {
-    self.body = [string dataUsingEncoding:NSUTF8StringEncoding];
-}
-
-- (void)setBodyWithData:(NSData *)data {
-    self.body = data;
 }
 
 +(NSDictionary *)propertiesWithEncodedTypes:(Class)class
