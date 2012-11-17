@@ -108,6 +108,7 @@
 		2788006316572D70006DCE70 /* IADeserializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788006116572D70006DCE70 /* IADeserializationTests.m */; };
 		2788FFFC16570542006DCE70 /* IAResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFB16570542006DCE70 /* IAResponseTests.m */; };
 		2788FFFD16570542006DCE70 /* IAResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFB16570542006DCE70 /* IAResponseTests.m */; };
+		27BC0DF516584B930038D6BD /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27BC0DF416584B930038D6BD /* AppKit.framework */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27E54A1016549BDE00EFD933 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C340F163B63B6007420CD /* UIKit.framework */; };
@@ -352,6 +353,7 @@
 		2788FFFB16570542006DCE70 /* IAResponseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAResponseTests.m; path = IntAirActTests/IAResponseTests.m; sourceTree = "<group>"; };
 		2788FFFE165705ED006DCE70 /* IARouteTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IARouteTests.h; path = IntAirActTests/IARouteTests.h; sourceTree = "<group>"; };
 		2788FFFF165705ED006DCE70 /* IARouteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IARouteTests.m; path = IntAirActTests/IARouteTests.m; sourceTree = "<group>"; };
+		27BC0DF416584B930038D6BD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		27E54AE71654B54900EFD933 /* IADeSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IADeSerialization.h; sourceTree = "<group>"; };
 		27E54AE81654B54900EFD933 /* IADeSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IADeSerialization.m; sourceTree = "<group>"; };
 		27EF2FE8154A7FA7003D7F41 /* RoutingHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RoutingHTTPServer.xcodeproj; path = Frameworks/RoutingHTTPServer/RoutingHTTPServer.xcodeproj; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27BC0DF516584B930038D6BD /* AppKit.framework in Frameworks */,
 				D5D070CB163C4691009B0E74 /* ServiceDiscovery.framework in Frameworks */,
 				276C7E8A1634C76200631ECD /* RoutingHTTPServer.framework in Frameworks */,
 				276C7E871634C75400631ECD /* CocoaLumberjack.framework in Frameworks */,
@@ -508,6 +511,7 @@
 		277E552E154A42AF002F307D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27BC0DF616584B9D0038D6BD /* OSX */,
 				D53C3414163B63CD007420CD /* iOS-Testing */,
 				D53C3413163B63C3007420CD /* Shared-Testing */,
 				D53C33F1163B6378007420CD /* Shared */,
@@ -556,6 +560,14 @@
 				2788002016572BAB006DCE70 /* IAModelReference.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		27BC0DF616584B9D0038D6BD /* OSX */ = {
+			isa = PBXGroup;
+			children = (
+				27BC0DF416584B930038D6BD /* AppKit.framework */,
+			);
+			name = OSX;
 			sourceTree = "<group>";
 		};
 		27EF2FE9154A7FA7003D7F41 /* Products */ = {
