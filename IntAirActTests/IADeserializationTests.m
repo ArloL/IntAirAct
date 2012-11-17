@@ -8,6 +8,7 @@
 #import "IAModelWithInt.h"
 #import "IAModelWithFloat.h"
 #import "IAModelInheritance.h"
+#import "IAModelReference.h"
 
 // Log levels : off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -140,6 +141,18 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSString * expected = [NSString stringWithFormat:@"{\"number\":50,\"numberTwo\":60}"];
     STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
 }
+
+- (void)testSetBodyWithWithAnIAModelReference
+{
+    IAModelReference * model = [IAModelReference new];
+    model.number = [IANumber new];
+    model.number.number = @2;
+    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    [deSerialization setBodyWith:model];
+    NSString * expected = [NSString stringWithFormat:@"{\"number\":{\"number\":2}}"];
+    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
+}
+
 
 - (void)testSetBodyWithWithNil
 {
