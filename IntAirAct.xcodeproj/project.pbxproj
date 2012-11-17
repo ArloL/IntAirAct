@@ -71,6 +71,12 @@
 		276C7E8A1634C76200631ECD /* RoutingHTTPServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EF3000154A7FA8003D7F41 /* RoutingHTTPServer.framework */; };
 		276C7E8B1634C76E00631ECD /* IntAirAct.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277E5549154A4384002F307D /* IntAirAct.framework */; };
 		276C7E8C1634C77100631ECD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276C7E671634C51500631ECD /* CocoaLumberjack.framework */; };
+		276F9E2C165818D100AEA786 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 276F9E28165818D100AEA786 /* CHANGELOG.md */; };
+		276F9E2D165818D100AEA786 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 276F9E29165818D100AEA786 /* JSONKit.h */; };
+		276F9E2E165818D100AEA786 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 276F9E29165818D100AEA786 /* JSONKit.h */; };
+		276F9E2F165818D100AEA786 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 276F9E2A165818D100AEA786 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		276F9E30165818D200AEA786 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 276F9E2A165818D100AEA786 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		276F9E31165818D200AEA786 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 276F9E2B165818D100AEA786 /* README.md */; };
 		277BDCB51654644B00A7AB46 /* IAClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 277BDCB41654644B00A7AB46 /* IAClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		277BDCB61654644B00A7AB46 /* IAClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 277BDCB41654644B00A7AB46 /* IAClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		277BDCBA1654675500A7AB46 /* IANSURLAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 277BDCB81654675500A7AB46 /* IANSURLAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -407,6 +413,10 @@
 		27652084162DB7D5008EA1C7 /* Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
 		276C19EF162CA382002C8285 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKit+Blocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
 		276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaLumberjack.xcodeproj; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaAsyncSocket/Frameworks/CocoaLumberjack/CocoaLumberjack.xcodeproj; sourceTree = "<group>"; };
+		276F9E28165818D100AEA786 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
+		276F9E29165818D100AEA786 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		276F9E2A165818D100AEA786 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		276F9E2B165818D100AEA786 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		277BDCB41654644B00A7AB46 /* IAClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAClient.h; sourceTree = "<group>"; };
 		277BDCB81654675500A7AB46 /* IANSURLAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IANSURLAdapter.h; sourceTree = "<group>"; };
 		277BDCB91654675500A7AB46 /* IANSURLAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IANSURLAdapter.m; sourceTree = "<group>"; };
@@ -557,6 +567,18 @@
 				D5291ED01639DA7B0017DB63 /* CocoaLumberjackOSXTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		276F9E27165818D100AEA786 /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				276F9E28165818D100AEA786 /* CHANGELOG.md */,
+				276F9E29165818D100AEA786 /* JSONKit.h */,
+				276F9E2A165818D100AEA786 /* JSONKit.m */,
+				276F9E2B165818D100AEA786 /* README.md */,
+			);
+			name = JSONKit;
+			path = Frameworks/JSONKit;
 			sourceTree = "<group>";
 		};
 		277BDCB71654670800A7AB46 /* NSURL */ = {
@@ -713,6 +735,7 @@
 		D53C33F1163B6378007420CD /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				276F9E27165818D100AEA786 /* JSONKit */,
 				D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */,
 				276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */,
 				D53C33DD163B6364007420CD /* RestKit.xcodeproj */,
@@ -780,6 +803,7 @@
 				277BDCC016546A1F00A7AB46 /* NSURLRequest+IARequest.h in Headers */,
 				277BDCCC16546F2100A7AB46 /* NSURL+QueryParameters.h in Headers */,
 				27E54AE91654B54900EFD933 /* IADeSerialization.h in Headers */,
+				276F9E2D165818D100AEA786 /* JSONKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -803,6 +827,7 @@
 				277BDCC116546A1F00A7AB46 /* NSURLRequest+IARequest.h in Headers */,
 				277BDCCD16546F2100A7AB46 /* NSURL+QueryParameters.h in Headers */,
 				27E54AEA1654B54900EFD933 /* IADeSerialization.h in Headers */,
+				276F9E2E165818D100AEA786 /* JSONKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1191,6 +1216,7 @@
 				277BDCC216546A1F00A7AB46 /* NSURLRequest+IARequest.m in Sources */,
 				277BDCCE16546F2100A7AB46 /* NSURL+QueryParameters.m in Sources */,
 				27E54AEB1654B54900EFD933 /* IADeSerialization.m in Sources */,
+				276F9E2F165818D100AEA786 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1210,6 +1236,7 @@
 				277BDCC316546A1F00A7AB46 /* NSURLRequest+IARequest.m in Sources */,
 				277BDCCF16546F2100A7AB46 /* NSURL+QueryParameters.m in Sources */,
 				27E54AEC1654B54900EFD933 /* IADeSerialization.m in Sources */,
+				276F9E30165818D200AEA786 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
