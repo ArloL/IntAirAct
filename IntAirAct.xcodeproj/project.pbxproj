@@ -91,6 +91,8 @@
 		2788000516570DFD006DCE70 /* IADeserializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788000316570DFD006DCE70 /* IADeserializationTests.m */; };
 		2788000916570E5A006DCE70 /* IARequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788000816570E5A006DCE70 /* IARequestTests.m */; };
 		2788000A16570E5A006DCE70 /* IARequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788000816570E5A006DCE70 /* IARequestTests.m */; };
+		2788001316571B35006DCE70 /* IAModelWithInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788001016571B35006DCE70 /* IAModelWithInt.m */; };
+		2788001416571B35006DCE70 /* IAModelWithInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788001016571B35006DCE70 /* IAModelWithInt.m */; };
 		2788001516571B35006DCE70 /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788001216571B35006DCE70 /* IANumber.m */; };
 		2788001616571B35006DCE70 /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788001216571B35006DCE70 /* IANumber.m */; };
 		2788FFFC16570542006DCE70 /* IAResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFB16570542006DCE70 /* IAResponseTests.m */; };
@@ -410,6 +412,8 @@
 		2788000316570DFD006DCE70 /* IADeserializationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IADeserializationTests.m; path = IntAirActTests/IADeserializationTests.m; sourceTree = "<group>"; };
 		2788000716570E5A006DCE70 /* IARequestTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IARequestTests.h; path = IntAirActTests/IARequestTests.h; sourceTree = "<group>"; };
 		2788000816570E5A006DCE70 /* IARequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IARequestTests.m; path = IntAirActTests/IARequestTests.m; sourceTree = "<group>"; };
+		2788000F16571B35006DCE70 /* IAModelWithInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAModelWithInt.h; path = IntAirActTests/Model/IAModelWithInt.h; sourceTree = "<group>"; };
+		2788001016571B35006DCE70 /* IAModelWithInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAModelWithInt.m; path = IntAirActTests/Model/IAModelWithInt.m; sourceTree = "<group>"; };
 		2788001116571B35006DCE70 /* IANumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IANumber.h; path = IntAirActTests/Model/IANumber.h; sourceTree = "<group>"; };
 		2788001216571B35006DCE70 /* IANumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IANumber.m; path = IntAirActTests/Model/IANumber.m; sourceTree = "<group>"; };
 		2788FFFA16570542006DCE70 /* IAResponseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAResponseTests.h; path = IntAirActTests/IAResponseTests.h; sourceTree = "<group>"; };
@@ -614,6 +618,8 @@
 		2788000616570E19006DCE70 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2788000F16571B35006DCE70 /* IAModelWithInt.h */,
+				2788001016571B35006DCE70 /* IAModelWithInt.m */,
 				2788001116571B35006DCE70 /* IANumber.h */,
 				2788001216571B35006DCE70 /* IANumber.m */,
 			);
@@ -1193,6 +1199,7 @@
 				27880000165705ED006DCE70 /* IARouteTests.m in Sources */,
 				2788000416570DFD006DCE70 /* IADeserializationTests.m in Sources */,
 				2788000916570E5A006DCE70 /* IARequestTests.m in Sources */,
+				2788001316571B35006DCE70 /* IAModelWithInt.m in Sources */,
 				2788001516571B35006DCE70 /* IANumber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1207,6 +1214,7 @@
 				27880001165705ED006DCE70 /* IARouteTests.m in Sources */,
 				2788000516570DFD006DCE70 /* IADeserializationTests.m in Sources */,
 				2788000A16570E5A006DCE70 /* IARequestTests.m in Sources */,
+				2788001416571B35006DCE70 /* IAModelWithInt.m in Sources */,
 				2788001616571B35006DCE70 /* IANumber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
