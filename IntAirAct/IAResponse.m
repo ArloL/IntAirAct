@@ -1,7 +1,5 @@
 #import "IAResponse.h"
 
-#import <RestKit/RestKit.h>
-
 #import "IAIntAirAct.h"
 #import "IALogging.h"
 
