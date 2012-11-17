@@ -21,21 +21,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @synthesize intAirAct;
 
--(void)logging
-{
-    static dispatch_once_t once;
-    dispatch_once(&once, ^ {
-        [DDLog addLogger:[DDTTYLogger sharedInstance]];
-        [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
-    });
-}
-
 -(void)setUp
 {
     [super setUp];
     
     // Set-up code here.
-    [self logging];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
 
     // Given
     self.intAirAct = [IAIntAirAct new];
@@ -44,6 +36,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 -(void)tearDown
 {
     // Tear-down code here.
+    [DDLog removeAllLoggers];
+    
     if(self.intAirAct.isRunning) {
         [self.intAirAct stop];
         // Bonjour takes a while to shutdown everything properly
