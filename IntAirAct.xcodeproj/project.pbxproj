@@ -62,8 +62,6 @@
 		2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */; };
 		2756EE3A162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */; };
 		2756EE3B162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */; };
-		2762B949155B2BDD0042EECC /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762B948155B2BDD0042EECC /* IANumber.m */; };
-		2762B94A155B2BDD0042EECC /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762B948155B2BDD0042EECC /* IANumber.m */; };
 		27652085162DB7D5008EA1C7 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 27652083162DB7D5008EA1C7 /* License.txt */; };
 		27652086162DB7D5008EA1C7 /* Version in Resources */ = {isa = PBXBuildFile; fileRef = 27652084162DB7D5008EA1C7 /* Version */; };
 		27652087162DB7DE008EA1C7 /* License.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27652083162DB7D5008EA1C7 /* License.txt */; };
@@ -93,6 +91,8 @@
 		2788000516570DFD006DCE70 /* IADeserializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788000316570DFD006DCE70 /* IADeserializationTests.m */; };
 		2788000916570E5A006DCE70 /* IARequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788000816570E5A006DCE70 /* IARequestTests.m */; };
 		2788000A16570E5A006DCE70 /* IARequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788000816570E5A006DCE70 /* IARequestTests.m */; };
+		2788001516571B35006DCE70 /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788001216571B35006DCE70 /* IANumber.m */; };
+		2788001616571B35006DCE70 /* IANumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788001216571B35006DCE70 /* IANumber.m */; };
 		2788FFFC16570542006DCE70 /* IAResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFB16570542006DCE70 /* IAResponseTests.m */; };
 		2788FFFD16570542006DCE70 /* IAResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFB16570542006DCE70 /* IAResponseTests.m */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
@@ -393,8 +393,6 @@
 		2756EE30162F73D000E76B50 /* IARoutingHTTPServerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARoutingHTTPServerAdapter.m; sourceTree = "<group>"; };
 		2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RouteResponse+IAResponse.h"; sourceTree = "<group>"; };
 		2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RouteResponse+IAResponse.m"; sourceTree = "<group>"; };
-		2762B947155B2BDD0042EECC /* IANumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IANumber.h; path = IntAirActTests/IANumber.h; sourceTree = "<group>"; };
-		2762B948155B2BDD0042EECC /* IANumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IANumber.m; path = IntAirActTests/IANumber.m; sourceTree = "<group>"; };
 		27652083162DB7D5008EA1C7 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		27652084162DB7D5008EA1C7 /* Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
 		276C19EF162CA382002C8285 /* RestKit+Blocks.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "RestKit+Blocks.xcodeproj"; path = "Frameworks/RestKit+Blocks/RestKit+Blocks.xcodeproj"; sourceTree = "<group>"; };
@@ -412,6 +410,8 @@
 		2788000316570DFD006DCE70 /* IADeserializationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IADeserializationTests.m; path = IntAirActTests/IADeserializationTests.m; sourceTree = "<group>"; };
 		2788000716570E5A006DCE70 /* IARequestTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IARequestTests.h; path = IntAirActTests/IARequestTests.h; sourceTree = "<group>"; };
 		2788000816570E5A006DCE70 /* IARequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IARequestTests.m; path = IntAirActTests/IARequestTests.m; sourceTree = "<group>"; };
+		2788001116571B35006DCE70 /* IANumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IANumber.h; path = IntAirActTests/Model/IANumber.h; sourceTree = "<group>"; };
+		2788001216571B35006DCE70 /* IANumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IANumber.m; path = IntAirActTests/Model/IANumber.m; sourceTree = "<group>"; };
 		2788FFFA16570542006DCE70 /* IAResponseTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAResponseTests.h; path = IntAirActTests/IAResponseTests.h; sourceTree = "<group>"; };
 		2788FFFB16570542006DCE70 /* IAResponseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAResponseTests.m; path = IntAirActTests/IAResponseTests.m; sourceTree = "<group>"; };
 		2788FFFE165705ED006DCE70 /* IARouteTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IARouteTests.h; path = IntAirActTests/IARouteTests.h; sourceTree = "<group>"; };
@@ -614,8 +614,8 @@
 		2788000616570E19006DCE70 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2762B947155B2BDD0042EECC /* IANumber.h */,
-				2762B948155B2BDD0042EECC /* IANumber.m */,
+				2788001116571B35006DCE70 /* IANumber.h */,
+				2788001216571B35006DCE70 /* IANumber.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1188,12 +1188,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				27C172601550952500BF2BFE /* IntAirActTests.m in Sources */,
-				2762B949155B2BDD0042EECC /* IANumber.m in Sources */,
 				2754AA521656CBD000BC8CA3 /* IADeviceTests.m in Sources */,
 				2788FFFC16570542006DCE70 /* IAResponseTests.m in Sources */,
 				27880000165705ED006DCE70 /* IARouteTests.m in Sources */,
 				2788000416570DFD006DCE70 /* IADeserializationTests.m in Sources */,
 				2788000916570E5A006DCE70 /* IARequestTests.m in Sources */,
+				2788001516571B35006DCE70 /* IANumber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1202,12 +1202,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */,
-				2762B94A155B2BDD0042EECC /* IANumber.m in Sources */,
 				2754AA531656CBD000BC8CA3 /* IADeviceTests.m in Sources */,
 				2788FFFD16570542006DCE70 /* IAResponseTests.m in Sources */,
 				27880001165705ED006DCE70 /* IARouteTests.m in Sources */,
 				2788000516570DFD006DCE70 /* IADeserializationTests.m in Sources */,
 				2788000A16570E5A006DCE70 /* IARequestTests.m in Sources */,
+				2788001616571B35006DCE70 /* IANumber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
