@@ -81,7 +81,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     STAssertEqualObjects(@"50", deSerialization.bodyAsString, @"Should be 'example string'");
 }
 
-- (void)testsetBodyWithWithAnIANumber
+- (void)testSetBodyWithWithAnIANumber
 {
     IANumber * number = [IANumber new];
     number.number = @50;
