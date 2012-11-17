@@ -2,20 +2,18 @@
 
 @implementation IANumber
 
-@synthesize number;
-
--(BOOL)isEqual:(id)object
+- (BOOL)isEqual:(id)object
 {
-    if([object isKindOfClass:[self class]]) {
-        return [self.number isEqual:((IANumber *)object).number];
-    } else {
-        return [super isEqual:object];
+    if (self == object) {
+        return YES;
     }
-}
-
--(NSUInteger)hash
-{
-    return [self.number hash];
+    
+    if (object == nil || ![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    
+    IANumber * model = (IANumber*) object;
+    return (self.number == model.number || [self.number isEqual:model.number]);
 }
 
 -(NSString *)description
