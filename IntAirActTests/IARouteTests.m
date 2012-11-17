@@ -78,25 +78,25 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testShortHandPut
 {
     IARoute * request = [IARoute put:@""];
-    STAssertEquals(@"PUT", request.action, @"action should be PUT");
+    STAssertEqualObjects(@"PUT", request.action, @"action should be PUT");
 }
 
 - (void)testShortHandGet
 {
     IARoute * request = [IARoute get:@""];
-    STAssertEquals(@"GET", request.action, @"action should be GET");
+    STAssertEqualObjects(@"GET", request.action, @"action should be GET");
 }
 
 - (void)testShortHandDelete
 {
     IARoute * request = [IARoute delete:@""];
-    STAssertEquals(@"DELETE", request.action, @"action should be DELETE");
+    STAssertEqualObjects(@"DELETE", request.action, @"action should be DELETE");
 }
 
 - (void)testShortHandPost
 {
     IARoute * request = [IARoute post:@""];
-    STAssertEquals(@"POST", request.action, @"action should be POST");
+    STAssertEqualObjects(@"POST", request.action, @"action should be POST");
 }
 
 @end
