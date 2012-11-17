@@ -5,6 +5,7 @@
 #import <IntAirAct/IntAirAct.h>
 
 #import "IANumber.h"
+#import "IAModelWithInt.h"
 
 // Log levels : off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -88,6 +89,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:number];
     NSString * expected = @"{\"number\":50}";
+    STAssertEqualObjects(expected, deSerialization.bodyAsString, @"Should be the same");
+}
+
+- (void)testSetBodyWithWithAnIAModelWithInt
+{
+    IAModelWithInt * model = [IAModelWithInt new];
+    model.intProperty = 50;
+    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    [deSerialization setBodyWith:model];
+    NSString * expected = @"{\"intProperty\":50}";
     STAssertEqualObjects(expected, deSerialization.bodyAsString, @"Should be the same");
 }
 
