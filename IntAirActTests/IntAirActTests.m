@@ -193,7 +193,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     id deviceFoundObserverTwo;
     
     deviceFoundObserverOne = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
-        if(!ownDevice) {
+        if(!ownDevice && [device.supportedRoutes containsObject:[IARoute get:@"/two"]]) {
             foundOne = YES;
             [cond signal];
         }
@@ -205,10 +205,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         return;
     }
     
+    [self.intAirAct.supportedRoutes addObject:[IARoute get:@"/one"]];
+    
     IAIntAirAct * iAA = [IAIntAirAct new];
     
+    [iAA.supportedRoutes addObject:[IARoute get:@"/two"]];
+    
     deviceFoundObserverTwo = [iAA addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
-        if(!ownDevice) {
+        if(!ownDevice && [device.supportedRoutes containsObject:[IARoute get:@"/one"]]) {
             foundTwo = YES;
             [cond signal];
         }
