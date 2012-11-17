@@ -1,6 +1,5 @@
 #import "IADeSerialization.h"
 
-#import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "JSONKit.h"
 
