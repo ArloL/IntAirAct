@@ -156,7 +156,11 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             }
             return result;
         } else {
-            return nil;
+            NSMutableArray * result = [NSMutableArray new];
+            for (id obj in data) {
+                [result addObject:[self deserialize:obj class:class]];
+            }
+            return result;
         }
     }
     return nil;
