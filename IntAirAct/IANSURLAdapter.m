@@ -19,7 +19,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 {
     NSAssert(device != nil, @"Device should not be nil");
     NSURLRequest * nsRequest = [NSURLRequest requestWithIARequest:request andDevice:device];
-    [NSURLConnection sendAsynchronousRequest:nsRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
+    [NSURLConnection sendAsynchronousRequest:nsRequest queue:[NSOperationQueue new] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
         if (error) {
             IALogError(@"An error ocurred: %@", error);
         }
