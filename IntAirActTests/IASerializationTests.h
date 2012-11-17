@@ -1,5 +1,5 @@
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface IADeserializationTests : SenTestCase
+@interface IASerializationTests : SenTestCase
 
 @end

@@ -1,4 +1,4 @@
-#import "IADeserializationTests.h"
+#import "IASerializationTests.h"
 
 #import <CocoaLumberjack/DDLog.h>
 #import <CocoaLumberjack/DDTTYLogger.h>
@@ -13,7 +13,7 @@
 // Log levels : off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
-@implementation IADeserializationTests
+@implementation IASerializationTests
 
 -(void)logging
 {
