@@ -8,3 +8,6 @@
 [submodule "Frameworks/ServiceDiscovery"]
 	path = Frameworks/ServiceDiscovery
 	url = https://github.com/ase-lab/ServiceDiscovery.git
+[submodule "Frameworks/JSONKit"]
+	path = Frameworks/JSONKit
+	url = https://github.com/johnezang/JSONKit.git
