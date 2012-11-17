@@ -8,7 +8,22 @@
 // Other flags: trace
 static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
+@interface IANSURLAdapter ()
+
+@property (nonatomic, strong) NSOperationQueue * operationQueue;
+
+@end
+
 @implementation IANSURLAdapter
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _operationQueue = [NSOperationQueue new];
+    }
+    return self;
+}
 
 -(void)sendRequest:(IARequest *)request toDevice:(IADevice *)device
 {
@@ -19,7 +34,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 {
     NSAssert(device != nil, @"Device should not be nil");
     NSURLRequest * nsRequest = [NSURLRequest requestWithIARequest:request andDevice:device];
-    [NSURLConnection sendAsynchronousRequest:nsRequest queue:[NSOperationQueue new] completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
+    [NSURLConnection sendAsynchronousRequest:nsRequest queue:self.operationQueue completionHandler:^(NSURLResponse * response, NSData * data, NSError * error) {
         if (error) {
             IALogError(@"An error ocurred: %@", error);
         }
