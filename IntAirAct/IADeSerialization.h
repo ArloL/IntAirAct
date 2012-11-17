@@ -11,8 +11,6 @@
 -(void)setBodyWith:(id)data;
 -(id)bodyAs:(Class)class;
 
--(void)setBodyWithImage:(UIImage*)image;
-
 /** @return The body of the request as a string. */
 -(NSString *)bodyAsString;
 

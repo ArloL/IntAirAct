@@ -102,11 +102,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }
 }
 
--(void)setBodyWithImage:(UIImage *)image
-{
-#warning serialization not implemented
-}
-
 -(NSString *)bodyAsString
 {
     return [[NSString alloc] initWithBytes:[[self body] bytes] length:[[self body] length] encoding:NSUTF8StringEncoding];
