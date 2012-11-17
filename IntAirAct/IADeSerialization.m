@@ -104,7 +104,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(NSString *)bodyAsString
 {
-    return [[NSString alloc] initWithBytes:[[self body] bytes] length:[[self body] length] encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithBytes:[self.body bytes] length:[self.body length] encoding:NSUTF8StringEncoding];
 }
 
 - (void)setBodyWithString:(NSString *)string {
