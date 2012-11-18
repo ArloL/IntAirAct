@@ -61,6 +61,8 @@
 		2756EE39162F780A00E76B50 /* RouteResponse+IAResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */; };
 		2756EE3A162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */; };
 		2756EE3B162F780A00E76B50 /* RouteResponse+IAResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */; };
+		27643CA316599972007F843B /* IANSURLAdapterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27643CA216599972007F843B /* IANSURLAdapterTests.m */; };
+		27643CA416599972007F843B /* IANSURLAdapterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27643CA216599972007F843B /* IANSURLAdapterTests.m */; };
 		27652085162DB7D5008EA1C7 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 27652083162DB7D5008EA1C7 /* License.txt */; };
 		27652086162DB7D5008EA1C7 /* Version in Resources */ = {isa = PBXBuildFile; fileRef = 27652084162DB7D5008EA1C7 /* Version */; };
 		27652087162DB7DE008EA1C7 /* License.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27652083162DB7D5008EA1C7 /* License.txt */; };
@@ -319,6 +321,8 @@
 		2756EE30162F73D000E76B50 /* IARoutingHTTPServerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARoutingHTTPServerAdapter.m; sourceTree = "<group>"; };
 		2756EE36162F780A00E76B50 /* RouteResponse+IAResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RouteResponse+IAResponse.h"; sourceTree = "<group>"; };
 		2756EE37162F780A00E76B50 /* RouteResponse+IAResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RouteResponse+IAResponse.m"; sourceTree = "<group>"; };
+		27643CA116599972007F843B /* IANSURLAdapterTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IANSURLAdapterTests.h; path = IntAirActTests/IANSURLAdapterTests.h; sourceTree = "<group>"; };
+		27643CA216599972007F843B /* IANSURLAdapterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IANSURLAdapterTests.m; path = IntAirActTests/IANSURLAdapterTests.m; sourceTree = "<group>"; };
 		27652083162DB7D5008EA1C7 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		27652084162DB7D5008EA1C7 /* Version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Version; sourceTree = "<group>"; };
 		276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaLumberjack.xcodeproj; path = Frameworks/RoutingHTTPServer/Frameworks/CocoaHTTPServer/Frameworks/CocoaAsyncSocket/Frameworks/CocoaLumberjack/CocoaLumberjack.xcodeproj; sourceTree = "<group>"; };
@@ -616,6 +620,8 @@
 				2788005D16572D36006DCE70 /* IASerializationTests.m */,
 				274A48CB15508DEB000DFAF9 /* IntAirActTests.h */,
 				274A48CC15508DEB000DFAF9 /* IntAirActTests.m */,
+				27643CA116599972007F843B /* IANSURLAdapterTests.h */,
+				27643CA216599972007F843B /* IANSURLAdapterTests.m */,
 			);
 			name = IntAirActTests;
 			sourceTree = "<group>";
@@ -1069,6 +1075,7 @@
 				2788002116572BAB006DCE70 /* IAModelReference.m in Sources */,
 				2788005E16572D36006DCE70 /* IASerializationTests.m in Sources */,
 				2788006216572D70006DCE70 /* IADeserializationTests.m in Sources */,
+				27643CA316599972007F843B /* IANSURLAdapterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,6 +1095,7 @@
 				2788002216572BAB006DCE70 /* IAModelReference.m in Sources */,
 				2788005F16572D36006DCE70 /* IASerializationTests.m in Sources */,
 				2788006316572D70006DCE70 /* IADeserializationTests.m in Sources */,
+				27643CA416599972007F843B /* IANSURLAdapterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
