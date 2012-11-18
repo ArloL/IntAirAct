@@ -44,6 +44,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
                                  IALogVerbose(@"%@[%p]: Replacing parameter %@ with %@", THIS_FILE, self, keyString, replacementString);
                                  [regexPath replaceCharactersInRange:replacementRange withString:replacementString];
                                  diff += replacementString.length - result.range.length;
+                                 [parameters removeObjectForKey:keyString];
                              }
                          }];
     
