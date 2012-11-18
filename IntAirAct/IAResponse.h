@@ -10,7 +10,7 @@
 #define ERROR @400
 #define NOT_FOUND @404
 
-@property (strong) NSNumber * statusCode;
-@property (strong, readonly) NSMutableDictionary * metadata;
+@property (nonatomic, strong) NSNumber * statusCode;
+@property (nonatomic, strong) NSMutableDictionary * metadata;
 
 @end

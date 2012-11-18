@@ -29,8 +29,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testConstructor
 {
     IARoute * route = [IARoute routeWithAction:@"action" resource:@"resource"];
-    NSDictionary * metadata = @{};
-    NSDictionary * parameters = @{};
+    NSMutableDictionary * metadata = [NSMutableDictionary new];
+    NSMutableDictionary * parameters = [NSMutableDictionary new];
     IADevice * origin = [IADevice deviceWithName:@"name" host:@"host" port:8080 supportedRoutes:[NSSet new]];
     NSData * body = [NSData new];
     IARequest * request = [IARequest requestWithRoute:route metadata:metadata parameters:parameters origin:origin body:body];
@@ -44,8 +44,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testDescription
 {
     IARoute * route = [IARoute routeWithAction:@"action" resource:@"resource"];
-    NSDictionary * metadata = @{};
-    NSDictionary * parameters = @{};
+    NSMutableDictionary * metadata = [NSMutableDictionary new];
+    NSMutableDictionary * parameters = [NSMutableDictionary new];
     IADevice * origin = [IADevice deviceWithName:@"name" host:@"host" port:8080 supportedRoutes:[NSSet new]];
     NSData * body = [NSData new];
     IARequest * request = [IARequest requestWithRoute:route metadata:metadata parameters:parameters origin:origin body:body];

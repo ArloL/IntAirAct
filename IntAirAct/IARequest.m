@@ -2,12 +2,21 @@
 
 @implementation IARequest
 
-+(IARequest *)requestWithRoute:(IARoute *)route metadata:(NSDictionary *)metadata parameters:(NSDictionary *)parameters origin:(IADevice *)origin body:(NSData *)body
++(IARequest *)requestWithRoute:(IARoute *)route origin:(IADevice *)origin body:(id)data
+{
+    IARequest * request = [IARequest new];
+    request.route = route;
+    request.origin = origin;
+    [request setBodyWith:data];
+    return request;
+}
+
++(IARequest *)requestWithRoute:(IARoute *)route metadata:(NSMutableDictionary *)metadata parameters:(NSMutableDictionary *)parameters origin:(IADevice *)origin body:(NSData *)body
 {
     return [[IARequest alloc] initWithRoute:route metadata:metadata parameters:parameters origin:origin body:body];
 }
 
--(id)initWithRoute:(IARoute *)route metadata:(NSDictionary *)metadata parameters:(NSDictionary *)parameters origin:(IADevice *)origin body:(NSData *)body
+-(id)initWithRoute:(IARoute *)route metadata:(NSMutableDictionary *)metadata parameters:(NSMutableDictionary *)parameters origin:(IADevice *)origin body:(NSData *)body
 {
     self = [super initWithBody:body];
     if (self) {

@@ -5,13 +5,15 @@
 
 @interface IARequest : IADeSerialization
 
-+(IARequest*)requestWithRoute:(IARoute*)route metadata:(NSDictionary*)metadata parameters:(NSDictionary*)parameters origin:(IADevice*)origin body:(NSData*)body;
++(IARequest*)requestWithRoute:(IARoute*)route origin:(IADevice*)origin body:(id)data;
 
--(id)initWithRoute:(IARoute*)route metadata:(NSDictionary*)metadata parameters:(NSDictionary*)parameters origin:(IADevice*)origin body:(NSData*)body;
++(IARequest*)requestWithRoute:(IARoute*)route metadata:(NSMutableDictionary*)metadata parameters:(NSMutableDictionary*)parameters origin:(IADevice*)origin body:(NSData*)body;
 
-@property (strong, readonly) IARoute * route;
-@property (strong, readonly) NSDictionary * metadata;
-@property (strong, readonly) NSDictionary * parameters;
-@property (strong, readonly) IADevice * origin;
+-(id)initWithRoute:(IARoute*)route metadata:(NSMutableDictionary*)metadata parameters:(NSMutableDictionary*)parameters origin:(IADevice*)origin body:(NSData*)body;
+
+@property (nonatomic, strong) IARoute * route;
+@property (nonatomic, strong) NSMutableDictionary * metadata;
+@property (nonatomic, strong) NSMutableDictionary * parameters;
+@property (nonatomic, strong) IADevice * origin;
 
 @end
