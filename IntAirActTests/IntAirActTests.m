@@ -243,4 +243,53 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
+-(void)testRequestWithParameter
+{
+    NSDate * startTimePlusWaitTime;
+    __block BOOL called = NO;
+    __block NSCondition * cond = [NSCondition new];
+    id deviceFoundObserver;
+    
+    IARoute * route = [IARoute post:@"/example/:parameter"];
+    
+    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+        if(ownDevice) {
+            IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
+            request.parameters[@"parameter"] = @"value";
+            [self.intAirAct sendRequest:request toDevice:device];
+        }
+    }];
+    
+    [self.intAirAct route:route withHandler:^(IARequest *request, IAResponse *response) {
+        if ([request.parameters[@"parameter"] isEqual:@"value"]) {
+            called = YES;
+            [cond signal];
+        }
+    }];
+    
+    // Then
+    NSError * error = nil;
+    if (![self.intAirAct start:&error]) {
+        STFail(@"HTTP server failed to start: %@", error);
+        return;
+    }
+    
+    startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
+    
+    [cond lock];
+    while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
+        [cond waitUntilDate:startTimePlusWaitTime];
+    }
+    [cond unlock];
+    
+    [self.intAirAct removeObserver:deviceFoundObserver];
+    
+    [self.intAirAct stop];
+    sleep(1);
+    
+    if (!called) {
+        STFail(@"Did not call correct");
+    }
+}
+
 @end
