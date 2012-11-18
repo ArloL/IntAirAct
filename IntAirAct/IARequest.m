@@ -16,6 +16,16 @@
     return [[IARequest alloc] initWithRoute:route metadata:metadata parameters:parameters origin:origin body:body];
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _metadata = [NSMutableDictionary new];
+        _parameters = [NSMutableDictionary new];
+    }
+    return self;
+}
+
 -(id)initWithRoute:(IARoute *)route metadata:(NSMutableDictionary *)metadata parameters:(NSMutableDictionary *)parameters origin:(IADevice *)origin body:(NSData *)body
 {
     self = [super initWithBody:body];
