@@ -14,5 +14,6 @@
 
 /** @return The body of the request as a string. */
 -(NSString *)bodyAsString;
+-(NSNumber *)bodyAsNumber;
 
 @end
