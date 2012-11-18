@@ -341,4 +341,202 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
+-(void)testRequestWithTwoParametersInQuery
+{
+    NSDate * startTimePlusWaitTime;
+    __block BOOL called = NO;
+    __block NSCondition * cond = [NSCondition new];
+    id deviceFoundObserver;
+    
+    IARoute * route = [IARoute post:@"/example"];
+    
+    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+        if(ownDevice) {
+            IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
+            request.parameters[@"parameter"] = @"value";
+            request.parameters[@"parameterTwo"] = @"valueTwo";
+            [self.intAirAct sendRequest:request toDevice:device];
+        }
+    }];
+    
+    [self.intAirAct route:route withHandler:^(IARequest *request, IAResponse *response) {
+        if ([request.parameters[@"parameter"] isEqual:@"value"] && [request.parameters[@"parameterTwo"] isEqual:@"valueTwo"]) {
+            called = YES;
+            [cond signal];
+        }
+    }];
+    
+    // Then
+    NSError * error = nil;
+    if (![self.intAirAct start:&error]) {
+        STFail(@"HTTP server failed to start: %@", error);
+        return;
+    }
+    
+    startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
+    
+    [cond lock];
+    while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
+        [cond waitUntilDate:startTimePlusWaitTime];
+    }
+    [cond unlock];
+    
+    [self.intAirAct removeObserver:deviceFoundObserver];
+    
+    [self.intAirAct stop];
+    sleep(1);
+    
+    if (!called) {
+        STFail(@"Did not call correct");
+    }
+}
+
+-(void)testRequestWithMetadata
+{
+    NSDate * startTimePlusWaitTime;
+    __block BOOL called = NO;
+    __block NSCondition * cond = [NSCondition new];
+    id deviceFoundObserver;
+    
+    IARoute * route = [IARoute post:@"/example"];
+    
+    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+        if(ownDevice) {
+            IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
+            request.metadata[@"parameter"] = @"value";
+            request.metadata[@"parameterTwo"] = @"valueTwo";
+            [self.intAirAct sendRequest:request toDevice:device];
+        }
+    }];
+    
+    [self.intAirAct route:route withHandler:^(IARequest *request, IAResponse *response) {
+        if ([request.metadata[@"parameter"] isEqual:@"value"] && [request.metadata[@"parameterTwo"] isEqual:@"valueTwo"]) {
+            called = YES;
+            [cond signal];
+        }
+    }];
+    
+    // Then
+    NSError * error = nil;
+    if (![self.intAirAct start:&error]) {
+        STFail(@"HTTP server failed to start: %@", error);
+        return;
+    }
+    
+    startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
+    
+    [cond lock];
+    while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
+        [cond waitUntilDate:startTimePlusWaitTime];
+    }
+    [cond unlock];
+    
+    [self.intAirAct removeObserver:deviceFoundObserver];
+    
+    [self.intAirAct stop];
+    sleep(1);
+    
+    if (!called) {
+        STFail(@"Did not call correct");
+    }
+}
+
+-(void)testRequestWithError
+{
+    NSDate * startTimePlusWaitTime;
+    __block BOOL called = NO;
+    __block BOOL requestFailed = NO;
+    __block NSCondition * cond = [NSCondition new];
+    id deviceFoundObserver;
+    
+    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+        if(ownDevice) {
+            IADevice * fakeDevice = [IADevice deviceWithName:@"test" host:device.host port:100 supportedRoutes:nil];
+            IARequest * request = [IARequest requestWithRoute:[IARoute post:@"/example"] origin:device body:nil];
+            [self.intAirAct sendRequest:request toDevice:fakeDevice withHandler:^(IAResponse *response, NSError *error) {
+                called = YES;
+                if (error) {
+                    requestFailed = YES;
+                }
+                [cond signal];
+            }];
+        }
+    }];
+    
+    // Then
+    NSError * error = nil;
+    if (![self.intAirAct start:&error]) {
+        STFail(@"HTTP server failed to start: %@", error);
+        return;
+    }
+    
+    startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
+    
+    [cond lock];
+    while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
+        [cond waitUntilDate:startTimePlusWaitTime];
+    }
+    [cond unlock];
+    
+    [self.intAirAct removeObserver:deviceFoundObserver];
+    
+    [self.intAirAct stop];
+    sleep(1);
+    
+    if (!requestFailed) {
+        STFail(@"Did not call correct");
+    }
+}
+
+-(void)testResponseWithMetadata
+{
+    NSDate * startTimePlusWaitTime;
+    __block BOOL called = NO;
+    __block NSCondition * cond = [NSCondition new];
+    id deviceFoundObserver;
+    
+    IARoute * route = [IARoute post:@"/example"];
+    
+    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+        if(ownDevice) {
+            IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
+            [self.intAirAct sendRequest:request toDevice:device withHandler:^(IAResponse *response, NSError *error) {
+                if ([response.metadata[@"parameter"] isEqual:@"value"] && [response.metadata[@"parameterTwo"] isEqual:@"valueTwo"]) {
+                    called = YES;
+                    [cond signal];
+                }
+            }];
+        }
+    }];
+    
+    [self.intAirAct route:route withHandler:^(IARequest *request, IAResponse *response) {
+        response.metadata[@"parameter"] = @"value";
+        response.metadata[@"parameterTwo"] = @"valueTwo";
+    }];
+    
+    // Then
+    NSError * error = nil;
+    if (![self.intAirAct start:&error]) {
+        STFail(@"HTTP server failed to start: %@", error);
+        return;
+    }
+    
+    startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
+    
+    [cond lock];
+    while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
+        [cond waitUntilDate:startTimePlusWaitTime];
+    }
+    [cond unlock];
+    
+    [self.intAirAct removeObserver:deviceFoundObserver];
+    
+    [self.intAirAct stop];
+    sleep(1);
+    
+    if (!called) {
+        STFail(@"Did not call correct");
+    }
+}
+
 @end
