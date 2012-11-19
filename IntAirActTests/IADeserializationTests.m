@@ -35,7 +35,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testBodyAsNSString
 {
     NSString * body = @"example string";
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    IADeSerialization * deSerialization = [IADeSerialization new];
     [deSerialization setBodyWithString:body];
     NSString * value = [deSerialization bodyAs:[NSString class]];
     STAssertEqualObjects(value, body, nil);
@@ -44,7 +44,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testBodyAsNSNumber
 {
     NSNumber * body = @50;
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    IADeSerialization * deSerialization = [IADeSerialization new];
     [deSerialization setBodyWith:body];
     NSNumber * value = [deSerialization bodyAs:[NSNumber class]];
     STAssertEqualObjects(value, body, nil);
@@ -53,7 +53,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testBodyAsNSNumberDirectly
 {
     NSNumber * body = @50;
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    IADeSerialization * deSerialization = [IADeSerialization new];
     [deSerialization setBodyWith:body];
     NSNumber * value = [deSerialization bodyAsNumber];
     STAssertEqualObjects(value, body, nil);
@@ -62,7 +62,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testBodyAsAnNSArrayOfString
 {
     NSArray * array = @[ @"example string" ];
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    IADeSerialization * deSerialization = [IADeSerialization new];
     [deSerialization setBodyWith:array];
     STAssertEqualObjects(deSerialization.bodyAsString, @"[\"example string\"]", nil);
 }
@@ -70,7 +70,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testBodyAsAnNSArrayOfNSNumber
 {
     NSArray * array = @[ @50 ];
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    IADeSerialization * deSerialization = [IADeSerialization new];
     [deSerialization setBodyWith:array];
     NSArray * value = [deSerialization bodyAs:[NSArray class]];
     STAssertEqualObjects(value, array, nil);
@@ -79,7 +79,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testBodyAsAnNSDictionary
 {
     NSDictionary * dictionary = @{ @"key" : @"value" };
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    IADeSerialization * deSerialization = [IADeSerialization new];
     [deSerialization setBodyWith:dictionary];
     NSDictionary * value = [deSerialization bodyAs:[NSDictionary class]];
     STAssertEqualObjects(value, dictionary, nil);
@@ -89,7 +89,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     IANumber * number = [IANumber new];
     number.number = @50;
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    IADeSerialization * deSerialization = [IADeSerialization new];
     [deSerialization setBodyWith:number];
     IANumber * value = [deSerialization bodyAs:[IANumber class]];
     STAssertEqualObjects(value, number, nil);
@@ -99,7 +99,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     IAModelWithInt * model = [IAModelWithInt new];
     model.intProperty = 50;
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    IADeSerialization * deSerialization = [IADeSerialization new];
     [deSerialization setBodyWith:model];
     IAModelWithInt * value = [deSerialization bodyAs:[IAModelWithInt class]];
     STAssertEquals(value.intProperty, model.intProperty, nil);
@@ -109,7 +109,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     IAModelWithFloat * model = [IAModelWithFloat new];
     model.floatProperty = 5.434;
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    IADeSerialization * deSerialization = [IADeSerialization new];
     [deSerialization setBodyWith:model];
     IAModelWithFloat * value = [deSerialization bodyAs:[IAModelWithFloat class]];
     STAssertEquals(value.floatProperty, model.floatProperty, nil);
@@ -120,7 +120,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     IAModelInheritance * model = [IAModelInheritance new];
     model.number = @50;
     model.numberTwo = @60;
-    IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
+    IADeSerialization * deSerialization = [IADeSerialization new];
     [deSerialization setBodyWith:model];
     IAModelInheritance * value = [deSerialization bodyAs:[IAModelInheritance class]];
     STAssertEqualObjects(value, model, nil);
