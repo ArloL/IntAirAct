@@ -123,6 +123,30 @@ namespace :osx do
       system('tar cvzf "../' + $name + '-OSX.tar.gz" *.framework')
     end
   end
+  
+  desc 'Code coverage for OS X'
+  task :coverage => ['osx:clean'] do
+    config = $project.target($name+'OSX').config($configuration)
+    # set build settings
+    config.append "GCC_GENERATE_TEST_COVERAGE_FILES", "YES"
+    config.append "GCC_INSTRUMENT_PROGRAM_FLOW_ARCS", "YES"
+    $project.save!
+    $osxtests.build
+    report = $osxtests.test(:sdk => :macosx) do |report|
+      report.add_formatter :stdout
+    end
+    if report.failed? || report.suites.count == 0  || report.suites[0].tests.count == 0
+      fail('At least one test failed.')
+    end
+    # analyze the coverage data
+    system('lcov --directory "build/' + $name + '.build/Release/' + $name + 'OSX.build/Objects-normal/x86_64" --capture --output-file build/lcov.info')
+    system('lcov --extract build/lcov.info /*IntAirAct/* --output build/lcov.info')
+    system('lcov --remove build/lcov.info /*IntAirAct/Frameworks* --output build/lcov.info')
+    # create the html pages
+    system('genhtml --branch-coverage --output-directory build/lcov build/lcov.info')
+    # revert project.pbxproj
+    system('git checkout "' + $name + '.xcodeproj/project.pbxproj"')
+  end
 
 end
 
