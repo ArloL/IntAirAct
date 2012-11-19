@@ -9,6 +9,7 @@
 #import "IAModelWithFloat.h"
 #import "IAModelInheritance.h"
 #import "IAModelReference.h"
+#import "IAModelWithString.h"
 
 // Log levels : off, error, warn, info, verbose
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -124,6 +125,34 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [deSerialization setBodyWith:model];
     IAModelInheritance * value = [deSerialization bodyAs:[IAModelInheritance class]];
     STAssertEqualObjects(value, model, nil);
+}
+
+- (void)testBodyAsReturnsNil
+{
+    IADeSerialization * deSerialization = [IADeSerialization new];
+    [deSerialization setBodyWithString:@"-"];
+    IANumber * value = [deSerialization bodyAs:[IANumber class]];
+    STAssertNil(value, nil);
+}
+
+- (void)testStringBodyAsNumber
+{
+    IADeSerialization * deSerialization = [IADeSerialization new];
+    [deSerialization setBodyWithString:@"{\"number\":\"50.6\"}"];
+    IANumber * value = [deSerialization bodyAs:[IANumber class]];
+    IANumber * expected = [IANumber new];
+    expected.number = @50.6;
+    STAssertEqualObjects(value, expected, nil);
+}
+
+- (void)testStringBodyAsString
+{
+    IADeSerialization * deSerialization = [IADeSerialization new];
+    [deSerialization setBodyWithString:@"{\"stringProperty\":\"50.6\"}"];
+    IAModelWithString * value = [deSerialization bodyAs:[IAModelWithString class]];
+    IAModelWithString * expected = [IAModelWithString new];
+    expected.stringProperty = @"50.6";
+    STAssertEqualObjects(value, expected, nil);
 }
 
 @end

@@ -23,6 +23,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2740802C1659C7BF00670D7D /* IAModelWithString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2740802B1659C7BF00670D7D /* IAModelWithString.m */; };
+		2740802D1659C7BF00670D7D /* IAModelWithString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2740802B1659C7BF00670D7D /* IAModelWithString.m */; };
 		274A48A915508D97000DFAF9 /* IntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48A715508D97000DFAF9 /* IntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274A48B915508DAC000DFAF9 /* IAIntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48B615508DAC000DFAF9 /* IAIntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		274A48BA15508DAC000DFAF9 /* IAIntAirAct.h in Headers */ = {isa = PBXBuildFile; fileRef = 274A48B615508DAC000DFAF9 /* IAIntAirAct.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -297,6 +299,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2740802A1659C7BF00670D7D /* IAModelWithString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAModelWithString.h; path = IntAirActTests/Model/IAModelWithString.h; sourceTree = "<group>"; };
+		2740802B1659C7BF00670D7D /* IAModelWithString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAModelWithString.m; path = IntAirActTests/Model/IAModelWithString.m; sourceTree = "<group>"; };
 		274A48A715508D97000DFAF9 /* IntAirAct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntAirAct.h; path = IntAirAct/IntAirAct.h; sourceTree = SOURCE_ROOT; };
 		274A48B615508DAC000DFAF9 /* IAIntAirAct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAIntAirAct.h; path = IntAirAct/IAIntAirAct.h; sourceTree = SOURCE_ROOT; };
 		274A48B715508DAC000DFAF9 /* IAIntAirAct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAIntAirAct.m; path = IntAirAct/IAIntAirAct.m; sourceTree = SOURCE_ROOT; };
@@ -552,16 +556,18 @@
 		2788000616570E19006DCE70 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				27880017165725A3006DCE70 /* IAModelWithFloat.h */,
-				27880018165725A3006DCE70 /* IAModelWithFloat.m */,
-				2788000F16571B35006DCE70 /* IAModelWithInt.h */,
-				2788001016571B35006DCE70 /* IAModelWithInt.m */,
-				2788001116571B35006DCE70 /* IANumber.h */,
-				2788001216571B35006DCE70 /* IANumber.m */,
 				2788001B16572759006DCE70 /* IAModelInheritance.h */,
 				2788001C16572759006DCE70 /* IAModelInheritance.m */,
 				2788001F16572BAB006DCE70 /* IAModelReference.h */,
 				2788002016572BAB006DCE70 /* IAModelReference.m */,
+				27880017165725A3006DCE70 /* IAModelWithFloat.h */,
+				27880018165725A3006DCE70 /* IAModelWithFloat.m */,
+				2788000F16571B35006DCE70 /* IAModelWithInt.h */,
+				2788001016571B35006DCE70 /* IAModelWithInt.m */,
+				2740802A1659C7BF00670D7D /* IAModelWithString.h */,
+				2740802B1659C7BF00670D7D /* IAModelWithString.m */,
+				2788001116571B35006DCE70 /* IANumber.h */,
+				2788001216571B35006DCE70 /* IANumber.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1076,6 +1082,7 @@
 				2788005E16572D36006DCE70 /* IASerializationTests.m in Sources */,
 				2788006216572D70006DCE70 /* IADeserializationTests.m in Sources */,
 				27643CA316599972007F843B /* IANSURLAdapterTests.m in Sources */,
+				2740802C1659C7BF00670D7D /* IAModelWithString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1096,6 +1103,7 @@
 				2788005F16572D36006DCE70 /* IASerializationTests.m in Sources */,
 				2788006316572D70006DCE70 /* IADeserializationTests.m in Sources */,
 				27643CA416599972007F843B /* IANSURLAdapterTests.m in Sources */,
+				2740802D1659C7BF00670D7D /* IAModelWithString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
