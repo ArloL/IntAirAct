@@ -23,7 +23,7 @@ NSString * IADeviceLost = @"IADeviceLost";
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
-static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
+static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
 
 @interface IAIntAirAct ()
 
@@ -155,8 +155,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     
     self.serviceFoundObserver = [self.serviceDiscovery addHandlerForServiceFound:^(SDService *service, BOOL ownService) {
         if (ownService) {
-            IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found own device");
             myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostname port:service.port supportedRoutes:self.supportedRoutes];
+            IALogInfo(@"%@[%p]: Own device: %@:%"FMTNSINT, THIS_FILE, myself, myself.ownDevice.host, myself.ownDevice.port);
             [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:myself userInfo:@{@"device":myself.ownDevice, @"ownDevice":@YES}];
         } else {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found other device");
