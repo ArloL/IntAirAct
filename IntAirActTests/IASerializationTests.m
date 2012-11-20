@@ -91,7 +91,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSDictionary * dictionary = @{ @50 : @"value" };
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:dictionary];
-    STAssertEqualObjects(deSerialization.bodyAsString, @"{}", nil);
+    STAssertEqualObjects(deSerialization.bodyAsString, @"{\"50\":\"value\"}", nil);
 }
 
 - (void)testSetBodyWithWithAnIANumber

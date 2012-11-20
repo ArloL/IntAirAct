@@ -26,36 +26,66 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [super tearDown];
 }
 
+- (void)testConstructor
+{
+    IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
+    STAssertEqualObjects(route.action, @"GET", nil);
+    STAssertEqualObjects(route.resource, @"/example", nil);
+}
+
 - (void)testEquals
 {
-    NSString * action = @"GET";
-    NSString * resource = @"/example";
-    IARoute * route = [IARoute routeWithAction:action resource:resource];
-    IARoute * other = [IARoute routeWithAction:action resource:resource];
-    STAssertEqualObjects(route, other, @"Should be equal");
-    STAssertEquals(route.hash, other.hash, @"Hashes should be equal");
+    IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
+    IARoute * other = [IARoute routeWithAction:@"GET" resource:@"/example"];
+    STAssertTrue([route isEqual:other], nil);
+    STAssertEquals(route.hash, other.hash, nil);
 }
 
-- (void)testEqualsWithSelf
+- (void)testEqualsSelf
 {
-    NSString * action = @"GET";
-    NSString * resource = @"/example";
-    IARoute * route = [IARoute routeWithAction:action resource:resource];
-    STAssertTrue([route isEqual:route], @"Should be equal");
-    STAssertEquals(route.hash, route.hash, @"Hashes should be equal");
+    IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
+    IARoute * other = route;
+    STAssertTrue([route isEqual:other], nil);
+    STAssertEquals(route.hash, other.hash, nil);
 }
 
-- (void)testEqualsFails
+- (void)testEqualsNil
 {
-    NSString * action = @"GET";
-    NSString * differentAction = @"PUT";
+    IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
+    IARoute * other = nil;
+    STAssertFalse([route isEqual:other], nil);
+}
 
-    NSString * resource = @"/example";
-    
-    IARoute * route = [IARoute routeWithAction:action resource:resource];
-    IARoute * other = [IARoute routeWithAction:differentAction resource:resource];
-    STAssertFalse([route isEqual:other], @"Should not be equal");
-    STAssertFalse(route.hash == other.hash, @"Hashes should not be equal");
+- (void)testEqualsDifferentAction
+{
+    IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
+    IARoute * other = [IARoute routeWithAction:@"PUT" resource:@"/example"];
+    STAssertFalse([route isEqual:other], nil);
+    STAssertFalse(route.hash == other.hash, nil);
+}
+
+- (void)testEqualsDifferentResource
+{
+    IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
+    IARoute * other = [IARoute routeWithAction:@"GET" resource:@"/example2"];
+    STAssertFalse([route isEqual:other], nil);
+    STAssertFalse(route.hash == other.hash, nil);
+}
+
+- (void)testEqualsActionIsNull
+{
+    IARoute * route = [IARoute routeWithAction:nil resource:@"/example"];
+    IARoute * other = [IARoute routeWithAction:@"GET" resource:@"/example"];
+    STAssertFalse([route isEqual:other], nil);
+    STAssertFalse(route.hash == other.hash, nil);
+}
+
+- (void)testEqualsResourceIsNull
+{
+    IARoute * route = [IARoute routeWithAction:@"GET" resource:nil];
+    IARoute * other = [IARoute routeWithAction:@"GET" resource:@"/example"];
+    STAssertFalse([route isEqual:other], nil);
+    STAssertFalse(route.hash == other.hash, nil);
 }
 
 - (void)testEqualsWithDifferentObject
@@ -67,12 +97,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSString * other = @"name";
     STAssertFalse([route isEqual:other], @"Should not be equal");
     STAssertFalse(route.hash == other.hash, @"Hashes should not be equal");
-}
-
-- (void)testDescription
-{
-    IARoute * request = [IARoute routeWithAction:@"GET" resource:@"/example"];
-    STAssertNotNil(request.description, @"Description should not be nil");
 }
 
 - (void)testShortHandPut
@@ -97,6 +121,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     IARoute * request = [IARoute post:@""];
     STAssertEqualObjects(@"POST", request.action, @"action should be POST");
+}
+
+- (void)testDescription
+{
+    IARoute * request = [IARoute routeWithAction:@"GET" resource:@"/example"];
+    STAssertNotNil(request.description, @"Description should not be nil");
 }
 
 @end
