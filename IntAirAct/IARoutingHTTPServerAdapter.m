@@ -42,8 +42,8 @@
     // add route to array
     [self.routingHTTPServer handleMethod:route.action withPath:route.resource block:^(RouteRequest * rReq, RouteResponse * rRes) {
         IADevice * origin = nil;
-        if (rReq.headers[@"X-IA-Source"]) {
-            origin = [self.intAirAct deviceWithName:rReq.headers[@"X-IA-Source"]];
+        if (rReq.headers[@"X-IA-Origin"]) {
+            origin = [self.intAirAct deviceWithName:rReq.headers[@"X-IA-Origin"]];
         }
         IARequest * iaReq = [IARequest requestWithRouteRequest:rReq origin:origin route:route];
         IAResponse * iaRes = [IAResponse new];
