@@ -3,6 +3,7 @@
 @interface IADeSerialization : NSObject
 
 @property (nonatomic, strong) NSData * body;
+@property (nonatomic, strong) NSString * contentType;
 
 -(id)initWithBody:(NSData*)body;
 

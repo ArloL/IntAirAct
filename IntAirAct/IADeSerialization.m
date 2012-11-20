@@ -16,6 +16,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     self = [super init];
     if (self) {
         _body = body;
+        _contentType = @"plain/text";
     }
     return self;
 }
@@ -33,16 +34,19 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         if (error) {
             IALogError(@"Error ocurred while serializing: %@", error);
         } else {
+            self.contentType = @"application/json";
             self.body = result;
         }
     }
 }
 
 - (void)setBodyWithString:(NSString *)string {
+    self.contentType = @"plain/text";
     self.body = [string dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 - (void)setBodyWithNumber:(NSNumber *)number {
+    self.contentType = @"plain/text";
     [self setBodyWithString:[NSString stringWithFormat:@"%@", number]];
 }
 
@@ -64,6 +68,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             if ([key isKindOfClass:[NSString class]]) {
                 result[key] = [self serialize:obj];
             } else {
+                result[[NSString stringWithFormat:@"%@", key]] = [self serialize:obj];
                 IALogWarn(@"%@: Dictionary key is not a string", THIS_FILE);
             }
         }];
