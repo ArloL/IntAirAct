@@ -28,7 +28,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 +(NSString*)replaceParametersIn:(NSString*)path with:(NSMutableDictionary*)parameters
 {
     // Parse any :parameters in the path
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(:(\\w+))"
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"({(\\w+)})"
                                                       options:0
                                                         error:nil];
     NSMutableString *regexPath = [NSMutableString stringWithString:path];

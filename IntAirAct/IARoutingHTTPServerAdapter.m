@@ -40,7 +40,10 @@
     // check if route has already been added
     // do more fancy checking, like * case before /specific case
     // add route to array
-    [self.routingHTTPServer handleMethod:route.action withPath:route.resource block:^(RouteRequest * rReq, RouteResponse * rRes) {
+    // replace {} with :
+    NSString * path = [route.resource stringByReplacingOccurrencesOfString:@"}" withString:@""];
+    path = [path stringByReplacingOccurrencesOfString:@"{" withString:@":"];
+    [self.routingHTTPServer handleMethod:route.action withPath:path block:^(RouteRequest * rReq, RouteResponse * rRes) {
         IADevice * origin = nil;
         if (rReq.headers[@"X-IA-Origin"]) {
             origin = [self.intAirAct deviceWithName:rReq.headers[@"X-IA-Origin"]];
