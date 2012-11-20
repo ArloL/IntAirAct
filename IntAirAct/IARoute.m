@@ -54,7 +54,8 @@
     }
     
     IARoute * route = (IARoute*) object;
-    return (self.action == route.action || [self.action isEqual:route.action]) && (self.resource == route.resource || [self.resource isEqual:route.resource]);
+    return (self.action == route.action || [self.action isEqual:route.action])
+        && (self.resource == route.resource || [self.resource isEqual:route.resource]);
 }
 
 -(NSUInteger)hash
