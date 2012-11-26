@@ -119,6 +119,16 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 -(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device withHandler:(IAResponseHandler)handler;
 
 /**
+ Send a request to all devices supporting a route. The handler gets executed in a response or error case.
+ 
+ @param request the request to send.
+ @param route the route the target devices have to support.
+ @handler the handler to execute in a response or error case.
+ @return Returns `YES` if there were devices supporting the route, `NO` otherwise.
+ */
+-(BOOL)sendRequest:(IARequest*)request toDevicesSupportingRoute:(IARoute*)route withHandler:(IAResponseHandler)handler;
+
+/**
  Remove a handler.
  
  Be sure to invoke `removeHandler:` before any object specified in a handler

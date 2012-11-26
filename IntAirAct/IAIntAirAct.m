@@ -294,12 +294,26 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
 
 -(void)sendRequest:(IARequest *)request toDevice:(IADevice *)device
 {
-    [self.client sendRequest:request toDevice:device withHandler:nil];
+    [self sendRequest:request toDevice:device withHandler:nil];
 }
 
 -(void)sendRequest:(IARequest *)request toDevice:(IADevice *)device withHandler:(IAResponseHandler)handler
 {
     [self.client sendRequest:request toDevice:device withHandler:handler];
+}
+
+-(BOOL)sendRequest:(IARequest*)request toDevicesSupportingRoute:(IARoute*)route withHandler:(IAResponseHandler)handler
+{
+    NSArray * devices = [self devicesSupportingRoute:route];
+    if (devices.count == 0) {
+        return NO;
+    }
+    
+    for(IADevice * device in devices)
+    {
+        [self sendRequest:request toDevice:device withHandler:handler];
+    }
+    return YES;
 }
 
 #pragma mark Notification support
