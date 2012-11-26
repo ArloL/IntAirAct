@@ -8,24 +8,34 @@
 @class IARequest;
 @class IAResponse;
 
+/**
+ The names of the notifications used to notify about found/lost devices.
+ */
 extern NSString * IADeviceFound;
 extern NSString * IADeviceLost;
 
+/**
+ The block definitions for when a device was found/lost.
+ */
 typedef void (^IADeviceFoundHandler)(IADevice * device, BOOL ownDevice);
 typedef void (^IADeviceLostHandler)(IADevice * device);
 
 @interface IAIntAirAct : NSObject
 
-/** A Set of all the supported routes this device has. */
+/** The supported routes of this device. */
 @property (nonatomic, strong) NSMutableSet * supportedRoutes;
 
-/** A list of all the currently available devices. */
+/** All the currently available devices. */
 @property (nonatomic, readonly) NSSet * devices;
 
 /** `YES` if IntAirAct is running, `NO` otherwise. */
 @property (nonatomic, readonly) BOOL isRunning;
 
-/** Returns the current device if it has been found yet, `nil` otherwise. */
+/**
+ Returns the current device if it has been found yet, `nil` otherwise.
+ 
+ You can use addHandlerForDeviceFound and check the BOOL ownDevice.
+ */
 @property (nonatomic, strong, readonly) IADevice * ownDevice;
 
 /** The port on which to listen on. Default is 0. This means the system will find a free port. */
@@ -74,18 +84,74 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  */
 -(NSArray *)devicesSupportingRoute:(IARoute *)route;
 
+/**
+ Get the IADevice for a device name.
+ 
+ @param name the name of the device.
+ @return an IADevice if a device with the name exists.
+ */
 -(IADevice *)deviceWithName:(NSString *)name;
 
+/**
+ Add a handler for a specific route.
+ 
+ @param route the route to add.
+ @param handler the handler to execute.
+ @return Returns `YES` if successful, `NO` on failure e.g. the route already exists.
+ */
 -(BOOL)route:(IARoute*)route withHandler:(IARequestHandler)handler;
 
+/**
+ Send a request to a device with out listening for a response or error case.
+ 
+ @param request the request to send.
+ @param device the target device.
+ */
 -(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device;
 
+/**
+ Send a request to a device. The handler gets executed in a response or error case.
+ 
+ @param request the request to send.
+ @param device the target device.
+ @handler the handler to execute in a response or error case.
+ */
 -(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device withHandler:(IAResponseHandler)handler;
 
+/**
+ Remove a handler.
+ 
+ Be sure to invoke `removeHandler:` before any object specified in a handler
+ is deallocated.
+ 
+ @param handler The handler to remove.
+ */
 -(void)removeHandler:(id)handler;
 
+/**
+ Add a block to be executed when a device is found.
+ 
+ To unregister the handler, you pass the object returned by this method to
+ `removeHandler:`. You *must* invoke `removeHandler:` before any object
+ specified is deallocated.
+ 
+ @param handler The block to be executed when a device is found.
+ 
+ @return Returns an opaque object to identify the handler.
+ */
 -(id)addHandlerForDeviceFound:(IADeviceFoundHandler)handler;
 
+/**
+ Add a block to be executed when a device is lost.
+ 
+ To unregister the handler, you pass the object returned by this method to
+ `removeHandler:`. You *must* invoke `removeHandler:` before any object
+ specified is deallocated.
+ 
+ @param handler The block to be executed when a device is lost.
+ 
+ @return Returns an opaque object to identify the handler.
+ */
 -(id)addHandlerForDeviceLost:(IADeviceLostHandler)handler;
 
 @end
