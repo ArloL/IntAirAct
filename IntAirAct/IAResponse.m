@@ -14,7 +14,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
     self = [super init];
     if (self) {
         _metadata = [NSMutableDictionary new];
-        _statusCode = OK;
+        _statusCode = @200;
     }
     return self;
 }
