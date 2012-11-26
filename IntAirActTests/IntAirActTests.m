@@ -250,7 +250,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block NSCondition * cond = [NSCondition new];
     id deviceFoundHandler;
     
-    IARoute * route = [IARoute post:@"/example/:parameter"];
+    IARoute * route = [IARoute post:@"/example/{parameter}"];
     
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
