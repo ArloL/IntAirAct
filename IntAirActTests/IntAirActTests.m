@@ -108,9 +108,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSDate * startTimePlusWaitTime;
     __block BOOL found = NO;
     __block NSCondition * cond = [NSCondition new];
-    id deviceFoundObserver;
+    id deviceFoundHandler;
     
-    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+    deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             found = YES;
             [cond signal];
@@ -134,7 +134,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     STAssertNotNil(self.intAirAct.ownDevice, @"ownDevice should be set");
     
-    [self.intAirAct removeObserver:deviceFoundObserver];
+    [self.intAirAct removeHandler:deviceFoundHandler];
     
     [self.intAirAct stop];
     sleep(1);
@@ -151,9 +151,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSDate * startTimePlusWaitTime;
     __block BOOL found = NO;
     __block NSCondition * cond = [NSCondition new];
-    id deviceFoundObserver;
+    id deviceFoundHandler;
     
-    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+    deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             found = YES;
             [cond signal];
@@ -177,7 +177,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     STAssertEqualObjects(self.intAirAct.supportedRoutes, self.intAirAct.ownDevice.supportedRoutes, @"ownDevice.supportedRoutes and supportedRoutes should be equal");
     
-    [self.intAirAct removeObserver:deviceFoundObserver];
+    [self.intAirAct removeHandler:deviceFoundHandler];
     
     [self.intAirAct stop];
     sleep(1);
@@ -189,10 +189,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block NSCondition * cond = [NSCondition new];
     __block BOOL foundOne = NO;
     __block BOOL foundTwo = NO;
-    id deviceFoundObserverOne;
-    id deviceFoundObserverTwo;
+    id deviceFoundHandlerOne;
+    id deviceFoundHandlerTwo;
     
-    deviceFoundObserverOne = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+    deviceFoundHandlerOne = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(!ownDevice && [device.supportedRoutes containsObject:[IARoute get:@"/two"]]) {
             foundOne = YES;
             [cond signal];
@@ -211,7 +211,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     [iAA.supportedRoutes addObject:[IARoute get:@"/two"]];
     
-    deviceFoundObserverTwo = [iAA addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+    deviceFoundHandlerTwo = [iAA addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(!ownDevice && [device.supportedRoutes containsObject:[IARoute get:@"/one"]]) {
             foundTwo = YES;
             [cond signal];
@@ -231,8 +231,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     [cond unlock];
     
-    [self.intAirAct removeObserver:deviceFoundObserverOne];
-    [iAA removeObserver:deviceFoundObserverTwo];
+    [self.intAirAct removeHandler:deviceFoundHandlerOne];
+    [iAA removeHandler:deviceFoundHandlerTwo];
     
     [self.intAirAct stop];
     [iAA stop];
@@ -248,11 +248,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSDate * startTimePlusWaitTime;
     __block BOOL called = NO;
     __block NSCondition * cond = [NSCondition new];
-    id deviceFoundObserver;
+    id deviceFoundHandler;
     
     IARoute * route = [IARoute post:@"/example/:parameter"];
     
-    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+    deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
             request.parameters[@"parameter"] = @"value";
@@ -282,7 +282,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     [cond unlock];
     
-    [self.intAirAct removeObserver:deviceFoundObserver];
+    [self.intAirAct removeHandler:deviceFoundHandler];
     
     [self.intAirAct stop];
     sleep(1);
@@ -297,11 +297,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSDate * startTimePlusWaitTime;
     __block BOOL called = NO;
     __block NSCondition * cond = [NSCondition new];
-    id deviceFoundObserver;
+    id deviceFoundHandler;
     
     IARoute * route = [IARoute post:@"/example"];
     
-    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+    deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
             request.parameters[@"parameter"] = @"value";
@@ -331,7 +331,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     [cond unlock];
     
-    [self.intAirAct removeObserver:deviceFoundObserver];
+    [self.intAirAct removeHandler:deviceFoundHandler];
     
     [self.intAirAct stop];
     sleep(1);
@@ -346,11 +346,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSDate * startTimePlusWaitTime;
     __block BOOL called = NO;
     __block NSCondition * cond = [NSCondition new];
-    id deviceFoundObserver;
+    id deviceFoundHandler;
     
     IARoute * route = [IARoute post:@"/example"];
     
-    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+    deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
             request.parameters[@"parameter"] = @"value";
@@ -381,7 +381,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     [cond unlock];
     
-    [self.intAirAct removeObserver:deviceFoundObserver];
+    [self.intAirAct removeHandler:deviceFoundHandler];
     
     [self.intAirAct stop];
     sleep(1);
@@ -396,11 +396,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSDate * startTimePlusWaitTime;
     __block BOOL called = NO;
     __block NSCondition * cond = [NSCondition new];
-    id deviceFoundObserver;
+    id deviceFoundHandler;
     
     IARoute * route = [IARoute post:@"/example"];
     
-    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+    deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
             request.metadata[@"parameter"] = @"value";
@@ -431,7 +431,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     [cond unlock];
     
-    [self.intAirAct removeObserver:deviceFoundObserver];
+    [self.intAirAct removeHandler:deviceFoundHandler];
     
     [self.intAirAct stop];
     sleep(1);
@@ -447,9 +447,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block BOOL called = NO;
     __block BOOL requestFailed = NO;
     __block NSCondition * cond = [NSCondition new];
-    id deviceFoundObserver;
+    id deviceFoundHandler;
     
-    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+    deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IADevice * fakeDevice = [IADevice deviceWithName:@"test" host:device.host port:100 supportedRoutes:nil];
             IARequest * request = [IARequest requestWithRoute:[IARoute post:@"/example"] origin:device body:nil];
@@ -478,7 +478,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     [cond unlock];
     
-    [self.intAirAct removeObserver:deviceFoundObserver];
+    [self.intAirAct removeHandler:deviceFoundHandler];
     
     [self.intAirAct stop];
     sleep(1);
@@ -493,11 +493,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSDate * startTimePlusWaitTime;
     __block BOOL called = NO;
     __block NSCondition * cond = [NSCondition new];
-    id deviceFoundObserver;
+    id deviceFoundHandler;
     
     IARoute * route = [IARoute post:@"/example"];
     
-    deviceFoundObserver = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
+    deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
             [self.intAirAct sendRequest:request toDevice:device withHandler:^(IAResponse *response, NSError *error) {
@@ -529,7 +529,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     [cond unlock];
     
-    [self.intAirAct removeObserver:deviceFoundObserver];
+    [self.intAirAct removeHandler:deviceFoundHandler];
     
     [self.intAirAct stop];
     sleep(1);
