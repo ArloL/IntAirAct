@@ -25,11 +25,6 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     return self;
 }
 
--(void)sendRequest:(IARequest *)request toDevice:(IADevice *)device
-{
-    [self sendRequest:request toDevice:device withHandler:nil];
-}
-
 -(void)sendRequest:(IARequest *)request toDevice:(IADevice *)device withHandler:(IAResponseHandler)handler
 {
     NSAssert(device != nil, @"Device should not be nil");
