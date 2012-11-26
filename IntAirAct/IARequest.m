@@ -2,6 +2,13 @@
 
 @implementation IARequest
 
++(IARequest *)requestWithRoute:(IARoute *)route
+{
+    IARequest * request = [IARequest new];
+    request.route = route;
+    return request;
+}
+
 +(IARequest *)requestWithRoute:(IARoute *)route origin:(IADevice *)origin body:(id)data
 {
     IARequest * request = [IARequest new];

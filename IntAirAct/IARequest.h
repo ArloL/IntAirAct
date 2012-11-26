@@ -5,6 +5,8 @@
 
 @interface IARequest : IADeSerialization
 
++(IARequest*)requestWithRoute:(IARoute*)route;
+
 +(IARequest*)requestWithRoute:(IARoute*)route origin:(IADevice*)origin body:(id)data;
 
 +(IARequest*)requestWithRoute:(IARoute*)route metadata:(NSMutableDictionary*)metadata parameters:(NSMutableDictionary*)parameters origin:(IADevice*)origin body:(NSData*)body;
