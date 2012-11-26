@@ -82,7 +82,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 -(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device withHandler:(IAResponseHandler)handler;
 
--(void)removeObserver:(id)observer;
+-(void)removeHandler:(id)handler;
 
 -(id)addHandlerForDeviceFound:(IADeviceFoundHandler)handler;
 

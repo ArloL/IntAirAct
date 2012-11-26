@@ -304,9 +304,9 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
 
 #pragma mark Notification support
 
--(void)removeObserver:(id)observer
+-(void)removeHandler:(id)handler
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:observer];
+    [[NSNotificationCenter defaultCenter] removeObserver:handler];
 }
 
 -(id)addHandlerForDeviceFound:(IADeviceFoundHandler)handler
