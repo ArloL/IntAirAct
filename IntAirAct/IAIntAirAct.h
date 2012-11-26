@@ -3,7 +3,6 @@
 
 @class SDServiceDiscovery;
 
-@class IAAction;
 @class IADevice;
 @class IARoute;
 @class IARequest;
