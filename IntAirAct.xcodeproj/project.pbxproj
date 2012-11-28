@@ -14,6 +14,7 @@
 				277E5543154A432D002F307D /* Build Framework */,
 			);
 			dependencies = (
+				271549C616659E2C0047F91F /* PBXTargetDependency */,
 				27EF32AC154A98AF003D7F41 /* PBXTargetDependency */,
 				277E5542154A431C002F307D /* PBXTargetDependency */,
 			);
@@ -142,6 +143,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		271549C516659E2C0047F91F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D5D070B2163C4658009B0E74 /* ServiceDiscovery.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 270B11A91628E667005A82FA;
+			remoteInfo = ServiceDiscoveryIOS;
+		};
 		276C7E641634C51500631ECD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 276C7E5E1634C51500631ECD /* CocoaLumberjack.xcodeproj */;
@@ -1110,6 +1118,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		271549C616659E2C0047F91F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ServiceDiscoveryIOS;
+			targetProxy = 271549C516659E2C0047F91F /* PBXContainerItemProxy */;
+		};
 		277E5542154A431C002F307D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 277E552B154A42AF002F307D /* IntAirActStaticIOS */;
