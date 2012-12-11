@@ -19,8 +19,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 - (id)init
 {
     self = [super init];
-    if (self) {
-        _operationQueue = [NSOperationQueue new];
+    if (self) {        _operationQueue = [NSOperationQueue new];
     }
     return self;
 }
