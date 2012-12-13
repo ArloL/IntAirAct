@@ -41,7 +41,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
                              NSString *keyString = [path substringWithRange:[result rangeAtIndex:2]];
                              if (parameters[keyString]) {
                                  NSString * replacementString = parameters[keyString];
-                                 replacementString = [replacementString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+                                 replacementString = [replacementString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                                  IALogVerbose(@"%@[%p]: Replacing parameter %@ with %@", THIS_FILE, self, keyString, replacementString);
                                  [regexPath replaceCharactersInRange:replacementRange withString:replacementString];
                                  diff += replacementString.length - result.range.length;
