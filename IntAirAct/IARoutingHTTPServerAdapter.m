@@ -45,8 +45,12 @@
     path = [path stringByReplacingOccurrencesOfString:@"{" withString:@":"];
     [self.routingHTTPServer handleMethod:route.action withPath:path block:^(RouteRequest * rReq, RouteResponse * rRes) {
         IADevice * origin = nil;
+        
         if (rReq.headers[@"X-IA-Origin"]) {
-            origin = [self.intAirAct deviceWithName:rReq.headers[@"X-IA-Origin"]];
+            
+            /*This is super dumb*/
+            NSString *originName = [rReq.headers[@"X-IA-Origin"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; 
+            origin = [self.intAirAct deviceWithName:originName];
         }
         IARequest * iaReq = [IARequest requestWithRouteRequest:rReq origin:origin route:route];
         IAResponse * iaRes = [IAResponse new];

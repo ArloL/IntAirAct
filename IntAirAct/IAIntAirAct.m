@@ -299,6 +299,10 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
 
 -(void)sendRequest:(IARequest *)request toDevice:(IADevice *)device withHandler:(IAResponseHandler)handler
 {
+    /* This is super dumb too*/
+    if(!request.origin)
+        request.origin = self.ownDevice; 
+    
     [self.client sendRequest:request toDevice:device withHandler:handler];
 }
 

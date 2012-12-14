@@ -21,7 +21,11 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     urlRequest.HTTPMethod = request.route.action;
     urlRequest.HTTPBody = request.body;
     [urlRequest setAllHTTPHeaderFields:request.metadata];
-    [urlRequest addValue:request.origin.name forHTTPHeaderField:@"X-IA-Origin"];
+    
+    /* This is super dumb */
+    NSString* escapedOriginName = [request.origin.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [urlRequest addValue:escapedOriginName forHTTPHeaderField:@"X-IA-Origin"];
+    
     return urlRequest;
 }
 
