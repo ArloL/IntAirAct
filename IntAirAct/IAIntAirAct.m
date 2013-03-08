@@ -333,7 +333,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
         if(note.userInfo) {
             NSObject * obj = note.userInfo[@"device"];
             if(obj && [obj isKindOfClass:[IADevice class]]) {
-                if(note.userInfo[@"ownDevice"] == @YES) {
+                if([note.userInfo[@"ownDevice"] isEqual: @YES]) {
                     handler((IADevice *)obj, YES);
                 } else {
                     handler((IADevice *)obj, NO);
