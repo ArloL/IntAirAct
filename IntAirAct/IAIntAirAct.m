@@ -155,13 +155,13 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
     
     self.serviceFoundObserver = [self.serviceDiscovery addHandlerForServiceFound:^(SDService *service, BOOL ownService) {
         if (ownService) {
-            myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostname port:service.port supportedRoutes:self.supportedRoutes];
+            myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostname port:service.port supportedRoutes:myself.supportedRoutes];
             IALogInfo(@"%@[%p]: Own device: %@:%"FMTNSINT, THIS_FILE, myself, myself.ownDevice.host, myself.ownDevice.port);
             [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:myself userInfo:@{@"device":myself.ownDevice, @"ownDevice":@YES}];
         } else {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found other device");
             IADevice * device = [IADevice deviceWithName:service.name host:service.hostname port:service.port supportedRoutes:nil];
-            IARequest * request = [IARequest requestWithRoute:[IARoute get:@"/routes"] metadata:nil parameters:nil origin:self.ownDevice body:nil];
+            IARequest * request = [IARequest requestWithRoute:[IARoute get:@"/routes"] metadata:nil parameters:nil origin:myself.ownDevice body:nil];
             [myself sendRequest:request toDevice:device withHandler:^(IAResponse *response, NSError *error) {
                 if (error) {
                     IALogError(@"%@[%p]: Could not get supported routes of device %@: %@", THIS_FILE, myself, device, error);
