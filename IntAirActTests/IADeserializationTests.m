@@ -151,7 +151,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testStringBodyAsNumber
 {
     IADeSerialization * deSerialization = [IADeSerialization new];
-    [deSerialization setBodyWithString:@"{\"number\":\"50.6\"}"];
+    [deSerialization setBodyWithString:@"{\"number\":50.6}"];
     IANumber * value = [deSerialization bodyAs:[IANumber class]];
     IANumber * expected = [IANumber new];
     expected.number = @50.6;
