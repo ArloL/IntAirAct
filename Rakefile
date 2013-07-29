@@ -1,19 +1,8 @@
 require 'rubygems'
 require 'xcoder'
-require 'github_api'
-
-# This file stores $github_login and $github_password which are
-# used for publishing a download
-if File.exist?('Rakefile.config')
-  load 'Rakefile.config'
-end
 
 # The name of the project (also used for the Xcode project and loading the schemes)
 $name='IntAirAct'
-
-# The user and repository name on GitHub. Used when publishing a download.
-$github_user='ase-lab'
-$github_repo='IntAirAct'
 
 # The configuration to build: 'Debug' or 'Release'
 $configuration='Release'
@@ -35,7 +24,7 @@ task :archive => ['ios:archive', 'osx:archive']
 
 desc 'Remove build folder'
 task :remove_build_dir do
-  rm_rf 'build'
+  rm_rf 'Build'
 end
 
 $project
@@ -73,7 +62,7 @@ namespace :ios do
   task :test => [:init, :load_project] do
     $iostests.build
     report = $iostests.test do |report|
-	  report.add_formatter :junit, 'build/'+$configuration+'-iphonesimulator/test-reports'
+	  report.add_formatter :junit, 'Build/Products/'+$configuration+'-iphonesimulator/test-reports'
       report.add_formatter :stdout
     end
     if report.failed? || report.suites.count == 0  || report.suites[0].tests.count == 0
@@ -83,7 +72,7 @@ namespace :ios do
   
   desc 'Archive for iOS'
   task :archive => ['ios:clean', 'ios:build', 'ios:test'] do
-    cd 'build/' + $configuration + '-iphoneos' do
+    cd 'Build/Products/' + $configuration + '-iphoneos' do
       system('tar cvzf "../' + $name + '-iOS.tar.gz" *.framework')
     end
   end
@@ -109,7 +98,7 @@ namespace :osx do
   task :test => [:init, :load_project] do
     $osxtests.build
     report = $osxtests.test(:sdk => :macosx) do |report|
-	  report.add_formatter :junit, 'build/'+$configuration+'/test-reports'
+	  report.add_formatter :junit, 'Build/Products/'+$configuration+'/test-reports'
       report.add_formatter :stdout
     end
     if report.failed? || report.suites.count == 0  || report.suites[0].tests.count == 0
@@ -119,7 +108,7 @@ namespace :osx do
 
   desc 'Archive for OS X'
   task :archive => ['osx:clean', 'osx:build', 'osx:test'] do
-    cd 'build/' + $configuration do
+    cd 'Build/Products/' + $configuration do
       system('tar cvzf "../' + $name + '-OSX.tar.gz" *.framework')
     end
   end
@@ -161,37 +150,10 @@ task :pull => :init do
   system('git submodule foreach --recursive git pull')
 end
 
-def publish(version, os)
-  file = 'build/' + $name + '-' + os + '.tar.gz'
-  name = $name + '-' + os + '-' + version + '.tar.gz'
-  description = os + ' Framework version ' + version
-
-  size = File.size(file)
-
-  github = Github.new(:user => $github_user,
-                      :repo => $github_repo,
-                      :login => $github_login,
-                      :password => $github_password)
-  res = github.repos.downloads.create $github_user, $github_repo,
-    'name' => name,
-    'size' => size,
-    'description' => description,
-    'content_type' => 'application/x-gzip'
-  github.repos.downloads.upload res, file
-end
-
-desc 'Publish a new version to GitHub'
+desc 'Increment version'
 task :publish, :version do |t, args|
   if !args[:version]
     puts('Usage: rake publish[version]');
-    exit(1)
-  end
-  if !defined? $github_login
-    puts('$github_login is not set');
-    exit(1)
-  end
-  if !defined? $github_password
-    puts('$github_password is not set');
     exit(1)
   end
   version = args[:version]
@@ -209,10 +171,5 @@ task :publish, :version do |t, args|
   # build was successful, increment version and push changes
   system('git add Version')
   system('git commit -m "Bump version to ' + version + '"')
-  system('git tag -a v' + version + ' -m "Framework version ' + version + '."')
   system('git push')
-  system('git push --tags')
-
-  publish(version, 'iOS')
-  publish(version, 'OSX')
 end
