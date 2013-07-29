@@ -252,11 +252,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     IARoute * route = [IARoute post:@"/example/{parameter}"];
     
+    __weak IntAirActTests * myself = self;
+    
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
             request.parameters[@"parameter"] = @"value";
-            [self.intAirAct sendRequest:request toDevice:device];
+            [myself.intAirAct sendRequest:request toDevice:device];
         }
     }];
     
@@ -301,11 +303,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     IARoute * route = [IARoute post:@"/example"];
     
+    __weak IntAirActTests * myself = self;
+    
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
             request.parameters[@"parameter"] = @"value";
-            [self.intAirAct sendRequest:request toDevice:device];
+            [myself.intAirAct sendRequest:request toDevice:device];
         }
     }];
     
@@ -350,12 +354,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     IARoute * route = [IARoute post:@"/example"];
     
+    __weak IntAirActTests * myself = self;
+    
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
             request.parameters[@"parameter"] = @"value";
             request.parameters[@"parameterTwo"] = @"valueTwo";
-            [self.intAirAct sendRequest:request toDevice:device];
+            [myself.intAirAct sendRequest:request toDevice:device];
         }
     }];
     
@@ -400,12 +406,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     IARoute * route = [IARoute post:@"/example"];
     
+    __weak IntAirActTests * myself = self;
+    
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
             request.metadata[@"parameter"] = @"value";
             request.metadata[@"parameterTwo"] = @"valueTwo";
-            [self.intAirAct sendRequest:request toDevice:device];
+            [myself.intAirAct sendRequest:request toDevice:device];
         }
     }];
     
@@ -449,11 +457,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block NSCondition * cond = [NSCondition new];
     id deviceFoundHandler;
     
+    __weak IntAirActTests * myself = self;
+    
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IADevice * fakeDevice = [IADevice deviceWithName:@"test" host:device.host port:100 supportedRoutes:nil];
             IARequest * request = [IARequest requestWithRoute:[IARoute post:@"/example"] origin:device body:nil];
-            [self.intAirAct sendRequest:request toDevice:fakeDevice withHandler:^(IAResponse *response, NSError *error) {
+            [myself.intAirAct sendRequest:request toDevice:fakeDevice withHandler:^(IAResponse *response, NSError *error) {
                 called = YES;
                 if (error) {
                     requestFailed = YES;
@@ -497,10 +507,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     IARoute * route = [IARoute post:@"/example"];
     
+    __weak IntAirActTests * myself = self;
+    
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
-            [self.intAirAct sendRequest:request toDevice:device withHandler:^(IAResponse *response, NSError *error) {
+            [myself.intAirAct sendRequest:request toDevice:device withHandler:^(IAResponse *response, NSError *error) {
                 if ([response.metadata[@"parameter"] isEqual:@"value"] && [response.metadata[@"parameterTwo"] isEqual:@"valueTwo"]) {
                     called = YES;
                     [cond signal];
