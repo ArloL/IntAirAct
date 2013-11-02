@@ -1,3 +1,9 @@
+/**
+ A route is the destination and origin of requests.
+
+ An example for using a route is to trigger a UI refresh when receiving
+ a request on a route with the "POST" action and the "/refresh" resource.
+ */
 @interface IARoute : NSObject
 
 /**
