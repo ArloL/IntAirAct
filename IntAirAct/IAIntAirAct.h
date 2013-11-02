@@ -33,7 +33,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 /**
  Returns the current device if it has been found yet, `nil` otherwise.
- 
+
  You can use addHandlerForDeviceFound and check the BOOL ownDevice.
  */
 @property (nonatomic, strong, readonly) IADevice * ownDevice;
@@ -48,27 +48,27 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 /**
  Instantiates IntAirAct.
- 
+
  @param server The server to use for publishing routes.
  @param client The client to use when sending requests to other devices.
  */
 -(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAClient> *)client;
 
 /** Standard Deconstructor.
- 
+
  Stops the server and releases any resources connected with this instance.
  */
 -(void)dealloc;
 
 /** Attempts to start IntAirAct.
- 
+
  A usage example:
- 
+
     NSError *err = nil;
     if (![intairact start:&er]]) {
         NSLog(@"Error starting IntAirAct: %@", err);
     }
- 
+
  @param errPtr An optional NSError instance.
  @return Returns `YES` if successful, `NO` on failure and sets the errPtr (if given).
  */
@@ -78,7 +78,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 -(void)stop;
 
 /** Get an array of devices that support a certain route.
- 
+
  @param route the route which the devices should support.
  @return an array of devices that support the specified route.
  */
@@ -86,7 +86,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 /**
  Get the IADevice for a device name.
- 
+
  @param name the name of the device.
  @return an IADevice if a device with the name exists.
  */
@@ -94,7 +94,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 /**
  Add a handler for a specific route.
- 
+
  @param route the route to add.
  @param handler the handler to execute.
  @return Returns `YES` if successful, `NO` on failure e.g. the route already exists.
@@ -103,7 +103,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 /**
  Send a request to a device with out listening for a response or error case.
- 
+
  @param request the request to send.
  @param device the target device.
  */
@@ -111,7 +111,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 /**
  Send a request to a device. The handler gets executed in a response or error case.
- 
+
  @param request the request to send.
  @param device the target device.
  @handler the handler to execute in a response or error case.
@@ -120,7 +120,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 /**
  Send a request to all devices supporting a route. The handler gets executed in a response or error case.
- 
+
  @param request the request to send.
  @param route the route the target devices have to support.
  @handler the handler to execute in a response or error case.
@@ -130,36 +130,36 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 /**
  Remove a handler.
- 
+
  Be sure to invoke `removeHandler:` before any object specified in a handler
  is deallocated.
- 
+
  @param handler The handler to remove.
  */
 -(void)removeHandler:(id)handler;
 
 /**
  Add a block to be executed when a device is found.
- 
+
  To unregister the handler, you pass the object returned by this method to
  `removeHandler:`. You *must* invoke `removeHandler:` before any object
  specified is deallocated.
- 
+
  @param handler The block to be executed when a device is found.
- 
+
  @return Returns an opaque object to identify the handler.
  */
 -(id)addHandlerForDeviceFound:(IADeviceFoundHandler)handler;
 
 /**
  Add a block to be executed when a device is lost.
- 
+
  To unregister the handler, you pass the object returned by this method to
  `removeHandler:`. You *must* invoke `removeHandler:` before any object
  specified is deallocated.
- 
+
  @param handler The block to be executed when a device is lost.
- 
+
  @return Returns an opaque object to identify the handler.
  */
 -(id)addHandlerForDeviceLost:(IADeviceLostHandler)handler;

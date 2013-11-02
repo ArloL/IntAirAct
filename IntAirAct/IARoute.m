@@ -48,11 +48,11 @@
     if (self == object) {
         return YES;
     }
-    
+
     if (object == nil || ![object isKindOfClass:[self class]]) {
         return NO;
     }
-    
+
     IARoute * route = (IARoute*) object;
     return (self.action == route.action || [self.action isEqual:route.action])
         && (self.resource == route.resource || [self.resource isEqual:route.resource]);

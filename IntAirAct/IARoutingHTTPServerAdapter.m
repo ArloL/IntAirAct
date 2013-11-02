@@ -29,7 +29,7 @@
     self = [super init];
     if (self) {
         _port = 0;
-        
+
         _routingHTTPServer = routingHTTPServer;
     }
     return self;
@@ -45,11 +45,11 @@
     path = [path stringByReplacingOccurrencesOfString:@"{" withString:@":"];
     [self.routingHTTPServer handleMethod:route.action withPath:path block:^(RouteRequest * rReq, RouteResponse * rRes) {
         IADevice * origin = nil;
-        
+
         if (rReq.headers[@"X-IA-Origin"]) {
-            
+
             /*This is super dumb*/
-            NSString *originName = [rReq.headers[@"X-IA-Origin"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]; 
+            NSString *originName = [rReq.headers[@"X-IA-Origin"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             origin = [self.intAirAct deviceWithName:originName];
         }
         IARequest * iaReq = [IARequest requestWithRouteRequest:rReq origin:origin route:route];

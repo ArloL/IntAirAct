@@ -217,8 +217,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }
 
     free(propList);
-    
-    return theProps;	
+
+    return theProps;
 }
 
 @end
