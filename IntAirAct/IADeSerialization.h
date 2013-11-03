@@ -1,5 +1,3 @@
-#import <Foundation/Foundation.h>
-
 @interface IADeSerialization : NSObject
 
 @property (nonatomic, strong) NSData * body;
