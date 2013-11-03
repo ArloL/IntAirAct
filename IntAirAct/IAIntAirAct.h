@@ -158,16 +158,6 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 -(BOOL)sendRequest:(IARequest*)request toDevicesSupportingRoute:(IARoute*)route withHandler:(IAResponseHandler)handler;
 
 /**
- Remove a handler.
-
- Be sure to invoke `removeHandler:` before any object used in a handler
- is deallocated.
-
- @param handler The handler to remove.
- */
--(void)removeHandler:(id)handler;
-
-/**
  Add a block to be executed when a device is found.
 
  To unregister the handler, you pass the object returned by this method to
@@ -192,6 +182,16 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  @return Returns an opaque object to identify the handler.
  */
 -(id)addHandlerForDeviceLost:(IADeviceLostHandler)handler;
+
+/**
+ Remove a handler.
+
+ Be sure to invoke `removeHandler:` before any object used in a handler
+ is deallocated.
+
+ @param handler The handler to remove.
+ */
+-(void)removeHandler:(id)handler;
 
 /**
  Set the log level. For the defined log levels see `IaLogging.h`.
