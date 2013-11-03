@@ -7,15 +7,28 @@
 @class IAResponse;
 
 /**
- The names of the notifications used to notify about found/lost devices.
+ Name of the notification when a device is found.
  */
 extern NSString * IADeviceFound;
+
+/**
+ Name of the notification when a device is lost.
+ */
 extern NSString * IADeviceLost;
 
 /**
- The block definitions for when a device was found/lost.
+ A block that is called when a device is found.
+
+ @param device The found device.
+ @param ownDevice `YES` when we found ourselves.
  */
 typedef void (^IADeviceFoundHandler)(IADevice * device, BOOL ownDevice);
+
+/**
+ A block that is called when a device is lost.
+
+ @param device The lost device.
+ */
 typedef void (^IADeviceLostHandler)(IADevice * device);
 
 @interface IAIntAirAct : NSObject

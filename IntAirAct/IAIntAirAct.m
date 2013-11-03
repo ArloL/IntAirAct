@@ -18,6 +18,7 @@
 #import "IARoutingHTTPServerAdapter.h"
 #import "IANSURLAdapter.h"
 
+// Set the notification names
 NSString * IADeviceFound = @"IADeviceFound";
 NSString * IADeviceLost = @"IADeviceLost";
 
