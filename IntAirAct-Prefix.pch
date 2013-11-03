@@ -1,9 +1,3 @@
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
 #endif
-
-#ifdef __x86_64__
-#define FMTNSINT "li"
-#else
-#define FMTNSINT "i"
-#endif
