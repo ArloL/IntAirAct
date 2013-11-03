@@ -22,13 +22,19 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
 @interface IAIntAirAct : NSObject
 
-/** The supported routes of this device. */
+/**
+ The supported routes of this device.
+ */
 @property (nonatomic, strong) NSMutableSet * supportedRoutes;
 
-/** All the currently available devices. */
+/**
+ All the currently available devices.
+ */
 @property (nonatomic, readonly) NSSet * devices;
 
-/** `YES` if IntAirAct is running, `NO` otherwise. */
+/**
+ `YES` if IntAirAct is running, `NO` otherwise.
+ */
 @property (nonatomic, readonly) BOOL isRunning;
 
 /**
@@ -38,7 +44,11 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  */
 @property (nonatomic, strong, readonly) IADevice * ownDevice;
 
-/** The port on which to listen on. Default is 0. This means the system will find a free port. */
+/**
+ The port on which to listen on.
+ 
+ Default is 0. This means the system will find a free port.
+ */
 @property (nonatomic) NSInteger port;
 
 /**
@@ -54,13 +64,15 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  */
 -(id)initWithServer:(NSObject<IAServer> *)server client:(NSObject<IAClient> *)client;
 
-/** Standard Deconstructor.
+/**
+ Standard Deconstructor.
 
  Stops the server and releases any resources connected with this instance.
  */
 -(void)dealloc;
 
-/** Attempts to start IntAirAct.
+/**
+ Attempts to start IntAirAct.
 
  A usage example:
 
@@ -70,6 +82,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
     }
 
  @param errPtr An optional NSError instance.
+
  @return Returns `YES` if successful, `NO` on failure and sets the errPtr (if given).
  */
 -(BOOL)start:(NSError **)errPtr;
@@ -77,9 +90,11 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 /** Stops IntAirAct. */
 -(void)stop;
 
-/** Get an array of devices that support a certain route.
+/**
+ Get an array of devices that support a certain route.
 
  @param route the route which the devices should support.
+
  @return an array of devices that support the specified route.
  */
 -(NSArray *)devicesSupportingRoute:(IARoute *)route;
@@ -88,6 +103,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  Get the IADevice for a device name.
 
  @param name the name of the device.
+
  @return an IADevice if a device with the name exists.
  */
 -(IADevice *)deviceWithName:(NSString *)name;
@@ -97,6 +113,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
  @param route the route to add.
  @param handler the handler to execute.
+
  @return Returns `YES` if successful, `NO` on failure e.g. the route already exists.
  */
 -(BOOL)route:(IARoute*)route withHandler:(IARequestHandler)handler;
@@ -114,7 +131,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
  @param request the request to send.
  @param device the target device.
- @handler the handler to execute in a response or error case.
+ @param handler the handler to execute in a response or error case.
  */
 -(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device withHandler:(IAResponseHandler)handler;
 
@@ -123,7 +140,8 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
  @param request the request to send.
  @param route the route the target devices have to support.
- @handler the handler to execute in a response or error case.
+ @param handler the handler to execute in a response or error case.
+
  @return Returns `YES` if there were devices supporting the route, `NO` otherwise.
  */
 -(BOOL)sendRequest:(IARequest*)request toDevicesSupportingRoute:(IARoute*)route withHandler:(IAResponseHandler)handler;
@@ -131,7 +149,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 /**
  Remove a handler.
 
- Be sure to invoke `removeHandler:` before any object specified in a handler
+ Be sure to invoke `removeHandler:` before any object used in a handler
  is deallocated.
 
  @param handler The handler to remove.
@@ -143,7 +161,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
  To unregister the handler, you pass the object returned by this method to
  `removeHandler:`. You *must* invoke `removeHandler:` before any object
- specified is deallocated.
+ used in the handler is deallocated.
 
  @param handler The block to be executed when a device is found.
 
@@ -156,7 +174,7 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 
  To unregister the handler, you pass the object returned by this method to
  `removeHandler:`. You *must* invoke `removeHandler:` before any object
- specified is deallocated.
+ used in the handler is deallocated.
 
  @param handler The block to be executed when a device is lost.
 
