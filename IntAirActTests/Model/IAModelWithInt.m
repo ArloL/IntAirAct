@@ -7,11 +7,11 @@
     if (self == object) {
         return YES;
     }
-    
+
     if (object == nil || ![object isKindOfClass:[self class]]) {
         return NO;
     }
-    
+
     IAModelWithInt * model = (IAModelWithInt*) object;
     return (self.intProperty == model.intProperty);
 }

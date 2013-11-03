@@ -24,7 +24,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 -(void)setUp
 {
     [super setUp];
-    
+
     // Set-up code here.
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
@@ -37,13 +37,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     // Tear-down code here.
     [DDLog removeAllLoggers];
-    
+
     if(self.intAirAct.isRunning) {
         [self.intAirAct stop];
         // Bonjour takes a while to shutdown everything properly
         sleep(1);
     }
-    
+
     [super tearDown];
 }
 
@@ -87,7 +87,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
     }
-    
+
     [self.intAirAct stop];
 }
 
@@ -109,36 +109,36 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block BOOL found = NO;
     __block NSCondition * cond = [NSCondition new];
     id deviceFoundHandler;
-    
+
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             found = YES;
             [cond signal];
         }
     }];
-    
+
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
         return;
     }
-    
+
     startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
-    
+
     [cond lock];
     while(!found && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
         [cond waitUntilDate:startTimePlusWaitTime];
     }
     [cond unlock];
-    
+
     STAssertNotNil(self.intAirAct.ownDevice, @"ownDevice should be set");
-    
+
     [self.intAirAct removeHandler:deviceFoundHandler];
-    
+
     [self.intAirAct stop];
     sleep(1);
-    
+
     if (!found) {
         STFail(@"Did not find service");
     }
@@ -147,38 +147,38 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 -(void)testOwnDeviceSupportedRoutesShouldBeEqualToResolved
 {
     [self.intAirAct.supportedRoutes addObject:[IARoute routeWithAction:@"GET" resource:@"/example"]];
-    
+
     NSDate * startTimePlusWaitTime;
     __block BOOL found = NO;
     __block NSCondition * cond = [NSCondition new];
     id deviceFoundHandler;
-    
+
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             found = YES;
             [cond signal];
         }
     }];
-    
+
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
         return;
     }
-    
+
     startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
-    
+
     [cond lock];
     while(!found && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
         [cond waitUntilDate:startTimePlusWaitTime];
     }
     [cond unlock];
-    
+
     STAssertEqualObjects(self.intAirAct.supportedRoutes, self.intAirAct.ownDevice.supportedRoutes, @"ownDevice.supportedRoutes and supportedRoutes should be equal");
-    
+
     [self.intAirAct removeHandler:deviceFoundHandler];
-    
+
     [self.intAirAct stop];
     sleep(1);
 }
@@ -191,53 +191,53 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block BOOL foundTwo = NO;
     id deviceFoundHandlerOne;
     id deviceFoundHandlerTwo;
-    
+
     deviceFoundHandlerOne = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(!ownDevice && [device.supportedRoutes containsObject:[IARoute get:@"/two"]]) {
             foundOne = YES;
             [cond signal];
         }
     }];
-    
+
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
         return;
     }
-    
+
     [self.intAirAct.supportedRoutes addObject:[IARoute get:@"/one"]];
-    
+
     IAIntAirAct * iAA = [IAIntAirAct new];
-    
+
     [iAA.supportedRoutes addObject:[IARoute get:@"/two"]];
-    
+
     deviceFoundHandlerTwo = [iAA addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(!ownDevice && [device.supportedRoutes containsObject:[IARoute get:@"/one"]]) {
             foundTwo = YES;
             [cond signal];
         }
     }];
-    
+
     if (![iAA start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
         return;
     }
-    
+
     startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
-    
+
     [cond lock];
     while((!foundOne || !foundTwo) && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
         [cond waitUntilDate:startTimePlusWaitTime];
     }
     [cond unlock];
-    
+
     [self.intAirAct removeHandler:deviceFoundHandlerOne];
     [iAA removeHandler:deviceFoundHandlerTwo];
-    
+
     [self.intAirAct stop];
     [iAA stop];
     sleep(1);
-    
+
     if (!foundOne || !foundTwo) {
         STFail(@"Did not find each other");
     }
@@ -249,11 +249,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block BOOL called = NO;
     __block NSCondition * cond = [NSCondition new];
     id deviceFoundHandler;
-    
+
     IARoute * route = [IARoute post:@"/example/{parameter}"];
-    
+
     __weak IntAirActTests * myself = self;
-    
+
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
@@ -261,34 +261,34 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [myself.intAirAct sendRequest:request toDevice:device];
         }
     }];
-    
+
     [self.intAirAct route:route withHandler:^(IARequest *request, IAResponse *response) {
         if ([request.parameters[@"parameter"] isEqual:@"value"]) {
             called = YES;
             [cond signal];
         }
     }];
-    
+
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
         return;
     }
-    
+
     startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
-    
+
     [cond lock];
     while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
         [cond waitUntilDate:startTimePlusWaitTime];
     }
     [cond unlock];
-    
+
     [self.intAirAct removeHandler:deviceFoundHandler];
-    
+
     [self.intAirAct stop];
     sleep(1);
-    
+
     if (!called) {
         STFail(@"Did not call correct");
     }
@@ -300,11 +300,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block BOOL called = NO;
     __block NSCondition * cond = [NSCondition new];
     id deviceFoundHandler;
-    
+
     IARoute * route = [IARoute post:@"/example"];
-    
+
     __weak IntAirActTests * myself = self;
-    
+
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
@@ -312,34 +312,34 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [myself.intAirAct sendRequest:request toDevice:device];
         }
     }];
-    
+
     [self.intAirAct route:route withHandler:^(IARequest *request, IAResponse *response) {
         if ([request.parameters[@"parameter"] isEqual:@"value"]) {
             called = YES;
             [cond signal];
         }
     }];
-    
+
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
         return;
     }
-    
+
     startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
-    
+
     [cond lock];
     while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
         [cond waitUntilDate:startTimePlusWaitTime];
     }
     [cond unlock];
-    
+
     [self.intAirAct removeHandler:deviceFoundHandler];
-    
+
     [self.intAirAct stop];
     sleep(1);
-    
+
     if (!called) {
         STFail(@"Did not call correct");
     }
@@ -351,11 +351,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block BOOL called = NO;
     __block NSCondition * cond = [NSCondition new];
     id deviceFoundHandler;
-    
+
     IARoute * route = [IARoute post:@"/example"];
-    
+
     __weak IntAirActTests * myself = self;
-    
+
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
@@ -364,34 +364,34 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [myself.intAirAct sendRequest:request toDevice:device];
         }
     }];
-    
+
     [self.intAirAct route:route withHandler:^(IARequest *request, IAResponse *response) {
         if ([request.parameters[@"parameter"] isEqual:@"value"] && [request.parameters[@"parameterTwo"] isEqual:@"valueTwo"]) {
             called = YES;
             [cond signal];
         }
     }];
-    
+
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
         return;
     }
-    
+
     startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
-    
+
     [cond lock];
     while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
         [cond waitUntilDate:startTimePlusWaitTime];
     }
     [cond unlock];
-    
+
     [self.intAirAct removeHandler:deviceFoundHandler];
-    
+
     [self.intAirAct stop];
     sleep(1);
-    
+
     if (!called) {
         STFail(@"Did not call correct");
     }
@@ -403,11 +403,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block BOOL called = NO;
     __block NSCondition * cond = [NSCondition new];
     id deviceFoundHandler;
-    
+
     IARoute * route = [IARoute post:@"/example"];
-    
+
     __weak IntAirActTests * myself = self;
-    
+
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
@@ -416,34 +416,34 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [myself.intAirAct sendRequest:request toDevice:device];
         }
     }];
-    
+
     [self.intAirAct route:route withHandler:^(IARequest *request, IAResponse *response) {
         if ([request.metadata[@"parameter"] isEqual:@"value"] && [request.metadata[@"parameterTwo"] isEqual:@"valueTwo"]) {
             called = YES;
             [cond signal];
         }
     }];
-    
+
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
         return;
     }
-    
+
     startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
-    
+
     [cond lock];
     while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
         [cond waitUntilDate:startTimePlusWaitTime];
     }
     [cond unlock];
-    
+
     [self.intAirAct removeHandler:deviceFoundHandler];
-    
+
     [self.intAirAct stop];
     sleep(1);
-    
+
     if (!called) {
         STFail(@"Did not call correct");
     }
@@ -456,9 +456,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block BOOL requestFailed = NO;
     __block NSCondition * cond = [NSCondition new];
     id deviceFoundHandler;
-    
+
     __weak IntAirActTests * myself = self;
-    
+
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IADevice * fakeDevice = [IADevice deviceWithName:@"test" host:device.host port:100 supportedRoutes:nil];
@@ -472,27 +472,27 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             }];
         }
     }];
-    
+
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
         return;
     }
-    
+
     startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
-    
+
     [cond lock];
     while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
         [cond waitUntilDate:startTimePlusWaitTime];
     }
     [cond unlock];
-    
+
     [self.intAirAct removeHandler:deviceFoundHandler];
-    
+
     [self.intAirAct stop];
     sleep(1);
-    
+
     if (!requestFailed) {
         STFail(@"Did not call correct");
     }
@@ -504,11 +504,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     __block BOOL called = NO;
     __block NSCondition * cond = [NSCondition new];
     id deviceFoundHandler;
-    
+
     IARoute * route = [IARoute post:@"/example"];
-    
+
     __weak IntAirActTests * myself = self;
-    
+
     deviceFoundHandler = [self.intAirAct addHandlerForDeviceFound:^(IADevice *device, BOOL ownDevice) {
         if(ownDevice) {
             IARequest * request = [IARequest requestWithRoute:route origin:device body:nil];
@@ -520,32 +520,32 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             }];
         }
     }];
-    
+
     [self.intAirAct route:route withHandler:^(IARequest *request, IAResponse *response) {
         response.metadata[@"parameter"] = @"value";
         response.metadata[@"parameterTwo"] = @"valueTwo";
     }];
-    
+
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
         STFail(@"HTTP server failed to start: %@", error);
         return;
     }
-    
+
     startTimePlusWaitTime = [NSDate dateWithTimeIntervalSinceNow:WAIT_TIME];
-    
+
     [cond lock];
     while(!called && [startTimePlusWaitTime timeIntervalSinceNow] > 0) {
         [cond waitUntilDate:startTimePlusWaitTime];
     }
     [cond unlock];
-    
+
     [self.intAirAct removeHandler:deviceFoundHandler];
-    
+
     [self.intAirAct stop];
     sleep(1);
-    
+
     if (!called) {
         STFail(@"Did not call correct");
     }

@@ -14,7 +14,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 -(void)setUp
 {
     [super setUp];
-    
+
     // Set-up code here.
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
@@ -24,7 +24,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     // Tear-down code here.
     [DDLog removeAllLoggers];
-    
+
     [super tearDown];
 }
 
