@@ -29,7 +29,6 @@
     self = [super init];
     if (self) {
         _port = 0;
-
         _routingHTTPServer = routingHTTPServer;
     }
     return self;
