@@ -1,5 +1,5 @@
 /**
- A device is a device running IntAirAct found on the network.
+ A device running IntAirAct found on the network.
  */
 @interface IADevice : NSObject
 
