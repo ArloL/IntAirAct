@@ -47,8 +47,6 @@
         IADevice * origin = nil;
 
         if (rReq.headers[@"X-IA-Origin"]) {
-
-            /*This is super dumb*/
             NSString *originName = [rReq.headers[@"X-IA-Origin"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             origin = [self.intAirAct deviceWithName:originName];
         }
