@@ -3,7 +3,7 @@
 @class IAIntAirAct;
 
 /**
- Represents a response.
+ A response is returned or received.
  */
 @interface IAResponse : IADeSerialization
 
