@@ -24,7 +24,7 @@ NSString * IADeviceLost = @"IADeviceLost";
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
-static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
+static int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 @interface IAIntAirAct ()
 
@@ -354,6 +354,23 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
             }
         }
     }];
+}
+
+#pragma mark Log level
+
+- (void)setLogLevel:(int)logLevel
+{
+    intAirActLogLevel = logLevel;
+}
+
++ (int)ddLogLevel
+{
+    return intAirActLogLevel;
+}
+
++ (void)ddSetLogLevel:(int)logLevel
+{
+    intAirActLogLevel = logLevel;
 }
 
 @end

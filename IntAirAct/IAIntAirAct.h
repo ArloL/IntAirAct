@@ -193,4 +193,11 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
  */
 -(id)addHandlerForDeviceLost:(IADeviceLostHandler)handler;
 
+/**
+ Set the log level. For the defined log levels see `IaLogging.h`.
+
+ @param logLevel Log level to set.
+ */
+- (void)setLogLevel:(int)logLevel;
+
 @end
