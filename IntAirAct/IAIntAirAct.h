@@ -1,8 +1,6 @@
 #import "IAServer.h"
 #import "IAClient.h"
 
-@class SDServiceDiscovery;
-
 @class IADevice;
 @class IARoute;
 @class IARequest;
@@ -93,54 +91,54 @@ typedef void (^IADeviceLostHandler)(IADevice * device);
 /**
  Get an array of devices that support a certain route.
 
- @param route the route which the devices should support.
+ @param route The route which the devices should support.
 
- @return an array of devices that support the specified route.
+ @return Returns an array of devices that support the specified route.
  */
 -(NSArray *)devicesSupportingRoute:(IARoute *)route;
 
 /**
  Get the IADevice for a device name.
 
- @param name the name of the device.
+ @param name The name of the device.
 
- @return an IADevice if a device with the name exists.
+ @return Returns an IADevice if a device with the name exists.
  */
 -(IADevice *)deviceWithName:(NSString *)name;
 
 /**
  Add a handler for a specific route.
 
- @param route the route to add.
- @param handler the handler to execute.
+ @param route The route to add.
+ @param handler The handler to execute.
 
  @return Returns `YES` if successful, `NO` on failure e.g. the route already exists.
  */
 -(BOOL)route:(IARoute*)route withHandler:(IARequestHandler)handler;
 
 /**
- Send a request to a device with out listening for a response or error case.
+ Send a request to a device without listening for a response or error case.
 
- @param request the request to send.
- @param device the target device.
+ @param request The request to send.
+ @param device The target device.
  */
 -(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device;
 
 /**
  Send a request to a device. The handler gets executed in a response or error case.
 
- @param request the request to send.
- @param device the target device.
- @param handler the handler to execute in a response or error case.
+ @param request The request to send.
+ @param device The target device.
+ @param handler The handler to execute in a response or error case.
  */
 -(void)sendRequest:(IARequest*)request toDevice:(IADevice*)device withHandler:(IAResponseHandler)handler;
 
 /**
  Send a request to all devices supporting a route. The handler gets executed in a response or error case.
 
- @param request the request to send.
- @param route the route the target devices have to support.
- @param handler the handler to execute in a response or error case.
+ @param request The request to send.
+ @param route The route the target devices have to support.
+ @param handler The handler to execute in a response or error case.
 
  @return Returns `YES` if there were devices supporting the route, `NO` otherwise.
  */
