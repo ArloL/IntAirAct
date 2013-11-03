@@ -3,6 +3,9 @@
 
  An example for using a route is to trigger a UI refresh when receiving
  a request on a route with the "POST" action and the "/refresh" resource.
+
+ The resource of a route can contain paramers like this {parameter}.
+ You then have to set the corresponding parameter on the request.
  */
 @interface IARoute : NSObject
 
