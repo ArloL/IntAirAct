@@ -15,7 +15,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 +(NSURLRequest *)requestWithIARequest:(IARequest *)request andDevice:(IADevice*)device
 {
     NSString * resource = [self replaceParametersIn:request.route.resource with:request.parameters];
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%"FMTNSINT"%@", device.host, device.port, resource]];
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@:%li%@", device.host, (long)device.port, resource]];
     url = [url URLByAppendingQueryParameters:request.parameters];
     NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
     urlRequest.HTTPMethod = request.route.action;
