@@ -21,7 +21,9 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(void)setBodyWith:(id)data
 {
-    if([data isKindOfClass:[NSString class]]) {
+    if(!data) {
+        return;
+    } else if([data isKindOfClass:[NSString class]]) {
         [self setBodyWithString:data];
     } else if([data isKindOfClass:[NSNumber class]]) {
         [self setBodyWithNumber:data];
