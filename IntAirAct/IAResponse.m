@@ -5,7 +5,7 @@
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
-static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
+// static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE;
 
 @implementation IAResponse
 
