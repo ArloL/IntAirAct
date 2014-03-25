@@ -5,7 +5,6 @@ target :ios do
 
     pod 'ServiceDiscovery'
     pod 'RoutingHTTPServer'
-    pod 'JSONKit'
 end
 
 target :osx do
@@ -15,5 +14,4 @@ target :osx do
 
     pod 'ServiceDiscovery'
     pod 'RoutingHTTPServer'
-    pod 'JSONKit'
 end
