@@ -7,7 +7,7 @@
 #import "IANumber.h"
 
 // Log levels : off, error, warn, info, verbose
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 #define WAIT_TIME 5
 

@@ -5,7 +5,7 @@
 #import <IntAirAct/IntAirAct.h>
 
 // Log levels : off, error, warn, info, verbose
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation IAResponseTests
 
