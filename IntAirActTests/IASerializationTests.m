@@ -117,10 +117,10 @@
 - (void)testSetBodyWithWithAnIAModelWithFloat
 {
     IAModelWithFloat * model = [IAModelWithFloat new];
-    model.floatProperty = 5.434;
+    model.floatProperty = 5.434f;
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:model];
-    NSString * expected = [NSString stringWithFormat:@"{\"floatProperty\":%.17g}", 5.434f];
+    NSString * expected = [NSString stringWithFormat:@"{\"floatProperty\":%.4g}", 5.434f];
     STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
 }
 
