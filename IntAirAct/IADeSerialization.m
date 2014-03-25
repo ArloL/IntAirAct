@@ -1,8 +1,6 @@
 #import "IADeSerialization.h"
 
 #import <objc/runtime.h>
-#import "JSONKit.h"
-
 #import "IALogging.h"
 
 // Log levels: off, error, warn, info, verbose
@@ -30,7 +28,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     } else {
         id serializedObject = [self serialize:data];
         NSError * error;
-        NSData * result = [serializedObject JSONDataWithOptions:0 error:&error];
+        NSData * result = [NSJSONSerialization dataWithJSONObject:serializedObject options:0 error:&error];
         if (error) {
             IALogError(@"Error ocurred while serializing: %@", error);
         } else {
@@ -95,7 +93,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         return [f numberFromString:self.bodyAsString];
     } else {
         NSError * error;
-        id result = [self.body objectFromJSONDataWithParseOptions:0 error:&error];
+        id result = [NSJSONSerialization JSONObjectWithData:self.body options:0 error:&error];
         if (error) {
             IALogError(@"Error ocurred while serializing: %@", error);
             return nil;
