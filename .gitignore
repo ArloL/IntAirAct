@@ -16,3 +16,6 @@ profile
 
 # Mac OS X
 .DS_Store
+
+# CocoaPods
+Pods
