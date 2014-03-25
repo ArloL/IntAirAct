@@ -125,7 +125,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         } else {
             return nil;
         }
-    } else if ([data isKindOfClass:NSClassFromString(@"JKDictionary")]) {
+    } else if ([data isKindOfClass:[NSDictionary class]]) {
         if ([class isSubclassOfClass:[NSDictionary class]]) {
             NSMutableDictionary * result = [NSMutableDictionary new];
             [data enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -150,7 +150,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             }];
             return result;
         }
-    } else if ([data isKindOfClass:NSClassFromString(@"JKArray")]) {
+    } else if ([data isKindOfClass:[NSArray class]]) {
         if ([class isSubclassOfClass:[NSArray class]]) {
             NSMutableArray * result = [NSMutableArray new];
             for (id obj in data) {
