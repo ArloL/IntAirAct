@@ -18,12 +18,13 @@
 #import "IARoutingHTTPServerAdapter.h"
 #import "IANSURLAdapter.h"
 
+// Set the notification names
 NSString * IADeviceFound = @"IADeviceFound";
 NSString * IADeviceLost = @"IADeviceLost";
 
 // Log levels: off, error, warn, info, verbose
 // Other flags: trace
-static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
+static int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 @interface IAIntAirAct ()
 
@@ -54,7 +55,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
     IANSURLAdapter * nsURLAdapter = [IANSURLAdapter new];
 
     self = [self initWithServer:routingHTTPServerAdapter client:nsURLAdapter];
-    
+
     // necessary to set the origin on incoming requests
     routingHTTPServerAdapter.intAirAct = self;
 
@@ -66,10 +67,10 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
     self = [super init];
     if (self) {
         IALogTrace();
-        
+
         _supportedRoutes = [NSMutableSet new];
         _isRunning = NO;
-        
+
         _clientQueue = dispatch_queue_create("IntAirActClient", NULL);
         _foundDevices = [NSMutableSet new];
         _objectManagers = [NSMutableDictionary new];
@@ -80,7 +81,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
 #endif
         _server = server;
         _client = client;
-        
+
         [self setup];
     }
     return self;
@@ -89,7 +90,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
 -(void)dealloc
 {
     IALogTrace();
-    
+
 	[self stop];
 
     [self.serviceDiscovery removeHandler:self.serviceFoundObserver];
@@ -102,17 +103,17 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
 -(BOOL)start:(NSError **)errPtr;
 {
     IALogTrace();
-    
+
     __block BOOL success = YES;
 	__block NSError * err = nil;
-    
+
     if(_isRunning) {
         return success;
     }
-    
+
     dispatch_sync(_serverQueue, ^{ @autoreleasepool {
         success = [_server start:&err];
-        
+
         if (success) {
             IALogInfo3(@"Started IntAirAct.");
             int port = (int)_server.port;
@@ -123,18 +124,18 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
             IALogError(@"%@[%p]: Failed to start IntAirAct: %@", THIS_FILE, self, err);
         }
 	}});
-	
+
 	if (errPtr) {
 		*errPtr = err;
     }
-	
+
 	return success;
 }
 
 -(void)stop
 {
     IALogTrace();
-    
+
     dispatch_sync(_serverQueue, ^{ @autoreleasepool {
         [_server stop];
         [_serviceDiscovery stop];
@@ -152,16 +153,16 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
     // Reference myself weakly from inside the block to avoid a retain cycle like:
     // IAIntAiract -> SDServiceDisovery -> block -> IAIntAirAct
     __weak IAIntAirAct * myself = self;
-    
+
     self.serviceFoundObserver = [self.serviceDiscovery addHandlerForServiceFound:^(SDService *service, BOOL ownService) {
         if (ownService) {
             myself.ownDevice = [IADevice deviceWithName:service.name host:service.hostname port:service.port supportedRoutes:myself.supportedRoutes];
-            IALogInfo(@"%@[%p]: Own device: %@:%"FMTNSINT, THIS_FILE, myself, myself.ownDevice.host, myself.ownDevice.port);
+            IALogInfo(@"%@[%p]: Own device: %@:%li", THIS_FILE, myself, myself.ownDevice.host, (long)myself.ownDevice.port);
             [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceFound object:myself userInfo:@{@"device":myself.ownDevice, @"ownDevice":@YES}];
         } else {
             IALogTrace2(@"%@[%p]: %@", THIS_FILE, myself, @"Found other device");
             IADevice * device = [IADevice deviceWithName:service.name host:service.hostname port:service.port supportedRoutes:nil];
-            IARequest * request = [IARequest requestWithRoute:[IARoute get:@"/routes"] metadata:nil parameters:nil origin:myself.ownDevice body:nil];
+            IARequest * request = [IARequest requestWithRoute:[IARoute get:@"/routes"] origin:myself.ownDevice body:nil];
             [myself sendRequest:request toDevice:device withHandler:^(IAResponse *response, NSError *error) {
                 if (error) {
                     IALogError(@"%@[%p]: Could not get supported routes of device %@: %@", THIS_FILE, myself, device, error);
@@ -174,13 +175,13 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
             }];
         }
     }];
-    
+
     self.serviceLostObserver = [self.serviceDiscovery addHandlerForServiceLost:^(SDService *service) {
         IADevice * dev = [IADevice deviceWithName:service.name host:service.hostname port:service.port supportedRoutes:nil];
         [myself.foundDevices removeObject:dev];
         [[NSNotificationCenter defaultCenter] postNotificationName:IADeviceLost object:myself userInfo:@{@"device":dev}];
     }];
-    
+
     [self route:[IARoute routeWithAction:@"GET" resource:@"/routes"] withHandler:^(IARequest *request, IAResponse *response) {
         IALogTrace3(@"GET /routes");
         [response setBodyWith:self.supportedRoutes];
@@ -208,33 +209,33 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
 -(BOOL)isRunning
 {
 	__block BOOL result;
-	
+
 	dispatch_sync(_serverQueue, ^{
 		result = _isRunning;
 	});
-	
+
 	return result;
 }
 
 -(IADevice *)ownDevice
 {
     __block IADevice * result;
-	
+
 	dispatch_sync(_serverQueue, ^{
         result = _ownDevice;
 	});
-	
+
 	return result;
 }
 
 -(NSArray *)devices
 {
     __block NSArray * result;
-	
+
 	dispatch_sync(_serverQueue, ^{
         result = [_foundDevices copy];
 	});
-	
+
 	return result;
 }
 
@@ -299,10 +300,10 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
 
 -(void)sendRequest:(IARequest *)request toDevice:(IADevice *)device withHandler:(IAResponseHandler)handler
 {
-    /* This is super dumb too*/
-    if(!request.origin)
-        request.origin = self.ownDevice; 
-    
+    if (!request.origin) {
+        request.origin = self.ownDevice;
+    }
+
     [self.client sendRequest:request toDevice:device withHandler:handler];
 }
 
@@ -312,7 +313,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
     if (devices.count == 0) {
         return NO;
     }
-    
+
     for(IADevice * device in devices)
     {
         [self sendRequest:request toDevice:device withHandler:handler];
@@ -353,6 +354,23 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_INFO; // | IA_LOG_FLAG_TRACE
             }
         }
     }];
+}
+
+#pragma mark Log level
+
+- (void)setLogLevel:(int)logLevel
+{
+    intAirActLogLevel = logLevel;
+}
+
++ (int)ddLogLevel
+{
+    return intAirActLogLevel;
+}
+
++ (void)ddSetLogLevel:(int)logLevel
+{
+    intAirActLogLevel = logLevel;
 }
 
 @end

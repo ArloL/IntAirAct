@@ -1,8 +1,6 @@
 #import "IADeSerialization.h"
 
 #import <objc/runtime.h>
-#import "JSONKit.h"
-
 #import "IALogging.h"
 
 // Log levels: off, error, warn, info, verbose
@@ -23,14 +21,16 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
 
 -(void)setBodyWith:(id)data
 {
-    if([data isKindOfClass:[NSString class]]) {
+    if(!data) {
+        return;
+    } else if([data isKindOfClass:[NSString class]]) {
         [self setBodyWithString:data];
     } else if([data isKindOfClass:[NSNumber class]]) {
         [self setBodyWithNumber:data];
     } else {
         id serializedObject = [self serialize:data];
         NSError * error;
-        NSData * result = [serializedObject JSONDataWithOptions:0 error:&error];
+        NSData * result = [NSJSONSerialization dataWithJSONObject:serializedObject options:0 error:&error];
         if (error) {
             IALogError(@"Error ocurred while serializing: %@", error);
         } else {
@@ -95,7 +95,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         return [f numberFromString:self.bodyAsString];
     } else {
         NSError * error;
-        id result = [self.body objectFromJSONDataWithParseOptions:0 error:&error];
+        id result = [NSJSONSerialization JSONObjectWithData:self.body options:0 error:&error];
         if (error) {
             IALogError(@"Error ocurred while serializing: %@", error);
             return nil;
@@ -127,7 +127,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
         } else {
             return nil;
         }
-    } else if ([data isKindOfClass:NSClassFromString(@"JKDictionary")]) {
+    } else if ([data isKindOfClass:[NSDictionary class]]) {
         if ([class isSubclassOfClass:[NSDictionary class]]) {
             NSMutableDictionary * result = [NSMutableDictionary new];
             [data enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -152,7 +152,7 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
             }];
             return result;
         }
-    } else if ([data isKindOfClass:NSClassFromString(@"JKArray")]) {
+    } else if ([data isKindOfClass:[NSArray class]]) {
         if ([class isSubclassOfClass:[NSArray class]]) {
             NSMutableArray * result = [NSMutableArray new];
             for (id obj in data) {
@@ -217,8 +217,8 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     }
 
     free(propList);
-    
-    return theProps;	
+
+    return theProps;
 }
 
 @end

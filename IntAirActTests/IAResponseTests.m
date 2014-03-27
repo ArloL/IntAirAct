@@ -5,7 +5,7 @@
 #import <IntAirAct/IntAirAct.h>
 
 // Log levels : off, error, warn, info, verbose
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation IAResponseTests
 
@@ -29,7 +29,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testDescription
 {
     IAResponse * request = [IAResponse new];
-    STAssertNotNil(request.description, @"Description should not be nil");
+    XCTAssertNotNil(request.description, @"Description should not be nil");
 }
 
 @end

@@ -7,14 +7,14 @@
 #import "NSURL+QueryParameters.h"
 
 // Log levels : off, error, warn, info, verbose
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation IANSURLAdapterTests
 
 -(void)setUp
 {
     [super setUp];
-    
+
     // Set-up code here.
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
@@ -24,7 +24,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     // Tear-down code here.
     [DDLog removeAllLoggers];
-    
+
     [super tearDown];
 }
 
@@ -32,7 +32,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 {
     NSURL * expected = [NSURL URLWithString:@"http://example.com/"];
     NSURL * actual = [expected URLByAppendingQueryString:@""];
-    STAssertEqualObjects(actual, expected, nil);
+    XCTAssertEqualObjects(actual, expected);
 }
 
 @end

@@ -21,7 +21,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"IADevice[name: %@, host: %@, port: %"FMTNSINT", supportedRoutes: %@]", self.name, self.host, self.port, self.supportedRoutes];
+    return [NSString stringWithFormat:@"IADevice[name: %@, host: %@, port: %li, supportedRoutes: %@]", self.name, self.host, (long)self.port, self.supportedRoutes];
 }
 
 - (BOOL)isEqual:(id)object

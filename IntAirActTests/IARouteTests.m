@@ -5,7 +5,7 @@
 #import <IntAirAct/IntAirAct.h>
 
 // Log levels : off, error, warn, info, verbose
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation IARouteTests
 
@@ -29,63 +29,63 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (void)testConstructor
 {
     IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
-    STAssertEqualObjects(route.action, @"GET", nil);
-    STAssertEqualObjects(route.resource, @"/example", nil);
+    XCTAssertEqualObjects(route.action, @"GET");
+    XCTAssertEqualObjects(route.resource, @"/example");
 }
 
 - (void)testEquals
 {
     IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
     IARoute * other = [IARoute routeWithAction:@"GET" resource:@"/example"];
-    STAssertTrue([route isEqual:other], nil);
-    STAssertEquals(route.hash, other.hash, nil);
+    XCTAssertTrue([route isEqual:other]);
+    XCTAssertEqual(route.hash, other.hash);
 }
 
 - (void)testEqualsSelf
 {
     IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
     IARoute * other = route;
-    STAssertTrue([route isEqual:other], nil);
-    STAssertEquals(route.hash, other.hash, nil);
+    XCTAssertTrue([route isEqual:other]);
+    XCTAssertEqual(route.hash, other.hash);
 }
 
 - (void)testEqualsNil
 {
     IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
     IARoute * other = nil;
-    STAssertFalse([route isEqual:other], nil);
+    XCTAssertFalse([route isEqual:other]);
 }
 
 - (void)testEqualsDifferentAction
 {
     IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
     IARoute * other = [IARoute routeWithAction:@"PUT" resource:@"/example"];
-    STAssertFalse([route isEqual:other], nil);
-    STAssertFalse(route.hash == other.hash, nil);
+    XCTAssertFalse([route isEqual:other]);
+    XCTAssertFalse(route.hash == other.hash);
 }
 
 - (void)testEqualsDifferentResource
 {
     IARoute * route = [IARoute routeWithAction:@"GET" resource:@"/example"];
     IARoute * other = [IARoute routeWithAction:@"GET" resource:@"/example2"];
-    STAssertFalse([route isEqual:other], nil);
-    STAssertFalse(route.hash == other.hash, nil);
+    XCTAssertFalse([route isEqual:other]);
+    XCTAssertFalse(route.hash == other.hash);
 }
 
 - (void)testEqualsActionIsNull
 {
     IARoute * route = [IARoute routeWithAction:nil resource:@"/example"];
     IARoute * other = [IARoute routeWithAction:@"GET" resource:@"/example"];
-    STAssertFalse([route isEqual:other], nil);
-    STAssertFalse(route.hash == other.hash, nil);
+    XCTAssertFalse([route isEqual:other]);
+    XCTAssertFalse(route.hash == other.hash);
 }
 
 - (void)testEqualsResourceIsNull
 {
     IARoute * route = [IARoute routeWithAction:@"GET" resource:nil];
     IARoute * other = [IARoute routeWithAction:@"GET" resource:@"/example"];
-    STAssertFalse([route isEqual:other], nil);
-    STAssertFalse(route.hash == other.hash, nil);
+    XCTAssertFalse([route isEqual:other]);
+    XCTAssertFalse(route.hash == other.hash);
 }
 
 - (void)testEqualsWithDifferentObject
@@ -95,38 +95,38 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     IARoute * route = [IARoute routeWithAction:action resource:resource];
 
     NSString * other = @"name";
-    STAssertFalse([route isEqual:other], @"Should not be equal");
-    STAssertFalse(route.hash == other.hash, @"Hashes should not be equal");
+    XCTAssertFalse([route isEqual:other], @"Should not be equal");
+    XCTAssertFalse(route.hash == other.hash, @"Hashes should not be equal");
 }
 
 - (void)testShortHandPut
 {
     IARoute * request = [IARoute put:@""];
-    STAssertEqualObjects(@"PUT", request.action, @"action should be PUT");
+    XCTAssertEqualObjects(@"PUT", request.action, @"action should be PUT");
 }
 
 - (void)testShortHandGet
 {
     IARoute * request = [IARoute get:@""];
-    STAssertEqualObjects(@"GET", request.action, @"action should be GET");
+    XCTAssertEqualObjects(@"GET", request.action, @"action should be GET");
 }
 
 - (void)testShortHandDelete
 {
     IARoute * request = [IARoute delete:@""];
-    STAssertEqualObjects(@"DELETE", request.action, @"action should be DELETE");
+    XCTAssertEqualObjects(@"DELETE", request.action, @"action should be DELETE");
 }
 
 - (void)testShortHandPost
 {
     IARoute * request = [IARoute post:@""];
-    STAssertEqualObjects(@"POST", request.action, @"action should be POST");
+    XCTAssertEqualObjects(@"POST", request.action, @"action should be POST");
 }
 
 - (void)testDescription
 {
     IARoute * request = [IARoute routeWithAction:@"GET" resource:@"/example"];
-    STAssertNotNil(request.description, @"Description should not be nil");
+    XCTAssertNotNil(request.description, @"Description should not be nil");
 }
 
 @end

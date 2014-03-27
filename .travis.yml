@@ -1,0 +1,9 @@
+language: objective-c
+before_install:
+    - gem install cocoapods
+xcode_workspace: IntAirAct.xcworkspace
+matrix:
+  include:
+    - xcode_scheme: IntAirActOSX
+    - xcode_scheme: IntAirActIOS
+      xcode_sdk: iphonesimulator7.0
