@@ -5,5 +5,5 @@ xcode_workspace: IntAirAct.xcworkspace
 matrix:
   include:
     - xcode_scheme: IntAirActOSX
-    - xcode_scheme: IntAirActIOS
+    - xcode_scheme: IntAirActStaticIOS
       xcode_sdk: iphonesimulator7.0
