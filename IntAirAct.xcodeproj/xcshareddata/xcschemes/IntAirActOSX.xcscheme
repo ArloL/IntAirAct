@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "27FC625E154B36AD00AA7502"
-               BuildableName = "IntAirActOSXTests.octest"
+               BuildableName = "IntAirActOSXTests.xctest"
                BlueprintName = "IntAirActOSXTests"
                ReferencedContainer = "container:IntAirAct.xcodeproj">
             </BuildableReference>
