@@ -104,6 +104,8 @@
 		2788006316572D70006DCE70 /* IADeserializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788006116572D70006DCE70 /* IADeserializationTests.m */; };
 		2788FFFC16570542006DCE70 /* IAResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFB16570542006DCE70 /* IAResponseTests.m */; };
 		2788FFFD16570542006DCE70 /* IAResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2788FFFB16570542006DCE70 /* IAResponseTests.m */; };
+		279D130F18E4C02D0097843A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279D130E18E4C02D0097843A /* XCTest.framework */; };
+		279D131018E4C0340097843A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279D130E18E4C02D0097843A /* XCTest.framework */; };
 		27BC0DF516584B930038D6BD /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27BC0DF416584B930038D6BD /* AppKit.framework */; };
 		27C172601550952500BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
 		27C172611550952E00BF2BFE /* IntAirActTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 274A48CC15508DEB000DFAF9 /* IntAirActTests.m */; };
@@ -117,13 +119,11 @@
 		D53C340C163B63A7007420CD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C340B163B63A7007420CD /* CoreGraphics.framework */; };
 		D53C340E163B63AF007420CD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C340D163B63AF007420CD /* CoreData.framework */; };
 		D53C3410163B63B6007420CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C340F163B63B6007420CD /* UIKit.framework */; };
-		D53C3412163B63BE007420CD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3411163B63BE007420CD /* SenTestingKit.framework */; };
 		D53C3416163B63E7007420CD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3415163B63E7007420CD /* SystemConfiguration.framework */; };
 		D53C3418163B63EF007420CD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3417163B63EF007420CD /* Security.framework */; };
 		D53C341A163B63F3007420CD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3419163B63F3007420CD /* MobileCoreServices.framework */; };
 		D53C341C163B6400007420CD /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C341B163B6400007420CD /* libxml2.dylib */; };
 		D53C341E163B6416007420CD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C341D163B6416007420CD /* QuartzCore.framework */; };
-		D53C3420163B644D007420CD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53C3411163B63BE007420CD /* SenTestingKit.framework */; };
 		D53C3523163C1E45007420CD /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = D53C3522163C1E45007420CD /* IAServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D53C3524163C1E45007420CD /* IAServer.h in Headers */ = {isa = PBXBuildFile; fileRef = D53C3522163C1E45007420CD /* IAServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F79E68A441B64D58BB475435 /* libPods-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F84E9DF6CB2C46B4B28C7899 /* libPods-osx.a */; };
@@ -228,18 +228,18 @@
 		2788FFFB16570542006DCE70 /* IAResponseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAResponseTests.m; path = IntAirActTests/IAResponseTests.m; sourceTree = "<group>"; };
 		2788FFFE165705ED006DCE70 /* IARouteTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IARouteTests.h; path = IntAirActTests/IARouteTests.h; sourceTree = "<group>"; };
 		2788FFFF165705ED006DCE70 /* IARouteTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IARouteTests.m; path = IntAirActTests/IARouteTests.m; sourceTree = "<group>"; };
+		279D130E18E4C02D0097843A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		27BC0DF416584B930038D6BD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		27E54AE71654B54900EFD933 /* IADeSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IADeSerialization.h; sourceTree = "<group>"; };
 		27E54AE81654B54900EFD933 /* IADeSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IADeSerialization.m; sourceTree = "<group>"; };
-		27FC6247154B36A400AA7502 /* IntAirActIOSTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActIOSTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		27FC625F154B36AD00AA7502 /* IntAirActOSXTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActOSXTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		27FC6247154B36A400AA7502 /* IntAirActIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		27FC625F154B36AD00AA7502 /* IntAirActOSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntAirActOSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3929B3CE1BB042EE9F37C0A9 /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "Pods/Pods-ios.xcconfig"; sourceTree = "<group>"; };
 		41E5396CDAAC4B9FADD0B8FD /* libPods-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D53C3409163B639F007420CD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D53C340B163B63A7007420CD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D53C340D163B63AF007420CD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D53C340F163B63B6007420CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D53C3411163B63BE007420CD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D53C3415163B63E7007420CD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D53C3417163B63EF007420CD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D53C3419163B63F3007420CD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -272,12 +272,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				279D130F18E4C02D0097843A /* XCTest.framework in Frameworks */,
 				D53C341E163B6416007420CD /* QuartzCore.framework in Frameworks */,
 				D53C341C163B6400007420CD /* libxml2.dylib in Frameworks */,
 				D53C341A163B63F3007420CD /* MobileCoreServices.framework in Frameworks */,
 				D53C3418163B63EF007420CD /* Security.framework in Frameworks */,
 				D53C3416163B63E7007420CD /* SystemConfiguration.framework in Frameworks */,
-				D53C3412163B63BE007420CD /* SenTestingKit.framework in Frameworks */,
 				D53C3410163B63B6007420CD /* UIKit.framework in Frameworks */,
 				D53C340E163B63AF007420CD /* CoreData.framework in Frameworks */,
 				D53C340C163B63A7007420CD /* CoreGraphics.framework in Frameworks */,
@@ -290,7 +290,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D53C3420163B644D007420CD /* SenTestingKit.framework in Frameworks */,
+				279D131018E4C0340097843A /* XCTest.framework in Frameworks */,
 				276C7E8B1634C76E00631ECD /* IntAirAct.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,8 +352,8 @@
 			children = (
 				277E552C154A42AF002F307D /* libIntAirAct.a */,
 				277E5549154A4384002F307D /* IntAirAct.framework */,
-				27FC6247154B36A400AA7502 /* IntAirActIOSTests.octest */,
-				27FC625F154B36AD00AA7502 /* IntAirActOSXTests.octest */,
+				27FC6247154B36A400AA7502 /* IntAirActIOSTests.xctest */,
+				27FC625F154B36AD00AA7502 /* IntAirActOSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -467,7 +467,7 @@
 		D53C3413163B63C3007420CD /* Shared-Testing */ = {
 			isa = PBXGroup;
 			children = (
-				D53C3411163B63BE007420CD /* SenTestingKit.framework */,
+				279D130E18E4C02D0097843A /* XCTest.framework */,
 			);
 			name = "Shared-Testing";
 			sourceTree = "<group>";
@@ -588,7 +588,6 @@
 				27FC6242154B36A400AA7502 /* Sources */,
 				27FC6243154B36A400AA7502 /* Frameworks */,
 				27FC6244154B36A400AA7502 /* Resources */,
-				27FC6245154B36A400AA7502 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -597,7 +596,7 @@
 			);
 			name = IntAirActIOSTests;
 			productName = IntAirActIOSTests;
-			productReference = 27FC6247154B36A400AA7502 /* IntAirActIOSTests.octest */;
+			productReference = 27FC6247154B36A400AA7502 /* IntAirActIOSTests.xctest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		27FC625E154B36AD00AA7502 /* IntAirActOSXTests */ = {
@@ -616,8 +615,8 @@
 			);
 			name = IntAirActOSXTests;
 			productName = IntAirActOSXTests;
-			productReference = 27FC625F154B36AD00AA7502 /* IntAirActOSXTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 27FC625F154B36AD00AA7502 /* IntAirActOSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -718,19 +717,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcodebuild -workspace \"${PROJECT_DIR}/${PROJECT_NAME}.xcworkspace\" -scheme \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/${FRAMEWORK_VERSION}/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/${FRAMEWORK_VERSION}/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/${FRAMEWORK_VERSION}/${SF_TARGET_NAME}\"\n";
-		};
-		27FC6245154B36A400AA7502 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		27FC625D154B36AD00AA7502 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1044,7 +1030,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				PRODUCT_NAME = IntAirActIOSTests;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
@@ -1062,7 +1048,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				PRODUCT_NAME = IntAirActIOSTests;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -1072,15 +1058,13 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = IntAirActOSXTests;
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1091,14 +1075,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IntAirAct-Prefix.pch";
 				PRODUCT_NAME = IntAirActOSXTests;
 				SDKROOT = macosx;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
