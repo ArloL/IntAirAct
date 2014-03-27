@@ -47,7 +47,7 @@
     XCTAssertEqualObjects(deSerialization.bodyAsString, body);
 }
 
-- (void)testSetBodyWithWithAString
+- (void)testSetBodyWithAString
 {
     NSString * body = @"example string";
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
@@ -55,7 +55,7 @@
     XCTAssertEqualObjects(deSerialization.bodyAsString, body);
 }
 
-- (void)testSetBodyWithWithAnArrayOfString
+- (void)testSetBodyWithAnArrayOfString
 {
     NSArray * array = @[ @"example string" ];
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
@@ -63,14 +63,14 @@
     XCTAssertEqualObjects(deSerialization.bodyAsString, @"[\"example string\"]");
 }
 
-- (void)testSetBodyWithWithANumber
+- (void)testSetBodyWithANumber
 {
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:@50];
     XCTAssertEqualObjects(deSerialization.bodyAsString, @"50");
 }
 
-- (void)testSetBodyWithWithAnArrayOfNumbers
+- (void)testSetBodyWithAnArrayOfNumbers
 {
     NSArray * array = @[ @50 ];
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
@@ -78,7 +78,7 @@
     XCTAssertEqualObjects(deSerialization.bodyAsString, @"[50]");
 }
 
-- (void)testSetBodyWithWithAnNSDictionary
+- (void)testSetBodyWithAnNSDictionary
 {
     NSDictionary * dictionary = @{ @"key" : @"value" };
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
@@ -86,7 +86,7 @@
     XCTAssertEqualObjects(deSerialization.bodyAsString, @"{\"key\":\"value\"}");
 }
 
-- (void)testSetBodyWithWithAnNSDictionaryUsingNSNumberKeys
+- (void)testSetBodyWithAnNSDictionaryUsingNSNumberKeys
 {
     NSDictionary * dictionary = @{ @50 : @"value" };
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
@@ -94,7 +94,7 @@
     XCTAssertEqualObjects(deSerialization.bodyAsString, @"{\"50\":\"value\"}");
 }
 
-- (void)testSetBodyWithWithAnIANumber
+- (void)testSetBodyWithAnIANumber
 {
     IANumber * number = [IANumber new];
     number.number = @50;
@@ -104,7 +104,7 @@
     XCTAssertEqualObjects(deSerialization.bodyAsString, expected);
 }
 
-- (void)testSetBodyWithWithAnIAModelWithInt
+- (void)testSetBodyWithAnIAModelWithInt
 {
     IAModelWithInt * model = [IAModelWithInt new];
     model.intProperty = 50;
@@ -114,7 +114,7 @@
     XCTAssertEqualObjects(deSerialization.bodyAsString, expected);
 }
 
-- (void)testSetBodyWithWithAnIAModelWithFloat
+- (void)testSetBodyWithAnIAModelWithFloat
 {
     IAModelWithFloat * model = [IAModelWithFloat new];
     model.floatProperty = 5.434f;
@@ -124,7 +124,7 @@
     XCTAssertEqualObjects(deSerialization.bodyAsString, expected);
 }
 
-- (void)testSetBodyWithWithAnIAModelInheritance
+- (void)testSetBodyWithAnIAModelInheritance
 {
     IAModelInheritance * model = [IAModelInheritance new];
     model.number = @50;
@@ -135,7 +135,7 @@
     XCTAssertEqualObjects(deSerialization.bodyAsString, expected);
 }
 
-- (void)testSetBodyWithWithAnIAModelReference
+- (void)testSetBodyWithAnIAModelReference
 {
     IAModelReference * model = [IAModelReference new];
     model.number = [IANumber new];
@@ -147,7 +147,7 @@
 }
 
 
-- (void)testSetBodyWithWithNil
+- (void)testSetBodyWithNil
 {
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:nil];
