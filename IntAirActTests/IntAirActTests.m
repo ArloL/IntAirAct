@@ -50,34 +50,34 @@
 -(void)testOwnDeviceShouldBeNil
 {
     // Then
-    STAssertNil(self.intAirAct.ownDevice, @"Own Device should be nil");
+    XCTAssertNil(self.intAirAct.ownDevice, @"Own Device should be nil");
 }
 
 -(void)testDefaultPortShouldBeZero
 {
     NSInteger expectedPort = 0;
     // Then
-    STAssertEquals(expectedPort, self.intAirAct.port, @"Default port should be %i but was %i", expectedPort, self.intAirAct.port);
+    XCTAssertEqual(expectedPort, self.intAirAct.port, @"Default port should be %li but was %li", (long)expectedPort, (long)self.intAirAct.port);
 }
 
 -(void)testDefaultSupportedRoutesShouldBeEmpty
 {
     // Then
-    STAssertNotNil(self.intAirAct.supportedRoutes, @"Supported routes should not be nil");
-    STAssertTrue([self.intAirAct.supportedRoutes count] == 1, @"Supported routes only have GET /routes");
+    XCTAssertNotNil(self.intAirAct.supportedRoutes, @"Supported routes should not be nil");
+    XCTAssertTrue([self.intAirAct.supportedRoutes count] == 1, @"Supported routes only have GET /routes");
 }
 
 -(void)testDefaultDevicesShouldBeEmpty
 {
     // Then
-    STAssertNotNil(self.intAirAct.devices, @"Devices should not be nil");
-    STAssertTrue([self.intAirAct.devices count] == 0, @"Devices should be empty");
+    XCTAssertNotNil(self.intAirAct.devices, @"Devices should not be nil");
+    XCTAssertTrue([self.intAirAct.devices count] == 0, @"Devices should be empty");
 }
 
 -(void)testIsRunningShouldBeNO
 {
     // Then
-    STAssertFalse(self.intAirAct.isRunning, @"isRunning should be NO");
+    XCTAssertFalse(self.intAirAct.isRunning, @"isRunning should be NO");
 }
 
 -(void)testIntAirActShouldStart
@@ -85,7 +85,7 @@
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
     }
 
     [self.intAirAct stop];
@@ -99,7 +99,7 @@
     // Then
     NSError * error = nil;
     if ([self.intAirAct start:&error]) {
-        STFail(@"Server should fail to start");
+        XCTFail(@"Server should fail to start");
     }
 }
 
@@ -120,7 +120,7 @@
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
         return;
     }
 
@@ -132,7 +132,7 @@
     }
     [cond unlock];
 
-    STAssertNotNil(self.intAirAct.ownDevice, @"ownDevice should be set");
+    XCTAssertNotNil(self.intAirAct.ownDevice, @"ownDevice should be set");
 
     [self.intAirAct removeHandler:deviceFoundHandler];
 
@@ -140,7 +140,7 @@
     sleep(1);
 
     if (!found) {
-        STFail(@"Did not find service");
+        XCTFail(@"Did not find service");
     }
 }
 
@@ -163,7 +163,7 @@
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
         return;
     }
 
@@ -175,7 +175,7 @@
     }
     [cond unlock];
 
-    STAssertEqualObjects(self.intAirAct.supportedRoutes, self.intAirAct.ownDevice.supportedRoutes, @"ownDevice.supportedRoutes and supportedRoutes should be equal");
+    XCTAssertEqualObjects(self.intAirAct.supportedRoutes, self.intAirAct.ownDevice.supportedRoutes, @"ownDevice.supportedRoutes and supportedRoutes should be equal");
 
     [self.intAirAct removeHandler:deviceFoundHandler];
 
@@ -201,7 +201,7 @@
 
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
         return;
     }
 
@@ -219,7 +219,7 @@
     }];
 
     if (![iAA start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
         return;
     }
 
@@ -239,7 +239,7 @@
     sleep(1);
 
     if (!foundOne || !foundTwo) {
-        STFail(@"Did not find each other");
+        XCTFail(@"Did not find each other");
     }
 }
 
@@ -272,7 +272,7 @@
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
         return;
     }
 
@@ -290,7 +290,7 @@
     sleep(1);
 
     if (!called) {
-        STFail(@"Did not call correct");
+        XCTFail(@"Did not call correct");
     }
 }
 
@@ -323,7 +323,7 @@
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
         return;
     }
 
@@ -341,7 +341,7 @@
     sleep(1);
 
     if (!called) {
-        STFail(@"Did not call correct");
+        XCTFail(@"Did not call correct");
     }
 }
 
@@ -375,7 +375,7 @@
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
         return;
     }
 
@@ -393,7 +393,7 @@
     sleep(1);
 
     if (!called) {
-        STFail(@"Did not call correct");
+        XCTFail(@"Did not call correct");
     }
 }
 
@@ -427,7 +427,7 @@
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
         return;
     }
 
@@ -445,7 +445,7 @@
     sleep(1);
 
     if (!called) {
-        STFail(@"Did not call correct");
+        XCTFail(@"Did not call correct");
     }
 }
 
@@ -476,7 +476,7 @@
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
         return;
     }
 
@@ -494,7 +494,7 @@
     sleep(1);
 
     if (!requestFailed) {
-        STFail(@"Did not call correct");
+        XCTFail(@"Did not call correct");
     }
 }
 
@@ -529,7 +529,7 @@
     // Then
     NSError * error = nil;
     if (![self.intAirAct start:&error]) {
-        STFail(@"HTTP server failed to start: %@", error);
+        XCTFail(@"HTTP server failed to start: %@", error);
         return;
     }
 
@@ -547,7 +547,7 @@
     sleep(1);
 
     if (!called) {
-        STFail(@"Did not call correct");
+        XCTFail(@"Did not call correct");
     }
 }
 

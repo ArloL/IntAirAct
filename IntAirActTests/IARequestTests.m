@@ -34,11 +34,11 @@
     IADevice * origin = [IADevice deviceWithName:@"name" host:@"host" port:8080 supportedRoutes:[NSSet new]];
     NSData * body = [NSData new];
     IARequest * request = [IARequest requestWithRoute:route metadata:metadata parameters:parameters origin:origin body:body];
-    STAssertEquals(route, request.route, @"route should be the same");
-    STAssertEquals(metadata, request.metadata, @"metadata should be the same");
-    STAssertEquals(parameters, request.parameters, @"parameters should be the same");
-    STAssertEquals(origin, request.origin, @"origin should be the same");
-    STAssertEquals(body, request.body, @"body should be the same");
+    XCTAssertEqual(route, request.route, @"route should be the same");
+    XCTAssertEqual(metadata, request.metadata, @"metadata should be the same");
+    XCTAssertEqual(parameters, request.parameters, @"parameters should be the same");
+    XCTAssertEqual(origin, request.origin, @"origin should be the same");
+    XCTAssertEqual(body, request.body, @"body should be the same");
 }
 
 - (void)testDescription
@@ -49,7 +49,7 @@
     IADevice * origin = [IADevice deviceWithName:@"name" host:@"host" port:8080 supportedRoutes:[NSSet new]];
     NSData * body = [NSData new];
     IARequest * request = [IARequest requestWithRoute:route metadata:metadata parameters:parameters origin:origin body:body];
-    STAssertNotNil(request.description, @"Description should not be nil");
+    XCTAssertNotNil(request.description, @"Description should not be nil");
 }
 
 @end

@@ -36,7 +36,7 @@
 {
     NSData * body = [NSData new];
     IADeSerialization * deSerialization = [[IADeSerialization alloc] initWithBody:body];
-    STAssertEquals(deSerialization.body, body, nil);
+    XCTAssertEqual(deSerialization.body, body);
 }
 
 - (void)testSetBodyWithString
@@ -44,7 +44,7 @@
     NSString * body = @"example string";
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWithString:body];
-    STAssertEqualObjects(deSerialization.bodyAsString, body, nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, body);
 }
 
 - (void)testSetBodyWithWithAString
@@ -52,7 +52,7 @@
     NSString * body = @"example string";
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:body];
-    STAssertEqualObjects(deSerialization.bodyAsString, body, nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, body);
 }
 
 - (void)testSetBodyWithWithAnArrayOfString
@@ -60,14 +60,14 @@
     NSArray * array = @[ @"example string" ];
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:array];
-    STAssertEqualObjects(deSerialization.bodyAsString, @"[\"example string\"]", nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, @"[\"example string\"]");
 }
 
 - (void)testSetBodyWithWithANumber
 {
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:@50];
-    STAssertEqualObjects(deSerialization.bodyAsString, @"50", nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, @"50");
 }
 
 - (void)testSetBodyWithWithAnArrayOfNumbers
@@ -75,7 +75,7 @@
     NSArray * array = @[ @50 ];
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:array];
-    STAssertEqualObjects(deSerialization.bodyAsString, @"[50]", nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, @"[50]");
 }
 
 - (void)testSetBodyWithWithAnNSDictionary
@@ -83,7 +83,7 @@
     NSDictionary * dictionary = @{ @"key" : @"value" };
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:dictionary];
-    STAssertEqualObjects(deSerialization.bodyAsString, @"{\"key\":\"value\"}", nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, @"{\"key\":\"value\"}");
 }
 
 - (void)testSetBodyWithWithAnNSDictionaryUsingNSNumberKeys
@@ -91,7 +91,7 @@
     NSDictionary * dictionary = @{ @50 : @"value" };
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:dictionary];
-    STAssertEqualObjects(deSerialization.bodyAsString, @"{\"50\":\"value\"}", nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, @"{\"50\":\"value\"}");
 }
 
 - (void)testSetBodyWithWithAnIANumber
@@ -101,7 +101,7 @@
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:number];
     NSString * expected = @"{\"number\":50}";
-    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, expected);
 }
 
 - (void)testSetBodyWithWithAnIAModelWithInt
@@ -111,7 +111,7 @@
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:model];
     NSString * expected = @"{\"intProperty\":50}";
-    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, expected);
 }
 
 - (void)testSetBodyWithWithAnIAModelWithFloat
@@ -121,7 +121,7 @@
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:model];
     NSString * expected = [NSString stringWithFormat:@"{\"floatProperty\":%.4g}", 5.434f];
-    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, expected);
 }
 
 - (void)testSetBodyWithWithAnIAModelInheritance
@@ -132,7 +132,7 @@
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:model];
     NSString * expected = [NSString stringWithFormat:@"{\"number\":50,\"numberTwo\":60}"];
-    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, expected);
 }
 
 - (void)testSetBodyWithWithAnIAModelReference
@@ -143,7 +143,7 @@
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:model];
     NSString * expected = [NSString stringWithFormat:@"{\"number\":{\"number\":2}}"];
-    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, expected);
 }
 
 
@@ -152,13 +152,13 @@
     IADeSerialization * deSerialization = [[IADeSerialization alloc] init];
     [deSerialization setBodyWith:nil];
     NSString * expected = @"";
-    STAssertEqualObjects(deSerialization.bodyAsString, expected, nil);
+    XCTAssertEqualObjects(deSerialization.bodyAsString, expected);
 }
 
 - (void)testDescription
 {
     IADeSerialization * deSerialization = [IADeSerialization new];
-    STAssertNotNil(deSerialization.description, nil);
+    XCTAssertNotNil(deSerialization.description);
 }
 
 @end

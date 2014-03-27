@@ -33,10 +33,10 @@
     NSInteger port = 8080;
     NSSet * supportedRoutes = [NSSet new];
     IADevice * service = [IADevice deviceWithName:name host:host port:port supportedRoutes:supportedRoutes];
-    STAssertEquals(name, service.name, @"Name should be the same");
-    STAssertEquals(host, service.host, @"Hostname should be the same");
-    STAssertEquals(port, service.port, @"Port should be the same");
-    STAssertEquals(supportedRoutes, service.supportedRoutes, @"TXTRecord should be the same");
+    XCTAssertEqual(name, service.name, @"Name should be the same");
+    XCTAssertEqual(host, service.host, @"Hostname should be the same");
+    XCTAssertEqual(port, service.port, @"Port should be the same");
+    XCTAssertEqual(supportedRoutes, service.supportedRoutes, @"TXTRecord should be the same");
 }
 
 - (void)testEquals
@@ -47,8 +47,8 @@
     NSSet * supportedRoutes = [NSSet new];
     IADevice * service = [IADevice deviceWithName:name host:host port:port supportedRoutes:supportedRoutes];
     IADevice * other = [IADevice deviceWithName:name host:host port:port supportedRoutes:supportedRoutes];
-    STAssertEqualObjects(service, other, @"Should be equal");
-    STAssertEquals(service.hash, other.hash, @"Hashes should be equal");
+    XCTAssertEqualObjects(service, other, @"Should be equal");
+    XCTAssertEqual(service.hash, other.hash, @"Hashes should be equal");
 }
 
 - (void)testEqualsWithSelf
@@ -58,8 +58,8 @@
     NSInteger port = 8080;
     NSSet * supportedRoutes = [NSSet new];
     IADevice * service = [IADevice deviceWithName:name host:host port:port supportedRoutes:supportedRoutes];
-    STAssertTrue([service isEqual:service], @"Should be equal");
-    STAssertEquals(service.hash, service.hash, @"Hashes should be equal");
+    XCTAssertTrue([service isEqual:service], @"Should be equal");
+    XCTAssertEqual(service.hash, service.hash, @"Hashes should be equal");
 }
 
 - (void)testEqualsFails
@@ -72,8 +72,8 @@
     NSSet * supportedRoutes = [NSSet new];
     IADevice * service = [IADevice deviceWithName:name host:host port:port supportedRoutes:supportedRoutes];
     IADevice * other = [IADevice deviceWithName:differentName host:host port:port supportedRoutes:supportedRoutes];
-    STAssertFalse([service isEqual:other], @"Should not be equal");
-    STAssertFalse(service.hash == other.hash, @"Hashes should not be equal");
+    XCTAssertFalse([service isEqual:other], @"Should not be equal");
+    XCTAssertFalse(service.hash == other.hash, @"Hashes should not be equal");
 }
 
 - (void)testEqualsWithDifferentObject
@@ -85,8 +85,8 @@
     IADevice * service = [IADevice deviceWithName:name host:host port:port supportedRoutes:supportedRoutes];
 
     NSString * other = @"name";
-    STAssertFalse([service isEqual:other], @"Should not be equal");
-    STAssertFalse(service.hash == other.hash, @"Hashes should not be equal");
+    XCTAssertFalse([service isEqual:other], @"Should not be equal");
+    XCTAssertFalse(service.hash == other.hash, @"Hashes should not be equal");
 }
 
 - (void)testDescription
@@ -96,7 +96,7 @@
     NSInteger port = 8080;
     NSSet * supportedRoutes = [NSSet new];
     IADevice * service = [IADevice deviceWithName:name host:host port:port supportedRoutes:supportedRoutes];
-    STAssertNotNil(service.description, @"Description should not be nil");
+    XCTAssertNotNil(service.description, @"Description should not be nil");
 }
 
 @end

@@ -29,7 +29,7 @@
 - (void)testDescription
 {
     IAResponse * request = [IAResponse new];
-    STAssertNotNil(request.description, @"Description should not be nil");
+    XCTAssertNotNil(request.description, @"Description should not be nil");
 }
 
 @end

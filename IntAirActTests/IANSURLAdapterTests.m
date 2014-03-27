@@ -32,7 +32,7 @@
 {
     NSURL * expected = [NSURL URLWithString:@"http://example.com/"];
     NSURL * actual = [expected URLByAppendingQueryString:@""];
-    STAssertEqualObjects(actual, expected, nil);
+    XCTAssertEqualObjects(actual, expected);
 }
 
 @end
