@@ -20,9 +20,12 @@ static const int intAirActLogLevel = IA_LOG_LEVEL_WARN; // | IA_LOG_FLAG_TRACE
     NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
     urlRequest.HTTPMethod = request.route.action;
     urlRequest.HTTPBody = request.body;
-    [urlRequest setAllHTTPHeaderFields:request.metadata];
+    [request.metadata enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSString * escapedValue = [obj stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+        [urlRequest addValue:escapedValue forHTTPHeaderField:key];
+    }];
 
-    NSString* escapedOriginName = [request.origin.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString* escapedOriginName = [request.origin.name stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
     [urlRequest addValue:escapedOriginName forHTTPHeaderField:@"X-IA-Origin"];
 
     return urlRequest;
