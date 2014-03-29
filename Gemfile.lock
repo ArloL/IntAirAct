@@ -1,24 +1,8 @@
-GEM
-  remote: http://rubygems.org/
+GIT
+  remote: https://github.com/rayh/xcoder.git
+  revision: 8e7d8ef91f3e2d77152357c5353fa55026ff308a
   specs:
-    aws-sdk (1.11.1)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
-      uuidtools (~> 2.1)
-    builder (3.2.2)
-    colorize (0.5.8)
-    json (1.8.0)
-    mime-types (1.23)
-    mini_portile (0.5.1)
-    multi_json (1.7.7)
-    nokogiri (1.6.0)
-      mini_portile (~> 0.5.0)
-    plist (3.1.0)
-    rake (10.1.0)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
-    uuidtools (2.1.4)
-    xcoder (0.1.18)
+    xcoder (0.1.19)
       aws-sdk
       builder
       colorize
@@ -27,9 +11,30 @@ GEM
       plist
       rest-client
 
+GEM
+  remote: http://rubygems.org/
+  specs:
+    aws-sdk (1.38.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
+    builder (3.2.2)
+    colorize (0.7.0)
+    json (1.8.1)
+    mime-types (2.2)
+    mini_portile (0.5.3)
+    multi_json (1.9.2)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
+    plist (3.1.0)
+    rake (10.2.2)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    uuidtools (2.1.4)
+
 PLATFORMS
   ruby
 
 DEPENDENCIES
   rake
-  xcoder
+  xcoder!
